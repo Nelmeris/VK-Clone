@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  Authorization.swift
 //  VK Additional Application
 //
 //  Created by Артем on 27.04.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Authorization: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
