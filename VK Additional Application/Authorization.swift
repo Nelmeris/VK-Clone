@@ -31,6 +31,51 @@ class Authorization: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var loginInput: UITextField!
+    @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var resultOut: UILabel!
+    @IBOutlet weak var authButton: UIButton!
+    @IBOutlet weak var authView: UIView!
+    
+    
+    //Действие при открытии клавиатуры
+    @objc func keyboardWillShown(notification: Notification) {
+        let info = notification.userInfo! as NSDictionary
+        let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
+        
+        scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
+        scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height / 2), animated: true)
+    }
+    
+    //Действие при закрытии клавиатуры
+    @objc func keyboardWillBeHidden(notification: Notification) {
+        scrollView?.contentInset = UIEdgeInsets.zero
+        scrollView?.scrollIndicatorInsets = UIEdgeInsets.zero
+        scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func hideKeyboard() {
+        scrollView?.endEditing(true)
+    }
 
 
 }
