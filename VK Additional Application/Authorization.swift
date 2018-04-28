@@ -12,7 +12,19 @@ class Authorization: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //Сокрытие пароля
+        passwordInput.isSecureTextEntry = true
+        
+        //Настройка кнопки
+        authButton.layer.cornerRadius = 10
+        authButton.layer.borderWidth = 0.1
+        authButton.layer.borderColor = (UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)).cgColor
+        authButton.clipsToBounds = true
+        
+        //Настройка окна
+        authView.layer.cornerRadius = 10
+        authView.clipsToBounds = true
     }
 
     override func didReceiveMemoryWarning() {
