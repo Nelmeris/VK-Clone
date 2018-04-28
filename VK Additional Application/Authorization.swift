@@ -25,6 +25,15 @@ class Authorization: UIViewController {
         //Настройка окна
         authView.layer.cornerRadius = 10
         authView.clipsToBounds = true
+        
+        //Скрытие клавиатуры при нажатии на внешнюю область
+        let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapScreen.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapScreen)
+    }
+    
+    @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +41,7 @@ class Authorization: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBOutlet weak var authContent: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginInput: UITextField!
@@ -39,16 +49,23 @@ class Authorization: UIViewController {
     @IBOutlet weak var resultOut: UILabel!
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var authView: UIView!
+    @IBOutlet weak var logo: UILabel!
     
+    @IBAction func authButton(_ sender: Any) {
+        view.endEditing(true)
+    }
     
     //Действие при открытии клавиатуры
     @objc func keyboardWillShown(notification: Notification) {
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
         
-        scrollView?.contentInset = contentInsets
-        scrollView?.scrollIndicatorInsets = contentInsets
+        if kbSize.height + authView.frame.height + resultOut.frame.height + logo.frame.height >= view.frame.height {
+            let contentInsets = UIEdgeInsetsMake(0, 0, kbSize.height, 0)
+            scrollView?.contentInset = contentInsets
+            scrollView?.scrollIndicatorInsets = contentInsets
+        }
+        
         scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height / 2), animated: true)
     }
     
