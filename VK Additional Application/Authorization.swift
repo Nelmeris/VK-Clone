@@ -76,6 +76,20 @@ class Authorization: UIViewController {
     @objc func hideKeyboard() {
         scrollView?.endEditing(true)
     }
+    
+    
+    
+    //Правило перехода
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if loginInput.text! == "root" && passwordInput.text! == "root" {
+            return true
+        } else {
+            resultOut.backgroundColor = (UIColor(red: 0, green: 0, blue: 0, alpha: 0.5))
+            resultOut.text! = "Неверные данные!"
+            resultOut.textColor = (UIColor(red: 255, green: 0, blue: 0, alpha: 1))
+        }
+        return false
+    }
 
 
 }
