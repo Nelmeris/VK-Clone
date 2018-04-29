@@ -8,6 +8,8 @@
 
 import UIKit
 
+var auth: Bool = false
+
 class Authorization: UIViewController {
 
     override func viewDidLoad() {
@@ -99,13 +101,15 @@ class Authorization: UIViewController {
     //Правило перехода
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if loginInput.text! == "root" && passwordInput.text! == "root" {
-            return true
+            auth = true
         } else {
-            resultOut.backgroundColor = (UIColor(red: 0, green: 0, blue: 0, alpha: 0.5))
-            resultOut.text! = "Неверные данные!"
-            resultOut.textColor = (UIColor(red: 255, green: 0, blue: 0, alpha: 1))
+            let alert = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
         }
-        return false
+        return auth
     }
 
 
