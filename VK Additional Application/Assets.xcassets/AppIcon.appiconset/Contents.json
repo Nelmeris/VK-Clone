@@ -1,111 +1,101 @@
 {
   "images" : [
     {
-      "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-2.png",
+      "size" : "20x20",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-3.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391035.jpg",
       "scale" : "3x"
     },
     {
-      "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-4.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-5.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391036.jpg",
       "scale" : "3x"
     },
     {
+      "idiom" : "iphone",
       "size" : "40x40",
-      "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-8.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-9.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391037.jpg",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391034.jpg",
       "scale" : "2x"
     },
     {
-      "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "vk-logo-black-transparent-1.png",
+      "size" : "60x60",
       "scale" : "3x"
     },
     {
-      "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-10.png",
+      "size" : "20x20",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-11.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391040.jpg",
       "scale" : "2x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-12.png",
+      "size" : "29x29",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-13.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391039.jpg",
       "scale" : "2x"
     },
     {
+      "idiom" : "ipad",
       "size" : "40x40",
-      "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-14.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-15.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391041.jpg",
       "scale" : "2x"
     },
     {
-      "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-16.png",
+      "size" : "76x76",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-17.png",
+      "filename" : "stock-vector-cloudy-weather-icon-white-icon-on-black-background-inversion-1059391038.jpg",
       "scale" : "2x"
     },
     {
+      "idiom" : "ipad",
       "size" : "83.5x83.5",
-      "idiom" : "ipad",
-      "filename" : "vk-logo-black-transparent-6.png",
       "scale" : "2x"
     },
     {
-      "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "vk-logo-black-transparent-7.png",
+      "size" : "1024x1024",
       "scale" : "1x"
     }
   ],
