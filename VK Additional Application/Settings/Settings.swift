@@ -17,13 +17,14 @@ class Settings: UITableViewController {
         var action = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(action)
         
-        action = UIAlertAction(title: "Выйти", style: .destructive, handler: Exit)
+        action = UIAlertAction(title: "Выйти", style: .destructive, handler: SignOut)
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
     }
     
-    func Exit(action: UIAlertAction) {
-        performSegue(withIdentifier: "Exit", sender: self)
+    func SignOut(action: UIAlertAction) {
+        auth = false
+        performSegue(withIdentifier: "Authorization", sender: self)
     }
 }

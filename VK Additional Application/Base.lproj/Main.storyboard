@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlT-s8-08b" userLabel="Auth Content">
-                                                <rect key="frame" x="93.666666666666671" y="242.33333333333331" width="187.66666666666663" height="250"/>
+                                                <rect key="frame" x="93.666666666666671" y="242.66666666666669" width="187.66666666666663" height="250"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KgL-1z-9Of">
                                                         <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="42"/>
@@ -41,7 +41,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="cBl-rg-kUL" userLabel="Authorization">
-                                                        <rect key="frame" x="0.0" y="49.666666666666686" width="187.66666666666666" height="150"/>
+                                                        <rect key="frame" x="0.0" y="49.666666666666629" width="187.66666666666666" height="150"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V7b-SJ-d3U">
                                                                 <rect key="frame" x="15" y="14" width="157.66666666666666" height="30"/>
@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-772" y="1879"/>
+            <point key="canvasLocation" x="-732" y="1873"/>
         </scene>
         <!--Температура-->
         <scene sceneID="CSL-Vt-jMc">
@@ -183,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection id="Kb1-wS-6Ks">
+                            <tableViewSection id="DVx-QJ-y0p">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="jp3-QE-eHN" style="IBUITableViewCellStyleDefault" id="1HC-jv-SXq">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -367,7 +367,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Exit" id="3y0-AU-6VQ"/>
+                        <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Authorization" id="3y0-AU-6VQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPU-ct-Str" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -681,10 +681,10 @@
             </objects>
             <point key="canvasLocation" x="3942" y="256"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController id="ZJq-mB-PY5" sceneMemberID="viewController">
+                <tabBarController id="ZJq-mB-PY5" customClass="Main" customModule="VK_Additional_Application" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -693,6 +693,7 @@
                     <connections>
                         <segue destination="YY8-X4-g7Y" kind="relationship" relationship="viewControllers" id="E9F-RM-u49"/>
                         <segue destination="qtK-4b-enf" kind="relationship" relationship="viewControllers" id="yjf-YA-42k"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="Authorization" id="0gG-fQ-55a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHb-Ns-hVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -705,4 +706,7 @@
         <image name="settings.png" width="32" height="32"/>
         <image name="temperature.png" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="0gG-fQ-55a"/>
+    </inferredMetricsTieBreakers>
 </document>

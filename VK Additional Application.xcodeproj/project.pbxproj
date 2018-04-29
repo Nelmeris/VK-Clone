@@ -14,6 +14,7 @@
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
 		F6B2C8B32096466D0056110D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B12096466D0056110D /* settings.png */; };
 		F6B2C8B42096466D0056110D /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B22096466D0056110D /* temperature.png */; };
+		F6B2C8B6209655EA0056110D /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2C8B5209655EA0056110D /* Main.swift */; };
 		F6E3F8412094FCDB00519835 /* auth.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6E3F8402094FCDA00519835 /* auth.jpg */; };
 		F6E3F84F2095EBC700519835 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Settings.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6B2C8B12096466D0056110D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F6B2C8B22096466D0056110D /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
+		F6B2C8B5209655EA0056110D /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		F6E3F8402094FCDA00519835 /* auth.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = auth.jpg; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
+				F6B2C8B5209655EA0056110D /* Main.swift */,
 			);
 			path = "VK Additional Application";
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 			files = (
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Settings.swift in Sources */,
+				F6B2C8B6209655EA0056110D /* Main.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
