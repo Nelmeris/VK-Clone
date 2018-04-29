@@ -60,6 +60,8 @@
 		F61E29762093B06B0070DEC9 /* VK Additional Application */ = {
 			isa = PBXGroup;
 			children = (
+				F6B2C8AE209643220056110D /* Temperature */,
+				F6B2C8AD209643190056110D /* Settings */,
 				F6E3F83F2094FCBE00519835 /* Resources */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
 				F61E29792093B06B0070DEC9 /* Authorization.swift */,
@@ -67,9 +69,23 @@
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
-				F6E3F84E2095EBC700519835 /* Settings.swift */,
 			);
 			path = "VK Additional Application";
+			sourceTree = "<group>";
+		};
+		F6B2C8AD209643190056110D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F6E3F84E2095EBC700519835 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F6B2C8AE209643220056110D /* Temperature */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Temperature;
 			sourceTree = "<group>";
 		};
 		F6E3F83F2094FCBE00519835 /* Resources */ = {

@@ -12,12 +12,12 @@ class Settings: UITableViewController {
     var exit: Bool = false
     
     @IBAction func ExitButtonAction(_ sender: Any) {
-        let alert = UIAlertController(title: "Предупреждение", message: "Вы точно хотите выйти?", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         var action = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(action)
         
-        action = UIAlertAction(title: "Выйти", style: .default, handler: Exit)
+        action = UIAlertAction(title: "Выйти", style: .destructive, handler: Exit)
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
