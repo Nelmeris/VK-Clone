@@ -10,13 +10,10 @@ import UIKit
 
 var auth: Bool = false
 
-class Authorization: UIViewController {
+class Authorization: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Сокрытие пароля
-        passwordInput.isSecureTextEntry = true
         
         //Настройка кнопки
         authButton.layer.cornerRadius = 10
@@ -32,6 +29,19 @@ class Authorization: UIViewController {
         let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
+        
+        loginInput.delegate = self
+        passwordInput.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            passwordInput.becomeFirstResponder()
+        } else if textField.returnKeyType == .go &&
+            shouldPerformSegue(withIdentifier: "SignIn", sender: self) {
+            performSegue(withIdentifier: "SignIn", sender: self)
+        }
+        return true
     }
     
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
