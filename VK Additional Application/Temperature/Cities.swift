@@ -48,7 +48,7 @@ class Temperaturies: UICollectionViewController {
         case .celsius:
             label.text = String(temperaturies[city!.row][indexPath.row]) + " C"
         case .fahrenheit:
-            label.text = String(temperaturies[city!.row][indexPath.row] * 1.8) + " F"
+            label.text = String(temperaturies[city!.row][indexPath.row] * 1.8 + 30) + " F"
         }
         
         return cell
