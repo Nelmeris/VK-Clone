@@ -110,7 +110,7 @@ class Authorization: UIViewController, UITextFieldDelegate {
     
     //Правило перехода
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if loginInput.text! == "root" && passwordInput.text! == "root" {
+        if loginInput.text!.lowercased() == "root".lowercased() && passwordInput.text! == "root" {
             auth = true
         } else {
             let alert = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
