@@ -339,10 +339,10 @@
             </objects>
             <point key="canvasLocation" x="2550" y="812"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Temperature Form-->
         <scene sceneID="Hqf-ga-pNo">
             <objects>
-                <tableViewController id="Ad0-Sl-Kix" sceneMemberID="viewController">
+                <tableViewController id="Ad0-Sl-Kix" customClass="TemperatureForm" customModule="VK_Additional_Application" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="k8w-u3-v9h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -482,8 +482,8 @@
     </scenes>
     <resources>
         <image name="auth.jpg" width="1920" height="1080"/>
-        <image name="settings.png" width="32" height="32"/>
-        <image name="temperature.png" width="32" height="32"/>
+        <image name="settings.png" width="24" height="24"/>
+        <image name="temperature.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0gG-fQ-55a"/>

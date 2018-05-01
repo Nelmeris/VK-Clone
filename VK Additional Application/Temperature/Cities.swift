@@ -44,7 +44,12 @@ class Temperaturies: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         
         let label: UILabel = cell.viewWithTag(1) as! UILabel
-        label.text = String(temperaturies[city!.row][indexPath.row]) + " C"
+        switch temperatureForm {
+        case .celsius:
+            label.text = String(temperaturies[city!.row][indexPath.row]) + " C"
+        case .fahrenheit:
+            label.text = String(temperaturies[city!.row][indexPath.row] * 1.8) + " F"
+        }
         
         return cell
     }

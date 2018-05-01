@@ -28,3 +28,20 @@ class Settings: UITableViewController {
         performSegue(withIdentifier: "Authorization", sender: self)
     }
 }
+
+enum temperatureForms {
+    case celsius
+    case fahrenheit
+}
+
+var temperatureForm = temperatureForms.celsius
+
+class TemperatureForm: UITableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            temperatureForm = .celsius
+        } else {
+            temperatureForm = .fahrenheit
+        }
+    }
+}
