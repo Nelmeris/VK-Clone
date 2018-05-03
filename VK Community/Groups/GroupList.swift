@@ -57,9 +57,14 @@ class GroupList: UITableViewController, UISearchBarDelegate {
     
     @IBAction func AddGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
-        let city = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
-        currentMyGroups.append(city)
-        myGroups.append(city)
+        let group = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        guard !myGroups.contains(where: { Group -> Bool in
+            return group.name == Group.name
+        }) else {
+            return
+        }
+        currentMyGroups.append(group)
+        myGroups.append(group)
         tableView.reloadData()
     }
     
