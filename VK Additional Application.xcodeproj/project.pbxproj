@@ -13,6 +13,8 @@
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
 		F67266D3209B0E4D0086B1B7 /* TemperatureForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D2209B0E4D0086B1B7 /* TemperatureForm.swift */; };
+		F67266D6209B16970086B1B7 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D5209B16970086B1B7 /* DataBase.swift */; };
+		F67266D8209B17540086B1B7 /* Temperaturies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D7209B17540086B1B7 /* Temperaturies.swift */; };
 		F67313CD2098C28900AC0A1F /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* Cities.swift */; };
 		F6B2C8B32096466D0056110D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B12096466D0056110D /* settings.png */; };
 		F6B2C8B42096466D0056110D /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B22096466D0056110D /* temperature.png */; };
@@ -30,6 +32,8 @@
 		F61E29812093B06E0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F67266D2209B0E4D0086B1B7 /* TemperatureForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureForm.swift; sourceTree = "<group>"; };
+		F67266D5209B16970086B1B7 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		F67266D7209B17540086B1B7 /* Temperaturies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temperaturies.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
 		F6B2C8B12096466D0056110D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F6B2C8B22096466D0056110D /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 		F61E29762093B06B0070DEC9 /* VK Additional Application */ = {
 			isa = PBXGroup;
 			children = (
+				F67266D4209B16590086B1B7 /* Data */,
 				F6B2C8AE209643220056110D /* Temperature */,
 				F6B2C8AD209643190056110D /* Settings */,
 				F6E3F83F2094FCBE00519835 /* Resources */,
@@ -80,6 +85,14 @@
 				F6B2C8B5209655EA0056110D /* Main.swift */,
 			);
 			path = "VK Additional Application";
+			sourceTree = "<group>";
+		};
+		F67266D4209B16590086B1B7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F67266D5209B16970086B1B7 /* DataBase.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		F6B2C8AD209643190056110D /* Settings */ = {
@@ -95,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				F67313CC2098C28900AC0A1F /* Cities.swift */,
+				F67266D7209B17540086B1B7 /* Temperaturies.swift */,
 			);
 			path = Temperature;
 			sourceTree = "<group>";
@@ -183,10 +197,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F67266D8209B17540086B1B7 /* Temperaturies.swift in Sources */,
 				F67266D3209B0E4D0086B1B7 /* TemperatureForm.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* Cities.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Settings.swift in Sources */,
+				F67266D6209B16970086B1B7 /* DataBase.swift in Sources */,
 				F6B2C8B6209655EA0056110D /* Main.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
 			);

@@ -11,15 +11,13 @@ import UIKit
 class Settings: UITableViewController {
     var exit: Bool = false
     
-    let cells = ["Единица измерения температуры"]
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cells.count
+        return settingsCells.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        cell.textLabel?.text = cells[indexPath.row]
+        cell.textLabel?.text = settingsCells[indexPath.row]
         return cell
     }
     

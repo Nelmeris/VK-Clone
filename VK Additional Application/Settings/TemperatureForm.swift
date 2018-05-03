@@ -16,8 +16,6 @@ enum TemperatureForms {
 var temperatureForm = TemperatureForms.celsius
 
 class TemperatureForm: UITableViewController {
-    let temperatureForms = ["Цельсий", "Фаренгейт"]
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return temperatureForms.count
     }
