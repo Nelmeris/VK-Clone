@@ -9,9 +9,11 @@
 class Group {
     let name: String
     let photo: String
+    let participantsCount: Int
     
-    init(name: String, photo: String) {
+    init(name: String, photo: String, participantsCount: Int) {
         self.name = name
         self.photo = photo
+        self.participantsCount = participantsCount
     }
 }

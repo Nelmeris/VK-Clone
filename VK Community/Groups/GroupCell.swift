@@ -11,6 +11,7 @@ import UIKit
 class GroupCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var participantsCount: UILabel!
     
     override func awakeFromNib() {
         photo.layer.cornerRadius = 30

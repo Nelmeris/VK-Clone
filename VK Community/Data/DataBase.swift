@@ -15,7 +15,7 @@ let friends = [
 ]
 
 var groups = [
-    Group(name: "Дзен", photo: "DZ")
+    Group(name: "Дзен", photo: "DZ", participantsCount: 2641202)
 ]
 var myGroups: [Group] = []
 

@@ -50,6 +50,16 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
         
         cell.name.text = currentGroups[indexPath.row].name
         cell.photo.image = UIImage(named: currentGroups[indexPath.row].photo)
+        switch currentGroups[indexPath.row].participantsCount {
+        case let x where x >= 1000000:
+            cell.participantsCount.text = String(format: "%.1f", Double(currentGroups[indexPath.row].participantsCount) / 1000000) + "М"
+            break
+        case let x where x >= 1000:
+            cell.participantsCount.text = String(format: "%.1f", Double(currentGroups[indexPath.row].participantsCount) / 1000) + "К"
+            break
+        default:
+            cell.participantsCount.text = String(currentGroups[indexPath.row].participantsCount)
+        }
         
         return cell
     }
