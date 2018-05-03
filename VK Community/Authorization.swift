@@ -38,8 +38,9 @@ class Authorization: UIViewController, UITextFieldDelegate {
         if textField.returnKeyType == .next {
             passwordInput.becomeFirstResponder()
         } else if textField.returnKeyType == .go {
-            view.endEditing(true)
-            performSegue(withIdentifier: "LogIn", sender: self)
+            if shouldPerformSegue(withIdentifier: "LogIn", sender: self) {
+                performSegue(withIdentifier: "LogIn", sender: self)
+            }
         }
         return true
     }
@@ -62,10 +63,6 @@ class Authorization: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var authButton: UIButton!
     @IBOutlet weak var authView: UIView!
     @IBOutlet weak var logo: UILabel!
-    
-    @IBAction func authButton(_ sender: Any) {
-        view.endEditing(true)
-    }
     
     //Действие при открытии клавиатуры
     @objc func keyboardWillShown(notification: Notification) {
@@ -102,14 +99,9 @@ class Authorization: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    @objc func hideKeyboard() {
-        scrollView?.endEditing(true)
-    }
-    
-    
-    
     //Правило перехода
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        view.endEditing(true)
         if loginInput.text!.lowercased() == "root".lowercased() && passwordInput.text! == "root" {
             auth = true
         } else {
