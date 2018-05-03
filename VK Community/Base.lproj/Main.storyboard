@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -195,29 +196,40 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2fo-32-1sd">
-                                            <rect key="frame" x="16" y="0.0" width="75" height="75"/>
+                                            <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="ej1-cl-gQg"/>
-                                                <constraint firstAttribute="height" constant="75" id="iEV-Ag-6EE"/>
+                                                <constraint firstAttribute="height" constant="60" id="cIs-M5-QgF"/>
+                                                <constraint firstAttribute="width" constant="60" id="dCk-to-fav"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friend Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmG-pq-nNh">
-                                            <rect key="frame" x="99" y="27" width="260" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-DL-0dE">
+                                            <rect key="frame" x="91" y="40" width="268" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmG-pq-nNh">
+                                            <rect key="frame" x="91" y="14" width="268" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="2fo-32-1sd" secondAttribute="bottom" id="Ddj-f8-gOr"/>
-                                        <constraint firstItem="2fo-32-1sd" firstAttribute="leading" secondItem="9Kn-JD-bn9" secondAttribute="leading" constant="16" id="kii-eI-gYm"/>
-                                        <constraint firstItem="2fo-32-1sd" firstAttribute="top" secondItem="9Kn-JD-bn9" secondAttribute="top" id="w3O-FY-TW0"/>
+                                        <constraint firstItem="2fo-32-1sd" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="2By-k1-78Q"/>
+                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="leading" secondItem="2fo-32-1sd" secondAttribute="trailing" constant="15" id="NLV-jI-nrj"/>
+                                        <constraint firstItem="2fo-32-1sd" firstAttribute="leading" secondItem="9Kn-JD-bn9" secondAttribute="leadingMargin" id="WNX-8x-zRy"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Z7P-DL-0dE" secondAttribute="bottom" constant="3" id="biP-IM-XZR"/>
+                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="top" secondItem="9Kn-JD-bn9" secondAttribute="topMargin" constant="3" id="bis-O1-ceq"/>
+                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="trailing" secondItem="9Kn-JD-bn9" secondAttribute="trailingMargin" id="l1n-LD-0Hx"/>
+                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="leading" secondItem="2fo-32-1sd" secondAttribute="trailing" constant="15" id="lJU-LC-Zyw"/>
+                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="trailing" secondItem="9Kn-JD-bn9" secondAttribute="trailingMargin" id="zbt-CM-oGF"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="friendName" destination="PmG-pq-nNh" id="ARo-J3-IAQ"/>
-                                    <outlet property="friendPhoto" destination="2fo-32-1sd" id="QHQ-wC-tVX"/>
+                                    <outlet property="firstName" destination="PmG-pq-nNh" id="azn-gY-JYZ"/>
+                                    <outlet property="lastName" destination="Z7P-DL-0dE" id="Hdj-4U-T8H"/>
+                                    <outlet property="photo" destination="2fo-32-1sd" id="rE6-06-70N"/>
                                     <segue destination="LTK-uB-Brc" kind="show" identifier="FriendPhotoCollection" id="L1n-Pi-xOF"/>
                                 </connections>
                             </tableViewCell>
@@ -351,30 +363,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7V-Ht-33V">
-                                            <rect key="frame" x="16" y="0.0" width="75" height="75"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="75" id="9Bx-0L-rmz"/>
-                                                <constraint firstAttribute="width" constant="75" id="JDU-9K-Lwd"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-Oc-8lW">
-                                            <rect key="frame" x="99" y="27" width="260" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-Oc-8lW">
+                                            <rect key="frame" x="91" y="27" width="268" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xtx-Gn-R3M">
+                                            <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="8RV-YC-DFD"/>
+                                                <constraint firstAttribute="height" constant="60" id="aFG-Hl-Jh4"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="K7V-Ht-33V" firstAttribute="top" secondItem="NFh-UQ-U4c" secondAttribute="top" id="MV8-4O-l4X"/>
-                                        <constraint firstItem="K7V-Ht-33V" firstAttribute="leading" secondItem="NFh-UQ-U4c" secondAttribute="leading" constant="16" id="bLA-PK-noH"/>
-                                        <constraint firstAttribute="bottom" secondItem="K7V-Ht-33V" secondAttribute="bottom" id="vgg-lG-1N2"/>
+                                        <constraint firstItem="B7A-Oc-8lW" firstAttribute="top" secondItem="NFh-UQ-U4c" secondAttribute="topMargin" constant="16" id="9Ur-79-Ne0"/>
+                                        <constraint firstItem="B7A-Oc-8lW" firstAttribute="leading" secondItem="xtx-Gn-R3M" secondAttribute="trailing" constant="15" id="Nwa-c9-4NT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="B7A-Oc-8lW" secondAttribute="bottom" constant="16" id="OK2-dZ-ows"/>
+                                        <constraint firstItem="B7A-Oc-8lW" firstAttribute="trailing" secondItem="NFh-UQ-U4c" secondAttribute="trailingMargin" id="VRz-4g-wPl"/>
+                                        <constraint firstItem="xtx-Gn-R3M" firstAttribute="centerY" secondItem="NFh-UQ-U4c" secondAttribute="centerY" id="hms-WW-tS7"/>
+                                        <constraint firstItem="xtx-Gn-R3M" firstAttribute="leading" secondItem="NFh-UQ-U4c" secondAttribute="leadingMargin" id="n3m-NS-2Hf"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="groupName" destination="B7A-Oc-8lW" id="8WS-nL-MzY"/>
-                                    <outlet property="groupPhoto" destination="K7V-Ht-33V" id="It6-4O-Clh"/>
+                                    <outlet property="name" destination="B7A-Oc-8lW" id="JZA-Ru-8tI"/>
+                                    <outlet property="photo" destination="xtx-Gn-R3M" id="bBZ-JH-Ted"/>
                                     <segue destination="gKw-YL-XN3" kind="unwind" identifier="AddGroup" unwindAction="AddGroup:" id="Fc7-Bt-gK6"/>
                                 </connections>
                             </tableViewCell>
@@ -443,30 +457,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ziy-La-B0G">
-                                            <rect key="frame" x="16" y="0.0" width="75" height="75"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="75" id="sLN-MJ-dgg"/>
-                                                <constraint firstAttribute="height" constant="75" id="zBn-ik-ztW"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXZ-VQ-6Dl">
-                                            <rect key="frame" x="99" y="27" width="260" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXZ-VQ-6Dl">
+                                            <rect key="frame" x="91" y="27" width="268" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-qL-8eV">
+                                            <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="60" id="RjA-WG-j7I"/>
+                                                <constraint firstAttribute="width" constant="60" id="qjd-6R-f5q"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Ziy-La-B0G" firstAttribute="leading" secondItem="NLt-8l-eBI" secondAttribute="leading" constant="16" id="3W1-2Q-9eq"/>
-                                        <constraint firstItem="Ziy-La-B0G" firstAttribute="top" secondItem="NLt-8l-eBI" secondAttribute="top" id="87g-0E-2ZV"/>
-                                        <constraint firstAttribute="bottom" secondItem="Ziy-La-B0G" secondAttribute="bottom" id="f0h-k0-dJg"/>
+                                        <constraint firstItem="3S8-qL-8eV" firstAttribute="leading" secondItem="NLt-8l-eBI" secondAttribute="leadingMargin" id="FRy-PG-8OT"/>
+                                        <constraint firstItem="WXZ-VQ-6Dl" firstAttribute="top" secondItem="NLt-8l-eBI" secondAttribute="topMargin" constant="16" id="Qpa-kH-75J"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="WXZ-VQ-6Dl" secondAttribute="trailing" id="Zbi-92-cYA"/>
+                                        <constraint firstItem="3S8-qL-8eV" firstAttribute="centerY" secondItem="NLt-8l-eBI" secondAttribute="centerY" id="ZwY-mr-ZfS"/>
+                                        <constraint firstItem="WXZ-VQ-6Dl" firstAttribute="leading" secondItem="3S8-qL-8eV" secondAttribute="trailing" constant="15" id="fnE-AS-bdP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="WXZ-VQ-6Dl" secondAttribute="bottom" constant="16" id="iKL-dE-gU9"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="groupName" destination="WXZ-VQ-6Dl" id="0RD-t6-9Zz"/>
-                                    <outlet property="groupPhoto" destination="Ziy-La-B0G" id="hQm-4z-AQi"/>
+                                    <outlet property="name" destination="WXZ-VQ-6Dl" id="1oj-Md-LoX"/>
+                                    <outlet property="photo" destination="3S8-qL-8eV" id="7IW-th-eTI"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

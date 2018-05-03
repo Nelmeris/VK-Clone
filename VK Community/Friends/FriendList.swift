@@ -1,6 +1,6 @@
 //
 //  FriendList.swift
-//  VK Additional Application
+//  VK Community
 //
 //  Created by Артем on 01.05.2018.
 //  Copyright © 2018 NONE. All rights reserved.
@@ -19,6 +19,8 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self
+        
+        tableView.contentOffset.y = searchBar.frame.height
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -31,8 +33,9 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            currentFriend = friends.filter({ group -> Bool in
-                return group.lowercased().contains(searchText.lowercased())
+            currentFriend = friends.filter({ friend -> Bool in
+                let fullName: String = friend.firstName + " " + friend.lastName
+                return fullName.lowercased().contains(searchText.lowercased())
             })
         } else {
             currentFriend = friends
@@ -48,7 +51,9 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
-        cell.friendName.text = currentFriend[indexPath.row]
+        cell.firstName.text = currentFriend[indexPath.row].firstName
+        cell.lastName.text = currentFriend[indexPath.row].lastName
+        cell.photo.image = UIImage(named: currentFriend[indexPath.row].photo)
         
         return cell
     }

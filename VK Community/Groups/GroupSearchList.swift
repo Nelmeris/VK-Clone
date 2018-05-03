@@ -1,6 +1,6 @@
 //
 //  GroupSearchList.swift
-//  VK Additional Application
+//  VK Community
 //
 //  Created by Артем on 03.05.2018.
 //  Copyright © 2018 NONE. All rights reserved.
@@ -17,6 +17,8 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self
+        
+        tableView.contentOffset.y = searchBar.frame.height
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -30,7 +32,7 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             currentGroups = groups.filter({ group -> Bool in
-                return group.lowercased().contains(searchText.lowercased())
+                return group.name.lowercased().contains(searchText.lowercased())
             })
         } else {
             currentGroups = groups
@@ -46,7 +48,8 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
-        cell.groupName.text = currentGroups[indexPath.row]
+        cell.name.text = currentGroups[indexPath.row].name
+        cell.photo.image = UIImage(named: currentGroups[indexPath.row].photo)
         
         return cell
     }

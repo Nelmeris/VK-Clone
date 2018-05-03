@@ -19,6 +19,8 @@
 		F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E2209B34370086B1B7 /* GroupCell.swift */; };
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
+		F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0C209B7D7C008FFB09 /* Group.swift */; };
+		F68AAD0F209B7D84008FFB09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0E209B7D84008FFB09 /* User.swift */; };
 		F6B2C8B32096466D0056110D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B12096466D0056110D /* settings.png */; };
 		F6B2C8B42096466D0056110D /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B22096466D0056110D /* temperature.png */; };
 		F6B2C8B6209655EA0056110D /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2C8B5209655EA0056110D /* Main.swift */; };
@@ -41,6 +43,8 @@
 		F67266E2209B34370086B1B7 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
+		F68AAD0C209B7D7C008FFB09 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		F68AAD0E209B7D84008FFB09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F6B2C8B12096466D0056110D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F6B2C8B22096466D0056110D /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
 		F6B2C8B5209655EA0056110D /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				F67266D5209B16970086B1B7 /* DataBase.swift */,
+				F68AAD0C209B7D7C008FFB09 /* Group.swift */,
+				F68AAD0E209B7D84008FFB09 /* User.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -214,9 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F68AAD0F209B7D84008FFB09 /* User.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
+				F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F67266D6209B16970086B1B7 /* DataBase.swift in Sources */,

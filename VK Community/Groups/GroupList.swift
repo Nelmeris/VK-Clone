@@ -1,6 +1,6 @@
 //
 //  GroupList.swift
-//  VK Additional Application
+//  VK Community
 //
 //  Created by Артем on 03.05.2018.
 //  Copyright © 2018 NONE. All rights reserved.
@@ -17,6 +17,8 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         searchBar.delegate = self
+        
+        tableView.contentOffset.y = searchBar.frame.height
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -29,8 +31,8 @@ class GroupList: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            currentMyGroups = myGroups.filter({ group -> Bool in
-                return group.lowercased().contains(searchText.lowercased())
+            currentMyGroups = myGroups.filter({ myGroup -> Bool in
+                return myGroup.name.lowercased().contains(searchText.lowercased())
             })
         } else {
             currentMyGroups = myGroups
@@ -46,7 +48,8 @@ class GroupList: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
         
-        cell.groupName.text = currentMyGroups[indexPath.row]
+        cell.name.text = currentMyGroups[indexPath.row].name
+        cell.photo.image = UIImage(named: currentMyGroups[indexPath.row].photo)
         
         return cell
     }
@@ -54,11 +57,9 @@ class GroupList: UITableViewController, UISearchBarDelegate {
     @IBAction func AddGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
         let city = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
-        if !myGroups.contains(city) {
-            currentMyGroups.append(city)
-            myGroups.append(city)
-            tableView.reloadData()
-        }
+        currentMyGroups.append(city)
+        myGroups.append(city)
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

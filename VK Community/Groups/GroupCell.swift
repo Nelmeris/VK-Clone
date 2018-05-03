@@ -9,6 +9,12 @@
 import UIKit
 
 class GroupCell: UITableViewCell {
-    @IBOutlet weak var groupPhoto: UIImageView!
-    @IBOutlet weak var groupName: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var photo: UIImageView!
+    
+    override func awakeFromNib() {
+        photo.layer.cornerRadius = 30
+        photo.contentMode = .scaleAspectFill
+        photo.layer.masksToBounds = true
+    }
 }

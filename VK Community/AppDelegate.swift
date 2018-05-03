@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  VK Additional Application
+//  VK Community
 //
 //  Created by Артем on 27.04.2018.
 //  Copyright © 2018 NONE. All rights reserved.

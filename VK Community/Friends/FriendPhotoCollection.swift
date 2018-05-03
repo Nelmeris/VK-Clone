@@ -1,6 +1,6 @@
 //
 //  PhotoCollection.swift
-//  VK Additional Application
+//  VK Community
 //
 //  Created by Артем on 03.05.2018.
 //  Copyright © 2018 NONE. All rights reserved.
@@ -10,7 +10,7 @@ import UIKit
 
 class FriendPhotoCollection: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
