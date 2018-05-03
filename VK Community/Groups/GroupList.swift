@@ -62,7 +62,12 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") { (action, indexPath) in
+            myGroups.remove(at: indexPath.row)
+            self.currentMyGroups = myGroups
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        return [deleteAction]
     }
 }
