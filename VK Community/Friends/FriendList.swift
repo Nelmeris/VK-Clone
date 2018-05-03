@@ -10,27 +10,59 @@ import UIKit
 
 var selectFriend: IndexPath? = nil
 
-class FriendList: UITableViewController {
+class FriendList: UITableViewController, UISearchBarDelegate {
+    var currentFriend = friends
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchBar.delegate = self
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if !searchText.isEmpty {
+            currentFriend = friends.filter({ group -> Bool in
+                return group.lowercased().contains(searchText.lowercased())
+            })
+        } else {
+            currentFriend = friends
+        }
+        
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return currentFriend.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Friend")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
-        let label = cell?.viewWithTag(2) as! UILabel
-        label.text = friends[indexPath.row]
+        cell.friendName.text = currentFriend[indexPath.row]
         
-        return cell!
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectFriend = indexPath
-        performSegue(withIdentifier: "FriendPhotoCollection", sender: self)
     }
     
     @IBAction func LogIn(_ sender: UIStoryboardSegue) {
         tableView.reloadData()
         auth = true
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75
     }
 }

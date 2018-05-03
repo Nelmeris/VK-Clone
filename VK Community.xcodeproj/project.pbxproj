@@ -17,6 +17,7 @@
 		F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DA209B1B190086B1B7 /* GroupList.swift */; };
 		F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DE209B1B810086B1B7 /* GroupSearchList.swift */; };
 		F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E2209B34370086B1B7 /* GroupCell.swift */; };
+		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F6B2C8B32096466D0056110D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B12096466D0056110D /* settings.png */; };
 		F6B2C8B42096466D0056110D /* temperature.png in Resources */ = {isa = PBXBuildFile; fileRef = F6B2C8B22096466D0056110D /* temperature.png */; };
@@ -38,6 +39,7 @@
 		F67266DA209B1B190086B1B7 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
 		F67266DE209B1B810086B1B7 /* GroupSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchList.swift; sourceTree = "<group>"; };
 		F67266E2209B34370086B1B7 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
+		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F6B2C8B12096466D0056110D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		F6B2C8B22096466D0056110D /* temperature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temperature.png; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			children = (
 				F67313CC2098C28900AC0A1F /* FriendList.swift */,
 				F67266D7209B17540086B1B7 /* FriendPhotoCollection.swift */,
+				F67266E6209B6F300086B1B7 /* FriendCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,

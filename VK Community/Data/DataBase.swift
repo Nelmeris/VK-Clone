@@ -9,6 +9,6 @@
 let friends = ["Дарья Дёмина", "Дмитрий Овчинников", "Илья Устимов", "Артем Нешко", "Егор Ишкенов"]
 
 var groups: [String] = ["Дзен"]
-var myGroups: [String]? = nil
+var myGroups: [String] = []
 
 let settingsCells: [String] = []
