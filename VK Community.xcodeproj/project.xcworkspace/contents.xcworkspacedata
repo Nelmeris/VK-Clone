@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <FileRef
-      location = "self:/Users/KufaevAA/Library/Mobile Documents/com~apple~CloudDocs/Xcode/VK Additional Application/VK Community.xcodeproj">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "New Group">
+      <FileRef
+         location = "self:">
+      </FileRef>
+   </Group>
 </Workspace>

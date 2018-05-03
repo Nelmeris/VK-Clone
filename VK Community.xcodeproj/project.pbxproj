@@ -18,6 +18,7 @@
 		F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DE209B1B810086B1B7 /* GroupSearchList.swift */; };
 		F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E2209B34370086B1B7 /* GroupCell.swift */; };
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
+		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0C209B7D7C008FFB09 /* Group.swift */; };
 		F68AAD0F209B7D84008FFB09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0E209B7D84008FFB09 /* User.swift */; };
@@ -39,6 +40,7 @@
 		F67266DE209B1B810086B1B7 /* GroupSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchList.swift; sourceTree = "<group>"; };
 		F67266E2209B34370086B1B7 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F68AAD0C209B7D7C008FFB09 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F68AAD0E209B7D84008FFB09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -95,8 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				F67266D5209B16970086B1B7 /* DataBase.swift */,
-				F68AAD0C209B7D7C008FFB09 /* Group.swift */,
 				F68AAD0E209B7D84008FFB09 /* User.swift */,
+				F68AAD0C209B7D7C008FFB09 /* Group.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -123,8 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				F67313CC2098C28900AC0A1F /* FriendList.swift */,
-				F67266D7209B17540086B1B7 /* FriendPhotoCollection.swift */,
 				F67266E6209B6F300086B1B7 /* FriendCell.swift */,
+				F67266D7209B17540086B1B7 /* FriendPhotoCollection.swift */,
+				F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
 				F68AAD0F209B7D84008FFB09 /* User.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,

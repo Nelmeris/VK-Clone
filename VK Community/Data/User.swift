@@ -9,11 +9,11 @@
 class User {
     let firstName: String
     let lastName: String
-    let photo: String
+    let photos: [String]
     
-    init(firstName: String, lastName: String, photo: String) {
+    init(firstName: String, lastName: String, photos: [String]) {
         self.firstName = firstName
         self.lastName = lastName
-        self.photo = photo
+        self.photos = photos
     }
 }

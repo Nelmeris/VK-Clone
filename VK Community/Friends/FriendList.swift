@@ -53,7 +53,7 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         
         cell.firstName.text = currentFriend[indexPath.row].firstName
         cell.lastName.text = currentFriend[indexPath.row].lastName
-        cell.photo.image = UIImage(named: currentFriend[indexPath.row].photo)
+        cell.photo.image = UIImage(named: currentFriend[indexPath.row].photos[0])
         
         return cell
     }
