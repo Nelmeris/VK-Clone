@@ -19,6 +19,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
         
         tableView.contentOffset.y = searchBar.frame.height
+        tableView.rowHeight = 75
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
