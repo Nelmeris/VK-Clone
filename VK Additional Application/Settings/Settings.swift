@@ -11,6 +11,22 @@ import UIKit
 class Settings: UITableViewController {
     var exit: Bool = false
     
+    let cells = ["Единица измерения температуры"]
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cells.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
+        cell.textLabel?.text = cells[indexPath.row]
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "Table", sender: self)
+    }
+    
     @IBAction func ExitButtonAction(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -26,22 +42,5 @@ class Settings: UITableViewController {
     func SignOut(action: UIAlertAction) {
         auth = false
         performSegue(withIdentifier: "Authorization", sender: self)
-    }
-}
-
-enum temperatureForms {
-    case celsius
-    case fahrenheit
-}
-
-var temperatureForm = temperatureForms.celsius
-
-class TemperatureForm: UITableViewController {
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            temperatureForm = .celsius
-        } else {
-            temperatureForm = .fahrenheit
-        }
     }
 }
