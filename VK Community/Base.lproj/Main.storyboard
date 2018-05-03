@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Lla-n2-Ges">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Authorization" translatesAutoresizingMaskIntoConstraints="NO" id="Lla-n2-Ges">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="sPx-It-Hmg">
@@ -161,7 +161,7 @@
         <scene sceneID="CSL-Vt-jMc">
             <objects>
                 <navigationController id="YY8-X4-g7Y" userLabel="Friends Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="Tts-db-vBr"/>
+                    <tabBarItem key="tabBarItem" title="Друзья" image="Friends" id="Tts-db-vBr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UPH-9j-uWF">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -202,14 +202,14 @@
                                                 <constraint firstAttribute="width" constant="60" id="dCk-to-fav"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-DL-0dE">
-                                            <rect key="frame" x="91" y="40" width="268" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmG-pq-nNh">
+                                            <rect key="frame" x="91" y="27" width="82.666666666666686" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmG-pq-nNh">
-                                            <rect key="frame" x="91" y="14" width="268" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7P-DL-0dE">
+                                            <rect key="frame" x="178.66666666666666" y="27" width="81.999999999999972" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -217,13 +217,11 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="2fo-32-1sd" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="2By-k1-78Q"/>
-                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="leading" secondItem="2fo-32-1sd" secondAttribute="trailing" constant="15" id="NLV-jI-nrj"/>
+                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="8YT-OK-WF0"/>
+                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="HFy-K1-dg0"/>
                                         <constraint firstItem="2fo-32-1sd" firstAttribute="leading" secondItem="9Kn-JD-bn9" secondAttribute="leadingMargin" id="WNX-8x-zRy"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Z7P-DL-0dE" secondAttribute="bottom" constant="3" id="biP-IM-XZR"/>
-                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="top" secondItem="9Kn-JD-bn9" secondAttribute="topMargin" constant="3" id="bis-O1-ceq"/>
-                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="trailing" secondItem="9Kn-JD-bn9" secondAttribute="trailingMargin" id="l1n-LD-0Hx"/>
                                         <constraint firstItem="PmG-pq-nNh" firstAttribute="leading" secondItem="2fo-32-1sd" secondAttribute="trailing" constant="15" id="lJU-LC-Zyw"/>
-                                        <constraint firstItem="PmG-pq-nNh" firstAttribute="trailing" secondItem="9Kn-JD-bn9" secondAttribute="trailingMargin" id="zbt-CM-oGF"/>
+                                        <constraint firstItem="Z7P-DL-0dE" firstAttribute="leading" secondItem="PmG-pq-nNh" secondAttribute="trailing" constant="5" id="xZB-UG-Jtb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -295,7 +293,7 @@
         <scene sceneID="g9g-xg-3pq">
             <objects>
                 <navigationController id="qtK-4b-enf" userLabel="Settings Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Профиль" image="settings.png" selectedImage="settings.png" id="ZCt-wc-rEC"/>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="Profile" id="ZCt-wc-rEC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zuK-Lm-7gJ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -510,7 +508,7 @@
         <scene sceneID="Un1-nO-2gy">
             <objects>
                 <navigationController id="Y6v-jX-au9" userLabel="Group Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="VHT-SJ-laU"/>
+                    <tabBarItem key="tabBarItem" title="Группы" image="Groups" id="VHT-SJ-laU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="thD-QR-Rsb">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -525,8 +523,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="auth.jpg" width="1920" height="1080"/>
-        <image name="settings.png" width="24" height="24"/>
+        <image name="Authorization" width="1920" height="1080"/>
+        <image name="Friends" width="32" height="32"/>
+        <image name="Groups" width="32" height="32"/>
+        <image name="Profile" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0gG-fQ-55a"/>
