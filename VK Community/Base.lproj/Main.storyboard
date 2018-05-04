@@ -195,12 +195,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2fo-32-1sd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2fo-32-1sd">
                                             <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="cIs-M5-QgF"/>
                                                 <constraint firstAttribute="width" constant="60" id="dCk-to-fav"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmG-pq-nNh">
                                             <rect key="frame" x="91" y="27" width="82.666666666666686" height="21"/>
@@ -375,12 +380,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xtx-Gn-R3M">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xtx-Gn-R3M">
                                             <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="8RV-YC-DFD"/>
                                                 <constraint firstAttribute="height" constant="60" id="aFG-Hl-Jh4"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-Oc-8lW">
                                             <rect key="frame" x="91" y="27" width="96.666666666666686" height="21"/>
@@ -485,12 +495,17 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-qL-8eV">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3S8-qL-8eV">
                                             <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="RjA-WG-j7I"/>
                                                 <constraint firstAttribute="width" constant="60" id="qjd-6R-f5q"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                     </subviews>
                                     <constraints>
