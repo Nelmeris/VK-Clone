@@ -8,8 +8,6 @@
 
 import UIKit
 
-var auth: Bool = false
-
 class Authorization: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
@@ -103,15 +101,18 @@ class Authorization: UIViewController, UITextFieldDelegate {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         view.endEditing(true)
         if loginInput.text!.lowercased() == "root".lowercased() && passwordInput.text! == "root" {
-            auth = true
+            UserDefaults.standard.setValue(true, forKey: "Authorization")
+            
+            return true
         } else {
             let alert = UIAlertController(title: "Ошибка", message: "Введены неверные данные пользователя", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
+            
+            return false
         }
-        return auth
     }
 
 

@@ -65,7 +65,6 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     
     @IBAction func LogIn(_ sender: UIStoryboardSegue) {
         tableView.reloadData()
-        auth = true
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

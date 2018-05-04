@@ -10,7 +10,11 @@ import UIKit
 
 class Main: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
-        if !auth {
+        if let auth = UserDefaults.standard.object(forKey: "Authorization") as? Bool {
+            if !auth {
+                performSegue(withIdentifier: "Authorization", sender: self)
+            }
+        } else {
             performSegue(withIdentifier: "Authorization", sender: self)
         }
     }
