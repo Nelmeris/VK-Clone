@@ -18,4 +18,8 @@ class Main: UITabBarController {
             performSegue(withIdentifier: "Authorization", sender: self)
         }
     }
+    
+    @IBAction func LogIn(_ sender: UIStoryboardSegue) {
+        selectedIndex = 0
+    }
 }

@@ -62,12 +62,4 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectFriend = indexPath
     }
-    
-    @IBAction func LogIn(_ sender: UIStoryboardSegue) {
-        tableView.reloadData()
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 75
-    }
 }
