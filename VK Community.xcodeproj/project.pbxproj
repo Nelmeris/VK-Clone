@@ -22,11 +22,7 @@
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0C209B7D7C008FFB09 /* Group.swift */; };
 		F68AAD0F209B7D84008FFB09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0E209B7D84008FFB09 /* User.swift */; };
-		F6AA36BE209BD09200B70DFB /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BD209BD09200B70DFB /* ThemeManager.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
-		F6AA36C2209BD2DE00B70DFB /* ThemeSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36C1209BD2DE00B70DFB /* ThemeSelect.swift */; };
-		F6AA36C4209C2DFF00B70DFB /* Black.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36C3209C2DFF00B70DFB /* Black.swift */; };
-		F6AA36C6209C2E0700B70DFB /* White.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36C5209C2E0700B70DFB /* White.swift */; };
 		F6B2C8B6209655EA0056110D /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2C8B5209655EA0056110D /* Main.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
@@ -49,11 +45,7 @@
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F68AAD0C209B7D7C008FFB09 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F68AAD0E209B7D84008FFB09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F6AA36BD209BD09200B70DFB /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		F6AA36C1209BD2DE00B70DFB /* ThemeSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSelect.swift; sourceTree = "<group>"; };
-		F6AA36C3209C2DFF00B70DFB /* Black.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Black.swift; sourceTree = "<group>"; };
-		F6AA36C5209C2E0700B70DFB /* White.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = White.swift; sourceTree = "<group>"; };
 		F6B2C8B5209655EA0056110D /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +80,6 @@
 		F61E29762093B06B0070DEC9 /* VK Community */ = {
 			isa = PBXGroup;
 			children = (
-				F6AA36BC209BCFC500B70DFB /* Themes */,
 				F67266D4209B16590086B1B7 /* Data */,
 				F6B2C8AE209643220056110D /* Friends */,
 				F67266D9209B1B090086B1B7 /* Groups */,
@@ -124,22 +115,11 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
-		F6AA36BC209BCFC500B70DFB /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-				F6AA36BD209BD09200B70DFB /* ThemeManager.swift */,
-				F6AA36C3209C2DFF00B70DFB /* Black.swift */,
-				F6AA36C5209C2E0700B70DFB /* White.swift */,
-			);
-			path = Themes;
-			sourceTree = "<group>";
-		};
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
 			isa = PBXGroup;
 			children = (
 				F6E3F84E2095EBC700519835 /* Profile.swift */,
 				F6AA36BF209BD1B600B70DFB /* Settings.swift */,
-				F6AA36C1209BD2DE00B70DFB /* ThemeSelect.swift */,
 			);
 			path = "Profile & Settings";
 			sourceTree = "<group>";
@@ -228,10 +208,8 @@
 			files = (
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
 				F68AAD0F209B7D84008FFB09 /* User.swift in Sources */,
-				F6AA36BE209BD09200B70DFB /* ThemeManager.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
-				F6AA36C2209BD2DE00B70DFB /* ThemeSelect.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
 				F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
@@ -239,12 +217,10 @@
 				F67266D6209B16970086B1B7 /* DataBase.swift in Sources */,
 				F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
-				F6AA36C6209C2E0700B70DFB /* White.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
 				F6B2C8B6209655EA0056110D /* Main.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
-				F6AA36C4209C2DFF00B70DFB /* Black.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
