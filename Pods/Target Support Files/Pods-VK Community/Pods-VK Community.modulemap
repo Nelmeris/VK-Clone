@@ -1,0 +1,6 @@
+framework module Pods_VK_Community {
+  umbrella header "Pods-VK Community-umbrella.h"
+
+  export *
+  module * { export * }
+}
