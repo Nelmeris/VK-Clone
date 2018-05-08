@@ -9,18 +9,20 @@
 import Foundation
 import Alamofire
 
-let VK_API_Scheme = "https"
-let VK_API_Host = "api.vk.com/method/"
-let VK_API_Version = "5.52"
-
-func VK_API_Methods(method: String, token: String, options: [String: String]? = nil) {
-    var url = "\(VK_API_Scheme)://\(VK_API_Host)\(method)?v=\(VK_API_Version)&access_token=\(token)"
-    if options != nil {
-        for element in options! {
-            url += "&\(element.key)=\(element.value)"
+open class VK_Service {
+    static let Scheme = "https"
+    static let Host = "api.vk.com/method/"
+    static let Version = "5.52"
+    
+    static func Methods(method: String, token: String, options: [String: String]? = nil) {
+        var url = "\(Scheme)://\(Host)\(method)?v=\(Version)&access_token=\(token)"
+        if options != nil {
+            for element in options! {
+                url += "&\(element.key)=\(element.value)"
+            }
         }
-    }
-    Alamofire.request(url).responseJSON { response in
-        print(response.value)
+        Alamofire.request(url).responseJSON { response in
+            print(response.value)
+        }
     }
 }

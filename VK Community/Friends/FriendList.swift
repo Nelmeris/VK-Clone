@@ -27,10 +27,10 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         let token = UserDefaults.standard.value(forKey: "token") as! String
         
         //Промер создания запросов VK API
-        VK_API_Methods(method: "friends.get", token: token)
-        VK_API_Methods(method: "photos.getAll", token: token, options: ["owner_id" : "420843186"])
-        VK_API_Methods(method: "groups.get", token: token, options: nil)
-        VK_API_Methods(method: "groups.search", token: token, options: ["q" : "Swift"])
+        VK_Service.Methods(method: "friends.get", token: token)
+        VK_Service.Methods(method: "photos.getAll", token: token, options: ["owner_id" : "420843186"])
+        VK_Service.Methods(method: "groups.get", token: token, options: nil)
+        VK_Service.Methods(method: "groups.search", token: token, options: ["q" : "Swift"])
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
