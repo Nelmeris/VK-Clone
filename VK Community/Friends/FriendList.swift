@@ -24,9 +24,11 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         tableView.contentOffset.y = searchBar.frame.height
         tableView.rowHeight = 75
         
-        Alamofire.request("https://api.vk.com/method/friends.get?access_token=\(token!)&v=5.52").responseJSON { response in
-            print(response.value as Any)
-        }
+        //Промер создания запросов VK API
+        VK_API_Methods(method: "friends.get", token: token!)
+        VK_API_Methods(method: "photos.getAll", token: token!, options: ["owner_id" : "420843186"])
+        VK_API_Methods(method: "groups.get", token: token!, options: nil)
+        VK_API_Methods(method: "groups.search", token: token!, options: ["q" : "Swift"])
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

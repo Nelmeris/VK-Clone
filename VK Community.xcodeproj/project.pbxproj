@@ -26,6 +26,7 @@
 		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
+		F6F4207220A1BB0700A7C965 /* GetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4207120A1BB0700A7C965 /* GetData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F6F4207120A1BB0700A7C965 /* GetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		F61E29762093B06B0070DEC9 /* VK Community */ = {
 			isa = PBXGroup;
 			children = (
+				F6F4207020A1BA8100A7C965 /* VK API Methods Request */,
 				F67266D4209B16590086B1B7 /* Data */,
 				F6B2C8AE209643220056110D /* Friends */,
 				F67266D9209B1B090086B1B7 /* Groups */,
@@ -157,6 +160,14 @@
 				F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		F6F4207020A1BA8100A7C965 /* VK API Methods Request */ = {
+			isa = PBXGroup;
+			children = (
+				F6F4207120A1BB0700A7C965 /* GetData.swift */,
+			);
+			path = "VK API Methods Request";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +287,7 @@
 				F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
+				F6F4207220A1BB0700A7C965 /* GetData.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
 				F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
