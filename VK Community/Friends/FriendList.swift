@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 var selectFriend: IndexPath? = nil
 
@@ -22,6 +23,10 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         
         tableView.contentOffset.y = searchBar.frame.height
         tableView.rowHeight = 75
+        
+        Alamofire.request("https://api.vk.com/method/friends.get?access_token=\(token!)&v=5.52").responseJSON { response in
+            print(response.value as Any)
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
