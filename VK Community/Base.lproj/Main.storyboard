@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="swH-qf-8va">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -155,7 +155,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="8Rt-36-dzO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="71" y="2243"/>
+            <point key="canvasLocation" x="2140" y="2354"/>
         </scene>
         <!--Friends Navigation-->
         <scene sceneID="CSL-Vt-jMc">
@@ -252,7 +252,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Tz-ev-pYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="29.55665024630542"/>
+            <point key="canvasLocation" x="1660" y="30"/>
         </scene>
         <!--Settings List-->
         <scene sceneID="sYI-2j-8Vq">
@@ -292,7 +292,37 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPU-ct-Str" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="1501"/>
+            <point key="canvasLocation" x="2140" y="1501"/>
+        </scene>
+        <!--Authorization-->
+        <scene sceneID="WC7-sv-s74">
+            <objects>
+                <viewController id="swH-qf-8va" customClass="VKAuthorization" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="phN-zH-BL4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Co-GFW">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="EYE-3t-YiQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="WebViewVK" destination="5dT-Co-GFW" id="IoT-IT-Qnu"/>
+                        <segue destination="ZJq-mB-PY5" kind="show" identifier="Go" id="yna-Hj-FP5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MwL-BR-t5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1340" y="30"/>
         </scene>
         <!--Settings Navigation-->
         <scene sceneID="g9g-xg-3pq">
@@ -357,7 +387,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h1Y-5x-JFA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2516" y="30"/>
+            <point key="canvasLocation" x="3086" y="30"/>
         </scene>
         <!--Group Search List-->
         <scene sceneID="pLQ-FA-KdI">
@@ -446,7 +476,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2516" y="762.5615763546798"/>
+            <point key="canvasLocation" x="3087" y="768"/>
         </scene>
         <!--Main-->
         <scene sceneID="dfx-wE-q8d">
@@ -458,15 +488,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="Authorization" id="0gG-fQ-55a"/>
                         <segue destination="YY8-X4-g7Y" kind="relationship" relationship="viewControllers" id="E9F-RM-u49"/>
                         <segue destination="Y6v-jX-au9" kind="relationship" relationship="viewControllers" id="G4d-lk-Did"/>
-                        <segue destination="qtK-4b-enf" kind="relationship" relationship="viewControllers" id="yjf-YA-42k"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHb-Ns-hVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33" y="763"/>
+            <point key="canvasLocation" x="-425" y="30"/>
         </scene>
         <!--Group List-->
         <scene sceneID="69O-ur-Gzk">
@@ -541,7 +569,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWr-jX-XrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1604" y="762.5615763546798"/>
+            <point key="canvasLocation" x="2140" y="768"/>
         </scene>
         <!--Group Navigation-->
         <scene sceneID="Un1-nO-2gy">
@@ -558,7 +586,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tXS-9S-Dkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="763"/>
+            <point key="canvasLocation" x="830" y="768"/>
         </scene>
     </scenes>
     <resources>
@@ -567,7 +595,4 @@
         <image name="Groups" width="32" height="32"/>
         <image name="Profile" width="24" height="24"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="3y0-AU-6VQ"/>
-    </inferredMetricsTieBreakers>
 </document>

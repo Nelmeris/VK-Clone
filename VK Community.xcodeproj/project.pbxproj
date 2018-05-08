@@ -23,8 +23,8 @@
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F68AAD0D209B7D7C008FFB09 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0C209B7D7C008FFB09 /* Group.swift */; };
 		F68AAD0F209B7D84008FFB09 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68AAD0E209B7D84008FFB09 /* User.swift */; };
+		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
-		F6B2C8B6209655EA0056110D /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B2C8B5209655EA0056110D /* Main.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,8 +49,8 @@
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F68AAD0C209B7D7C008FFB09 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F68AAD0E209B7D84008FFB09 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		F6B2C8B5209655EA0056110D /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,11 +110,11 @@
 				F6B2C8AD209643190056110D /* Profile & Settings */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
 				F61E29792093B06B0070DEC9 /* Authorization.swift */,
+				F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */,
 				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
-				F6B2C8B5209655EA0056110D /* Main.swift */,
 			);
 			path = "VK Community";
 			sourceTree = "<group>";
@@ -273,6 +273,7 @@
 			files = (
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
 				F68AAD0F209B7D84008FFB09 /* User.swift in Sources */,
+				F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F61E297A2093B06B0070DEC9 /* Authorization.swift in Sources */,
@@ -283,7 +284,6 @@
 				F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
-				F6B2C8B6209655EA0056110D /* Main.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
 			);
@@ -433,7 +433,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -449,7 +452,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
