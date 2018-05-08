@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="swH-qf-8va">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -297,7 +297,7 @@
         <!--Authorization-->
         <scene sceneID="WC7-sv-s74">
             <objects>
-                <viewController id="swH-qf-8va" customClass="VKAuthorization" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VKAuthorization" id="swH-qf-8va" customClass="VKAuthorization" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="phN-zH-BL4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,12 +317,12 @@
                     </view>
                     <connections>
                         <outlet property="WebViewVK" destination="5dT-Co-GFW" id="IoT-IT-Qnu"/>
-                        <segue destination="ZJq-mB-PY5" kind="show" identifier="Go" id="yna-Hj-FP5"/>
+                        <segue destination="ZJq-mB-PY5" kind="show" identifier="LogIn" id="SiE-cO-tSe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MwL-BR-t5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1340" y="30"/>
+            <point key="canvasLocation" x="-1543" y="30"/>
         </scene>
         <!--Settings Navigation-->
         <scene sceneID="g9g-xg-3pq">
@@ -478,10 +478,10 @@
             </objects>
             <point key="canvasLocation" x="3087" y="768"/>
         </scene>
-        <!--Main-->
+        <!--Tab Bar Controller-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController id="ZJq-mB-PY5" customClass="Main" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" id="ZJq-mB-PY5" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -38,8 +38,6 @@ class VKAuthorization: UIViewController {
     
 }
 
-var token: String?
-
 extension VKAuthorization: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
@@ -58,10 +56,11 @@ extension VKAuthorization: WKNavigationDelegate {
                 return dict
         }
         
-        token = params["access_token"]
+        UserDefaults.standard.setValue(params["access_token"], forKey: "token")
+        UserDefaults.standard.setValue(NSDate(), forKey: "tokenDate")
         
         decisionHandler(.cancel)
         
-        performSegue(withIdentifier: "Go", sender: self)
+        performSegue(withIdentifier: "LogIn", sender: self)
     }
 }
