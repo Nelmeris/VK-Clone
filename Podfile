@@ -6,6 +6,7 @@ target 'VK Community' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 
   # Pods for VK Community
 
