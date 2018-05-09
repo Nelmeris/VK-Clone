@@ -1,5 +1,5 @@
 //
-//  Versions.swift
+//  VKAPIVersions.swift
 //  VK Community
 //
 //  Created by Артем on 09.05.2018.
