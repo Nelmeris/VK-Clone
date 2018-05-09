@@ -58,7 +58,7 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
         
         decisionHandler(.cancel)
         
-        performSegue(withIdentifier: "LogIn", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     
 }
