@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="swH-qf-8va">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -322,7 +322,6 @@
                     </view>
                     <connections>
                         <outlet property="WebViewVK" destination="5dT-Co-GFW" id="IoT-IT-Qnu"/>
-                        <segue destination="ZJq-mB-PY5" kind="show" identifier="LogIn" id="SiE-cO-tSe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MwL-BR-t5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -486,7 +485,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController storyboardIdentifier="Main" id="ZJq-mB-PY5" sceneMemberID="viewController">
+                <tabBarController id="ZJq-mB-PY5" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
