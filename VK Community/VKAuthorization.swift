@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class VKAuthorization: UIViewController {
+class VKAuthorization: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var WebViewVK: WKWebView! {
         didSet {
@@ -36,9 +36,6 @@ class VKAuthorization: UIViewController {
         WebViewVK.load(request)
     }
     
-}
-
-extension VKAuthorization: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
             decisionHandler(.allow)
@@ -63,4 +60,5 @@ extension VKAuthorization: WKNavigationDelegate {
         
         performSegue(withIdentifier: "LogIn", sender: self)
     }
+    
 }

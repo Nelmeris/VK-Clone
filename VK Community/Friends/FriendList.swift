@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 var selectFriend: IndexPath? = nil
 
@@ -17,8 +16,6 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
         searchBar.delegate = self
         
         tableView.contentOffset.y = searchBar.frame.height
