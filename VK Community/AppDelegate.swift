@@ -16,24 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        // Если зарегистрирован, показывам "MainController"
-        // Иначе загружаем "AltController"
-        if UserDefaults.standard.value(forKey: "token") == nil || (UserDefaults.standard.value(forKey: "tokenDate") as! NSDate).timeIntervalSinceNow >= 0
-        {
-            let mainController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
-            self.window?.rootViewController = mainController
-        }
-        else
-        {
-            let altController = storyboard.instantiateViewController(withIdentifier: "Main")
-            self.window?.rootViewController = altController
+        // Проверка наличия токена
+        guard UserDefaults.standard.value(forKey: "token") as! String? != nil else {
+            return true
         }
         
-        // Заставляем окно отобразить rootViewController
-        self.window?.makeKeyAndVisible()
+        // Проверка действительности токена
+        guard (UserDefaults.standard.value(forKey: "tokenDate") as! NSDate).timeIntervalSinceNow >= 0 else {
+            return true
+        }
         
+        // Установка стандартного окна "Main"
+        window?.rootViewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "Main")
+        
+        // Переход к установленному окну
+        window?.makeKeyAndVisible()
         
         return true
     }
