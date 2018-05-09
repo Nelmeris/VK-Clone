@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Проверка действительности токена
-        guard (UserDefaults.standard.value(forKey: "tokenDate") as! NSDate).timeIntervalSinceNow >= 0 else {
+        guard (UserDefaults.standard.value(forKey: "tokenDate") as! NSDate).timeIntervalSinceNow <= 0 else {
             return true
         }
         
