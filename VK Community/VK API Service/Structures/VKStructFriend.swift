@@ -9,6 +9,16 @@
 import SwiftyJSON
 
 extension VKService.Structs {
+    struct Friends {
+        var count: Int
+        var items: [Friend]
+        
+        init(json: JSON) {
+            count = json["count"].intValue
+            items = json["items"].map { Friend(json: $0.1)}
+        }
+    }
+    
     struct Friend {
         var id: Int
         var first_name = ""

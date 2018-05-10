@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class VKService {
     
@@ -22,7 +24,7 @@ class VKService {
     internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: VKAPIVersions, _ parameters: [String: String]? = nil) -> String? {
         
         // Проверка действительности токена
-        guard TokenIsValid() else {
+        guard TokenIsExist() else {
             // Запрос на получение нового токена
             sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
             
@@ -30,8 +32,6 @@ class VKService {
         }
         
         var url = VKService.URL + method + "?v=\(version.rawValue)&access_token=\((UserDefaults.standard.value(forKey: "token") as! String?)!)"
-        
-        // Добавление параметров в URL
         if let parameters = parameters {
             for element in parameters {
                 url += "&\(element.key)=\(element.value)"
@@ -42,8 +42,8 @@ class VKService {
     }
     
     // Проверка валидности токена пользователя
-    static func TokenIsValid() -> Bool {
-        return UserDefaults.standard.value(forKey: "token") != nil && (UserDefaults.standard.value(forKey: "tokenDate") as! NSDate).timeIntervalSinceNow < 0
+    static func TokenIsExist() -> Bool {
+        return UserDefaults.standard.value(forKey: "token") != nil
     }
     
 }

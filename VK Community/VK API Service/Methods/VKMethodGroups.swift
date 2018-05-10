@@ -24,9 +24,27 @@ extension VKService.Methods {
                 
                 let json = try? JSON(data: response.value!)
                 
-                let friends = VKService.Structs.IDs(json: json!["response"])
+                let groups = VKService.Structs.IDs(json: json!["response"])
                 
-                completion(friends)
+                completion(groups)
+                
+            }
+        }
+        
+        // Вывод подробного списка групп пользователя
+        static func Get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Groups) -> Void) {
+            
+            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74, parameters) else {
+                return
+            }
+            
+            Alamofire.request(url).responseData { response in
+                
+                let json = try? JSON(data: response.value!)
+                
+                let groups = VKService.Structs.Groups(json: json!["response"])
+                
+                completion(groups)
                 
             }
         }
@@ -42,9 +60,9 @@ extension VKService.Methods {
                 
                 let json = try? JSON(data: response.value!)
                 
-                let friends = VKService.Structs.IDs(json: json!["response"])
+                let groups = VKService.Structs.IDs(json: json!["response"])
                 
-                completion(friends)
+                completion(groups)
                 
             }
         }

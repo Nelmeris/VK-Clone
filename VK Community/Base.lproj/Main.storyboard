@@ -161,7 +161,7 @@
         <scene sceneID="CSL-Vt-jMc">
             <objects>
                 <navigationController id="YY8-X4-g7Y" userLabel="Friends Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Друзья" image="Friends" id="Tts-db-vBr"/>
+                    <tabBarItem key="tabBarItem" title="Друзья" image="FriendsIcon" id="Tts-db-vBr"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UPH-9j-uWF">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -579,7 +579,7 @@
         <scene sceneID="Un1-nO-2gy">
             <objects>
                 <navigationController id="Y6v-jX-au9" userLabel="Group Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Группы" image="Groups" id="VHT-SJ-laU"/>
+                    <tabBarItem key="tabBarItem" title="Группы" image="GroupsIcon" id="VHT-SJ-laU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="thD-QR-Rsb">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -595,8 +595,8 @@
     </scenes>
     <resources>
         <image name="Authorization" width="1920" height="1080"/>
-        <image name="Friends" width="32" height="32"/>
-        <image name="Groups" width="32" height="32"/>
+        <image name="FriendsIcon" width="32" height="32"/>
+        <image name="GroupsIcon" width="32" height="32"/>
         <image name="Profile" width="24" height="24"/>
     </resources>
 </document>

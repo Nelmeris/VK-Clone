@@ -9,6 +9,16 @@
 import SwiftyJSON
 
 extension VKService.Structs {
+    struct Groups {
+        var count: Int
+        var items: [Group]
+        
+        init(json: JSON) {
+            count = json["count"].intValue
+            items = json["items"].map { Group(json: $0.1)}
+        }
+    }
+    
     struct Group {
         var id: Int
         var name = ""
