@@ -19,15 +19,14 @@ class VKService {
     struct Methods {}
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ parameters: [String: String]?, _ version: VKAPIVersions) -> String {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ parameters: [String: String]?, _ version: VKAPIVersions) -> String? {
         
         // Проверка действительности токена
         guard TokenIsValid() else {
             // Запрос на получение нового токена
             sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
             
-            // Новая попытка
-            return RequestURL(sender, method, parameters, version)
+            return nil
         }
         
         // Создание URL запроса

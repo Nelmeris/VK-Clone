@@ -21,7 +21,9 @@ extension VKService.Methods {
     static func Friends(sender: UIViewController, method: FriendMethods, parameters: [String: String]? = nil, completion: @escaping([Friend]) -> Void) {
         
         // Составление URL запроса
-        let url = VKService.RequestURL(sender, method.rawValue, parameters, .v5_74)
+        guard let url = VKService.RequestURL(sender, method.rawValue, parameters, .v5_74) else {
+            return
+        }
         
         // Выполнение запроса
         Alamofire.request(url).responseData { response in

@@ -18,7 +18,7 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     var friends = [Friend]()
     
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.Friends(sender: self, method: .get, parameters: ["fields": "id,photo_50"], completion: { responds in
+        VKService.Methods.Friends(sender: self, method: .get, parameters: ["fields": "id,photo_100"], completion: { responds in
             self.friends = responds
             self.currentFriends = self.friends
             self.tableView.reloadData()
@@ -63,12 +63,12 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         cell.firstName.text = currentFriends[indexPath.row].first_name
         cell.lastName.text = currentFriends[indexPath.row].last_name
         
-        guard currentFriends[indexPath.row].photo_50 != "" else {
+        guard currentFriends[indexPath.row].photo_100 != "" else {
             cell.photo.image = UIImage(named: "DefaultUserPhoto")
             return cell
         }
         
-        let url = URL(string: currentFriends[indexPath.row].photo_50)
+        let url = URL(string: currentFriends[indexPath.row].photo_100)
         let data = try! Data(contentsOf: url!)
         cell.photo.image = UIImage(data: data)
         
