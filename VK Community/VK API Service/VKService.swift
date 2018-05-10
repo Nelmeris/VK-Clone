@@ -37,6 +37,17 @@ class VKService {
             }
         }
         
+        // Проверка наличия и обработка ошибок
+        Alamofire.request(url).responseData { response in
+            switch response.result {
+            case .failure( _):
+                sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
+                return
+            default:
+                return
+            }
+        }
+        
         return url
     }
     
