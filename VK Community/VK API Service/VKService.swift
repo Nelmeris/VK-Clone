@@ -19,7 +19,7 @@ class VKService {
     struct Methods {}
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ parameters: [String: String]?, _ version: VKAPIVersions) -> String? {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: VKAPIVersions, _ parameters: [String: String]? = nil) -> String? {
         
         // Проверка действительности токена
         guard TokenIsValid() else {

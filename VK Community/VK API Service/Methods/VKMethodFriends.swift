@@ -17,11 +17,33 @@ enum FriendMethods: String {
 
 extension VKService.Methods {
     
-    // Метод friends
-    static func Friends(sender: UIViewController, method: FriendMethods, parameters: [String: String]? = nil, completion: @escaping([Friend]) -> Void) {
+    // Метод friends без параметров
+    static func Friends(sender: UIViewController, method: FriendMethods, completion: @escaping([ID]) -> Void) {
         
         // Составление URL запроса
-        guard let url = VKService.RequestURL(sender, method.rawValue, parameters, .v5_74) else {
+        guard let url = VKService.RequestURL(sender, method.rawValue, .v5_74) else {
+            return
+        }
+        
+        // Выполнение запроса
+        Alamofire.request(url).responseData { response in
+            
+            // Преобразование полученных данных в JSON
+            let json = try? JSON(data: response.value!)
+            
+            // Сериализация JSON
+            let friends = json!["response"]["items"].map({ ID(json: $0.1) })
+            
+            completion(friends)
+            
+        }
+    }
+    
+    // Метод friends
+    static func Friends(sender: UIViewController, method: FriendMethods, parameters: [String: String], completion: @escaping([Friend]) -> Void) {
+        
+        // Составление URL запроса
+        guard let url = VKService.RequestURL(sender, method.rawValue, .v5_74, parameters) else {
             return
         }
         

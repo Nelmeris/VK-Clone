@@ -19,13 +19,6 @@ struct Friend {
     var online = 0
     
     init(json: JSON) {
-        
-        // Проверка 
-        guard json["id"] != nil else {
-            id = json.intValue
-            return
-        }
-        
         id = json["id"].intValue
         first_name = json["first_name"].stringValue
         last_name = json["last_name"].stringValue

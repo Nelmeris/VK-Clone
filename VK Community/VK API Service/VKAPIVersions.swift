@@ -6,7 +6,11 @@
 //  Copyright © 2018 NONE. All rights reserved.
 //
 
-// Версии VK API
-enum VKAPIVersions: String {
-    case v5_74 = "5.74"
+extension VKService {
+    
+    // Версии VK API
+    enum VKAPIVersions: String {
+        case v5_74 = "5.74"
+    }
+    
 }
