@@ -9,15 +9,30 @@
 import UIKit
 
 class FriendPhotoCollection: UICollectionViewController {
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return friends[selectFriend!.row].photos.count
-//    }
-//    
-//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
-//        
-//        cell.photo.image = UIImage(named: friends[selectFriend!.row].photos[indexPath.row])
-//        
-//        return cell
-//    }
+    
+    var photos = [VKService.Structs.Photo]()
+    var userID = 0
+    
+    // Получение данных о фотографиях пользователя
+    override func viewWillAppear(_ animated: Bool) {
+        VKService.Methods.photos.getAll(sender: self, parameters: ["owner_id": String(userID)], completion: { response in
+            self.photos = response.items
+        })
+    }
+    
+    // Получение количества ячеек для фото
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    // Составление ячеек для фото
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
+        
+        let url = URL(string: photos[indexPath.row].photo_75)
+        let data = try! Data(contentsOf: url!)
+        cell.photo.image = UIImage(data: data)
+        
+        return cell
+    }
 }

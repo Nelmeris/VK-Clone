@@ -81,8 +81,12 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectFriend = indexPath
+    // Передача ID выбранного друга на следующий экран
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! FriendPhotoCollection
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            vc.userID = currentFriends[indexPath.row].id
+        }
     }
     
 }
