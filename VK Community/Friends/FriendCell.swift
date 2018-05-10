@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Ячейка друга
 class FriendCell: UITableViewCell {
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!

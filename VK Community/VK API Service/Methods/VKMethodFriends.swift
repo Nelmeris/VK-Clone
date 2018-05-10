@@ -6,15 +6,15 @@
 //  Copyright © 2018 NONE. All rights reserved.
 //
 
-import Alamofire
 import UIKit
+import Alamofire
 import SwiftyJSON
 
 extension VKService.Methods {
-    struct Friends {
+    struct friends {
         
         // Вывод списка ID друзей пользователя
-        static func Get(sender: UIViewController, completion: @escaping(VKService.Structs.IDs) -> Void) {
+        static func get(sender: UIViewController, completion: @escaping(VKService.Structs.IDs) -> Void) {
             
             guard let url = VKService.RequestURL(sender, "friends.get", .v5_74) else {
                 return
@@ -32,7 +32,7 @@ extension VKService.Methods {
         }
         
         // Вывод подробного списка друзей пользователя
-        static func Get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Friends) -> Void) {
+        static func get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Friends) -> Void) {
             
             guard let url = VKService.RequestURL(sender, "friends.get", .v5_74, parameters) else {
                 return
@@ -48,5 +48,6 @@ extension VKService.Methods {
                 
             }
         }
+        
     }
 }

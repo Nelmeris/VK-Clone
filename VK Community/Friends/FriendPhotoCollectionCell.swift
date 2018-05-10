@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Ячейка для фото друга
 class FriendPhotoCollectionCell: UICollectionViewCell {
     @IBOutlet weak var photo: UIImageView!
 }

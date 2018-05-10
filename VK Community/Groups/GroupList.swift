@@ -10,19 +10,22 @@ import UIKit
 
 class GroupList: UITableViewController, UISearchBarDelegate {
     
+    // Инициализация данных о группах пользователя
     var myGroups = [VKService.Structs.Group]()
     var currentMyGroups = [VKService.Structs.Group]()
-    
-    @IBOutlet weak var searchBar: UISearchBar!
 
+    // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.Groups.Get(sender: self, parameters: ["extended": "1"], completion: { response in
+        VKService.Methods.groups.get(sender: self, parameters: ["extended": "1"], completion: { response in
             self.myGroups = response.items
             self.currentMyGroups = self.myGroups
             self.tableView.reloadData()
         })
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    // Настройки окна
     override func viewDidLoad() {
         searchBar.delegate = self
 
@@ -30,14 +33,17 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = 75
     }
 
+    // Скрытие клавиатуры при нажатии на кнопку "Закрыть" на searchBar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
 
+    // Скрытие клавиатуры при нажатии на кнопку "Поиск" на searchBar
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
 
+    // Реализация поиска
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             currentMyGroups = myGroups.filter({ myGroup -> Bool in
@@ -50,10 +56,12 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
 
+    // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentMyGroups.count
     }
 
+    // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
 
@@ -78,13 +86,14 @@ class GroupList: UITableViewController, UISearchBarDelegate {
 //        myGroups.append(group)
 //        tableView.reloadData()
 //    }
-
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") { (action, indexPath) in
-            self.myGroups.remove(at: indexPath.row)
-            self.currentMyGroups = self.myGroups
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-        return [deleteAction]
-    }
+//
+//    // Реализация удаления группы из списка групп пользователя
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") { (action, indexPath) in
+//            self.myGroups.remove(at: indexPath.row)
+//            self.currentMyGroups = self.myGroups
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//        return [deleteAction]
+//    }
 }

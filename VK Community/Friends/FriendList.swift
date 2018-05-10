@@ -8,23 +8,24 @@
 
 import UIKit
 
-var selectFriend: IndexPath? = nil
-
 class FriendList: UITableViewController, UISearchBarDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
-    
+    // Инициализация данных о друзьях
     var currentFriends = [VKService.Structs.Friend]()
     var friends = [VKService.Structs.Friend]()
     
+    // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.Friends.Get(sender: self, parameters: ["fields": "id,photo_100"], completion: { responds in
-            self.friends = responds.items
+        VKService.Methods.friends.get(sender: self, parameters: ["fields": "id,photo_100"], completion: { response in
+            self.friends = response.items
             self.currentFriends = self.friends
             self.tableView.reloadData()
         })
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    // Настройки окна
     override func viewDidLoad() {
         searchBar.delegate = self
         
@@ -32,14 +33,17 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         tableView.rowHeight = 75
     }
     
+    // Скрытие клавиатуры при нажатии на кнопку "Закрыть" на searchBar
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
     
+    // Скрытие клавиатуры при нажатии на кнопку "Поиск" на searchBar
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
     }
     
+    // Реализация поиска
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             currentFriends = friends.filter({ friend -> Bool in
@@ -53,10 +57,12 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentFriends.count
     }
     
+    // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
@@ -78,4 +84,5 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectFriend = indexPath
     }
+    
 }

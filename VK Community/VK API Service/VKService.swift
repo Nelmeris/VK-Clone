@@ -23,7 +23,6 @@ class VKService {
     // Создание URL запроса
     internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: VKAPIVersions, _ parameters: [String: String]? = nil) -> String? {
         
-        // Проверка действительности токена
         guard TokenIsExist() else {
             // Запрос на получение нового токена
             sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
@@ -41,7 +40,7 @@ class VKService {
         return url
     }
     
-    // Проверка валидности токена пользователя
+    // Проверка существования токена пользователя
     static func TokenIsExist() -> Bool {
         return UserDefaults.standard.value(forKey: "token") != nil
     }

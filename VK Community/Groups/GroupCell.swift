@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Ячейка группы
 class GroupCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!
