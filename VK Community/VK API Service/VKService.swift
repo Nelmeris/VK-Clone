@@ -10,13 +10,13 @@ import UIKit
 
 class VKService {
     
-    // Параметры запросов
     static let Scheme = "https"
     static let Host = "api.vk.com/method/"
     static let URL = "https://api.vk.com/method/"
     
-    // Пустой список методов
     struct Methods {}
+    
+    struct Structs {}
     
     // Создание URL запроса
     internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: VKAPIVersions, _ parameters: [String: String]? = nil) -> String? {
@@ -29,7 +29,6 @@ class VKService {
             return nil
         }
         
-        // Создание URL запроса
         var url = VKService.URL + method + "?v=\(version.rawValue)&access_token=\((UserDefaults.standard.value(forKey: "token") as! String?)!)"
         
         // Добавление параметров в URL

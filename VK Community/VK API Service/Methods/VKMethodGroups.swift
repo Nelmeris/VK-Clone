@@ -1,22 +1,22 @@
 //
-//  VKMethodFriends.swift
+//  VKMethodGroups.swift
 //  VK Community
 //
-//  Created by Артем on 09.05.2018.
+//  Created by Артем on 10.05.2018.
 //  Copyright © 2018 NONE. All rights reserved.
 //
 
-import Alamofire
 import UIKit
+import Alamofire
 import SwiftyJSON
 
 extension VKService.Methods {
-    struct Friends {
+    struct Groups {
         
-        // Вывод списка ID друзей пользователя
+        // Вывод списка ID групп пользователя
         static func Get(sender: UIViewController, completion: @escaping(VKService.Structs.IDs) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "friends.get", .v5_74) else {
+            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74) else {
                 return
             }
             
@@ -31,10 +31,10 @@ extension VKService.Methods {
             }
         }
         
-        // Вывод подробного списка друзей пользователя
-        static func Get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Items<VKService.Structs.Friend>) -> Void) {
+        // Вывод списка ID участников конкретной группы
+        static func GetMembers(sender: UIViewController, group_id: String, completion: @escaping(VKService.Structs.IDs) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "friends.get", .v5_74, parameters) else {
+            guard let url = VKService.RequestURL(sender, "groups.getMembers", .v5_74, ["group_id": group_id]) else {
                 return
             }
             
@@ -42,7 +42,7 @@ extension VKService.Methods {
                 
                 let json = try? JSON(data: response.value!)
                 
-                let friends = VKService.Structs.Items<VKService.Structs.Friend>(json: json!["response"])
+                let friends = VKService.Structs.IDs(json: json!["response"])
                 
                 completion(friends)
                 

@@ -14,12 +14,12 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var currentFriends = [Friend]()
-    var friends = [Friend]()
+    var currentFriends = [VKService.Structs.Friend]()
+    var friends = [VKService.Structs.Friend]()
     
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.Friends(sender: self, method: .get, parameters: ["fields": "id,photo_100"], completion: { responds in
-            self.friends = responds
+        VKService.Methods.Friends.Get(sender: self, parameters: ["fields": "id,photo_100"], completion: { responds in
+            self.friends = responds.items
             self.currentFriends = self.friends
             self.tableView.reloadData()
         })

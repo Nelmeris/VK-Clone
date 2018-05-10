@@ -1,5 +1,5 @@
 //
-//  VKStructID.swift
+//  VKStructItems.swift
 //  VK Community
 //
 //  Created by Артем on 10.05.2018.
@@ -9,13 +9,13 @@
 import SwiftyJSON
 
 extension VKService.Structs {
-    struct IDs {
+    struct Items<T> {
         var count: Int
-        var items: [Int]
+        var items: [T]
         
         init(json: JSON) {
             count = json["count"].intValue
-            items = json["items"].arrayObject as! [Int]
+            items = json["items"].arrayObject as! [T]
         }
     }
 }
