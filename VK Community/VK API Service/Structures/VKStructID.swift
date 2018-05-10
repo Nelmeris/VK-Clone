@@ -11,7 +11,7 @@ import SwiftyJSON
 extension VKService.Structs {
     
     // Список с идентификаторами
-    struct IDs {
+    class IDs {
         var count: Int
         var items: [Int]
         

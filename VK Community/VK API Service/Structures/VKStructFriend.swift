@@ -11,7 +11,7 @@ import SwiftyJSON
 extension VKService.Structs {
     
     // Список друзей
-    struct Friends {
+    class Friends {
         var count: Int
         var items: [Friend]
         
@@ -22,7 +22,7 @@ extension VKService.Structs {
     }
     
     // Данные друга
-    struct Friend {
+    class Friend {
         var id: Int
         var first_name = ""
         var last_name = ""

@@ -11,7 +11,7 @@ import SwiftyJSON
 extension VKService.Structs {
     
     // Список групп
-    struct Groups {
+    class Groups {
         var count: Int
         var items: [Group]
         
@@ -22,7 +22,7 @@ extension VKService.Structs {
     }
     
     // Данные группы
-    struct Group {
+    class Group {
         var id: Int
         var name = ""
         var photo_100 = ""
