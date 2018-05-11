@@ -74,19 +74,20 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         return cell
     }
 
-//    @IBAction func AddGroup(_ sender: UIStoryboardSegue) {
-//        let allGroupsController = sender.source as! SearchGroupList
-//        let group = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
-//        guard !myGroups.contains(where: { Group -> Bool in
-//            return group.name == Group.name
-//        }) else {
-//            return
-//        }
-//        currentMyGroups.append(group)
-//        myGroups.append(group)
-//        tableView.reloadData()
-//    }
-//
+    // Реализация присоединения к выбранной группе
+    @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
+        let allGroupsController = sender.source as! SearchGroupList
+        let group = allGroupsController.currentGroups[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        
+        guard !myGroups.contains(where: { Group -> Bool in
+            return group.name == Group.name
+        }) else {
+            return
+        }
+        
+        VKService.Method(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
+    }
+
     // Реализация удаления группы из списка групп пользователя
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
@@ -95,7 +96,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.Methods.groups.leave(sender: self, group_id: self.currentMyGroups[indexPath.row].id)
+                VKService.Method(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
                 self.myGroups.remove(at: indexPath.row)
                 self.currentMyGroups = self.myGroups
                 tableView.deleteRows(at: [indexPath], with: .automatic)

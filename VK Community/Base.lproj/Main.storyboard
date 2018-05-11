@@ -327,7 +327,7 @@
                                     <outlet property="name" destination="B7A-Oc-8lW" id="JZA-Ru-8tI"/>
                                     <outlet property="participantsCount" destination="wlx-Fr-U8q" id="K5L-Ss-DiP"/>
                                     <outlet property="photo" destination="xtx-Gn-R3M" id="bBZ-JH-Ted"/>
-                                    <segue destination="gKw-YL-XN3" kind="unwind" identifier="AddGroup" unwindAction="AddGroup:" id="Fc7-Bt-gK6"/>
+                                    <segue destination="gKw-YL-XN3" kind="unwind" identifier="JoinGroup" unwindAction="JoinGroup:" id="Fc7-Bt-gK6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

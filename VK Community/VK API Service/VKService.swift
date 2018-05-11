@@ -21,7 +21,7 @@ class VKService {
     struct Structs {}
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: VKAPIVersions, _ parameters: [String: String]? = nil) -> String? {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String: String]? = nil) -> String? {
         
         guard TokenIsExist() else {
             // Запрос на получение нового токена
@@ -62,6 +62,14 @@ class VKService {
     // Проверка существования токена пользователя
     static func TokenIsExist() -> Bool {
         return UserDefaults.standard.value(forKey: "token") != nil
+    }
+    
+    static func Method(sender: UIViewController, method: NonReturnMethods, version: Versions, parameters: [String: String]) {
+        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else {
+            return
+        }
+        
+        Alamofire.request(url).response
     }
     
 }

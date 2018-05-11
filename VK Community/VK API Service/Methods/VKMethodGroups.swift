@@ -69,14 +69,5 @@ extension VKService.Methods {
             }
         }
         
-        static func leave(sender: UIViewController, group_id: Int) {
-            let parameters = ["group_id": String(group_id)]
-            guard let url = VKService.RequestURL(sender, "groups.leave", .v5_74, parameters) else {
-                return
-            }
-            
-            Alamofire.request(url).response
-        }
-        
     }
 }

@@ -9,7 +9,7 @@
 extension VKService {
     
     // Версии VK API
-    enum VKAPIVersions: String {
+    enum Versions: String {
         case v5_74 = "5.74"
     }
     
