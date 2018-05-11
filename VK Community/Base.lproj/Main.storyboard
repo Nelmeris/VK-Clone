@@ -75,21 +75,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RUy-eE-Fgs">
-                                            <rect key="frame" x="59" y="50.666666666666664" width="17" height="16.999999999999993"/>
+                                            <rect key="frame" x="61" y="52.666666666666664" width="15" height="14.999999999999993"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4UM-ev-b66">
-                                            <rect key="frame" x="61.666666666666664" y="50" width="14.333333333333336" height="17"/>
+                                            <rect key="frame" x="64" y="52" width="12" height="15"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4UM-ev-b66" firstAttribute="height" secondItem="2fo-32-1sd" secondAttribute="height" multiplier="1:3.5" id="1Cv-1h-iai"/>
-                                        <constraint firstItem="RUy-eE-Fgs" firstAttribute="width" secondItem="2fo-32-1sd" secondAttribute="width" multiplier="1:3.5" id="4Db-Ql-hh0"/>
+                                        <constraint firstItem="4UM-ev-b66" firstAttribute="height" secondItem="2fo-32-1sd" secondAttribute="height" multiplier="1:4" id="1Cv-1h-iai"/>
+                                        <constraint firstItem="RUy-eE-Fgs" firstAttribute="width" secondItem="2fo-32-1sd" secondAttribute="width" multiplier="1:4" id="4Db-Ql-hh0"/>
                                         <constraint firstItem="PmG-pq-nNh" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="8YT-OK-WF0"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Z7P-DL-0dE" secondAttribute="trailing" id="FZh-pT-ori"/>
                                         <constraint firstItem="Z7P-DL-0dE" firstAttribute="centerY" secondItem="9Kn-JD-bn9" secondAttribute="centerY" id="HFy-K1-dg0"/>
                                         <constraint firstItem="4UM-ev-b66" firstAttribute="bottom" secondItem="2fo-32-1sd" secondAttribute="bottom" id="Nbs-UI-Tj5"/>
-                                        <constraint firstItem="4UM-ev-b66" firstAttribute="width" secondItem="2fo-32-1sd" secondAttribute="width" multiplier="1:4.2" id="PUy-O9-sVS"/>
-                                        <constraint firstItem="RUy-eE-Fgs" firstAttribute="height" secondItem="2fo-32-1sd" secondAttribute="height" multiplier="1:3.5" id="PWd-xi-ufH"/>
+                                        <constraint firstItem="4UM-ev-b66" firstAttribute="width" secondItem="2fo-32-1sd" secondAttribute="width" multiplier="1:5" id="PUy-O9-sVS"/>
+                                        <constraint firstItem="RUy-eE-Fgs" firstAttribute="height" secondItem="2fo-32-1sd" secondAttribute="height" multiplier="1:4" id="PWd-xi-ufH"/>
                                         <constraint firstItem="2fo-32-1sd" firstAttribute="top" secondItem="9Kn-JD-bn9" secondAttribute="top" constant="7" id="Ubc-el-xz9"/>
                                         <constraint firstItem="2fo-32-1sd" firstAttribute="leading" secondItem="9Kn-JD-bn9" secondAttribute="leadingMargin" id="WNX-8x-zRy"/>
                                         <constraint firstAttribute="bottom" secondItem="2fo-32-1sd" secondAttribute="bottom" constant="7" id="bM4-sW-dve"/>
