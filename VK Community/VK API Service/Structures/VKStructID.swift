@@ -17,7 +17,7 @@ extension VKService.Structs {
         
         init(json: JSON) {
             count = json["count"].intValue
-            items = json["items"].arrayObject as! [Int]
+            items = json["items"].arrayObject as? [Int] ?? []
         }
     }
     
