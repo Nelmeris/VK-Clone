@@ -21,7 +21,7 @@ class VKService {
     struct Structs {}
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String: String]? = nil) -> String? {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String: String]? = nil) -> (String, [String: String])? {
         
         guard TokenIsExist() else {
             // Запрос на получение нового токена
@@ -30,15 +30,19 @@ class VKService {
             return nil
         }
         
-        var url = VKService.URL + method + "?v=\(version.rawValue)&access_token=\((UserDefaults.standard.value(forKey: "token") as! String?)!)"
-        if let parameters = parameters {
-            for element in parameters {
-                url += "&\(element.key)=\(element.value)"
-            }
+        var p = ["":""]
+        
+        if parameters == nil {
+            p["access_token"] = (UserDefaults.standard.value(forKey: "token") as! String?)!
+            p["v"] = version.rawValue
+        } else {
+            p = parameters!
+            p["access_token"] = (UserDefaults.standard.value(forKey: "token") as! String?)!
+            p["v"] = version.rawValue
         }
         
         // Проверка наличия и обработка ошибок
-        Alamofire.request(url).responseData { response in
+        Alamofire.request(URL + method, parameters: p).responseData { response in
             let json = try? JSON(data: response.value!)
             
             let error_msg = json?["error"]["error_msg"].stringValue ?? nil
@@ -56,7 +60,7 @@ class VKService {
             }
         }
         
-        return url
+        return (URL + method, p)
     }
     
     // Проверка существования токена пользователя
@@ -69,7 +73,7 @@ class VKService {
             return
         }
         
-        Alamofire.request(url).response
+        Alamofire.request(url.0 + method.rawValue, parameters: url.1).response
     }
     
 }

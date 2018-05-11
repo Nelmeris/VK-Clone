@@ -16,11 +16,9 @@ extension VKService.Methods {
         // Вывод списка всех фото пользователя
         static func getAll(sender: UIViewController, parameters: [String: String]? = nil, completion: @escaping(VKService.Structs.Photos) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "photos.getAll", .v5_74, parameters) else {
-                return
-            }
+            guard let url = VKService.RequestURL(sender, "photos.getAll", .v5_74, parameters) else { return }
             
-            Alamofire.request(url).responseData { response in
+            Alamofire.request(url.0, parameters: url.1).responseData { response in
                 
                 let json = try? JSON(data: response.value!)
                 

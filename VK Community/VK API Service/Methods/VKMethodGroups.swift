@@ -20,7 +20,7 @@ extension VKService.Methods {
                 return
             }
             
-            Alamofire.request(url).responseData { response in
+            Alamofire.request(url.0, parameters: url.1).responseData { response in
                 
                 let json = try? JSON(data: response.value!)
                 
@@ -34,11 +34,9 @@ extension VKService.Methods {
         // Вывод подробного списка групп пользователя
         static func get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Groups) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74, parameters) else {
-                return
-            }
+            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74, parameters) else { return }
             
-            Alamofire.request(url).responseData { response in
+            Alamofire.request(url.0, parameters: url.1).responseData { response in
                 
                 let json = try? JSON(data: response.value!)
                 
@@ -54,11 +52,9 @@ extension VKService.Methods {
             var parameters = parameters
             parameters["q"] = q
             
-            guard let url = VKService.RequestURL(sender, "groups.search", .v5_74, parameters) else {
-                return
-            }
+            guard let url = VKService.RequestURL(sender, "groups.search", .v5_74, parameters) else { return }
             
-            Alamofire.request(url).responseData { response in
+            Alamofire.request(url.0, parameters: url.1).responseData { response in
                 
                 let json = try? JSON(data: response.value!)
                 
