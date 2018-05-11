@@ -49,10 +49,12 @@ extension VKService.Methods {
             }
         }
         
-        // Вывод списка ID участников конкретной группы
-        static func getMembers(sender: UIViewController, group_id: String, completion: @escaping(VKService.Structs.IDs) -> Void) {
+        // Вывод подробного списка групп пользователя
+        static func search(sender: UIViewController, q: String, parameters: [String: String] = ["":""], completion: @escaping(VKService.Structs.Groups) -> Void) {
+            var parameters = parameters
+            parameters["q"] = q
             
-            guard let url = VKService.RequestURL(sender, "groups.getMembers", .v5_74, ["group_id": group_id]) else {
+            guard let url = VKService.RequestURL(sender, "groups.search", .v5_74, parameters) else {
                 return
             }
             
@@ -60,7 +62,7 @@ extension VKService.Methods {
                 
                 let json = try? JSON(data: response.value!)
                 
-                let groups = VKService.Structs.IDs(json: json!["response"])
+                let groups = VKService.Structs.Groups(json: json!["response"])
                 
                 completion(groups)
                 

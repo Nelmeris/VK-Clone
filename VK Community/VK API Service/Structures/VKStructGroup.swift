@@ -26,11 +26,13 @@ extension VKService.Structs {
         var id: Int
         var name = ""
         var photo_100 = ""
+        var members_count: Int
         
         init(json: JSON) {
             id = json["id"].intValue
             name = json["name"].stringValue
             photo_100 = json["photo_100"].stringValue
+            members_count = json["members_count"].intValue
         }
     }
 }

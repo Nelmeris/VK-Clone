@@ -408,15 +408,15 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="66" id="8b4-N0-SYe" customClass="GroupCell" customModule="VK_Community" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="66"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="75" id="8b4-N0-SYe" customClass="GroupCell" customModule="VK_Community" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8b4-N0-SYe" id="NFh-UQ-U4c">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xtx-Gn-R3M">
-                                            <rect key="frame" x="16" y="7.6666666666666643" width="51" height="51"/>
+                                            <rect key="frame" x="16" y="7.6666666666666643" width="60" height="59.999999999999993"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="xtx-Gn-R3M" secondAttribute="height" multiplier="1:1" id="K14-vT-lm6"/>
                                             </constraints>
@@ -427,13 +427,16 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7A-Oc-8lW">
-                                            <rect key="frame" x="82" y="27" width="97" height="12"/>
+                                            <rect key="frame" x="91" y="27" width="208" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlx-Fr-U8q">
-                                            <rect key="frame" x="346" y="27" width="13" height="12"/>
+                                            <rect key="frame" x="299" y="27" width="60" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="Jcc-CZ-WZd"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -445,10 +448,10 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="wlx-Fr-U8q" secondAttribute="bottom" constant="16" id="Gss-eT-wp7"/>
                                         <constraint firstItem="xtx-Gn-R3M" firstAttribute="top" secondItem="NFh-UQ-U4c" secondAttribute="top" constant="7" id="KGO-KT-AMS"/>
                                         <constraint firstItem="B7A-Oc-8lW" firstAttribute="leading" secondItem="xtx-Gn-R3M" secondAttribute="trailing" constant="15" id="Nwa-c9-4NT"/>
-                                        <constraint firstItem="wlx-Fr-U8q" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B7A-Oc-8lW" secondAttribute="trailing" id="OHl-9l-lY5"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="B7A-Oc-8lW" secondAttribute="bottom" constant="16" id="OK2-dZ-ows"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="wlx-Fr-U8q" secondAttribute="trailing" id="jCN-GB-bSF"/>
                                         <constraint firstAttribute="bottom" secondItem="xtx-Gn-R3M" secondAttribute="bottom" constant="7" id="jho-Lb-qzM"/>
+                                        <constraint firstItem="wlx-Fr-U8q" firstAttribute="leading" secondItem="B7A-Oc-8lW" secondAttribute="trailing" id="lcO-bk-egR"/>
                                         <constraint firstItem="xtx-Gn-R3M" firstAttribute="leading" secondItem="NFh-UQ-U4c" secondAttribute="leadingMargin" id="n3m-NS-2Hf"/>
                                     </constraints>
                                 </tableViewCellContentView>
