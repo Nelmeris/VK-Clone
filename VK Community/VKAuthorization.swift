@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Keychain
 
 class VKAuthorization: UIViewController, WKNavigationDelegate {
     
@@ -57,7 +58,7 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
         }
         
         // Сохранение полученного токена
-        UserDefaults.standard.setValue(params["access_token"], forKey: "token")
+        Keychain.save(params["access_token"]!, forKey: "token")
         
         decisionHandler(.cancel)
         

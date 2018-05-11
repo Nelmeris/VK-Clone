@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Keychain
 
 class VKService {
     
@@ -32,14 +33,12 @@ class VKService {
         
         var p = ["":""]
         
-        if parameters == nil {
-            p["access_token"] = (UserDefaults.standard.value(forKey: "token") as! String?)!
-            p["v"] = version.rawValue
-        } else {
+        if parameters != nil {
             p = parameters!
-            p["access_token"] = (UserDefaults.standard.value(forKey: "token") as! String?)!
-            p["v"] = version.rawValue
         }
+        
+        p["access_token"] = Keychain.load("token")
+        p["v"] = version.rawValue
         
         // Проверка наличия и обработка ошибок
         Alamofire.request(URL + method, parameters: p).responseData { response in
