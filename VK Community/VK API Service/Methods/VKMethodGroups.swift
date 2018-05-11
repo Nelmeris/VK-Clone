@@ -10,21 +10,19 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension VKService.Methods {
+extension VKService.Requests {
     struct groups {
         
         // Вывод списка ID групп пользователя
-        static func get(sender: UIViewController, completion: @escaping(VKService.Structs.IDs) -> Void) {
+        static func get(sender: UIViewController, version: VKService.Versions, completion: @escaping(VKService.Structs.IDs) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74) else {
-                return
-            }
+            guard let url = VKService.RequestURL(sender, "groups.get", version) else { return }
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let groups = VKService.Structs.IDs(json: json!["response"])
+                let groups = VKService.Structs.IDs(json: json["response"])
                 
                 completion(groups)
                 
@@ -32,15 +30,15 @@ extension VKService.Methods {
         }
         
         // Вывод подробного списка групп пользователя
-        static func get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Groups) -> Void) {
+        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping(VKService.Structs.Groups) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "groups.get", .v5_74, parameters) else { return }
+            guard let url = VKService.RequestURL(sender, "groups.get", version, parameters) else { return }
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let groups = VKService.Structs.Groups(json: json!["response"])
+                let groups = VKService.Structs.Groups(json: json["response"])
                 
                 completion(groups)
                 
@@ -48,17 +46,18 @@ extension VKService.Methods {
         }
         
         // Вывод подробного списка групп пользователя
-        static func search(sender: UIViewController, q: String, parameters: [String: String] = ["":""], completion: @escaping(VKService.Structs.Groups) -> Void) {
-            var parameters = parameters
-            parameters["q"] = q
+        static func search(sender: UIViewController, version: VKService.Versions, q: String, parameters: [String: String] = ["":""], completion: @escaping(VKService.Structs.Groups) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "groups.search", .v5_74, parameters) else { return }
+            var requestParameters = parameters
+            requestParameters["q"] = q
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            guard let url = VKService.RequestURL(sender, "groups.search", version, requestParameters) else { return }
+            
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let groups = VKService.Structs.Groups(json: json!["response"])
+                let groups = VKService.Structs.Groups(json: json["response"])
                 
                 completion(groups)
                 

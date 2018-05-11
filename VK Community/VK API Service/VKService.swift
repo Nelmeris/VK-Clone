@@ -15,64 +15,76 @@ class VKService {
     
     static let Scheme = "https"
     static let Host = "api.vk.com/method/"
-    static let URL = "https://api.vk.com/method/"
     
-    struct Methods {}
+    struct Requests {}
+    
+    // Базовый безвозвратный запрос
+    static func Request(sender: UIViewController, method: NonReturnMethods, version: Versions, parameters: [String: String] = ["" : ""]) {
+        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
+        
+        _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
+    }
     
     struct Structs {}
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String: String]? = nil) -> (String, [String: String])? {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
         
         guard TokenIsExist() else {
-            // Запрос на получение нового токена
-            sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
-            
+            TokenReceiving(sender)
             return nil
         }
         
-        var p = ["":""]
+        let requestURL = Scheme + "://" + Host + method
         
-        if parameters != nil {
-            p = parameters!
-        }
+        var requestParameters = parameters
+        requestParameters["access_token"] = Keychain.load("token")
+        requestParameters["v"] = version.rawValue
         
-        p["access_token"] = Keychain.load("token")
-        p["v"] = version.rawValue
+        TokenIsValid(sender, requestURL, requestParameters)
         
-        // Проверка наличия и обработка ошибок
-        Alamofire.request(URL + method, parameters: p).responseData { response in
-            let json = try? JSON(data: response.value!)
+        return (requestURL, requestParameters)
+    }
+    
+    // Проверка существования токена
+    static func TokenIsExist() -> Bool {
+        return Keychain.load("token") != nil
+    }
+    
+    // Получение нового токена
+    static func TokenReceiving(_ sender: UIViewController) {
+        sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
+    }
+    
+    // Проверка токена на действительность
+    static func TokenIsValid(_ sender: UIViewController, _ url: String, _ parameters: [String: String]) {
+        
+        Alamofire.request(url, parameters: parameters).responseData { response in
+            guard let data = response.value else { return }
             
-            let error_msg = json?["error"]["error_msg"].stringValue ?? nil
-            let error_code = json?["error"]["error_code"].int ?? nil
+            let json = try! JSON(data: data)
+            
+            let error_code = json["error"]["error_code"].int ?? nil
             
             guard error_code == nil else {
-                switch error_code {
-                case 5:
-                    sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
-                    return
-                default:
-                    print(error_msg!)
-                    return
+                let error_msg = json["error"]["error_msg"].string!
+                
+                if error_msg.range(of: "token") != nil {
+                    TokenReceiving(sender)
                 }
+                
+                print("REQUEST ERROR! " + error_msg)
+                
+                return
             }
         }
         
-        return (URL + method, p)
     }
     
-    // Проверка существования токена пользователя
-    static func TokenIsExist() -> Bool {
-        return UserDefaults.standard.value(forKey: "token") != nil
-    }
-    
-    static func Method(sender: UIViewController, method: NonReturnMethods, version: Versions, parameters: [String: String]) {
-        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else {
-            return
-        }
+    static func GetJSON(_ response: DataResponse<Data>) -> JSON? {
+        guard let data = response.value else { return nil }
         
-        Alamofire.request(url.0 + method.rawValue, parameters: url.1).response
+        return try! JSON(data: data)
     }
     
 }

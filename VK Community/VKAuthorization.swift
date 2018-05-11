@@ -58,7 +58,7 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
         }
         
         // Сохранение полученного токена
-        Keychain.save(params["access_token"]!, forKey: "token")
+        _ = Keychain.save(params["access_token"]!, forKey: "token")
         
         decisionHandler(.cancel)
         

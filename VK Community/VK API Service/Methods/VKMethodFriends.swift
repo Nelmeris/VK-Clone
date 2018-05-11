@@ -10,19 +10,19 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension VKService.Methods {
+extension VKService.Requests {
     struct friends {
         
         // Вывод списка ID друзей пользователя
-        static func get(sender: UIViewController, completion: @escaping(VKService.Structs.IDs) -> Void) {
+        static func get(sender: UIViewController, version: VKService.Versions, completion: @escaping(VKService.Structs.IDs) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "friends.get", .v5_74) else { return }
+            guard let url = VKService.RequestURL(sender, "friends.get", version) else { return }
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let friends = VKService.Structs.IDs(json: json!["response"])
+                let friends = VKService.Structs.IDs(json: json["response"])
                 
                 completion(friends)
                 
@@ -30,15 +30,15 @@ extension VKService.Methods {
         }
         
         // Вывод подробного списка друзей пользователя
-        static func get(sender: UIViewController, parameters: [String: String], completion: @escaping(VKService.Structs.Friends) -> Void) {
+        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping(VKService.Structs.Friends) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "friends.get", .v5_74, parameters) else { return }
+            guard let url = VKService.RequestURL(sender, "friends.get", version, parameters) else { return }
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let friends = VKService.Structs.Friends(json: json!["response"])
+                let friends = VKService.Structs.Friends(json: json["response"])
                 
                 completion(friends)
                 

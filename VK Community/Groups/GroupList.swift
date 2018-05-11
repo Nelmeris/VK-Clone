@@ -16,7 +16,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.groups.get(sender: self, parameters: ["extended": "1"], completion: { response in
+        VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { response in
             self.myGroups = response.items
             self.currentMyGroups = self.myGroups
             self.tableView.reloadData()
@@ -85,7 +85,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             return
         }
         
-        VKService.Method(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
+        VKService.Request(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
     }
 
     // Реализация удаления группы из списка групп пользователя
@@ -96,7 +96,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.Method(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
+                VKService.Request(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
                 self.myGroups.remove(at: indexPath.row)
                 self.currentMyGroups = self.myGroups
                 tableView.deleteRows(at: [indexPath], with: .automatic)

@@ -10,19 +10,19 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension VKService.Methods {
+extension VKService.Requests {
     struct photos {
         
         // Вывод списка всех фото пользователя
-        static func getAll(sender: UIViewController, parameters: [String: String]? = nil, completion: @escaping(VKService.Structs.Photos) -> Void) {
+        static func getAll(sender: UIViewController, version: VKService.Versions, parameters: [String: String] = ["" : ""], completion: @escaping(VKService.Structs.Photos) -> Void) {
             
-            guard let url = VKService.RequestURL(sender, "photos.getAll", .v5_74, parameters) else { return }
+            guard let url = VKService.RequestURL(sender, "photos.getAll", version, parameters) else { return }
             
-            Alamofire.request(url.0, parameters: url.1).responseData { response in
+            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
                 
-                let json = try? JSON(data: response.value!)
+                guard let json = VKService.GetJSON(response) else { return }
                 
-                let photos = VKService.Structs.Photos(json: json!["response"])
+                let photos = VKService.Structs.Photos(json: json["response"])
                 
                 completion(photos)
                 
