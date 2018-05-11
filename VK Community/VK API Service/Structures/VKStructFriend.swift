@@ -29,8 +29,8 @@ extension VKService.Structs {
         var photo_50 = ""
         var photo_100 = ""
         var photo_200_orig = ""
-        var has_mobile = 0
         var online = 0
+        var online_mobile = 0
         
         init(json: JSON) {
             id = json["id"].intValue
@@ -40,7 +40,7 @@ extension VKService.Structs {
             photo_100 = json["photo_100"].stringValue
             photo_200_orig = json["photo_200_orig"].stringValue
             online = json["online"].intValue
-            has_mobile = json["has_mobile"].intValue
+            online_mobile = json["online_mobile"].intValue
         }
     }
 }

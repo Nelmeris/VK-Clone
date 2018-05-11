@@ -13,4 +13,6 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!
     @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var onlineStatusIcon: UIImageView!
+    @IBOutlet weak var onlineMobileStatusIcon: UIImageView!
 }

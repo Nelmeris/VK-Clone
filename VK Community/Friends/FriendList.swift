@@ -16,7 +16,7 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Methods.friends.get(sender: self, parameters: ["fields": "id,photo_100"], completion: { response in
+        VKService.Methods.friends.get(sender: self, parameters: ["fields": "id,photo_100,online", "order": "hints"], completion: { response in
             self.friends = response.items
             self.currentFriends = self.friends
             self.tableView.reloadData()
@@ -77,6 +77,21 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         let url = URL(string: currentFriends[indexPath.row].photo_100)
         let data = try! Data(contentsOf: url!)
         cell.photo.image = UIImage(data: data)
+        
+        if currentFriends[indexPath.row].online == 1 {
+            if currentFriends[indexPath.row].online_mobile == 1 {
+                cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
+                cell.onlineMobileStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 10
+                cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
+            } else {
+                cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
+                cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 2
+                cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
+            }
+        } else {
+            cell.onlineStatusIcon.image = nil
+            cell.onlineStatusIcon.backgroundColor = UIColor.clear
+        }
         
         return cell
     }
