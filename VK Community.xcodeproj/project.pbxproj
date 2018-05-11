@@ -123,8 +123,8 @@
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
 				F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */,
 				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
-				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
+				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
 			);
 			path = "VK Community";
@@ -270,11 +270,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-VK Community/Pods-VK Community-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Keychain/Keychain.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keychain.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

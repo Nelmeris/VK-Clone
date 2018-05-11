@@ -7,6 +7,7 @@ target 'VK Community' do
 
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Keychain'
 
   # Pods for VK Community
 
