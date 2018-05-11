@@ -39,12 +39,20 @@ class VKService {
         
         // Проверка наличия и обработка ошибок
         Alamofire.request(url).responseData { response in
-            switch response.result {
-            case .failure( _):
-                sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
-                return
-            default:
-                return
+            let json = try? JSON(data: response.value!)
+            
+            let error_msg = json?["error"]["error_msg"].stringValue ?? nil
+            let error_code = json?["error"]["error_code"].int ?? nil
+            
+            guard error_code == nil else {
+                switch error_code {
+                case 5:
+                    sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
+                    return
+                default:
+                    print(error_msg!)
+                    return
+                }
             }
         }
         
