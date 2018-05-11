@@ -87,13 +87,24 @@ class GroupList: UITableViewController, UISearchBarDelegate {
 //        tableView.reloadData()
 //    }
 //
-//    // Реализация удаления группы из списка групп пользователя
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .default, title: "Удалить") { (action, indexPath) in
-//            self.myGroups.remove(at: indexPath.row)
-//            self.currentMyGroups = self.myGroups
-//            tableView.deleteRows(at: [indexPath], with: .automatic)
-//        }
-//        return [deleteAction]
-//    }
+    // Реализация удаления группы из списка групп пользователя
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
+            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(self.currentMyGroups[indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
+            var action = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(action)
+            
+            action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
+                VKService.Methods.groups.leave(sender: self, group_id: self.currentMyGroups[indexPath.row].id)
+                self.myGroups.remove(at: indexPath.row)
+                self.currentMyGroups = self.myGroups
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        return [deleteAction]
+    }
+
 }
