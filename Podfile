@@ -9,6 +9,7 @@ target 'VK Community' do
   pod 'SwiftyJSON'
   pod 'Keychain'
   pod 'SDWebImage'
+  pod 'Realm'
 
   # Pods for VK Community
 
