@@ -12,7 +12,7 @@ import SDWebImage
 class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var photos = [VKService.Structs.Photo]()
-    var user = VKService.Structs.Friend(json: nil)
+    var user = VKService.Structs.User(json: nil)
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {

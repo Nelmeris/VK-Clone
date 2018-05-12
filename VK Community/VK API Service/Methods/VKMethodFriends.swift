@@ -30,7 +30,7 @@ extension VKService.Requests {
         }
         
         // Вывод подробного списка друзей пользователя
-        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping(VKService.Structs.Friends) -> Void) {
+        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping(VKService.Structs.Users) -> Void) {
             
             guard let url = VKService.RequestURL(sender, "friends.get", version, parameters) else { return }
             
@@ -38,7 +38,7 @@ extension VKService.Requests {
                 
                 guard let json = VKService.GetJSON(response) else { return }
                 
-                let friends = VKService.Structs.Friends(json: json["response"])
+                let friends = VKService.Structs.Users(json: json["response"])
                 
                 completion(friends)
                 

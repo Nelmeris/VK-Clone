@@ -12,8 +12,8 @@ import SDWebImage
 class FriendList: UITableViewController, UISearchBarDelegate {
     
     // Инициализация данных о друзьях
-    var currentFriends = [VKService.Structs.Friend]()
-    var friends = [VKService.Structs.Friend]()
+    var currentFriends = [VKService.Structs.User]()
+    var friends = [VKService.Structs.User]()
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {

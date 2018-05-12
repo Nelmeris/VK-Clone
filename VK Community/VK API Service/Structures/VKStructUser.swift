@@ -10,19 +10,19 @@ import SwiftyJSON
 
 extension VKService.Structs {
     
-    // Список друзей
-    class Friends {
+    // Список пользователей
+    class Users {
         var count: Int
-        var items: [Friend]
+        var items: [User]
         
         init(json: JSON) {
             count = json["count"].intValue
-            items = json["items"].map { Friend(json: $0.1)}
+            items = json["items"].map { User(json: $0.1)}
         }
     }
     
-    // Данные друга
-    class Friend {
+    // Данные пользователя
+    class User {
         var id: Int
         var first_name = ""
         var last_name = ""
