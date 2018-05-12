@@ -100,7 +100,7 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! FriendPhotoCollection
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            vc.userID = currentFriends[indexPath.row].id
+            vc.user = currentFriends[indexPath.row]
         }
     }
     
