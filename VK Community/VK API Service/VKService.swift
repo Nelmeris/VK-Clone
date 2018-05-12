@@ -16,7 +16,7 @@ class VKService {
     static let Scheme = "https"
     static let Host = "api.vk.com/method/"
     
-    struct Requests {}
+    class Requests {}
     
     // Базовый безвозвратный запрос
     static func Request(sender: UIViewController, method: NonReturnMethods, version: Versions, parameters: [String: String] = ["" : ""]) {
@@ -25,7 +25,7 @@ class VKService {
         _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
     }
     
-    struct Structs {}
+    class Structs {}
     
     // Создание URL запроса
     internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
