@@ -50,8 +50,7 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
         cell.name.text = currentGroups[indexPath.row].name
         
         let url = URL(string: currentGroups[indexPath.row].photo_100)
-        let data = try! Data(contentsOf: url!)
-        cell.photo.image = UIImage(data: data)
+        cell.photo.sd_setImage(with: url, completed: nil)
         
         switch currentGroups[indexPath.row].members_count {
         case let x where x >= 1000000:

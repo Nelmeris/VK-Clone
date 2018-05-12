@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FriendList: UITableViewController, UISearchBarDelegate {
     
@@ -75,8 +76,7 @@ class FriendList: UITableViewController, UISearchBarDelegate {
         }
         
         let url = URL(string: currentFriends[indexPath.row].photo_100)
-        let data = try! Data(contentsOf: url!)
-        cell.photo.image = UIImage(data: data)
+        cell.photo.sd_setImage(with: url, completed: nil)
         
         if currentFriends[indexPath.row].online == 1 {
             if currentFriends[indexPath.row].online_mobile == 1 {

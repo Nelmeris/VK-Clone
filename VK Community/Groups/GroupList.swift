@@ -68,8 +68,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         cell.name.text = currentMyGroups[indexPath.row].name
         
         let url = URL(string: currentMyGroups[indexPath.row].photo_100)
-        let data = try! Data(contentsOf: url!)
-        cell.photo.image = UIImage(data: data)
+        cell.photo.sd_setImage(with: url, completed: nil)
 
         return cell
     }

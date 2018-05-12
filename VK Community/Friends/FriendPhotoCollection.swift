@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FriendPhotoCollection: UICollectionViewController {
     
@@ -30,9 +31,8 @@ class FriendPhotoCollection: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
         
-        let url = URL(string: photos[indexPath.row].photo_75)
-        let data = try! Data(contentsOf: url!)
-        cell.photo.image = UIImage(data: data)
+        let url = URL(string: photos[indexPath.row].photo_130)
+        cell.photo.sd_setImage(with: url, completed: nil)
         
         return cell
     }
