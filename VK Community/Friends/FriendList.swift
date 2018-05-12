@@ -17,10 +17,10 @@ class FriendList: UITableViewController, UISearchBarDelegate {
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Requests.friends.get(sender: self, version: .v5_74, parameters: ["fields": "id,photo_100,online", "order": "hints"], completion: { response in
-            self.friends = response.items
-            self.currentFriends = self.friends
-            self.tableView.reloadData()
+        VKService.Requests.friends.get(sender: self, version: .v5_74, parameters: ["fields": "id,photo_100,online", "order": "hints"], completion: { [weak self] (response) in
+            self?.friends = response.items
+            self?.currentFriends = response.items
+            self?.tableView.reloadData()
         })
     }
     

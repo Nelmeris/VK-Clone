@@ -16,10 +16,10 @@ class GroupList: UITableViewController, UISearchBarDelegate {
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { response in
-            self.myGroups = response.items
-            self.currentMyGroups = self.myGroups
-            self.tableView.reloadData()
+        VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response) in
+            self?.myGroups = response.items
+            self?.currentMyGroups = response.items
+            self?.tableView.reloadData()
         })
     }
     

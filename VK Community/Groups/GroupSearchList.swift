@@ -30,9 +30,9 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
-            VKService.Requests.groups.search(sender: self, version: .v5_74, q: searchText.lowercased(), parameters: ["fields": "members_count", "sort": "0"], completion: { response in
-                self.currentGroups = response.items
-                self.tableView.reloadData()
+            VKService.Requests.groups.search(sender: self, version: .v5_74, q: searchText.lowercased(), parameters: ["fields": "members_count", "sort": "0"], completion: { [weak self] (response) in
+                self?.currentGroups = response.items
+                self?.tableView.reloadData()
             })
         } else {
             currentGroups = [VKService.Structs.Group]()
