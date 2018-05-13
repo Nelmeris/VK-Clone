@@ -11,13 +11,14 @@ import SwiftyJSON
 extension VKService.Structs {
     
     // Список с идентификаторами
-    class IDs {
+    class IDs: VKService.Structs {
         var count: Int
         var items: [Int]
         
-        init(json: JSON) {
+        override init(json: JSON) {
             count = json["count"].intValue
             items = json["items"].arrayObject as? [Int] ?? []
+            super.init(json: json)
         }
     }
     

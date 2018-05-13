@@ -84,7 +84,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             return
         }
         
-        VKService.Request(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
+        VKService.IrretrievableRequest(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
     }
 
     // Реализация удаления группы из списка групп пользователя
@@ -95,7 +95,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.Request(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
+                VKService.IrretrievableRequest(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
                 self.myGroups.remove(at: indexPath.row)
                 self.currentMyGroups = self.myGroups
                 tableView.deleteRows(at: [indexPath], with: .automatic)

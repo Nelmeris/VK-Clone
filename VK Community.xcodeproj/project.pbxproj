@@ -21,7 +21,7 @@
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F67F889C20A4ECC30091F1AC /* VKStructPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */; };
 		F67F889E20A4F0EC0091F1AC /* VKMethodPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F889D20A4F0EC0091F1AC /* VKMethodPhotos.swift */; };
-		F6A68EA920A5C6120054BD4D /* VKNon-ReturnMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A68EA820A5C6120054BD4D /* VKNon-ReturnMethods.swift */; };
+		F6A68EA920A5C6120054BD4D /* VKIrretrievableRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */; };
 		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
 		F6AB178A20A3ADA600B1B578 /* VKMethodFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB178920A3ADA600B1B578 /* VKMethodFriends.swift */; };
@@ -53,7 +53,7 @@
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKStructPhoto.swift; sourceTree = "<group>"; };
 		F67F889D20A4F0EC0091F1AC /* VKMethodPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMethodPhotos.swift; sourceTree = "<group>"; };
-		F6A68EA820A5C6120054BD4D /* VKNon-ReturnMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VKNon-ReturnMethods.swift"; sourceTree = "<group>"; };
+		F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKIrretrievableRequests.swift; sourceTree = "<group>"; };
 		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F6AB178920A3ADA600B1B578 /* VKMethodFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKMethodFriends.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 				F6AB178720A3AD7E00B1B578 /* Methods */,
 				F6DF80F320A3486B00502B0B /* VKService.swift */,
 				F6DF80FA20A34C9500502B0B /* VKAPIVersions.swift */,
-				F6A68EA820A5C6120054BD4D /* VKNon-ReturnMethods.swift */,
+				F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */,
 			);
 			path = "VK API Service";
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
 				F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */,
 				F6FDA4E520A4648C000D76DE /* VKStructID.swift in Sources */,
-				F6A68EA920A5C6120054BD4D /* VKNon-ReturnMethods.swift in Sources */,
+				F6A68EA920A5C6120054BD4D /* VKIrretrievableRequests.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F6AB179020A3B11600B1B578 /* VKMethodGroups.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
@@ -484,7 +484,10 @@
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -501,7 +504,10 @@
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

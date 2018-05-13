@@ -1,5 +1,5 @@
 //
-//  VKNon-ReturnMethods.swift
+//  VKIrretrievableRequests.swift
 //  VK Community
 //
 //  Created by Артем on 11.05.2018.
@@ -9,7 +9,7 @@
 extension VKService {
     
     // Доступные не возвращаемые методы
-    enum NonReturnMethods: String {
+    enum IrretrievableRequests: String {
         case groupsLeave = "groups.leave"
         case groupsJoin = "groups.join"
     }

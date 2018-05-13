@@ -11,18 +11,19 @@ import SwiftyJSON
 extension VKService.Structs {
     
     // Список пользователей
-    class Users {
+    class Users: VKService.Structs {
         var count: Int
         var items: [User]
         
-        init(json: JSON) {
+        override init(json: JSON) {
             count = json["count"].intValue
             items = json["items"].map { User(json: $0.1)}
+            super.init(json: json)
         }
     }
     
     // Данные пользователя
-    class User {
+    class User: VKService.Structs {
         var id: Int
         var first_name = ""
         var last_name = ""
@@ -32,7 +33,7 @@ extension VKService.Structs {
         var online = 0
         var online_mobile = 0
         
-        init(json: JSON) {
+        override init(json: JSON) {
             id = json["id"].intValue
             first_name = json["first_name"].stringValue
             last_name = json["last_name"].stringValue
@@ -41,6 +42,7 @@ extension VKService.Structs {
             photo_200_orig = json["photo_200_orig"].stringValue
             online = json["online"].intValue
             online_mobile = json["online_mobile"].intValue
+            super.init(json: json)
         }
     }
 }

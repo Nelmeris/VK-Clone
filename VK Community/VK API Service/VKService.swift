@@ -16,44 +16,14 @@ class VKService {
     static let Scheme = "https"
     static let Host = "api.vk.com/method/"
     
-    class Requests {}
-    
-    // Базовый безвозвратный запрос
-    static func Request(sender: UIViewController, method: NonReturnMethods, version: Versions, parameters: [String: String] = ["" : ""]) {
-        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
-        
-        _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
-    }
-    
-    class Structs {}
-    
-    // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
-        
-        guard TokenIsExist() else {
-            TokenReceiving(sender)
-            return nil
-        }
-        
-        let requestURL = Scheme + "://" + Host + method
-        
-        var requestParameters = parameters
-        requestParameters["access_token"] = Keychain.load("token")
-        requestParameters["v"] = version.rawValue
-        
-        TokenIsValid(sender, requestURL, requestParameters)
-        
-        return (requestURL, requestParameters)
+    // Получение нового токена
+    static func TokenReceiving(_ sender: UIViewController) {
+        sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
     }
     
     // Проверка существования токена
     static func TokenIsExist() -> Bool {
         return Keychain.load("token") != nil
-    }
-    
-    // Получение нового токена
-    static func TokenReceiving(_ sender: UIViewController) {
-        sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
     }
     
     // Проверка токена на действительность
@@ -81,10 +51,44 @@ class VKService {
         
     }
     
+    // Создание URL запроса
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
+        
+        guard TokenIsExist() else {
+            TokenReceiving(sender)
+            return nil
+        }
+        
+        let requestURL = Scheme + "://" + Host + method
+        
+        var requestParameters = parameters
+        requestParameters["access_token"] = Keychain.load("token")
+        requestParameters["v"] = version.rawValue
+        
+        TokenIsValid(sender, requestURL, requestParameters)
+        
+        return (requestURL, requestParameters)
+    }
+    
     static func GetJSON(_ response: DataResponse<Data>) -> JSON? {
         guard let data = response.value else { return nil }
         
         return try! JSON(data: data)
+    }
+    
+    class Requests {}
+    
+    class Structs {
+        init(json: JSON) {}
+    }
+    
+    // Базовый безвозвратный запрос
+    static func IrretrievableRequest(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""]) {
+        
+        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
+        
+        _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
+        
     }
     
 }
