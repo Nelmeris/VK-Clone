@@ -65,4 +65,5 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
         
         return cell
     }
+    
 }

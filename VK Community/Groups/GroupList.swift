@@ -16,6 +16,7 @@ class GroupList: UITableViewController, UISearchBarDelegate {
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
+        sleep(2)
         VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response) in
             self?.myGroups = response.items
             self?.currentMyGroups = response.items
