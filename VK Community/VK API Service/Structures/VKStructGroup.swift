@@ -9,14 +9,14 @@
 import SwiftyJSON
 
 // Данные группы
-class Group: VKService.Structures {
+class Group: Structures {
     
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var photo_100 = ""
     @objc dynamic var members_count = 0
     
-    convenience init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init()
         self.id = json["id"].intValue
         self.name = json["name"].stringValue

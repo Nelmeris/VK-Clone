@@ -12,11 +12,11 @@ import SDWebImage
 class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var photos = [Photo]()
-    var user = User(json: nil)
+    var user = User()
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Requests.photos.getAll(sender: self, version: .v5_74, parameters: ["owner_id": String(user.id)], completion: { [weak self] (response) in
+        VKService.Request(sender: self, method: .photosGetAll, version: .v5_74, parameters: ["owner_id": String(user.id)], completion: { [weak self] (response: [Photo]) in
             self?.photos = response
             self?.photoCollection.reloadData()
         })

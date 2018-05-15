@@ -9,13 +9,13 @@
 import SwiftyJSON
 
 // Данные фотографии
-class Photo: VKService.Structures {
+class Photo: Structures {
     
     @objc dynamic var id = 0
     @objc dynamic var photo_75 = ""
     @objc dynamic var photo_130 = ""
     
-    convenience init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init()
         self.id = json["id"].intValue
         self.photo_75 = json["photo_75"].stringValue

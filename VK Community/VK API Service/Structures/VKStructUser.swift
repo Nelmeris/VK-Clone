@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные пользователя
-class User: VKService.Structures {
+class User: Structures {
     
     @objc dynamic var id = 0
     @objc dynamic var first_name = ""
@@ -20,7 +20,7 @@ class User: VKService.Structures {
     @objc dynamic var online = 0
     @objc dynamic var online_mobile = 0
     
-    convenience init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init()
         self.id = json["id"].intValue
         self.first_name = json["first_name"].stringValue

@@ -22,7 +22,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response) in
+        VKService.Request(sender: self, method: .groupsGet, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response: [Group]) in
             self?.myGroups = response
             self?.currentMyGroups = response
             self?.tableView.reloadData()

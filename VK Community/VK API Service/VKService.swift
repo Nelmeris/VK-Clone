@@ -14,21 +14,21 @@ import RealmSwift
 
 class VKService {
     
-    static let Scheme = "https"
-    static let Host = "api.vk.com/method/"
+    internal static let Scheme = "https"
+    internal static let Host = "api.vk.com/method/"
     
     // Получение нового токена
-    static func TokenReceiving(_ sender: UIViewController) {
+    internal static func TokenReceiving(_ sender: UIViewController) {
         sender.present(UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "VKAuthorization"), animated: true, completion: nil)
     }
     
     // Проверка существования токена
-    static func TokenIsExist() -> Bool {
+    internal static func TokenIsExist() -> Bool {
         return Keychain.load("token") != nil
     }
     
     // Проверка токена на действительность
-    static func TokenIsValid(_ sender: UIViewController, _ url: String, _ parameters: [String: String]) {
+    internal static func TokenIsValid(_ sender: UIViewController, _ url: String, _ parameters: [String: String]) {
         Alamofire.request(url, parameters: parameters).responseData { response in
             guard let json = GetJSONResponse(response), json["error"]["error_code"].int != nil else { return }
             
@@ -61,29 +61,22 @@ class VKService {
     }
     
     // Возврат JSON ответа сервера
-    static func GetJSONResponse(_ response: DataResponse<Data>) -> JSON? {
+    internal static func GetJSONResponse(_ response: DataResponse<Data>) -> JSON? {
         guard let data = response.value else { return nil }
         
         return try! JSON(data: data)["response"]
     }
     
-    class Requests {}
-    
-    class Structures: Object {
-        convenience init(json: JSON) {
-            self.init()
+    // Базовый возвратный запрос
+    static func Request<Response: Structures>(sender: UIViewController, method: Requests, version: Versions, parameters: [String: String] = ["" : ""], completion: @escaping([Response]) -> Void) {
+        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
+        
+        Alamofire.request(url.url, parameters: url.parameters).responseData { response in
+            guard let json = VKService.GetJSONResponse(response) else { return }
+            
+            completion(json["items"].map { Response(json: $0.1) })
         }
     }
-    
-//    static func Request<Response: Structures>(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""], completion: @escaping([Response]) -> Void) {
-//        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
-//        
-//        Alamofire.request(url.url, parameters: url.parameters).responseData { response in
-//            guard let json = VKService.GetJSONResponse(response) else { return }
-//            
-//            completion(json["items"].map { Response(json: $0.1) })
-//        }
-//    }
     
     // Базовый безвозвратный запрос
     static func IrretrievableRequest(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""]) {
@@ -92,4 +85,10 @@ class VKService {
         _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
     }
     
+}
+
+internal class Structures {
+    required convenience init(json: JSON) {
+        self.init()
+    }
 }
