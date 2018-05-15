@@ -12,14 +12,14 @@ import SDWebImage
 class FriendList: UITableViewController, UISearchBarDelegate {
     
     // Инициализация данных о друзьях
-    var currentFriends = [VKService.Structs.User]()
-    var friends = [VKService.Structs.User]()
+    var currentFriends = [User]()
+    var friends = [User]()
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
         VKService.Requests.friends.get(sender: self, version: .v5_74, parameters: ["fields": "id,photo_100,online", "order": "hints"], completion: { [weak self] (response) in
-            self?.friends = response.items
-            self?.currentFriends = response.items
+            self?.currentFriends = response
+            self?.friends = response
             self?.tableView.reloadData()
         })
     }

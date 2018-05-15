@@ -11,15 +11,15 @@ import UIKit
 class GroupList: UITableViewController, UISearchBarDelegate {
     
     // Инициализация данных о группах пользователя
-    var myGroups = [VKService.Structs.Group]()
-    var currentMyGroups = [VKService.Structs.Group]()
+    var myGroups = [Group]()
+    var currentMyGroups = [Group]()
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
         sleep(2)
         VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response) in
-            self?.myGroups = response.items
-            self?.currentMyGroups = response.items
+            self?.myGroups = response
+            self?.currentMyGroups = response
             self?.tableView.reloadData()
         })
     }

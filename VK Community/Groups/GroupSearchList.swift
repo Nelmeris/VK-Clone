@@ -11,7 +11,7 @@ import UIKit
 class SearchGroupList: UITableViewController, UISearchBarDelegate {
     
     // Инициализация данных о результате поиска групп
-    var currentGroups = [VKService.Structs.Group]()
+    var currentGroups = [Group]()
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -31,11 +31,11 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             VKService.Requests.groups.search(sender: self, version: .v5_74, q: searchText.lowercased(), parameters: ["fields": "members_count", "sort": "0"], completion: { [weak self] (response) in
-                self?.currentGroups = response.items
+                self?.currentGroups = response
                 self?.tableView.reloadData()
             })
         } else {
-            currentGroups = [VKService.Structs.Group]()
+            currentGroups = [Group]()
             tableView.reloadData()
         }
     }

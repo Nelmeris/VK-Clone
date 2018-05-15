@@ -13,35 +13,14 @@ import SwiftyJSON
 extension VKService.Requests {
     struct friends {
         
-        // Вывод списка ID друзей пользователя
-        static func get(sender: UIViewController, version: VKService.Versions, completion: @escaping(VKService.Structs.IDs) -> Void) {
-            
-            guard let url = VKService.RequestURL(sender, "friends.get", version) else { return }
-            
-            Alamofire.request(url.url, parameters: url.parameters).responseData { response in
-                
-                guard let json = VKService.GetJSON(response) else { return }
-                
-                let friends = VKService.Structs.IDs(json: json["response"])
-                
-                completion(friends)
-                
-            }
-        }
-        
         // Вывод подробного списка друзей пользователя
-        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping(VKService.Structs.Users) -> Void) {
-            
+        static func get(sender: UIViewController, version: VKService.Versions, parameters: [String: String], completion: @escaping([User]) -> Void) {
             guard let url = VKService.RequestURL(sender, "friends.get", version, parameters) else { return }
             
             Alamofire.request(url.url, parameters: url.parameters).responseData { response in
+                guard let json = VKService.GetJSONResponse(response) else { return }
                 
-                guard let json = VKService.GetJSON(response) else { return }
-                
-                let friends = VKService.Structs.Users(json: json["response"])
-                
-                completion(friends)
-                
+                completion(json["items"].map { User(json: $0.1) })
             }
         }
         

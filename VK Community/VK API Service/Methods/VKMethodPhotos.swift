@@ -14,20 +14,14 @@ extension VKService.Requests {
     struct photos {
         
         // Вывод списка всех фото пользователя
-        static func getAll(sender: UIViewController, version: VKService.Versions, parameters: [String: String] = ["" : ""], completion: @escaping(VKService.Structs.Photos) -> Void) {
-            
+        static func getAll(sender: UIViewController, version: VKService.Versions, parameters: [String: String] = ["" : ""], completion: @escaping([Photo]) -> Void) {
             guard let url = VKService.RequestURL(sender, "photos.getAll", version, parameters) else { return }
             
             Alamofire.request(url.url, parameters: url.parameters).responseData { response in
+                guard let json = VKService.GetJSONResponse(response) else { return }
                 
-                guard let json = VKService.GetJSON(response) else { return }
-                
-                let photos = VKService.Structs.Photos(json: json["response"])
-                
-                completion(photos)
-                
+                completion(json["items"].map { Photo(json: $0.1) })
             }
-            
         }
         
     }

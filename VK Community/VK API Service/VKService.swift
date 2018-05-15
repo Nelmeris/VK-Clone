@@ -29,32 +29,21 @@ class VKService {
     
     // Проверка токена на действительность
     static func TokenIsValid(_ sender: UIViewController, _ url: String, _ parameters: [String: String]) {
-        
         Alamofire.request(url, parameters: parameters).responseData { response in
-            guard let data = response.value else { return }
+            guard let json = GetJSONResponse(response), json["error"]["error_code"].int != nil else { return }
             
-            let json = try! JSON(data: data)
+            let error_msg = json["error"]["error_msg"].string!
             
-            let error_code = json["error"]["error_code"].int ?? nil
-            
-            guard error_code == nil else {
-                let error_msg = json["error"]["error_msg"].string!
-                
-                if error_msg.range(of: "token") != nil {
-                    TokenReceiving(sender)
-                }
-                
-                print("REQUEST ERROR! " + error_msg)
-                
-                return
+            if error_msg.range(of: "token") != nil {
+                TokenReceiving(sender)
             }
+            
+            print("REQUEST ERROR! " + error_msg)
         }
-        
     }
     
     // Создание URL запроса
     internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
-        
         guard TokenIsExist() else {
             TokenReceiving(sender)
             return nil
@@ -71,15 +60,16 @@ class VKService {
         return (requestURL, requestParameters)
     }
     
-    static func GetJSON(_ response: DataResponse<Data>) -> JSON? {
+    // Возврат JSON ответа сервера
+    static func GetJSONResponse(_ response: DataResponse<Data>) -> JSON? {
         guard let data = response.value else { return nil }
         
-        return try! JSON(data: data)
+        return try! JSON(data: data)["response"]
     }
     
     class Requests {}
     
-    class Structs: Object {
+    class Structures: Object {
         convenience init(json: JSON) {
             self.init()
         }
@@ -87,11 +77,9 @@ class VKService {
     
     // Базовый безвозвратный запрос
     static func IrretrievableRequest(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""]) {
-        
         guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
         
         _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
-        
     }
     
 }
