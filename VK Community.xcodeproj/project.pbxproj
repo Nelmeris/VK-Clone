@@ -20,7 +20,7 @@
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F67F889C20A4ECC30091F1AC /* VKStructPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */; };
-		F68B714820AB268800393124 /* VKRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B714720AB268800393124 /* VKRequests.swift */; };
+		F68B714820AB268800393124 /* VKMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B714720AB268800393124 /* VKMethods.swift */; };
 		F6A68EA920A5C6120054BD4D /* VKIrretrievableRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */; };
 		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
@@ -49,7 +49,7 @@
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKStructPhoto.swift; sourceTree = "<group>"; };
-		F68B714720AB268800393124 /* VKRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKRequests.swift; sourceTree = "<group>"; };
+		F68B714720AB268800393124 /* VKMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMethods.swift; sourceTree = "<group>"; };
 		F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKIrretrievableRequests.swift; sourceTree = "<group>"; };
 		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				F6AB178820A3AD8800B1B578 /* Structures */,
 				F6DF80F320A3486B00502B0B /* VKService.swift */,
 				F6DF80FA20A34C9500502B0B /* VKAPIVersions.swift */,
-				F68B714720AB268800393124 /* VKRequests.swift */,
+				F68B714720AB268800393124 /* VKMethods.swift */,
 				F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */,
 			);
 			path = "VK API Service";
@@ -309,7 +309,7 @@
 				F67F889C20A4ECC30091F1AC /* VKStructPhoto.swift in Sources */,
 				F6AB178E20A3B0F900B1B578 /* VKStructGroup.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
-				F68B714820AB268800393124 /* VKRequests.swift in Sources */,
+				F68B714820AB268800393124 /* VKMethods.swift in Sources */,
 				F6DF80F420A3486B00502B0B /* VKService.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,

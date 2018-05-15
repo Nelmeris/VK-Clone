@@ -16,7 +16,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Request(sender: self, method: .photosGetAll, version: .v5_74, parameters: ["owner_id": String(user.id)], completion: { [weak self] (response: [Photo]) in
+        VKService.Request(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user.id)], completion: { [weak self] (response: [Photo]) in
             self?.photos = response
             self?.photoCollection.reloadData()
         })

@@ -64,7 +64,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        VKService.Request(sender: self, method: .groupsSearch, version: .v5_74, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
+        VKService.Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
             self?.currentGroups = response
             self?.tableView.reloadData()
         })

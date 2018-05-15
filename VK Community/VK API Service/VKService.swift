@@ -43,7 +43,7 @@ class VKService {
     }
     
     // Создание URL запроса
-    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: Versions, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
+    internal static func RequestURL(_ sender: UIViewController, _ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
         guard TokenIsExist() else {
             TokenReceiving(sender)
             return nil
@@ -53,36 +53,29 @@ class VKService {
         
         var requestParameters = parameters
         requestParameters["access_token"] = Keychain.load("token")
-        requestParameters["v"] = version.rawValue
+        requestParameters["v"] = version
         
         TokenIsValid(sender, requestURL, requestParameters)
         
         return (requestURL, requestParameters)
     }
     
-    // Возврат JSON ответа сервера
+    // Преобразование Data в JSON
     internal static func GetJSONResponse(_ response: DataResponse<Data>) -> JSON? {
         guard let data = response.value else { return nil }
         
         return try! JSON(data: data)["response"]
     }
     
-    // Базовый возвратный запрос
-    static func Request<Response: Structures>(sender: UIViewController, method: Requests, version: Versions, parameters: [String: String] = ["" : ""], completion: @escaping([Response]) -> Void) {
-        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
+    // Выполнение запроса
+    static func Request<Response: Structures>(sender: UIViewController, version: Versions = .v5_74, method: Methods, parameters: [String : String] = ["" : ""], completion: @escaping([Response]) -> Void = {_ in}) {
+        guard let url = VKService.RequestURL(sender, method.rawValue, version.rawValue, parameters) else { return }
         
         Alamofire.request(url.url, parameters: url.parameters).responseData { response in
             guard let json = VKService.GetJSONResponse(response) else { return }
             
             completion(json["items"].map { Response(json: $0.1) })
         }
-    }
-    
-    // Базовый безвозвратный запрос
-    static func IrretrievableRequest(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""]) {
-        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
-        
-        _ = Alamofire.request(url.url + method.rawValue, parameters: url.parameters).response
     }
     
 }

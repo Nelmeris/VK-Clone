@@ -22,7 +22,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        VKService.Request(sender: self, method: .groupsGet, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response: [Group]) in
+        VKService.Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [Group]) in
             self?.myGroups = response
             self?.currentMyGroups = response
             self?.tableView.reloadData()
@@ -70,7 +70,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        VKService.IrretrievableRequest(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
+        VKService.Request(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
         
         isAdd = true
     }
@@ -83,7 +83,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.IrretrievableRequest(sender: self, method: .groupsLeave, version: .v5_74, parameters: ["group_id": String(self.currentMyGroups[indexPath.row].id)])
+                VKService.Request(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.currentMyGroups[indexPath.row].id)])
                 self.myGroups.remove(at: indexPath.row)
                 self.currentMyGroups = self.myGroups
                 tableView.deleteRows(at: [indexPath], with: .automatic)
