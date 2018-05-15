@@ -12,37 +12,37 @@ extension VKService.Structs {
     
     // Список пользователей
     class Users: VKService.Structs {
-        var count: Int
-        var items: [User]
+        @objc dynamic var count: Int = 0
+        @objc dynamic var items: [User] = []
         
-        override init(json: JSON) {
-            count = json["count"].intValue
-            items = json["items"].map { User(json: $0.1)}
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.count = json["count"].intValue
+            self.items = json["items"].map { User(json: $0.1)}
         }
     }
     
     // Данные пользователя
     class User: VKService.Structs {
-        var id: Int
-        var first_name = ""
-        var last_name = ""
-        var photo_50 = ""
-        var photo_100 = ""
-        var photo_200_orig = ""
-        var online = 0
-        var online_mobile = 0
+        @objc dynamic var id = 0
+        @objc dynamic var first_name = ""
+        @objc dynamic var last_name = ""
+        @objc dynamic var photo_50 = ""
+        @objc dynamic var photo_100 = ""
+        @objc dynamic var photo_200_orig = ""
+        @objc dynamic var online = 0
+        @objc dynamic var online_mobile = 0
         
-        override init(json: JSON) {
-            id = json["id"].intValue
-            first_name = json["first_name"].stringValue
-            last_name = json["last_name"].stringValue
-            photo_50 = json["photo_50"].stringValue
-            photo_100 = json["photo_100"].stringValue
-            photo_200_orig = json["photo_200_orig"].stringValue
-            online = json["online"].intValue
-            online_mobile = json["online_mobile"].intValue
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.id = json["id"].intValue
+            self.first_name = json["first_name"].stringValue
+            self.last_name = json["last_name"].stringValue
+            self.photo_50 = json["photo_50"].stringValue
+            self.photo_100 = json["photo_100"].stringValue
+            self.photo_200_orig = json["photo_200_orig"].stringValue
+            self.online = json["online"].intValue
+            self.online_mobile = json["online_mobile"].intValue
         }
     }
 }

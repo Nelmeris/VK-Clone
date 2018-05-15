@@ -12,27 +12,27 @@ extension VKService.Structs {
     
     // Список фотографий
     class Photos: VKService.Structs {
-        var count: Int
-        var items: [Photo]
+        @objc dynamic var count = 0
+        @objc dynamic var items: [Photo] = []
         
-        override init(json: JSON) {
-            count = json["count"].intValue
-            items = json["items"].map { Photo(json: $0.1)}
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.count = json["count"].intValue
+            self.items = json["items"].map { Photo(json: $0.1)}
         }
     }
     
     // Данные фотографии
     class Photo: VKService.Structs {
-        var id: Int
-        var photo_75 = ""
-        var photo_130 = ""
+        @objc dynamic var id = 0
+        @objc dynamic var photo_75 = ""
+        @objc dynamic var photo_130 = ""
         
-        override init(json: JSON) {
-            id = json["id"].intValue
-            photo_75 = json["photo_75"].stringValue
-            photo_130 = json["photo_130"].stringValue
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.id = json["id"].intValue
+            self.photo_75 = json["photo_75"].stringValue
+            self.photo_130 = json["photo_130"].stringValue
         }
     }
     

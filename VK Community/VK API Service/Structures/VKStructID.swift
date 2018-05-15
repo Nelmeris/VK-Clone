@@ -12,13 +12,13 @@ extension VKService.Structs {
     
     // Список с идентификаторами
     class IDs: VKService.Structs {
-        var count: Int
-        var items: [Int]
+        @objc dynamic var count = 0
+        @objc dynamic var items: [Int] = []
         
-        override init(json: JSON) {
-            count = json["count"].intValue
-            items = json["items"].arrayObject as? [Int] ?? []
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.count = json["count"].intValue
+            self.items = json["items"].arrayObject as? [Int] ?? []
         }
     }
     

@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Keychain
+import RealmSwift
 
 class VKService {
     
@@ -78,8 +79,10 @@ class VKService {
     
     class Requests {}
     
-    class Structs {
-        init(json: JSON) {}
+    class Structs: Object {
+        convenience init(json: JSON) {
+            self.init()
+        }
     }
     
     // Базовый безвозвратный запрос

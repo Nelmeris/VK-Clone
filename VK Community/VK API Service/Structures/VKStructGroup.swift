@@ -12,29 +12,29 @@ extension VKService.Structs {
     
     // Список групп
     class Groups: VKService.Structs {
-        var count: Int
-        var items: [Group]
+        @objc dynamic var count = 0
+        @objc dynamic var items: [Group] = []
         
-        override init(json: JSON) {
-            count = json["count"].intValue
-            items = json["items"].map { Group(json: $0.1)}
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.count = json["count"].intValue
+            self.items = json["items"].map { Group(json: $0.1)}
         }
     }
     
     // Данные группы
     class Group: VKService.Structs {
-        var id: Int
-        var name = ""
-        var photo_100 = ""
-        var members_count: Int
+        @objc dynamic var id = 0
+        @objc dynamic var name = ""
+        @objc dynamic var photo_100 = ""
+        @objc dynamic var members_count = 0
         
-        override init(json: JSON) {
-            id = json["id"].intValue
-            name = json["name"].stringValue
-            photo_100 = json["photo_100"].stringValue
-            members_count = json["members_count"].intValue
-            super.init(json: json)
+        convenience init(json: JSON) {
+            self.init(json: json)
+            self.id = json["id"].intValue
+            self.name = json["name"].stringValue
+            self.photo_100 = json["photo_100"].stringValue
+            self.members_count = json["members_count"].intValue
         }
     }
 }
