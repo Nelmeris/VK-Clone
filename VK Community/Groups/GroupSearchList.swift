@@ -8,42 +8,30 @@
 
 import UIKit
 
-class SearchGroupList: UITableViewController, UISearchBarDelegate {
+class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Инициализация данных о результате поиска групп
     var currentGroups = [Group]()
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    let searchController = UISearchController(searchResultsController: nil)
     
+    //Настройка окна
     override func viewDidLoad() {
-        searchBar.delegate = self
         tableView.rowHeight = 75
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск..."
+        navigationItem.searchController = searchController
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-    }
-
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty {
-            VKService.Requests.groups.search(sender: self, version: .v5_74, q: searchText.lowercased(), parameters: ["fields": "members_count", "sort": "0"], completion: { [weak self] (response) in
-                self?.currentGroups = response
-                self?.tableView.reloadData()
-            })
-        } else {
-            currentGroups = [Group]()
-            tableView.reloadData()
-        }
-    }
-    
+    // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentGroups.count
     }
     
+    // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
@@ -64,6 +52,22 @@ class SearchGroupList: UITableViewController, UISearchBarDelegate {
         }
         
         return cell
+    }
+    
+    // Реализация поиска
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text!
+        
+        guard searchController.searchBar.text != "" else {
+            currentGroups = [Group]()
+            tableView.reloadData()
+            return
+        }
+        
+        VKService.Requests.groups.search(sender: self, version: .v5_74, q: searchText.lowercased(), parameters: ["fields": "members_count", "sort": "0"], completion: { [weak self] (response) in
+            self?.currentGroups = response
+            self?.tableView.reloadData()
+        })
     }
     
 }

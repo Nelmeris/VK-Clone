@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupList: UITableViewController, UISearchBarDelegate {
+class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Инициализация данных о группах пользователя
     var myGroups = [Group]()
@@ -24,37 +24,17 @@ class GroupList: UITableViewController, UISearchBarDelegate {
         })
     }
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    let searchController = UISearchController(searchResultsController: nil)
     
     // Настройки окна
     override func viewDidLoad() {
-        searchBar.delegate = self
-
-        tableView.contentOffset.y = searchBar.frame.height
         tableView.rowHeight = 75
-    }
-
-    // Скрытие клавиатуры при нажатии на кнопку "Закрыть" на searchBar
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-    }
-
-    // Скрытие клавиатуры при нажатии на кнопку "Поиск" на searchBar
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        view.endEditing(true)
-    }
-
-    // Реализация поиска
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if !searchText.isEmpty {
-            currentMyGroups = myGroups.filter({ myGroup -> Bool in
-                return myGroup.name.lowercased().contains(searchText.lowercased())
-            })
-        } else {
-            currentMyGroups = myGroups
-        }
-
-        tableView.reloadData()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Искать..."
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     // Получение количества ячеек для групп пользователя
@@ -106,6 +86,23 @@ class GroupList: UITableViewController, UISearchBarDelegate {
             self.present(alert, animated: true, completion: nil)
         }
         return [deleteAction]
+    }
+    
+    // Реализация поиска
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text!
+        
+        guard searchController.searchBar.text != "" else {
+            currentMyGroups = myGroups
+            tableView.reloadData()
+            return
+        }
+        
+        currentMyGroups = myGroups.filter({ myGroup -> Bool in
+            return myGroup.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        tableView.reloadData()
     }
 
 }

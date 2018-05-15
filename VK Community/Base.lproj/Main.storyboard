@@ -18,8 +18,8 @@
             <objects>
                 <navigationController id="YY8-X4-g7Y" userLabel="Friends Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="FriendsIcon" id="Tts-db-vBr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UPH-9j-uWF">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UPH-9j-uWF">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -38,14 +38,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" showsCancelButton="YES" id="8mj-uU-020">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Friend" rowHeight="75" id="P4m-ja-KSA" customClass="FriendCell" customModule="VK_Community" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P4m-ja-KSA" id="9Kn-JD-bn9">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
@@ -118,9 +113,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Друзья" largeTitleDisplayMode="always" id="ZhU-AD-TW5"/>
-                    <connections>
-                        <outlet property="searchBar" destination="8mj-uU-020" id="Gl2-lL-Ece"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Tz-ev-pYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,7 +206,7 @@
             </objects>
             <point key="canvasLocation" x="830" y="1501"/>
         </scene>
-        <!--Friend Photo Collection-->
+        <!--Фото-->
         <scene sceneID="bcF-gu-Cuf">
             <objects>
                 <viewController id="le6-jR-BHW" customClass="FriendPhotoCollection" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
@@ -223,7 +215,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="So3-ss-AOT">
-                                <rect key="frame" x="0.0" y="231" width="375" height="498"/>
+                                <rect key="frame" x="0.0" y="283" width="375" height="446"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="BTt-TQ-OqM">
                                     <size key="itemSize" width="100" height="100"/>
@@ -257,7 +249,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-k7-YBO">
-                                <rect key="frame" x="0.0" y="88.000000000000014" width="375" height="143.33333333333337"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="143.33333333333337"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xoI-Fx-XyN">
                                         <rect key="frame" x="147.33333333333334" y="15" width="80" height="80"/>
@@ -300,6 +292,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="msN-jd-hXn"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Фото" id="BMf-Mv-QXB"/>
                     <connections>
                         <outlet property="photoCollection" destination="So3-ss-AOT" id="We5-a9-Ybr"/>
                         <outlet property="userFullName" destination="5pw-sR-Xtm" id="qCG-pI-6Vy"/>
@@ -318,14 +311,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" showsCancelButton="YES" id="Wpe-Gj-lfl">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="75" id="8b4-N0-SYe" customClass="GroupCell" customModule="VK_Community" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8b4-N0-SYe" id="NFh-UQ-U4c">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
@@ -384,8 +372,8 @@
                             <outlet property="delegate" destination="L8n-o5-gua" id="JbM-XK-6x7"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Добавить группу" id="0hr-Ad-w3S"/>
                     <connections>
-                        <outlet property="searchBar" destination="Wpe-Gj-lfl" id="0ci-0A-G7e"/>
                         <outlet property="searchDisplayController" destination="OPn-E4-67Q" id="Xqm-dU-tBH"/>
                     </connections>
                 </tableViewController>
@@ -428,14 +416,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" placeholder="Поиск" showsCancelButton="YES" id="5iJ-r2-yci">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyGroup" rowHeight="75" id="tTI-bW-wtH" customClass="GroupCell" customModule="VK_Community" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tTI-bW-wtH" id="NLt-8l-eBI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.666666666666671"/>
@@ -481,15 +464,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Группы" id="uI2-uE-rhr">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="FZ6-mL-pCG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FZ6-mL-pCG">
                             <connections>
                                 <segue destination="L8n-o5-gua" kind="show" id="4DX-vP-VUA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="searchBar" destination="5iJ-r2-yci" id="Fx5-hP-THM"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lWr-jX-XrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -500,8 +480,8 @@
             <objects>
                 <navigationController id="Y6v-jX-au9" userLabel="Group Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="GroupsIcon" id="VHT-SJ-laU"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="thD-QR-Rsb">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="thD-QR-Rsb">
+                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
