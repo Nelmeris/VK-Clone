@@ -13,10 +13,15 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     // Инициализация данных о группах пользователя
     var myGroups = [Group]()
     var currentMyGroups = [Group]()
+    
+    var isAdd = false
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        sleep(2)
+        if isAdd {
+            sleep(2)
+            isAdd = false
+        }
         VKService.Requests.groups.get(sender: self, version: .v5_74, parameters: ["extended": "1"], completion: { [weak self] (response) in
             self?.myGroups = response
             self?.currentMyGroups = response
@@ -66,6 +71,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         }
         
         VKService.IrretrievableRequest(sender: self, method: .groupsJoin, version: .v5_74, parameters: ["group_id": String(group.id)])
+        
+        isAdd = true
     }
 
     // Реализация удаления группы из списка групп пользователя

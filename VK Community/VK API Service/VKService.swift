@@ -75,6 +75,16 @@ class VKService {
         }
     }
     
+//    static func Request<Response: Structures>(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""], completion: @escaping([Response]) -> Void) {
+//        guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
+//        
+//        Alamofire.request(url.url, parameters: url.parameters).responseData { response in
+//            guard let json = VKService.GetJSONResponse(response) else { return }
+//            
+//            completion(json["items"].map { Response(json: $0.1) })
+//        }
+//    }
+    
     // Базовый безвозвратный запрос
     static func IrretrievableRequest(sender: UIViewController, method: IrretrievableRequests, version: Versions, parameters: [String: String] = ["" : ""]) {
         guard let url = VKService.RequestURL(sender, method.rawValue, version, parameters) else { return }
