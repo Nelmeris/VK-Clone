@@ -8,15 +8,16 @@
 
 import UIKit
 import SDWebImage
+import VKService
 
 class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var photos = [Photo]()
-    var user = User()
+    var photos = [VKPhoto]()
+    var user: VKUser? = nil
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Request(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user.id)], completion: { [weak self] (response: [Photo]) in
+        VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: [VKPhoto]) in
             self?.photos = response
             self?.photoCollection.reloadData()
         })
@@ -35,10 +36,10 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
         photoCollection.delegate = self
         photoCollection.dataSource = self
         
-        let url = URL(string: user.photo_100)
+        let url = URL(string: user!.photo_100)
         userImage.sd_setImage(with: url, completed: nil)
         
-        userFullName.text = user.first_name + " " + user.last_name
+        userFullName.text = user!.first_name + " " + user!.last_name
     }
     
     // Составление ячеек для фото

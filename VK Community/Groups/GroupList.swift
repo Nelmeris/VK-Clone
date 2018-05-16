@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import VKService
 
 class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Инициализация данных о группах пользователя
-    var myGroups = [Group]()
-    var currentMyGroups = [Group]()
+    var myGroups = [VKGroup]()
+    var currentMyGroups = [VKGroup]()
     
     var isAdd = false
 
@@ -22,7 +23,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        VKService.Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [Group]) in
+        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [VKGroup]) in
             self?.myGroups = response
             self?.currentMyGroups = response
             self?.tableView.reloadData()
@@ -70,7 +71,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        VKService.Request(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
+        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
         
         isAdd = true
     }
@@ -83,7 +84,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.Request(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.currentMyGroups[indexPath.row].id)])
+                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.currentMyGroups[indexPath.row].id)])
                 self.myGroups.remove(at: indexPath.row)
                 self.currentMyGroups = self.myGroups
                 tableView.deleteRows(at: [indexPath], with: .automatic)

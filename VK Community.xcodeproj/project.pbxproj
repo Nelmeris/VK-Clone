@@ -19,17 +19,26 @@
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
-		F67F889C20A4ECC30091F1AC /* VKStructPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */; };
-		F68B714820AB268800393124 /* VKMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B714720AB268800393124 /* VKMethods.swift */; };
-		F6A68EA920A5C6120054BD4D /* VKIrretrievableRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */; };
 		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
-		F6AB178C20A3ADAD00B1B578 /* VKStructUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB178B20A3ADAD00B1B578 /* VKStructUser.swift */; };
-		F6AB178E20A3B0F900B1B578 /* VKStructGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AB178D20A3B0F900B1B578 /* VKStructGroup.swift */; };
-		F6DF80F420A3486B00502B0B /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DF80F320A3486B00502B0B /* VKService.swift */; };
-		F6DF80FB20A34C9500502B0B /* VKAPIVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6DF80FA20A34C9500502B0B /* VKAPIVersions.swift */; };
+		F6DE7EB320AC74D600EA499B /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DE7EB220AC74D600EA499B /* VKService.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		F6DE7EB420AC74D600EA499B /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6DE7EB220AC74D600EA499B /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6E9172520AC722600CA3123 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F6DE7EB420AC74D600EA499B /* VKService.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,15 +57,9 @@
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
-		F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKStructPhoto.swift; sourceTree = "<group>"; };
-		F68B714720AB268800393124 /* VKMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMethods.swift; sourceTree = "<group>"; };
-		F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKIrretrievableRequests.swift; sourceTree = "<group>"; };
 		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		F6AB178B20A3ADAD00B1B578 /* VKStructUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKStructUser.swift; sourceTree = "<group>"; };
-		F6AB178D20A3B0F900B1B578 /* VKStructGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKStructGroup.swift; sourceTree = "<group>"; };
-		F6DF80F320A3486B00502B0B /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
-		F6DF80FA20A34C9500502B0B /* VKAPIVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAPIVersions.swift; sourceTree = "<group>"; };
+		F6DE7EB220AC74D600EA499B /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VKService.framework; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
+				F6DE7EB320AC74D600EA499B /* VKService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +88,7 @@
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6DE7EB220AC74D600EA499B /* VKService.framework */,
 				B60759D9B93A05C377252725 /* Pods_VK_Community.framework */,
 			);
 			name = Frameworks;
@@ -110,7 +115,6 @@
 		F61E29762093B06B0070DEC9 /* VK Community */ = {
 			isa = PBXGroup;
 			children = (
-				F6DF80F220A3484A00502B0B /* VK API Service */,
 				F6B2C8AE209643220056110D /* Friends */,
 				F67266D9209B1B090086B1B7 /* Groups */,
 				F6B2C8AD209643190056110D /* Profile & Settings */,
@@ -134,16 +138,6 @@
 			path = Groups;
 			sourceTree = "<group>";
 		};
-		F6AB178820A3AD8800B1B578 /* Structures */ = {
-			isa = PBXGroup;
-			children = (
-				F6AB178B20A3ADAD00B1B578 /* VKStructUser.swift */,
-				F6AB178D20A3B0F900B1B578 /* VKStructGroup.swift */,
-				F67F889B20A4ECC30091F1AC /* VKStructPhoto.swift */,
-			);
-			path = Structures;
-			sourceTree = "<group>";
-		};
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,18 +158,6 @@
 			path = Friends;
 			sourceTree = "<group>";
 		};
-		F6DF80F220A3484A00502B0B /* VK API Service */ = {
-			isa = PBXGroup;
-			children = (
-				F6AB178820A3AD8800B1B578 /* Structures */,
-				F6DF80F320A3486B00502B0B /* VKService.swift */,
-				F6DF80FA20A34C9500502B0B /* VKAPIVersions.swift */,
-				F68B714720AB268800393124 /* VKMethods.swift */,
-				F6A68EA820A5C6120054BD4D /* VKIrretrievableRequests.swift */,
-			);
-			path = "VK API Service";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -188,6 +170,7 @@
 				F61E29712093B06B0070DEC9 /* Frameworks */,
 				F61E29722093B06B0070DEC9 /* Resources */,
 				4C1B48E806BF166216919235 /* [CP] Embed Pods Frameworks */,
+				F6E9172520AC722600CA3123 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,22 +283,15 @@
 			files = (
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
 				F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */,
-				F6A68EA920A5C6120054BD4D /* VKIrretrievableRequests.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */,
-				F67F889C20A4ECC30091F1AC /* VKStructPhoto.swift in Sources */,
-				F6AB178E20A3B0F900B1B578 /* VKStructGroup.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
-				F68B714820AB268800393124 /* VKMethods.swift in Sources */,
-				F6DF80F420A3486B00502B0B /* VKService.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,
-				F6DF80FB20A34C9500502B0B /* VKAPIVersions.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
-				F6AB178C20A3ADAD00B1B578 /* VKStructUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +438,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,6 +462,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (

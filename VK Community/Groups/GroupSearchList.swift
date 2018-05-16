@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import VKService
 
 class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Инициализация данных о результате поиска групп
-    var currentGroups = [Group]()
+    var currentGroups = [VKGroup]()
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -59,12 +60,12 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let searchText = searchController.searchBar.text!
         
         guard searchController.searchBar.text != "" else {
-            currentGroups = [Group]()
+            currentGroups = [VKGroup]()
             tableView.reloadData()
             return
         }
         
-        VKService.Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
+        VKRequest(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [VKGroup]) in
             self?.currentGroups = response
             self?.tableView.reloadData()
         })

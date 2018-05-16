@@ -8,16 +8,17 @@
 
 import UIKit
 import SDWebImage
+import VKService
 
 class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Инициализация данных о друзьях
-    var currentFriends = [User]()
-    var friends = [User]()
+    var currentFriends = [VKUser]()
+    var friends = [VKUser]()
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKService.Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [User]) in
+        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [VKUser]) in
             self?.currentFriends = response
             self?.friends = response
             self?.tableView.reloadData()
