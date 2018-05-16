@@ -34,19 +34,22 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LoadData(Group())!.count
+        let data = LoadData()! as Results<Group>
+        return data.count
     }
     
     // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = (LoadData()! as Results<Group>)[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
-        cell.name.text = LoadData(Group())![indexPath.row].name
+        cell.name.text = data.name
         
-        let url = URL(string: LoadData(Group())![indexPath.row].photo_100)
+        let url = URL(string: data.photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        switch LoadData(Group())![indexPath.row].members_count {
+        switch data.members_count {
         case let x where x >= 1000000:
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000000) + "М"
             break
@@ -54,7 +57,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000) + "К"
             break
         default:
-            cell.participantsCount.text = String(LoadData(Group())![indexPath.row].members_count)
+            cell.participantsCount.text = String(data.members_count)
         }
         
         return cell

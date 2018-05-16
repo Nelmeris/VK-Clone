@@ -29,7 +29,8 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение количества ячеек для фото
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return LoadData(Photo())!.count
+        let data = LoadData()! as Results<Photo>
+        return data.count
     }
     
     override func viewDidLoad() {
@@ -46,9 +47,11 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Составление ячеек для фото
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let data = (LoadData()! as Results<Photo>)[indexPath.row]
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
         
-        let url = URL(string: LoadData(Photo())![indexPath.row].photo_130)
+        let url = URL(string: data.photo_130)
         cell.photo.sd_setImage(with: url, completed: nil)
         
         return cell

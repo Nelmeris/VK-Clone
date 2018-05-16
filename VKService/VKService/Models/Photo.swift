@@ -7,7 +7,6 @@
 //
 
 import SwiftyJSON
-import RealmSwift
 
 // Данные фотографии
 open class Photo: Models {

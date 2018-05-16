@@ -7,7 +7,6 @@
 //
 
 import SwiftyJSON
-import RealmSwift
 
 // Данные пользователя
 open class User: Models {

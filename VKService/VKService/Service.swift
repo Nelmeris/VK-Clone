@@ -107,10 +107,9 @@ public func SaveData<Type: Models>(_ data: [Type]) {
 }
 
 // Загрузка данных из Realm
-public func LoadData<Type: Models>(_: Type) -> Results<Type>? {
+public func LoadData<Type: Models>() -> Results<Type>? {
     do {
         let realm = try Realm()
-        
         return realm.objects(Type.self)
     } catch let error {
         print(error)

@@ -7,7 +7,6 @@
 //
 
 import SwiftyJSON
-import RealmSwift
 
 // Данные группы
 open class Group: Models {

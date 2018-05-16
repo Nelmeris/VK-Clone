@@ -43,16 +43,19 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
 
     // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LoadData(Group())!.count
+        let data = LoadData()! as Results<Group>
+        return data.count
     }
 
     // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = (LoadData()! as Results<Group>)[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
 
-        cell.name.text = LoadData(Group())![indexPath.row].name
+        cell.name.text = data.name
         
-        let url = URL(string: LoadData(Group())![indexPath.row].photo_100)
+        let url = URL(string: data.photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
 
         return cell
@@ -61,7 +64,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     // Реализация присоединения к выбранной группе
     @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
-        let group = LoadData(Group())![allGroupsController.tableView.indexPathForSelectedRow!.row]
+        let group = (LoadData()! as Results<Group>)[allGroupsController.tableView.indexPathForSelectedRow!.row]
         
         Request(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
         

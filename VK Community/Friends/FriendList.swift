@@ -38,26 +38,29 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return LoadData(User())!.count
+        let data = LoadData()! as Results<User>
+        return data.count
     }
     
     // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let data = (LoadData()! as Results<User>)[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
-        cell.firstName.text = LoadData(User())![indexPath.row].first_name
-        cell.lastName.text = LoadData(User())![indexPath.row].last_name
+        cell.firstName.text = data.first_name
+        cell.lastName.text = data.last_name
         
-        guard LoadData(User())![indexPath.row].photo_100 != "" else {
+        guard data.photo_100 != "" else {
             cell.photo.image = UIImage(named: "DefaultUserPhoto")
             return cell
         }
         
-        let url = URL(string: LoadData(User())![indexPath.row].photo_100)
+        let url = URL(string: data.photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        if LoadData(User())![indexPath.row].online == 1 {
-            if LoadData(User())![indexPath.row].online_mobile == 1 {
+        if data.online == 1 {
+            if data.online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
                 cell.onlineMobileStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 10
                 cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
@@ -78,7 +81,8 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! FriendPhotoCollection
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            vc.user = LoadData(User())![indexPath.row]
+            let data = (LoadData()! as Results<User>)[indexPath.row]
+            vc.user = data
         }
     }
     
