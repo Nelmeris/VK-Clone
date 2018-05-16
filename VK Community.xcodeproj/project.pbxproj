@@ -21,7 +21,6 @@
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
-		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
-		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,7 +117,6 @@
 				F67266D9209B1B090086B1B7 /* Groups */,
 				F6B2C8AD209643190056110D /* Profile & Settings */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
-				F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */,
 				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
@@ -282,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
-				F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,

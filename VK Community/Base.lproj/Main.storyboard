@@ -155,40 +155,6 @@
             </objects>
             <point key="canvasLocation" x="2140" y="1501"/>
         </scene>
-        <!--Authorization-->
-        <scene sceneID="WC7-sv-s74">
-            <objects>
-                <viewController storyboardIdentifier="VKAuthorization" id="swH-qf-8va" customClass="VKAuthorization" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="phN-zH-BL4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-Co-GFW">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="5dT-Co-GFW" firstAttribute="leading" secondItem="EYE-3t-YiQ" secondAttribute="leading" id="CSK-Cn-Mb5"/>
-                            <constraint firstItem="5dT-Co-GFW" firstAttribute="top" secondItem="EYE-3t-YiQ" secondAttribute="top" id="HV5-dR-y9w"/>
-                            <constraint firstItem="5dT-Co-GFW" firstAttribute="bottom" secondItem="EYE-3t-YiQ" secondAttribute="bottom" id="h4l-AL-kxf"/>
-                            <constraint firstItem="5dT-Co-GFW" firstAttribute="trailing" secondItem="EYE-3t-YiQ" secondAttribute="trailing" id="sCl-FZ-VmS"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EYE-3t-YiQ"/>
-                    </view>
-                    <connections>
-                        <outlet property="WebViewVK" destination="5dT-Co-GFW" id="IoT-IT-Qnu"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MwL-BR-t5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-426" y="-867"/>
-        </scene>
         <!--Settings Navigation-->
         <scene sceneID="g9g-xg-3pq">
             <objects>
