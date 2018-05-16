@@ -57,7 +57,7 @@ func GetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
         
         if let error = json["error"].dictionary {
             let error_msg = error["error_msg"]!.stringValue
-            if json["error_msg"].stringValue.range(of: "token") != nil {
+            if error_msg.range(of: "token") != nil {
                 throw RequestError.AccessTokenError(error_msg)
             } else {
                 throw RequestError.URLError(error_msg)
@@ -72,15 +72,16 @@ func GetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
 }
 
 // Выполнение запроса
-public func VKRequest<Response: Types>(sender: UIViewController, version: Versions = .v5_74, method: Methods, parameters: [String : String] = ["" : ""], completion: @escaping([Response]) -> Void = {_ in}) {
+public func Request<Response: Models>(sender: UIViewController, version: Versions = .v5_74, method: Methods, parameters: [String : String] = ["" : ""], completion: @escaping([Response]) -> Void = {_ in}) {
     guard let url = RequestURL(sender, method.rawValue, version.rawValue, parameters) else { return }
     
     Alamofire.request(url.url, parameters: url.parameters).responseData { response in
         do {
             let json = try GetJSONResponse(response)
             
-            completion(json["items"].map { Response(json: $0.1) })
+            let model = json["items"].map({ Response(json: $0.1) })
             
+            completion(model)
         } catch RequestError.ResponseError(let error_msg) {
             print("REQUEST ERROR! " + error_msg)
         } catch RequestError.URLError(let error_msg) {
@@ -92,9 +93,27 @@ public func VKRequest<Response: Types>(sender: UIViewController, version: Versio
     }
 }
 
-// Родитель всех типов запросов
-open class Types: Object {
-    required convenience public init(json: JSON) {
-        self.init()
+// Сохранение данных в Realm
+public func SaveData<Type: Models>(_ data: [Type]) {
+    do {
+        let realm = try Realm()
+        realm.beginWrite()
+        realm.delete(realm.objects(Type.self))
+        realm.add(data)
+        try realm.commitWrite()
+    } catch let error {
+        print(error)
+    }
+}
+
+// Загрузка данных из Realm
+public func LoadData<Type: Models>(_: Type) -> Results<Type>? {
+    do {
+        let realm = try Realm()
+        
+        return realm.objects(Type.self)
+    } catch let error {
+        print(error)
+        return nil
     }
 }

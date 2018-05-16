@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F63FDF6720ACC3CD00A3C457 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63FDF6620ACC3CD00A3C457 /* Model.swift */; };
 		F6DE7EA620AC732200EA499B /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6DE7EA520AC732200EA499B /* VKViews.storyboard */; };
 		F6EDFADE20AC7C0E00273FE3 /* VKServicePods_VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6EDFADD20AC7C0E00273FE3 /* VKServicePods_VKService.framework */; };
 		F6EFAEA120AC6B45003A10BB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EFAEA020AC6B45003A10BB /* Service.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		35C7848B4B43135021A732EC /* Pods-VKService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKService.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKService/Pods-VKService.debug.xcconfig"; sourceTree = "<group>"; };
 		7E1BD6F87592165CF5620D06 /* Pods-VKService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKService.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKService/Pods-VKService.release.xcconfig"; sourceTree = "<group>"; };
+		F63FDF6620ACC3CD00A3C457 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		F6DE7EA520AC732200EA499B /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
 		F6EDFAC820AC7BF600273FE3 /* VKServicePods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VKServicePods.xcodeproj; path = Pods/VKServicePods.xcodeproj; sourceTree = "<group>"; };
 		F6EDFADD20AC7C0E00273FE3 /* VKServicePods_VKService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = VKServicePods_VKService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,7 +146,7 @@
 		F6EFAE9720AC6B22003A10BB /* VKService */ = {
 			isa = PBXGroup;
 			children = (
-				F6EFAEA620AC6B6C003A10BB /* Response Types */,
+				F6EFAEA620AC6B6C003A10BB /* Models */,
 				F6EFAE9920AC6B22003A10BB /* Info.plist */,
 				F6EFAEA020AC6B45003A10BB /* Service.swift */,
 				F6EFAEA220AC6B52003A10BB /* APIVersions.swift */,
@@ -155,14 +157,15 @@
 			path = VKService;
 			sourceTree = "<group>";
 		};
-		F6EFAEA620AC6B6C003A10BB /* Response Types */ = {
+		F6EFAEA620AC6B6C003A10BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F63FDF6620ACC3CD00A3C457 /* Model.swift */,
 				F6EFAEA720AC6B7C003A10BB /* User.swift */,
 				F6EFAEA920AC6B82003A10BB /* Group.swift */,
 				F6EFAEAB20AC6B89003A10BB /* Photo.swift */,
 			);
-			path = "Response Types";
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +327,7 @@
 				F6EFAEA320AC6B52003A10BB /* APIVersions.swift in Sources */,
 				F6EFAEAA20AC6B82003A10BB /* Group.swift in Sources */,
 				F6EFAEA520AC6B68003A10BB /* APIMethods.swift in Sources */,
+				F63FDF6720ACC3CD00A3C457 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

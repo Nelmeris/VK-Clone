@@ -8,16 +8,21 @@
 
 import UIKit
 import VKService
+import RealmSwift
 
 class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
-    // Инициализация данных о результате поиска групп
-    var currentGroups = [VKGroup]()
-    
     let searchController = UISearchController(searchResultsController: nil)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        SaveData([Group]())
+        tableView.reloadData()
+    }
     
     //Настройка окна
     override func viewDidLoad() {
+        SaveData([Group]())
+        
         tableView.rowHeight = 75
         
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -29,19 +34,19 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentGroups.count
+        return LoadData(Group())!.count
     }
     
     // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
-        cell.name.text = currentGroups[indexPath.row].name
+        cell.name.text = LoadData(Group())![indexPath.row].name
         
-        let url = URL(string: currentGroups[indexPath.row].photo_100)
+        let url = URL(string: LoadData(Group())![indexPath.row].photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        switch currentGroups[indexPath.row].members_count {
+        switch LoadData(Group())![indexPath.row].members_count {
         case let x where x >= 1000000:
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000000) + "М"
             break
@@ -49,7 +54,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000) + "К"
             break
         default:
-            cell.participantsCount.text = String(currentGroups[indexPath.row].members_count)
+            cell.participantsCount.text = String(LoadData(Group())![indexPath.row].members_count)
         }
         
         return cell
@@ -60,13 +65,13 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let searchText = searchController.searchBar.text!
         
         guard searchController.searchBar.text != "" else {
-            currentGroups = [VKGroup]()
+            SaveData([Group]())
             tableView.reloadData()
             return
         }
         
-        VKRequest(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [VKGroup]) in
-            self?.currentGroups = response
+        Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
+            SaveData(response)
             self?.tableView.reloadData()
         })
     }

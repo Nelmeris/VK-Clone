@@ -8,12 +8,9 @@
 
 import UIKit
 import VKService
+import RealmSwift
 
 class GroupList: UITableViewController, UISearchResultsUpdating {
-    
-    // Инициализация данных о группах пользователя
-    var myGroups = [VKGroup]()
-    var currentMyGroups = [VKGroup]()
     
     var isAdd = false
 
@@ -23,9 +20,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [VKGroup]) in
-            self?.myGroups = response
-            self?.currentMyGroups = response
+        Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [Group]) in
+            SaveData(response)
             self?.tableView.reloadData()
         })
     }
@@ -34,6 +30,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
+        SaveData([Group]())
+        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self
@@ -45,16 +43,16 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
 
     // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentMyGroups.count
+        return LoadData(Group())!.count
     }
 
     // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
 
-        cell.name.text = currentMyGroups[indexPath.row].name
+        cell.name.text = LoadData(Group())![indexPath.row].name
         
-        let url = URL(string: currentMyGroups[indexPath.row].photo_100)
+        let url = URL(string: LoadData(Group())![indexPath.row].photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
 
         return cell
@@ -63,54 +61,46 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     // Реализация присоединения к выбранной группе
     @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
-        let group = allGroupsController.currentGroups[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        let group = LoadData(Group())![allGroupsController.tableView.indexPathForSelectedRow!.row]
         
-        guard !myGroups.contains(where: { Group -> Bool in
-            return group.name == Group.name
-        }) else {
-            return
-        }
-        
-        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
+        Request(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
         
         isAdd = true
     }
 
     // Реализация удаления группы из списка групп пользователя
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
-            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(self.currentMyGroups[indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
-            var action = UIAlertAction(title: "Отмена", style: .cancel)
-            alert.addAction(action)
-            
-            action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.currentMyGroups[indexPath.row].id)])
-                self.myGroups.remove(at: indexPath.row)
-                self.currentMyGroups = self.myGroups
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            }
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-        }
-        return [deleteAction]
-    }
+//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
+//            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(LoadData(Group())![indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
+//            var action = UIAlertAction(title: "Отмена", style: .cancel)
+//            alert.addAction(action)
+//            
+//            action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
+//                Request(sender: self, method: .groupsLeave, parameters: ["group_id" : String(LoadData(Group())![indexPath.row].id)])
+//                tableView.deleteRows(at: [indexPath], with: .automatic)
+//            }
+//            alert.addAction(action)
+//            
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//        return [deleteAction]
+//    }
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        
-        guard searchController.searchBar.text != "" else {
-            currentMyGroups = myGroups
-            tableView.reloadData()
-            return
-        }
-        
-        currentMyGroups = myGroups.filter({ myGroup -> Bool in
-            return myGroup.name.lowercased().contains(searchText.lowercased())
-        })
-        
-        tableView.reloadData()
+//        let searchText = searchController.searchBar.text!
+//        
+//        guard searchController.searchBar.text != "" else {
+//            currentMyGroups = myGroups
+//            tableView.reloadData()
+//            return
+//        }
+//        
+//        currentMyGroups = myGroups.filter({ myGroup -> Bool in
+//            return myGroup.name.lowercased().contains(searchText.lowercased())
+//        })
+//        
+//        tableView.reloadData()
     }
 
 }

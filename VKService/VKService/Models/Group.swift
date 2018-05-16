@@ -7,9 +7,10 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
 // Данные группы
-open class VKGroup: Types {
+open class Group: Models {
     
     @objc dynamic public var id = 0
     @objc dynamic public var name = ""

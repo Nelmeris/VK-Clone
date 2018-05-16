@@ -9,18 +9,14 @@
 import UIKit
 import SDWebImage
 import VKService
+import RealmSwift
 
 class FriendList: UITableViewController, UISearchResultsUpdating {
     
-    // Инициализация данных о друзьях
-    var currentFriends = [VKUser]()
-    var friends = [VKUser]()
-    
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [VKUser]) in
-            self?.currentFriends = response
-            self?.friends = response
+        Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [User]) in
+            SaveData(response)
             self?.tableView.reloadData()
         })
     }
@@ -29,6 +25,8 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
+        SaveData([User]())
+        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self
@@ -40,26 +38,26 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentFriends.count
+        return LoadData(User())!.count
     }
     
     // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
-        cell.firstName.text = currentFriends[indexPath.row].first_name
-        cell.lastName.text = currentFriends[indexPath.row].last_name
+        cell.firstName.text = LoadData(User())![indexPath.row].first_name
+        cell.lastName.text = LoadData(User())![indexPath.row].last_name
         
-        guard currentFriends[indexPath.row].photo_100 != "" else {
+        guard LoadData(User())![indexPath.row].photo_100 != "" else {
             cell.photo.image = UIImage(named: "DefaultUserPhoto")
             return cell
         }
         
-        let url = URL(string: currentFriends[indexPath.row].photo_100)
+        let url = URL(string: LoadData(User())![indexPath.row].photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        if currentFriends[indexPath.row].online == 1 {
-            if currentFriends[indexPath.row].online_mobile == 1 {
+        if LoadData(User())![indexPath.row].online == 1 {
+            if LoadData(User())![indexPath.row].online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
                 cell.onlineMobileStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 10
                 cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
@@ -80,26 +78,26 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! FriendPhotoCollection
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            vc.user = currentFriends[indexPath.row]
+            vc.user = LoadData(User())![indexPath.row]
         }
     }
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        
-        guard searchController.searchBar.text != "" else {
-            currentFriends = friends
-            tableView.reloadData()
-            return
-        }
-        
-        currentFriends = friends.filter({ friend -> Bool in
-            let fullName: String = friend.first_name + " " + friend.last_name
-            return fullName.lowercased().contains(searchText.lowercased())
-        })
-        
-        tableView.reloadData()
+//        let searchText = searchController.searchBar.text!
+//        
+//        guard searchController.searchBar.text != "" else {
+//            currentFriends = friends
+//            tableView.reloadData()
+//            return
+//        }
+//        
+//        currentFriends = friends.filter({ friend -> Bool in
+//            let fullName: String = friend.first_name + " " + friend.last_name
+//            return fullName.lowercased().contains(searchText.lowercased())
+//        })
+//        
+//        tableView.reloadData()
     }
     
 }

@@ -9,16 +9,16 @@
 import UIKit
 import SDWebImage
 import VKService
+import RealmSwift
 
 class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var photos = [VKPhoto]()
-    var user: VKUser? = nil
+    var user: User? = nil
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: [VKPhoto]) in
-            self?.photos = response
+        Request(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: [Photo]) in
+            SaveData(response)
             self?.photoCollection.reloadData()
         })
     }
@@ -29,10 +29,12 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение количества ячеек для фото
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return LoadData(Photo())!.count
     }
     
     override func viewDidLoad() {
+        SaveData([Photo]())
+        
         photoCollection.delegate = self
         photoCollection.dataSource = self
         
@@ -46,7 +48,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
         
-        let url = URL(string: photos[indexPath.row].photo_130)
+        let url = URL(string: LoadData(Photo())![indexPath.row].photo_130)
         cell.photo.sd_setImage(with: url, completed: nil)
         
         return cell

@@ -7,9 +7,10 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
 // Данные фотографии
-open class VKPhoto: Types {
+open class Photo: Models {
     
     @objc dynamic public var id = 0
     @objc dynamic public var photo_75 = ""

@@ -7,9 +7,10 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
 // Данные пользователя
-open class VKUser: Types {
+open class User: Models {
     
     @objc dynamic public var id = 0
     @objc dynamic public var first_name = ""
