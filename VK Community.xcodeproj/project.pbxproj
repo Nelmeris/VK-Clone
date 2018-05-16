@@ -12,6 +12,8 @@
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
+		F63FDF1A20AC7D6900A3C457 /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63FDF1920AC7D6200A3C457 /* VKService.framework */; };
+		F63FDF1B20AC7D6900A3C457 /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F63FDF1920AC7D6200A3C457 /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D7209B17540086B1B7 /* FriendPhotoCollection.swift */; };
 		F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DA209B1B190086B1B7 /* GroupList.swift */; };
 		F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DE209B1B810086B1B7 /* GroupSearchList.swift */; };
@@ -21,8 +23,6 @@
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
 		F6A7A5AD20A18E0100FC4A0A /* VKAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */; };
 		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
-		F6DE7EB320AC74D600EA499B /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DE7EB220AC74D600EA499B /* VKService.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		F6DE7EB420AC74D600EA499B /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6DE7EB220AC74D600EA499B /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F6DE7EB420AC74D600EA499B /* VKService.framework in Embed Frameworks */,
+				F63FDF1B20AC7D6900A3C457 /* VKService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,6 +50,7 @@
 		F61E297E2093B06E0070DEC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F61E29812093B06E0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F63FDF1920AC7D6200A3C457 /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKService.framework; path = "../../../../Developer/Xcode/DerivedData/VK_Community-bacudclqissmhccuxngifinjvjze/Build/Products/Debug-iphoneos/VKService.framework"; sourceTree = "<group>"; };
 		F67266D7209B17540086B1B7 /* FriendPhotoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollection.swift; sourceTree = "<group>"; };
 		F67266DA209B1B190086B1B7 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
 		F67266DE209B1B810086B1B7 /* GroupSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchList.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
 		F6A7A5AC20A18E0100FC4A0A /* VKAuthorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorization.swift; sourceTree = "<group>"; };
 		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		F6DE7EB220AC74D600EA499B /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VKService.framework; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
-				F6DE7EB320AC74D600EA499B /* VKService.framework in Frameworks */,
+				F63FDF1A20AC7D6900A3C457 /* VKService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6DE7EB220AC74D600EA499B /* VKService.framework */,
+				F63FDF1920AC7D6200A3C457 /* VKService.framework */,
 				B60759D9B93A05C377252725 /* Pods_VK_Community.framework */,
 			);
 			name = Frameworks;

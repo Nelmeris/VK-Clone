@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../VKService/VKService.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:VK Community.xcodeproj">
    </FileRef>
    <FileRef
