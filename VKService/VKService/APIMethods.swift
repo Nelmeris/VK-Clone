@@ -6,13 +6,15 @@
 //  Copyright © 2018 Nelmeris. All rights reserved.
 //
 
-// Доступные не возвращаемые методы
+// Доступные методы
 public enum Methods: String {
+    // Возвращаемые
     case friendsGet = "friends.get"
     case groupsGet = "groups.get"
     case groupsSearch = "groups.search"
     case photosGetAll = "photos.getAll"
     
+    // Не возвращаемые
     case groupsLeave = "groups.leave"
     case groupsJoin = "groups.join"
 }
