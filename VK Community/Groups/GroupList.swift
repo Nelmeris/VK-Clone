@@ -21,7 +21,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             isAdd = false
         }
         Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [Group]) in
-            SaveData(response)
+            UpdatingData(response)
             self?.tableView.reloadData()
         })
     }
@@ -30,8 +30,6 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
-        SaveData([Group]())
-        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self

@@ -17,6 +17,8 @@ let Host = "api.vk.com/method/"
 
 // Получение нового токена
 func TokenReceiving(_ sender: UIViewController) {
+    ClearDataBase()
+    
     let storyboard = UIStoryboard(name: "VKViews", bundle: Bundle(for: Authorization.self))
     let viewController = storyboard.instantiateViewController(withIdentifier: "Authorization")
     sender.present(viewController, animated: true, completion: nil)
@@ -90,29 +92,5 @@ public func Request<Response: Models>(sender: UIViewController, version: Version
             TokenReceiving(sender)
             print("REQUEST ERROR! " + error_msg)
         } catch {}
-    }
-}
-
-// Сохранение данных в Realm
-public func SaveData<Type: Models>(_ data: [Type]) {
-    do {
-        let realm = try Realm()
-        realm.beginWrite()
-        realm.delete(realm.objects(Type.self))
-        realm.add(data)
-        try realm.commitWrite()
-    } catch let error {
-        print(error)
-    }
-}
-
-// Загрузка данных из Realm
-public func LoadData<Type: Models>() -> Results<Type>? {
-    do {
-        let realm = try Realm()
-        return realm.objects(Type.self)
-    } catch let error {
-        print(error)
-        return nil
     }
 }

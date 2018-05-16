@@ -17,8 +17,9 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
+        ClearData([Photo]())
         Request(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: [Photo]) in
-            SaveData(response)
+            UpdatingData(response)
             self?.photoCollection.reloadData()
         })
     }
@@ -34,8 +35,6 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     override func viewDidLoad() {
-        SaveData([Photo]())
-        
         photoCollection.delegate = self
         photoCollection.dataSource = self
         

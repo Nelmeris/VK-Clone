@@ -16,7 +16,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
         Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [User]) in
-            SaveData(response)
+            UpdatingData(response)
             self?.tableView.reloadData()
         })
     }
@@ -25,8 +25,6 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
-        SaveData([User]())
-        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self

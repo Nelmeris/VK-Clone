@@ -15,14 +15,12 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     let searchController = UISearchController(searchResultsController: nil)
     
     override func viewWillAppear(_ animated: Bool) {
-        SaveData([Group]())
+        UpdatingData([Group]())
         tableView.reloadData()
     }
     
     //Настройка окна
     override func viewDidLoad() {
-        SaveData([Group]())
-        
         tableView.rowHeight = 75
         
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -68,13 +66,13 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let searchText = searchController.searchBar.text!
         
         guard searchController.searchBar.text != "" else {
-            SaveData([Group]())
+            ClearData([Group]())
             tableView.reloadData()
             return
         }
         
         Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
-            SaveData(response)
+            UpdatingData(response)
             self?.tableView.reloadData()
         })
     }
