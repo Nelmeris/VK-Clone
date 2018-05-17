@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60759D9B93A05C377252725 /* Pods_VK_Community.framework */; };
-		F60BA95220ADC50900E37C50 /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F60BA95020ADC4EC00E37C50 /* VKService.framework */; };
-		F60BA95320ADC50900E37C50 /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F60BA95020ADC4EC00E37C50 /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F6160D1220ADF91000EFA797 /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6160D1020ADF90700EFA797 /* VKService.framework */; };
+		F6160D1320ADF91000EFA797 /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6160D1020ADF90700EFA797 /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61E29772093B06B0070DEC9 /* AppDelegate.swift */; };
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
@@ -21,7 +21,6 @@
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
-		F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AA36BF209BD1B600B70DFB /* Settings.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F60BA95320ADC50900E37C50 /* VKService.framework in Embed Frameworks */,
+				F6160D1320ADF91000EFA797 /* VKService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,7 +42,7 @@
 		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
 		B60759D9B93A05C377252725 /* Pods_VK_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.debug.xcconfig"; sourceTree = "<group>"; };
-		F60BA95020ADC4EC00E37C50 /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VKService.framework; sourceTree = "<group>"; };
+		F6160D1020ADF90700EFA797 /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VKService.framework; sourceTree = "<group>"; };
 		F61E29742093B06B0070DEC9 /* VK Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Community.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61E29772093B06B0070DEC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F61E297C2093B06B0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,7 +56,6 @@
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
-		F6AA36BF209BD1B600B70DFB /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
-				F60BA95220ADC50900E37C50 /* VKService.framework in Frameworks */,
+				F6160D1220ADF91000EFA797 /* VKService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +84,7 @@
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F60BA95020ADC4EC00E37C50 /* VKService.framework */,
+				F6160D1020ADF90700EFA797 /* VKService.framework */,
 				B60759D9B93A05C377252725 /* Pods_VK_Community.framework */,
 			);
 			name = Frameworks;
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				F6E3F84E2095EBC700519835 /* Profile.swift */,
-				F6AA36BF209BD1B600B70DFB /* Settings.swift */,
 			);
 			path = "Profile & Settings";
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
-				F6AA36C0209BD1B600B70DFB /* Settings.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,

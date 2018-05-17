@@ -15,8 +15,8 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: [User]) in
-            UpdatingData(response)
+        Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: Models<User>) in
+            UpdatingData(response.items)
             self?.tableView.reloadData()
         })
     }

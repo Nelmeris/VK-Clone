@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные пользователя
-open class User: Models {
+open class User: BaseModel {
     
     @objc dynamic public var id = 0
     @objc dynamic public var first_name = ""
@@ -22,6 +22,7 @@ open class User: Models {
     
     public convenience required init(json: JSON) {
         self.init()
+        
         self.id = json["id"].intValue
         self.first_name = json["first_name"].stringValue
         self.last_name = json["last_name"].stringValue

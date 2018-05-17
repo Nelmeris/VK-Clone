@@ -13,6 +13,7 @@ public enum Methods: String {
     case groupsGet = "groups.get"
     case groupsSearch = "groups.search"
     case photosGetAll = "photos.getAll"
+    case usersGet = "users.get"
     
     // Не возвращаемые
     case groupsLeave = "groups.leave"

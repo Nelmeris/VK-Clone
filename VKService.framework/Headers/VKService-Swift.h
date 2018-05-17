@@ -185,8 +185,8 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 @class RLMObjectSchema;
 @class RLMSchema;
 
-SWIFT_CLASS("_TtC9VKService6Models")
-@interface Models : RealmSwiftObject
+SWIFT_CLASS("_TtC9VKService9BaseModel")
+@interface BaseModel : RealmSwiftObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
@@ -194,7 +194,7 @@ SWIFT_CLASS("_TtC9VKService6Models")
 
 
 SWIFT_CLASS("_TtC9VKService5Group")
-@interface Group : Models
+@interface Group : BaseModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic, copy) NSString * _Nonnull name;
 @property (nonatomic, copy) NSString * _Nonnull photo_100;
@@ -205,9 +205,8 @@ SWIFT_CLASS("_TtC9VKService5Group")
 @end
 
 
-
 SWIFT_CLASS("_TtC9VKService5Photo")
-@interface Photo : Models
+@interface Photo : BaseModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic, copy) NSString * _Nonnull photo_75;
 @property (nonatomic, copy) NSString * _Nonnull photo_130;
@@ -218,7 +217,7 @@ SWIFT_CLASS("_TtC9VKService5Photo")
 
 
 SWIFT_CLASS("_TtC9VKService4User")
-@interface User : Models
+@interface User : BaseModel
 @property (nonatomic) NSInteger id;
 @property (nonatomic, copy) NSString * _Nonnull first_name;
 @property (nonatomic, copy) NSString * _Nonnull last_name;

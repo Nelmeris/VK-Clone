@@ -71,8 +71,8 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: [Group]) in
-            UpdatingData(response)
+        Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: Models<Group>) in
+            UpdatingData(response.items)
             self?.tableView.reloadData()
         })
     }

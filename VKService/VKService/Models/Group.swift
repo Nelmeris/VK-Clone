@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные группы
-open class Group: Models {
+open class Group: BaseModel {
     
     @objc dynamic public var id = 0
     @objc dynamic public var name = ""
@@ -18,6 +18,7 @@ open class Group: Models {
     
     public required convenience init(json: JSON) {
         self.init()
+        
         self.id = json["id"].intValue
         self.name = json["name"].stringValue
         self.photo_100 = json["photo_100"].stringValue

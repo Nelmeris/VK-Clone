@@ -9,7 +9,7 @@
 import RealmSwift
 
 // Сохранение данных в Realm
-public func SaveData<Type: Models>(_ data: [Type]) {
+public func SaveData<Type: BaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()
@@ -21,7 +21,7 @@ public func SaveData<Type: Models>(_ data: [Type]) {
 }
 
 // Обновление данных в Realm
-public func UpdatingData<Type: Models>(_ data: [Type]) {
+public func UpdatingData<Type: BaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()
@@ -34,7 +34,7 @@ public func UpdatingData<Type: Models>(_ data: [Type]) {
 }
 
 // Загрузка данных из Realm
-public func LoadData<Type: Models>() -> Results<Type>? {
+public func LoadData<Type: BaseModel>() -> Results<Type>? {
     do {
         let realm = try Realm()
         return realm.objects(Type.self)
@@ -57,7 +57,7 @@ public func ClearDataBase() {
 }
 
 // Очистка данных в Realm
-public func ClearData<Type: Models>(_ data: [Type]) {
+public func ClearData<Type: BaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()

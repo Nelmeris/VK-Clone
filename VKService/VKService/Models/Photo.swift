@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные фотографии
-open class Photo: Models {
+open class Photo: BaseModel {
     
     @objc dynamic public var id = 0
     @objc dynamic public var photo_75 = ""
@@ -17,6 +17,7 @@ open class Photo: Models {
     
     public required convenience init(json: JSON) {
         self.init()
+        
         self.id = json["id"].intValue
         self.photo_75 = json["photo_75"].stringValue
         self.photo_130 = json["photo_130"].stringValue

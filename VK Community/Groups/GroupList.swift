@@ -20,8 +20,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: [Group]) in
-            UpdatingData(response)
+        Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: Models<Group>) in
+            UpdatingData(response.items)
             self?.tableView.reloadData()
         })
     }

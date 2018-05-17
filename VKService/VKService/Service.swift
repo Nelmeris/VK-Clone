@@ -74,14 +74,14 @@ func GetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
 }
 
 // Выполнение запроса
-public func Request<Response: Models>(sender: UIViewController, version: Versions = .v5_74, method: Methods, parameters: [String : String] = ["" : ""], completion: @escaping([Response]) -> Void = {_ in}) {
+public func Request<Response: BaseModelList>(sender: UIViewController, version: Versions = .v5_74, method: Methods, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
     guard let url = RequestURL(sender, method.rawValue, version.rawValue, parameters) else { return }
     
     Alamofire.request(url.url, parameters: url.parameters).responseData { response in
         do {
             let json = try GetJSONResponse(response)
             
-            let model = json["items"].map({ Response(json: $0.1) })
+            let model = Response(json: json)
             
             completion(model)
         } catch RequestError.ResponseError(let error_msg) {
