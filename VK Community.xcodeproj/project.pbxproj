@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60759D9B93A05C377252725 /* Pods_VK_Community.framework */; };
-		F6160D1220ADF91000EFA797 /* VKService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6160D1020ADF90700EFA797 /* VKService.framework */; };
-		F6160D1320ADF91000EFA797 /* VKService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F6160D1020ADF90700EFA797 /* VKService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61E29772093B06B0070DEC9 /* AppDelegate.swift */; };
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
@@ -21,6 +19,17 @@
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
+		F688B0C120B1DBB4009BB1B8 /* VKAPIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */; };
+		F688B0C220B1DBB4009BB1B8 /* VKAPIVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */; };
+		F688B0C320B1DBB4009BB1B8 /* VKAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */; };
+		F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */; };
+		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
+		F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */; };
+		F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */; };
+		F688B0C820B1DBB4009BB1B8 /* RealmAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */; };
+		F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BF20B1DBB4009BB1B8 /* VKService.swift */; };
+		F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */; };
+		F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +40,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F6160D1320ADF91000EFA797 /* VKService.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,7 +50,6 @@
 		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
 		B60759D9B93A05C377252725 /* Pods_VK_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.debug.xcconfig"; sourceTree = "<group>"; };
-		F6160D1020ADF90700EFA797 /* VKService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VKService.framework; sourceTree = "<group>"; };
 		F61E29742093B06B0070DEC9 /* VK Community.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK Community.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61E29772093B06B0070DEC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F61E297C2093B06B0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,6 +63,17 @@
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
+		F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIMethods.swift; sourceTree = "<group>"; };
+		F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIVersions.swift; sourceTree = "<group>"; };
+		F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorizationViewController.swift; sourceTree = "<group>"; };
+		F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceGroupModel.swift; sourceTree = "<group>"; };
+		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
+		F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServicePhotoModel.swift; sourceTree = "<group>"; };
+		F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceUserModel.swift; sourceTree = "<group>"; };
+		F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAssistant.swift; sourceTree = "<group>"; };
+		F688B0BF20B1DBB4009BB1B8 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
+		F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseModel.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +83,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
-				F6160D1220ADF91000EFA797 /* VKService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +101,6 @@
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6160D1020ADF90700EFA797 /* VKService.framework */,
 				B60759D9B93A05C377252725 /* Pods_VK_Community.framework */,
 			);
 			name = Frameworks;
@@ -111,6 +127,9 @@
 		F61E29762093B06B0070DEC9 /* VK Community */ = {
 			isa = PBXGroup;
 			children = (
+				F688B0B520B1DBB4009BB1B8 /* VKService */,
+				F688B0CC20B1DDD3009BB1B8 /* DataModels */,
+				F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */,
 				F6B2C8AE209643220056110D /* Friends */,
 				F67266D9209B1B090086B1B7 /* Groups */,
 				F6B2C8AD209643190056110D /* Profile & Settings */,
@@ -131,6 +150,46 @@
 				F67266E2209B34370086B1B7 /* GroupCell.swift */,
 			);
 			path = Groups;
+			sourceTree = "<group>";
+		};
+		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
+			isa = PBXGroup;
+			children = (
+				F688B0B920B1DBB4009BB1B8 /* Models */,
+				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
+				F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */,
+				F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */,
+				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */,
+				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
+			);
+			path = VKService;
+			sourceTree = "<group>";
+		};
+		F688B0B920B1DBB4009BB1B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */,
+				F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */,
+				F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */,
+				F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */ = {
+			isa = PBXGroup;
+			children = (
+				F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */,
+			);
+			path = DataProcessingService;
+			sourceTree = "<group>";
+		};
+		F688B0CC20B1DDD3009BB1B8 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
@@ -213,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */,
 				F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */,
 				F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */,
 				F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */,
@@ -275,10 +335,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F688B0C320B1DBB4009BB1B8 /* VKAuthorizationViewController.swift in Sources */,
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
+				F688B0C120B1DBB4009BB1B8 /* VKAPIMethods.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
+				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
+				F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
+				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
+				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,
+				F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */,
+				F688B0C220B1DBB4009BB1B8 /* VKAPIVersions.swift in Sources */,
+				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
+				F688B0C820B1DBB4009BB1B8 /* RealmAssistant.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,

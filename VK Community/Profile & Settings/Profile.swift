@@ -7,17 +7,15 @@
 //
 
 import UIKit
-import VKService
 import SDWebImage
 
 class ProfileAndSettings: UIViewController {
     
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userImage: UIImageView!
     
-    @IBOutlet weak var userName: UILabel!
-    
     override func viewWillAppear(_ animated: Bool) {
-        Request(sender: self, version: .v5_74, method: .usersGet, parameters: ["fields" : "photo_100"]) { (response: Model<User>) in
+        VKRequest(sender: self, version: .v5_74, method: .usersGet, parameters: ["fields" : "photo_100"]) { (response: VKModel<VKUser>) in
             self.userName.text = response.item!.first_name + " " + response.item!.last_name
             
             let url = URL(string: response.item!.photo_100)

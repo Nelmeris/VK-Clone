@@ -1,4 +1,0 @@
-framework module VKService {
-    header "VKService-Swift.h"
-    requires objc
-}

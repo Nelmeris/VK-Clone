@@ -8,17 +8,16 @@
 
 import UIKit
 import SDWebImage
-import VKService
 import RealmSwift
 
 class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var user: User? = nil
+    var user: VKUser? = nil
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        ClearData([Photo]())
-        Request(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: Models<Photo>) in
+        ClearData([VKPhoto]())
+        VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { [weak self] (response: VKModels<VKPhoto>) in
             UpdatingData(response.items)
             self?.photoCollection.reloadData()
         })
@@ -30,7 +29,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение количества ячеек для фото
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<Photo>
+        let data = LoadData()! as Results<VKPhoto>
         return data.count
     }
     
@@ -46,7 +45,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Составление ячеек для фото
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = (LoadData()! as Results<Photo>)[indexPath.row]
+        let data = (LoadData()! as Results<VKPhoto>)[indexPath.row]
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FriendPhotoCollectionCell
         

@@ -8,14 +8,13 @@
 
 import UIKit
 import SDWebImage
-import VKService
 import RealmSwift
 
 class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        Request(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: Models<User>) in
+        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: VKModels<VKUser>) in
             UpdatingData(response.items)
             self?.tableView.reloadData()
         })
@@ -36,13 +35,13 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<User>
+        let data = LoadData()! as Results<VKUser>
         return data.count
     }
     
     // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<User>)[indexPath.row]
+        let data = (LoadData()! as Results<VKUser>)[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
@@ -79,7 +78,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! FriendPhotoCollection
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            let data = (LoadData()! as Results<User>)[indexPath.row]
+            let data = (LoadData()! as Results<VKUser>)[indexPath.row]
             vc.user = data
         }
     }

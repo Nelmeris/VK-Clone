@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import VKService
 import RealmSwift
 
 class GroupList: UITableViewController, UISearchResultsUpdating {
@@ -20,7 +19,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             sleep(2)
             isAdd = false
         }
-        Request(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: Models<Group>) in
+        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: VKModels<VKGroup>) in
             UpdatingData(response.items)
             self?.tableView.reloadData()
         })
@@ -41,13 +40,13 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
 
     // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<Group>
+        let data = LoadData()! as Results<VKGroup>
         return data.count
     }
 
     // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<Group>)[indexPath.row]
+        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
 
@@ -62,30 +61,32 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     // Реализация присоединения к выбранной группе
     @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
-        let group = (LoadData()! as Results<Group>)[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        let group = (LoadData()! as Results<VKGroup>)[allGroupsController.tableView.indexPathForSelectedRow!.row]
         
-        Request(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
+        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
         
         isAdd = true
     }
 
     // Реализация удаления группы из списка групп пользователя
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
-//            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(LoadData(Group())![indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
-//            var action = UIAlertAction(title: "Отмена", style: .cancel)
-//            alert.addAction(action)
-//            
-//            action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-//                Request(sender: self, method: .groupsLeave, parameters: ["group_id" : String(LoadData(Group())![indexPath.row].id)])
-//                tableView.deleteRows(at: [indexPath], with: .automatic)
-//            }
-//            alert.addAction(action)
-//            
-//            self.present(alert, animated: true, completion: nil)
-//        }
-//        return [deleteAction]
-//    }
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
+        let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
+            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(data.name)\"?", message: nil, preferredStyle: .actionSheet)
+            var action = UIAlertAction(title: "Отмена", style: .cancel)
+            alert.addAction(action)
+            
+            action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
+                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(data.id)])
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.reloadData()
+            }
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+        return [deleteAction]
+    }
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {

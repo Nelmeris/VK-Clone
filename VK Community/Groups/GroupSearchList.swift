@@ -7,17 +7,16 @@
 //
 
 import UIKit
-import VKService
 import RealmSwift
 
 class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
-    let searchController = UISearchController(searchResultsController: nil)
-    
     override func viewWillAppear(_ animated: Bool) {
-        UpdatingData([Group]())
+        UpdatingData([VKGroup]())
         tableView.reloadData()
     }
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     //Настройка окна
     override func viewDidLoad() {
@@ -32,13 +31,13 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<Group>
+        let data = LoadData()! as Results<VKGroup>
         return data.count
     }
     
     // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<Group>)[indexPath.row]
+        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
@@ -66,12 +65,12 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let searchText = searchController.searchBar.text!
         
         guard searchController.searchBar.text != "" else {
-            ClearData([Group]())
+            ClearData([VKGroup]())
             tableView.reloadData()
             return
         }
         
-        Request(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: Models<Group>) in
+        VKRequest(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: VKModels<VKGroup>) in
             UpdatingData(response.items)
             self?.tableView.reloadData()
         })
