@@ -89,6 +89,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text!
+        let array = searchText.components(separatedBy: " ")
         
         guard searchController.searchBar.text != "" else {
             friends = filteredFriends
@@ -96,7 +97,11 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        friends = filteredFriends!.filter("first_name contains[cd] '\(searchText)' OR last_name contains[cd] '\(searchText)'")
+        if array.count > 1 && array[1] != "" {
+            friends = filteredFriends!.filter("(first_name CONTAINS[cd] '\(array[0])' AND last_name CONTAINS[cd] '\(array[1])') OR (first_name CONTAINS[cd] '\(array[1])' AND last_name CONTAINS[cd] '\(array[0])')")
+        } else {
+            friends = filteredFriends!.filter("first_name CONTAINS[cd] '\(array[0])' OR last_name CONTAINS[cd] '\(array[0])'")
+        }
         
         tableView.reloadData()
     }
