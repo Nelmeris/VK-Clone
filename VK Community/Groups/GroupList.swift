@@ -63,9 +63,14 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     // Реализация присоединения к выбранной группе
     @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
         let allGroupsController = sender.source as! SearchGroupList
-        let group = (LoadData()! as Results<VKGroup>)[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        let groups = allGroupsController.groups
+        let group = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
         
-        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
+        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)], completion: { _ in
+            VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
+                UpdatingData(response.items)
+            })
+        })
     }
 
     // Реализация удаления группы из списка групп пользователя
