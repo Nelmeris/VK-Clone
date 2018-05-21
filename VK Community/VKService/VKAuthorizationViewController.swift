@@ -25,7 +25,7 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: "6472660"),
+            URLQueryItem(name: "client_id", value: String(ClientID ?? 0)),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_url", value: "https://oauth.vk.com/blank.html"),
             URLQueryItem(name: "scope", value: "262150"),
