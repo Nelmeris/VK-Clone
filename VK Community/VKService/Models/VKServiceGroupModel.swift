@@ -25,4 +25,8 @@ open class VKGroup: DataBaseModel {
         self.members_count = json["members_count"].intValue
     }
     
+    override open static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

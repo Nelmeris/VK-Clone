@@ -12,11 +12,14 @@ import RealmSwift
 
 class FriendList: UITableViewController, UISearchResultsUpdating {
     
+    var friends: Results<VKUser>?
+    var filteredFriends: Results<VKUser>?
+    var notificationToken: NotificationToken?
+    
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { [weak self] (response: VKModels<VKUser>) in
+        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
             UpdatingData(response.items)
-            self?.tableView.reloadData()
         })
     }
     
@@ -31,33 +34,33 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
         searchController.searchBar.placeholder = "Искать..."
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        friends = LoadData()
+        filteredFriends = friends
+        PairTableAndData(sender: tableView, token: &notificationToken, data: friends!)
     }
     
     // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<VKUser>
-        return data.count
+        return friends?.count ?? 0
     }
     
     // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<VKUser>)[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendCell
         
-        cell.firstName.text = data.first_name
-        cell.lastName.text = data.last_name
+        cell.firstName.text = friends?[indexPath.row].first_name ?? ""
+        cell.lastName.text = friends?[indexPath.row].last_name ?? ""
         
-        guard data.photo_100 != "" else {
+        if friends?[indexPath.row].photo_100 != "" {
+            let url = URL(string: friends![indexPath.row].photo_100)
+            cell.photo.sd_setImage(with: url, completed: nil)
+        } else {
             cell.photo.image = UIImage(named: "DefaultUserPhoto")
-            return cell
         }
         
-        let url = URL(string: data.photo_100)
-        cell.photo.sd_setImage(with: url, completed: nil)
-        
-        if data.online == 1 {
-            if data.online_mobile == 1 {
+        if friends?[indexPath.row].online == 1 {
+            if friends?[indexPath.row].online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
                 cell.onlineMobileStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 10
                 cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
@@ -85,20 +88,17 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-//        let searchText = searchController.searchBar.text!
-//        
-//        guard searchController.searchBar.text != "" else {
-//            currentFriends = friends
-//            tableView.reloadData()
-//            return
-//        }
-//        
-//        currentFriends = friends.filter({ friend -> Bool in
-//            let fullName: String = friend.first_name + " " + friend.last_name
-//            return fullName.lowercased().contains(searchText.lowercased())
-//        })
-//        
-//        tableView.reloadData()
+        let searchText = searchController.searchBar.text!
+        
+        guard searchController.searchBar.text != "" else {
+            friends = filteredFriends
+            tableView.reloadData()
+            return
+        }
+        
+        friends = filteredFriends!.filter("first_name contains[cd] '\(searchText)' OR last_name contains[cd] '\(searchText)'")
+        
+        tableView.reloadData()
     }
     
 }

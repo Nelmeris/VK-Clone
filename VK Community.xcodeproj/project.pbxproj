@@ -26,7 +26,7 @@
 		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
 		F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */; };
 		F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */; };
-		F688B0C820B1DBB4009BB1B8 /* RealmAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */; };
+		F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */; };
 		F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BF20B1DBB4009BB1B8 /* VKService.swift */; };
 		F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */; };
 		F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */; };
@@ -70,7 +70,7 @@
 		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
 		F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServicePhotoModel.swift; sourceTree = "<group>"; };
 		F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceUserModel.swift; sourceTree = "<group>"; };
-		F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAssistant.swift; sourceTree = "<group>"; };
+		F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProcessingService.swift; sourceTree = "<group>"; };
 		F688B0BF20B1DBB4009BB1B8 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
 		F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseModel.swift; sourceTree = "<group>"; };
@@ -128,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				F688B0B520B1DBB4009BB1B8 /* VKService */,
-				F688B0CC20B1DDD3009BB1B8 /* DataModels */,
 				F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */,
 				F6B2C8AE209643220056110D /* Friends */,
 				F67266D9209B1B090086B1B7 /* Groups */,
@@ -179,17 +178,18 @@
 		F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */ = {
 			isa = PBXGroup;
 			children = (
-				F688B0BE20B1DBB4009BB1B8 /* RealmAssistant.swift */,
+				F688B0D020B1E0DD009BB1B8 /* Models */,
+				F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */,
 			);
 			path = DataProcessingService;
 			sourceTree = "<group>";
 		};
-		F688B0CC20B1DDD3009BB1B8 /* DataModels */ = {
+		F688B0D020B1E0DD009BB1B8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
 			);
-			path = DataModels;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
@@ -348,7 +348,7 @@
 				F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */,
 				F688B0C220B1DBB4009BB1B8 /* VKAPIVersions.swift in Sources */,
 				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
-				F688B0C820B1DBB4009BB1B8 /* RealmAssistant.swift in Sources */,
+				F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,

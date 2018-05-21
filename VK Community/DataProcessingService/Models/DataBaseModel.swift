@@ -9,7 +9,6 @@
 import SwiftyJSON
 import RealmSwift
 
-// Родитель всех типов запросов
 open class DataBaseModel: Object {
     
     public required convenience init(json: JSON) {

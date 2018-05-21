@@ -23,4 +23,8 @@ open class VKPhoto: DataBaseModel {
         self.photo_130 = json["photo_130"].stringValue
     }
     
+    override open static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

@@ -11,17 +11,14 @@ import RealmSwift
 
 class GroupList: UITableViewController, UISearchResultsUpdating {
     
-    var isAdd = false
+    var groups: Results<VKGroup>?
+    var filteredGroups: Results<VKGroup>?
+    var notificationToken: NotificationToken?
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        if isAdd {
-            sleep(2)
-            isAdd = false
-        }
-        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { [weak self] (response: VKModels<VKGroup>) in
+        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
             UpdatingData(response.items)
-            self?.tableView.reloadData()
         })
     }
     
@@ -36,24 +33,29 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         searchController.searchBar.placeholder = "Искать..."
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        groups = LoadData()
+        filteredGroups = groups
+        PairTableAndData(sender: tableView, token: &notificationToken, data: groups!)
     }
 
     // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<VKGroup>
-        return data.count
+        return groups?.count ?? 0
     }
 
     // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
 
-        cell.name.text = data.name
+        cell.name.text = groups?[indexPath.row].name ?? ""
         
-        let url = URL(string: data.photo_100)
-        cell.photo.sd_setImage(with: url, completed: nil)
+        if groups?[indexPath.row].photo_100 != "" {
+            let url = URL(string: groups![indexPath.row].photo_100)
+            cell.photo.sd_setImage(with: url, completed: nil)
+        } else {
+            cell.photo.image = UIImage(named: "DefaultGroupPhoto")
+        }
 
         return cell
     }
@@ -64,25 +66,24 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         let group = (LoadData()! as Results<VKGroup>)[allGroupsController.tableView.indexPathForSelectedRow!.row]
         
         VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)])
-        
-        isAdd = true
     }
 
     // Реализация удаления группы из списка групп пользователя
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
         let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
-            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(data.name)\"?", message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(self.groups![indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
             var action = UIAlertAction(title: "Отмена", style: .cancel)
             alert.addAction(action)
-            
+
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(data.id)])
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()
+                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.groups![indexPath.row].id)], completion: { _ in
+                    VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
+                        UpdatingData(response.items)
+                    })
+                })
             }
             alert.addAction(action)
-            
+
             self.present(alert, animated: true, completion: nil)
         }
         return [deleteAction]
@@ -90,19 +91,17 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-//        let searchText = searchController.searchBar.text!
-//        
-//        guard searchController.searchBar.text != "" else {
-//            currentMyGroups = myGroups
-//            tableView.reloadData()
-//            return
-//        }
-//        
-//        currentMyGroups = myGroups.filter({ myGroup -> Bool in
-//            return myGroup.name.lowercased().contains(searchText.lowercased())
-//        })
-//        
-//        tableView.reloadData()
+        let searchText = searchController.searchBar.text!
+        
+        guard searchController.searchBar.text != "" else {
+            groups = filteredGroups
+            tableView.reloadData()
+            return
+        }
+        
+        groups = filteredGroups!.filter("name contains[cd] '\(searchText)'")
+        
+        tableView.reloadData()
     }
 
 }

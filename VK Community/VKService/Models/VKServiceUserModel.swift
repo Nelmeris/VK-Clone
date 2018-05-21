@@ -33,4 +33,8 @@ open class VKUser: DataBaseModel {
         self.online_mobile = json["online_mobile"].intValue
     }
     
+    override open static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }
