@@ -14,6 +14,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     var friends: Results<VKUser>?
     var filteredFriends: Results<VKUser>?
+    
     var notificationToken: NotificationToken?
     
     // Получение данных о друзьях
@@ -37,7 +38,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
         
         friends = LoadData()
         filteredFriends = friends
-        PairTableAndData(sender: tableView, token: &notificationToken, data: friends!)
+        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends!))
     }
     
     // Получение количества ячеек для друзей

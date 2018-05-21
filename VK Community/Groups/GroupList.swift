@@ -36,7 +36,7 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         
         groups = LoadData()
         filteredGroups = groups
-        PairTableAndData(sender: tableView, token: &notificationToken, data: groups!)
+        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups!))
     }
 
     // Получение количества ячеек для групп пользователя

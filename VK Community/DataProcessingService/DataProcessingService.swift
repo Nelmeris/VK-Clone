@@ -77,8 +77,8 @@ public func ClearData<Type: DataBaseModel>(_ data: [Type]) {
     }
 }
 
-public func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: Results<Type>) {
-    token = (data as Results<Type>).observe { (changes: RealmCollectionChange) in
+public func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
+    token = data.observe { (changes: RealmCollectionChange) in
         switch changes {
         case .initial:
             sender.reloadData()
@@ -99,7 +99,7 @@ public func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: in
     }
 }
 
-public func PairCollectionAndData<Type: DataBaseModel>(sender: UICollectionView, data: Results<Type>, token: inout NotificationToken) {
+public func PairCollectionAndData<Type: DataBaseModel>(sender: UICollectionView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
     token = data.observe { (changes: RealmCollectionChange) in
         switch changes {
         case .initial:

@@ -11,9 +11,10 @@ import RealmSwift
 
 class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
+    var groups = [VKGroup]()
+    
     override func viewWillAppear(_ animated: Bool) {
-        UpdatingData([VKGroup]())
-        tableView.reloadData()
+        groups.removeAll()
     }
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -31,22 +32,19 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let data = LoadData()! as Results<VKGroup>
-        return data.count
+        return groups.count
     }
     
     // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = (LoadData()! as Results<VKGroup>)[indexPath.row]
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
         
-        cell.name.text = data.name
+        cell.name.text = groups[indexPath.row].name
         
-        let url = URL(string: data.photo_100)
+        let url = URL(string: groups[indexPath.row].photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        switch data.members_count {
+        switch groups[indexPath.row].members_count {
         case let x where x >= 1000000:
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000000) + "М"
             break
@@ -54,7 +52,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000) + "К"
             break
         default:
-            cell.participantsCount.text = String(data.members_count)
+            cell.participantsCount.text = String(groups[indexPath.row].members_count)
         }
         
         return cell
@@ -65,13 +63,13 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let searchText = searchController.searchBar.text!
         
         guard searchController.searchBar.text != "" else {
-            ClearData([VKGroup]())
+            groups.removeAll()
             tableView.reloadData()
             return
         }
         
         VKRequest(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: VKModels<VKGroup>) in
-            UpdatingData(response.items)
+            self?.groups = response.items
             self?.tableView.reloadData()
         })
     }

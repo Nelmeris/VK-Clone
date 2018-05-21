@@ -7,6 +7,7 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
 // Данные пользователя
 open class VKUser: DataBaseModel {
@@ -19,6 +20,8 @@ open class VKUser: DataBaseModel {
     @objc dynamic public var photo_200_orig = ""
     @objc dynamic public var online = 0
     @objc dynamic public var online_mobile = 0
+    
+    public var photos = List<VKPhoto>()
     
     public convenience required init(json: JSON) {
         self.init()
