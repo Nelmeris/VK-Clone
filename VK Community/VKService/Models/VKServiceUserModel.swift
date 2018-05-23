@@ -40,4 +40,16 @@ open class VKUser: DataBaseModel {
         return "id"
     }
     
+    override open func isEqual (_ object: DataBaseModel) -> Bool {
+        let object = object as! VKUser
+        return (self.id == object.id) &&
+            (self.first_name == object.first_name) &&
+            (self.last_name == object.last_name) &&
+            (self.photo_50 == object.photo_50) &&
+            (self.photo_100 == object.photo_100) &&
+            (self.photo_200_orig == object.photo_200_orig) &&
+            (self.online == object.online) &&
+            (self.online_mobile == object.online_mobile)
+    }
+    
 }

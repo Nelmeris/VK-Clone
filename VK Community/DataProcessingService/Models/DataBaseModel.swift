@@ -15,4 +15,8 @@ open class DataBaseModel: Object {
         self.init()
     }
     
+    public func isEqual (_ object: DataBaseModel) -> Bool {
+        return false
+    }
+    
 }

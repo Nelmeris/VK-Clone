@@ -20,7 +20,16 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
         VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
-            UpdatingData(response.items)
+            let users: Results<VKUser> = LoadData()!
+            let data = response.items
+            for item1 in data {
+                for item2 in users {
+                    if item1.value(forKey: "id") as! Int == item2.value(forKey: "id") as! Int {
+                        data[data.index(of: item1)!].photos = users[users.index(of: item2)!].photos
+                    }
+                }
+            }
+            UpdatingData(data)
         })
     }
     

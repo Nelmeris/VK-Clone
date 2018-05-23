@@ -20,18 +20,29 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
         VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { (response: VKModels<VKPhoto>) in
-            let realm = try! Realm()
-            try! realm.write {
-                for item in response.items {
-                    realm.delete(realm.objects(VKPhoto.self).filter("id = %@", item.id))
+            for item1 in response.items {
+                var c = false
+                for item2 in self.user!.photos {
+                    if item1.isEqual(item2) {
+                        c = true
+                    }
                 }
-                self.user!.photos.removeAll()
-                for item in response.items {
-                    self.user!.photos.append(item)
+                if !c {
+                    if response.items.count != self.user!.photos.count {
+                        DeleteData(Array(self.user!.photos))
+                        do {
+                            let realm = try Realm()
+                            realm.beginWrite()
+                            self.user!.photos.removeAll()
+                            for item in response.items {
+                                self.user!.photos.append(item)
+                            }
+                            try realm.commitWrite()
+                        } catch {}
+                    }
+                    break
                 }
             }
-            print(self.user!.photos)
-            UpdatingData([self.user!])
         })
     }
     

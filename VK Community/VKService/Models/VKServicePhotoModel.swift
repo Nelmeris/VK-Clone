@@ -23,8 +23,11 @@ open class VKPhoto: DataBaseModel {
         self.photo_130 = json["photo_130"].stringValue
     }
     
-    override open static func primaryKey() -> String? {
-        return "id"
+    override open func isEqual (_ object: DataBaseModel) -> Bool {
+        let object = object as! VKPhoto
+        return (self.id == object.id) &&
+            (self.photo_75 == object.photo_75) &&
+            (self.photo_130 == object.photo_130)
     }
     
 }

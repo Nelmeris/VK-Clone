@@ -29,4 +29,12 @@ open class VKGroup: DataBaseModel {
         return "id"
     }
     
+    override open func isEqual (_ object: DataBaseModel) -> Bool {
+        let object = object as! VKGroup
+        return (self.id == object.id) &&
+            (self.name == object.name) &&
+            (self.photo_100 == object.photo_100) &&
+            (self.members_count == object.members_count)
+    }
+    
 }
