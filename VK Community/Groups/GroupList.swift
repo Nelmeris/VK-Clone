@@ -17,6 +17,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
             UpdatingData(response.items)
         })
@@ -26,6 +28,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self

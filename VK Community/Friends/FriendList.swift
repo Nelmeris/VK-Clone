@@ -19,6 +19,8 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
             let users: Results<VKUser> = LoadData()!
             let data = response.items
@@ -37,6 +39,8 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     
     // Настройки окна
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         tableView.rowHeight = 75
         
         searchController.searchResultsUpdater = self

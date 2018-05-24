@@ -30,6 +30,7 @@
 		F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BF20B1DBB4009BB1B8 /* VKService.swift */; };
 		F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */; };
 		F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */; };
+		F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B48B5C20B6358100D908F9 /* DataPairs.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		F688B0BF20B1DBB4009BB1B8 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
 		F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseModel.swift; sourceTree = "<group>"; };
+		F6B48B5C20B6358100D908F9 /* DataPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPairs.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 			children = (
 				F688B0D020B1E0DD009BB1B8 /* Models */,
 				F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */,
+				F6B48B5C20B6358100D908F9 /* DataPairs.swift */,
 			);
 			path = DataProcessingService;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
 				F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotoCollection.swift in Sources */,
+				F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */,
 				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
 				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,

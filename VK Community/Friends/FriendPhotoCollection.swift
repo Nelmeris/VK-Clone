@@ -19,6 +19,8 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { (response: VKModels<VKPhoto>) in
             for item1 in response.items {
                 var c = false
@@ -51,6 +53,8 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     @IBOutlet weak var photoCollection: UICollectionView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         photoCollection.delegate = self
         photoCollection.dataSource = self
         
