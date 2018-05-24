@@ -22,16 +22,24 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
         super.viewWillAppear(true)
         
         VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
-            let users: Results<VKUser> = LoadData()!
-            let data = response.items
-            for item1 in data {
-                for item2 in users {
-                    if item1.value(forKey: "id") as! Int == item2.value(forKey: "id") as! Int {
-                        data[data.index(of: item1)!].photos = users[users.index(of: item2)!].photos
+            let dataUsers: Results<VKUser> = LoadData()!
+            let responseUsers = response.items
+            
+            /// Сохранение фото
+            for responseUser in responseUsers {
+                let responseUserIndex = responseUsers.index(of: responseUser)!
+                let responseUserID = responseUser.value(forKey: "id") as! Int
+                for dataUser in dataUsers {
+                    let dataUserIndex = dataUsers.index(of: dataUser)!
+                    let dataUserID = dataUser.value(forKey: "id") as! Int
+                    
+                    if responseUserID == dataUserID {
+                        responseUsers[responseUserIndex].photos = dataUsers[dataUserIndex].photos
+                        break
                     }
                 }
             }
-            UpdatingData(data)
+            UpdatingData(responseUsers)
         })
     }
     

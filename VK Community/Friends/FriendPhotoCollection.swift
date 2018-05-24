@@ -22,26 +22,25 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
         super.viewWillAppear(true)
         
         VKRequest(sender: self, method: .photosGetAll, parameters: ["owner_id": String(user!.id)], completion: { (response: VKModels<VKPhoto>) in
-            for item1 in response.items {
-                var c = false
-                for item2 in self.user!.photos {
-                    if item1.isEqual(item2) {
-                        c = true
+            for responseUserPhoto in response.items {
+                var flag = false
+                for userPhoto in self.user!.photos {
+                    if responseUserPhoto.isEqual(userPhoto) {
+                        flag = true
+                        break
                     }
                 }
-                if !c {
-                    if response.items.count != self.user!.photos.count {
-                        DeleteData(Array(self.user!.photos))
-                        do {
-                            let realm = try Realm()
-                            realm.beginWrite()
-                            self.user!.photos.removeAll()
-                            for item in response.items {
-                                self.user!.photos.append(item)
-                            }
-                            try realm.commitWrite()
-                        } catch {}
-                    }
+                if !flag {
+                    DeleteData(Array(self.user!.photos))
+                    do {
+                        let realm = try Realm()
+                        realm.beginWrite()
+                        self.user!.photos.removeAll()
+                        for item in response.items {
+                            self.user!.photos.append(item)
+                        }
+                        try realm.commitWrite()
+                    } catch {}
                     break
                 }
             }
@@ -64,8 +63,8 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
         userFullName.text = user!.first_name + " " + user!.last_name
         
         let users: Results<VKUser> = LoadData()!
-        let index = users.index(of: user!)
-        photos = users[index!].photos
+        let index = users.index(of: user!)!
+        photos = users[index].photos
         
         PairCollectionAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(photos!))
     }
