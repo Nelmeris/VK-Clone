@@ -31,17 +31,24 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
                     }
                 }
                 if !flag {
-                    DeleteData(Array(self.user!.photos))
                     do {
                         let realm = try Realm()
                         realm.beginWrite()
-                        self.user!.photos.removeAll()
-                        for item in response.items {
-                            self.user!.photos.append(item)
-                        }
+                        self.user!.photos.append(responseUserPhoto)
                         try realm.commitWrite()
                     } catch {}
-                    break
+                }
+            }
+            for userPhoto in self.user!.photos {
+                var flag = false
+                for responseUserPhoto in response.items {
+                    if userPhoto.isEqual(responseUserPhoto) {
+                        flag = true
+                        break
+                    }
+                }
+                if !flag {
+                    DeleteData([userPhoto])
                 }
             }
         })
@@ -62,9 +69,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
         
         userFullName.text = user!.first_name + " " + user!.last_name
         
-        let users: Results<VKUser> = LoadData()!
-        let index = users.index(of: user!)!
-        photos = users[index].photos
+        photos = user!.photos
         
         PairCollectionAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(photos!))
     }

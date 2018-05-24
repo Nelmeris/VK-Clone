@@ -2,4 +2,54 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VK Community/DataProcessingService/DataPairs.swift"
+            timestampString = "548824119.764226"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "PairCollectionAndData(sender:token:data:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.AnyRealmCollection&lt;A&gt;&gt;) -&gt; () in VK_Community.PairCollectionAndData&lt;A where A: VK_Community.DataBaseModel&gt;(sender: __ObjC.UICollectionView, token: inout Swift.Optional&lt;__ObjC.RLMNotificationToken&gt;, data: RealmSwift.AnyRealmCollection&lt;A&gt;) -&gt; ()"
+                  moduleName = "VK Community"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/KufaevAA/Library/Mobile%20Documents/com~apple~CloudDocs/Xcode/VK-Community/VK%20Community/DataProcessingService/DataPairs.swift"
+                  timestampString = "548824119.836486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Int) -&gt; Foundation.IndexPath in closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.AnyRealmCollection&lt;A&gt;&gt;) -&gt; () in VK_Community.PairCollectionAndData&lt;A where A: VK_Community.DataBaseModel&gt;(sender: __ObjC.UICollectionView, token: inout Swift.Optional&lt;__ObjC.RLMNotificationToken&gt;, data: RealmSwift.AnyRealmCollection&lt;A&gt;) -&gt; ()"
+                  moduleName = "VK Community"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/KufaevAA/Library/Mobile%20Documents/com~apple~CloudDocs/Xcode/VK-Community/VK%20Community/DataProcessingService/DataPairs.swift"
+                  timestampString = "548824119.839027"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

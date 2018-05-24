@@ -40,6 +40,7 @@ public func UpdatingData<Type: DataBaseModel>(_ data: [Type]) {
             for item2 in realm.objects(Type.self) {
                 if item1.isEqual(item2) {
                     data.remove(at: data.index(of: item1)!)
+                    break
                 }
             }
         }
