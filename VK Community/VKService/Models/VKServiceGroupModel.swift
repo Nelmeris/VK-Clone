@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные группы
-open class VKGroup: DataBaseModel {
+class VKGroup: DataBaseModel {
     
     @objc dynamic var id = 0
     @objc dynamic var name = ""

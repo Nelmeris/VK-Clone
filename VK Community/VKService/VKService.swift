@@ -75,7 +75,7 @@ func GetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
 }
 
 // Выполнение запроса
-public func VKRequest<Response: VKBaseModel>(sender: UIViewController, version: String = "5.74", method: String, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
+func VKRequest<Response: VKBaseModel>(sender: UIViewController, version: String = "5.74", method: String, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
     guard let url = RequestURL(sender, method, version, parameters) else { return }
     
     Alamofire.request(url.url, parameters: url.parameters).responseData { response in
