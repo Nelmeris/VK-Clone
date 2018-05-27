@@ -9,7 +9,7 @@
 import RealmSwift
 import UIKit
 
-public func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
+func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
     token = data.observe { (changes: RealmCollectionChange) in
         switch changes {
         case .initial:
@@ -31,7 +31,7 @@ public func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: in
     }
 }
 
-public func PairCollectionAndData<Type: DataBaseModel>(sender: UICollectionView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
+func PairCollectionAndData<Type: DataBaseModel>(sender: UICollectionView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
     token = data.observe { (changes: RealmCollectionChange) in
         switch changes {
         case .initial:

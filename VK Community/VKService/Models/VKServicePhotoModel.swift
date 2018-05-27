@@ -9,13 +9,13 @@
 import SwiftyJSON
 
 // Данные фотографии
-open class VKPhoto: DataBaseModel {
+class VKPhoto: DataBaseModel {
     
-    @objc dynamic public var id = 0
-    @objc dynamic public var photo_75 = ""
-    @objc dynamic public var photo_130 = ""
+    @objc dynamic var id = 0
+    @objc dynamic var photo_75 = ""
+    @objc dynamic var photo_130 = ""
     
-    public required convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         
         self.id = json["id"].intValue
@@ -23,7 +23,7 @@ open class VKPhoto: DataBaseModel {
         self.photo_130 = json["photo_130"].stringValue
     }
     
-    override open func isEqual (_ object: DataBaseModel) -> Bool {
+    override func isEqual (_ object: DataBaseModel) -> Bool {
         let object = object as! VKPhoto
         return (self.id == object.id) &&
             (self.photo_75 == object.photo_75) &&

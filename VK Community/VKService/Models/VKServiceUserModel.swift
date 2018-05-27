@@ -12,18 +12,18 @@ import RealmSwift
 // Данные пользователя
 open class VKUser: DataBaseModel {
     
-    @objc dynamic public var id = 0
-    @objc dynamic public var first_name = ""
-    @objc dynamic public var last_name = ""
-    @objc dynamic public var photo_50 = ""
-    @objc dynamic public var photo_100 = ""
-    @objc dynamic public var photo_200_orig = ""
-    @objc dynamic public var online = 0
-    @objc dynamic public var online_mobile = 0
+    @objc dynamic var id = 0
+    @objc dynamic var first_name = ""
+    @objc dynamic var last_name = ""
+    @objc dynamic var photo_50 = ""
+    @objc dynamic var photo_100 = ""
+    @objc dynamic var photo_200_orig = ""
+    @objc dynamic var online = 0
+    @objc dynamic var online_mobile = 0
     
-    public var photos = List<VKPhoto>()
+    var photos = List<VKPhoto>()
     
-    public convenience required init(json: JSON) {
+    convenience required init(json: JSON) {
         self.init()
         
         self.id = json["id"].intValue
@@ -36,11 +36,11 @@ open class VKUser: DataBaseModel {
         self.online_mobile = json["online_mobile"].intValue
     }
     
-    override open static func primaryKey() -> String? {
+    override static func primaryKey() -> String? {
         return "id"
     }
     
-    override open func isEqual (_ object: DataBaseModel) -> Bool {
+    override func isEqual (_ object: DataBaseModel) -> Bool {
         let object = object as! VKUser
         return (self.id == object.id) &&
             (self.first_name == object.first_name) &&

@@ -8,21 +8,21 @@
 
 import SwiftyJSON
 
-open class VKModel<Type: DataBaseModel>: VKBaseModel {
+class VKModel<Type: DataBaseModel>: VKBaseModel {
     
-    public var item: Type? = nil
+    var item: Type? = nil
     
-    public required convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         item = Type(json: json[0])
     }
     
 }
 
-open class VKModels<Type: DataBaseModel>: VKBaseModel {
+class VKModels<Type: DataBaseModel>: VKBaseModel {
     
-    public var count: Int = 0
-    public var items: [Type] = []
+    var count: Int = 0
+    var items: [Type] = []
     
     public required convenience init(json: JSON) {
         self.init()
@@ -32,9 +32,9 @@ open class VKModels<Type: DataBaseModel>: VKBaseModel {
     
 }
 
-open class VKBaseModel {
+class VKBaseModel {
     
-    public required convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
     }
     

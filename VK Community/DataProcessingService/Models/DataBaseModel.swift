@@ -9,13 +9,13 @@
 import SwiftyJSON
 import RealmSwift
 
-open class DataBaseModel: Object {
+class DataBaseModel: Object {
     
-    public required convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
     }
     
-    public func isEqual (_ object: DataBaseModel) -> Bool {
+    func isEqual (_ object: DataBaseModel) -> Bool {
         return false
     }
     
