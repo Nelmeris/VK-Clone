@@ -19,8 +19,8 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
-            UpdatingData(response.items)
+        VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
+            UpdateData(response.items)
         })
     }
     
@@ -70,9 +70,9 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         let groups = allGroupsController.groups
         let group = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
         
-        VKRequest(sender: self, method: .groupsJoin, parameters: ["group_id" : String(group.id)], completion: { _ in
-            VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
-                UpdatingData(response.items)
+        VKRequest(sender: self, method: "groups.join", parameters: ["group_id" : String(group.id)], completion: { _ in
+            VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
+                UpdateData(response.items)
             })
         })
     }
@@ -85,9 +85,9 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             alert.addAction(action)
 
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKRequest(sender: self, method: .groupsLeave, parameters: ["group_id" : String(self.groups![indexPath.row].id)], completion: { _ in
-                    VKRequest(sender: self, method: .groupsGet, parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
-                        UpdatingData(response.items)
+                VKRequest(sender: self, method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)], completion: { _ in
+                    VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKModels<VKGroup>) in
+                        UpdateData(response.items)
                     })
                 })
             }

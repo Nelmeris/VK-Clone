@@ -21,7 +21,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(sender: self, method: .friendsGet, parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
+        VKRequest(sender: self, method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"], completion: { (response: VKModels<VKUser>) in
             let dataUsers: Results<VKUser> = LoadData()!
             let responseUsers = response.items
             
@@ -39,7 +39,7 @@ class FriendList: UITableViewController, UISearchResultsUpdating {
                     }
                 }
             }
-            UpdatingData(responseUsers)
+            UpdateData(responseUsers)
         })
     }
     

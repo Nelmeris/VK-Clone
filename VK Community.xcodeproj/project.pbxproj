@@ -19,8 +19,6 @@
 		F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendList.swift */; };
-		F688B0C120B1DBB4009BB1B8 /* VKAPIMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */; };
-		F688B0C220B1DBB4009BB1B8 /* VKAPIVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */; };
 		F688B0C320B1DBB4009BB1B8 /* VKAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */; };
 		F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */; };
 		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
@@ -64,8 +62,6 @@
 		F67266E6209B6F300086B1B7 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotoCollectionCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendList.swift; sourceTree = "<group>"; };
-		F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIMethods.swift; sourceTree = "<group>"; };
-		F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAPIVersions.swift; sourceTree = "<group>"; };
 		F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorizationViewController.swift; sourceTree = "<group>"; };
 		F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceGroupModel.swift; sourceTree = "<group>"; };
 		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
@@ -158,8 +154,6 @@
 			children = (
 				F688B0B920B1DBB4009BB1B8 /* Models */,
 				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
-				F688B0B620B1DBB4009BB1B8 /* VKAPIMethods.swift */,
-				F688B0B720B1DBB4009BB1B8 /* VKAPIVersions.swift */,
 				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationViewController.swift */,
 				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
 			);
@@ -340,7 +334,6 @@
 			files = (
 				F688B0C320B1DBB4009BB1B8 /* VKAuthorizationViewController.swift in Sources */,
 				F672784D209BAB2800B69D31 /* FriendPhotoCollectionCell.swift in Sources */,
-				F688B0C120B1DBB4009BB1B8 /* VKAPIMethods.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendCell.swift in Sources */,
 				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
 				F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */,
@@ -350,7 +343,6 @@
 				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
 				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,
 				F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */,
-				F688B0C220B1DBB4009BB1B8 /* VKAPIVersions.swift in Sources */,
 				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
 				F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,

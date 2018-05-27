@@ -68,7 +68,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        VKRequest(sender: self, method: .groupsSearch, parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: VKModels<VKGroup>) in
+        VKRequest(sender: self, method: "groups.search", parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: VKModels<VKGroup>) in
             self?.groups = response.items
             self?.tableView.reloadData()
         })

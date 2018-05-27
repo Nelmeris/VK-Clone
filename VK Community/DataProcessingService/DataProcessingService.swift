@@ -21,7 +21,7 @@ public func SaveData<Type: DataBaseModel>(_ data: [Type]) {
 }
 
 // Обновление данных в Realm
-public func UpdatingData<Type: DataBaseModel>(_ data: [Type]) {
+public func UpdateData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         
