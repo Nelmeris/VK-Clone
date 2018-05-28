@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsList: UITableViewController {
     
@@ -32,6 +33,34 @@ class NewsList: UITableViewController {
         cell.commentsCount.text = String(news.items[indexPath.row].comments)
         cell.repostsCount.text = String(news.items[indexPath.row].reposts)
         cell.viewsCount.text = String(news.items[indexPath.row].views)
+        
+        if news.items[indexPath.row].source_id > 0 {
+            for item in news.profiles {
+                if item.id == news.items[indexPath.row].source_id {
+                    if item.photo_100 != "" {
+                        let url = URL(string: item.photo_100)
+                        cell.authorPhoto.sd_setImage(with: url, completed: nil)
+                    } else {
+                        cell.authorPhoto.image = UIImage(named: "DefaultUserPhoto")
+                    }
+                    cell.authorName.text = item.first_name + item.last_name
+                    break
+                }
+            }
+        } else {
+            for item in news.groups {
+                if item.id == -news.items[indexPath.row].source_id {
+                    if item.photo_100 != "" {
+                        let url = URL(string: item.photo_100)
+                        cell.authorPhoto.sd_setImage(with: url, completed: nil)
+                    } else {
+                        cell.authorPhoto.image = UIImage(named: "DefaultGroupPhoto")
+                    }
+                    cell.authorName.text = item.name
+                    break
+                }
+            }
+        }
         
         return cell
     }

@@ -9,7 +9,11 @@
 import UIKit
 
 class NewsCell: UITableViewCell {
-    @IBOutlet weak var authorPhoto: UIImageView!
+    @IBOutlet weak var authorPhoto: UIImageView! {
+        didSet {
+            authorPhoto.layer.cornerRadius = authorPhoto.frame.height / 2
+        }
+    }
     @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var likesCount: UILabel!

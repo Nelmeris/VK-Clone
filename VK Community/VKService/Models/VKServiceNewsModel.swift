@@ -17,7 +17,6 @@ class VKNewsList: VKBaseModel {
     
     convenience required init(json: JSON) {
         self.init()
-        print(json)
         items = json["items"].map({ VKNews(json: $0.1) })
         profiles = json["profiles"].map({ VKUser(json: $0.1) })
         groups = json["groups"].map({ VKGroup(json: $0.1) })
@@ -50,7 +49,6 @@ class VKNews {
     }
     
     init(json: JSON) {
-        print(json)
         type = json["type"].stringValue
         source_id = json["source_id"].intValue
         date = json["date"].intValue
