@@ -21,7 +21,7 @@ class FriendPhotoCollection: UIViewController, UICollectionViewDelegate, UIColle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(sender: self, method: "photos.getAll", parameters: ["owner_id": String(user!.id)], completion: { (response: VKModels<VKPhoto>) in
+        VKRequest(sender: self, method: "photos.getAll", parameters: ["owner_id": String(user!.id)], completion: { (response: VKItems<VKPhoto>) in
             for responseUserPhoto in response.items {
                 var flag = false
                 for userPhoto in self.user!.photos {

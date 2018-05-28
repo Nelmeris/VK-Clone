@@ -15,6 +15,7 @@ import RealmSwift
 let Scheme = "https"
 let Host = "api.vk.com/method/"
 var ClientID: Int? = nil
+var Scope: Int? = nil
 
 // Получение нового токена
 func TokenReceiving(_ sender: UIViewController) {

@@ -8,7 +8,7 @@
 
 import SwiftyJSON
 
-class VKModel<Type: DataBaseModel>: VKBaseModel {
+class VKItem<Type: DataBaseModel>: VKBaseModel {
     
     var item: Type? = nil
     
@@ -19,15 +19,26 @@ class VKModel<Type: DataBaseModel>: VKBaseModel {
     
 }
 
-class VKModels<Type: DataBaseModel>: VKBaseModel {
+class VKItems<Type: DataBaseModel>: VKBaseModel {
     
     var count: Int = 0
     var items: [Type] = []
     
-    public required convenience init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         count = json["count"].intValue
         items = json["items"].map({ Type(json: $0.1) })
+    }
+    
+}
+
+class VKResponse<Type: VKBaseModel>: VKBaseModel {
+    
+    var response: Type! = nil
+    
+    required convenience init(json: JSON) {
+        self.init()
+        response = Type(json: json)
     }
     
 }
