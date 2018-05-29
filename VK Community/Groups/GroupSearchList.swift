@@ -44,16 +44,7 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
         let url = URL(string: groups[indexPath.row].photo_100)
         cell.photo.sd_setImage(with: url, completed: nil)
         
-        switch groups[indexPath.row].members_count {
-        case let x where x >= 1000000:
-            cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000000) + "М"
-            break
-        case let x where x >= 1000:
-            cell.participantsCount.text = String(format: "%.1f", Double(x) / 1000) + "К"
-            break
-        default:
-            cell.participantsCount.text = String(groups[indexPath.row].members_count)
-        }
+        cell.participantsCount.text = GetShortCount(groups[indexPath.row].members_count)
         
         return cell
     }

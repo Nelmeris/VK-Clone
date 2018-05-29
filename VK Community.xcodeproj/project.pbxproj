@@ -12,6 +12,7 @@
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
+		F628172B20BD89A6002185C4 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628172A20BD89A6002185C4 /* Methods.swift */; };
 		F64C2B7F20BC801100741AD9 /* NewsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsList.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsModel.swift */; };
@@ -58,6 +59,7 @@
 		F61E297E2093B06E0070DEC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F61E29812093B06E0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F628172A20BD89A6002185C4 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		F64C2B7E20BC801100741AD9 /* NewsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsList.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsModel.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
+				F628172A20BD89A6002185C4 /* Methods.swift */,
 			);
 			path = "VK Community";
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				F64C2B8120BC801C00741AD9 /* NewsCell.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupCell.swift in Sources */,
+				F628172B20BD89A6002185C4 /* Methods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupSearchList.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupList.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
@@ -535,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
+				PRODUCT_BUNDLE_IDENTIFIER = "NLM.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -560,7 +564,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "NONE.VK-Community";
+				PRODUCT_BUNDLE_IDENTIFIER = "NLM.VK-Community";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

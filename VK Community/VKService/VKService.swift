@@ -91,8 +91,8 @@ func VKRequest<Response: VKBaseModel>(sender: UIViewController, version: String 
         } catch RequestError.URLError(let error_msg) {
             print("REQUEST ERROR! " + error_msg)
         } catch RequestError.AccessTokenError(let error_msg) {
-            TokenReceiving(sender)
             print("REQUEST ERROR! " + error_msg)
+            TokenReceiving(sender)
         } catch {}
     }
 }
