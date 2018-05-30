@@ -36,9 +36,6 @@ class NewsList: UITableViewController {
         
         cell.postText.text = news.text
         
-        cell.likes = news.likes.count
-        cell.likesCount.text = GetShortCount(news.likes.count)
-        
         if news.likes.user_likes == 1 {
             cell.likesIcon.image = UIImage(named: "LikesIcon")
             cell.isLike = true
@@ -47,8 +44,12 @@ class NewsList: UITableViewController {
         if news.comments.can_post == 0 && news.comments.count == 0 {
             cell.commentsCount.text = nil
             cell.commentsIcon.image = nil
+        } else {
+            cell.commentsCount.text = GetShortCount(news.comments.count)
         }
         
+        cell.likes = news.likes.count
+        cell.likesCount.text = GetShortCount(news.likes.count)
         cell.repostsCount.text = GetShortCount(news.reposts.count)
         cell.viewsCount.text = GetShortCount(news.views)
         
@@ -63,14 +64,13 @@ class NewsList: UITableViewController {
         cell.authorName.text = sourceData.name
         
         cell.postPhoto.constraints[0].constant = 0
-        cell.postPhoto.image = nil
         
-        cell = AttachmentProcessing(cell: cell, attachments: news.attachments)
+        AttachmentProcessing(cell: &cell, attachments: news.attachments)
         
         return cell
     }
     
-    func AttachmentProcessing(cell: NewsCell, attachments: [VKNews.Attachments]) -> NewsCell {
+    func AttachmentProcessing(cell: inout NewsCell, attachments: [VKNews.Attachments]) {
         for attachment in attachments {
             if attachment.type == "photo" {
                 let size = attachment.photo!.sizes.last!
@@ -82,8 +82,6 @@ class NewsList: UITableViewController {
                 break
             }
         }
-        
-        return cell
     }
     
     func GetSourceData(_ source_id: Int) -> (name: String, photoUrl: URL?) {

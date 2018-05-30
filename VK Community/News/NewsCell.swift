@@ -59,7 +59,9 @@ class NewsCell: UITableViewCell {
         postPhoto.image = nil
         postPhoto.constraints[0].constant = 0
         authorPhoto.image = nil
+        
         likesIcon.image = UIImage(named: "LikesOffIcon")
+        commentsIcon.image = UIImage(named: "CommentsIcon")
     }
     
 }
