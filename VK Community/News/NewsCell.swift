@@ -30,6 +30,7 @@ class NewsCell: UITableViewCell {
     var isLike = false
     @IBOutlet weak var likesIcon: UIImageView!
     
+    @IBOutlet weak var commentsIcon: UIImageView!
     @IBAction func LikesClick(_ sender: Any) {
         let window = UIStoryboard(name: "Main", bundle: Bundle(for: VKAuthorization.self)).instantiateViewController(withIdentifier: "NewsFeed")
         if isLike {
@@ -46,4 +47,19 @@ class NewsCell: UITableViewCell {
             
         likesCount.text = GetShortCount(likes)
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        authorName.text = ""
+        likesCount.text = ""
+        repostsCount.text = ""
+        commentsCount.text = ""
+        viewsCount.text = ""
+        
+        postPhoto.image = nil
+        postPhoto.constraints[0].constant = 0
+        authorPhoto.image = nil
+        likesIcon.image = UIImage(named: "LikesOffIcon")
+    }
+    
 }

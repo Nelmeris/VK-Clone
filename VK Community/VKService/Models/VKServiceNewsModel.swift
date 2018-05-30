@@ -35,11 +35,7 @@ class VKNews {
     
     var attachments: [Attachments]! = nil
     
-    var comments = 0
     var likes: Likes! = nil
-    var reposts = 0
-    var views = 0
-    
     class Likes {
         
         var count = 0
@@ -51,6 +47,34 @@ class VKNews {
         }
         
     }
+    
+    var reposts: Reposts! = nil
+    class Reposts {
+        
+        var count = 0
+        var user_reposted = 0
+        
+        init(_ json: JSON) {
+            count = json["count"].intValue
+            user_reposted = json["user_reposted"].intValue
+        }
+        
+    }
+    
+    var comments: Comments! = nil
+    class Comments {
+        
+        var count = 0
+        var can_post = 0
+        
+        init(_ json: JSON) {
+            count = json["count"].intValue
+            can_post = json["can_post"].intValue
+        }
+        
+    }
+    
+    var views = 0
         
     class Attachments {
         
@@ -108,9 +132,9 @@ class VKNews {
         
         attachments = json["attachments"].map({ Attachments($0.1) })
         
-        comments = json["comments"]["count"].intValue
+        comments = Comments(json["comments"])
         likes = Likes(json["likes"])
-        reposts = json["reposts"]["count"].intValue
+        reposts = Reposts(json["reposts"])
         views = json["views"]["count"].intValue
     }
     

@@ -14,9 +14,11 @@ class NewsList: UITableViewController {
     var news: VKNewsList! = nil
     
     override func viewWillAppear(_ animated: Bool) {
-        VKRequest(sender: self, version: "5.78", method: "newsfeed.get", parameters: ["filters" : "post", "count" : "5"]) { (response: VKResponse<VKNewsList>) in
-            self.news = response.response
-            self.tableView.reloadData()
+        DispatchQueue.global().async {
+            VKRequest(sender: self, version: "5.78", method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponse<VKNewsList>) in
+                self.news = response.response
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -27,68 +29,84 @@ class NewsList: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = self.news.items[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsCell
         
-        cell.postText.text = news.text
-        cell.likesCount.text = GetShortCount(news.likes.count)
-        
-        cell.likes = news.likes.count
         cell.postId = news.post_id
         cell.authorId = news.source_id
+        
+        cell.postText.text = news.text
+        
+        cell.likes = news.likes.count
+        cell.likesCount.text = GetShortCount(news.likes.count)
         
         if news.likes.user_likes == 1 {
             cell.likesIcon.image = UIImage(named: "LikesIcon")
             cell.isLike = true
         }
         
-        cell.commentsCount.text = GetShortCount(news.comments)
-        cell.repostsCount.text = GetShortCount(news.reposts)
-        cell.viewsCount.text = GetShortCount(news.views)
-        
-        if news.source_id > 0 {
-            for item in self.news.profiles {
-                if item.id == news.source_id {
-                    if item.photo_100 != "" {
-                        let url = URL(string: item.photo_100)
-                        cell.authorPhoto.sd_setImage(with: url, completed: nil)
-                    } else {
-                        cell.authorPhoto.image = UIImage(named: "DefaultUserPhoto")
-                    }
-                    cell.authorName.text = item.first_name + " " + item.last_name
-                    break
-                }
-            }
-        } else {
-            for item in self.news.groups {
-                if item.id == -news.source_id {
-                    if item.photo_100 != "" {
-                        let url = URL(string: item.photo_100)
-                        cell.authorPhoto.sd_setImage(with: url, completed: nil)
-                    } else {
-                        cell.authorPhoto.image = UIImage(named: "DefaultGroupPhoto")
-                    }
-                    cell.authorName.text = item.name
-                    break
-                }
-            }
+        if news.comments.can_post == 0 && news.comments.count == 0 {
+            cell.commentsCount.text = nil
+            cell.commentsIcon.image = nil
         }
         
-        for item in news.attachments {
-            if item.type == "photo" {
-                for size in item.photo!.sizes {
-                    if CGFloat(size.width) > cell.postPhoto.frame.width {
-                        let url = URL(string: size.url)
-                        cell.postPhoto.sd_setImage(with: url!, completed: nil)
-                        
-                        break
-                    }
-                }
+        cell.repostsCount.text = GetShortCount(news.reposts.count)
+        cell.viewsCount.text = GetShortCount(news.views)
+        
+        let sourceData = GetSourceData(news.source_id)
+        
+        if let photoUrl = sourceData.photoUrl {
+            cell.authorPhoto.sd_setImage(with: photoUrl, completed: nil)
+        } else {
+            cell.authorPhoto.image = UIImage(named: news.source_id > 0 ? "DefaultUserPhoto" : "DefaultGroupPhoto")
+        }
+        
+        cell.authorName.text = sourceData.name
+        
+        cell.postPhoto.constraints[0].constant = 0
+        cell.postPhoto.image = nil
+        
+        cell = AttachmentProcessing(cell: cell, attachments: news.attachments)
+        
+        return cell
+    }
+    
+    func AttachmentProcessing(cell: NewsCell, attachments: [VKNews.Attachments]) -> NewsCell {
+        for attachment in attachments {
+            if attachment.type == "photo" {
+                let size = attachment.photo!.sizes.last!
+                
+                let url = URL(string: size.url)
+                cell.postPhoto.constraints[0].constant = cell.postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
+                cell.postPhoto.sd_setImage(with: url, completed: nil)
                 
                 break
             }
         }
         
         return cell
+    }
+    
+    func GetSourceData(_ source_id: Int) -> (name: String, photoUrl: URL?) {
+        let name: String
+        let photoUrl: URL?
+        
+        if source_id > 0 {
+            let source = self.news.profiles.filter { profile -> Bool in
+                return profile.id == source_id
+                }.first!
+            
+            photoUrl = URL(string: source.photo_100)
+            name = source.first_name + " " + source.last_name
+        } else {
+            let source = self.news.groups.filter { group -> Bool in
+                return -group.id == source_id
+                }.first!
+            
+            photoUrl = URL(string: source.photo_100)
+            name = source.name
+        }
+        
+        return (name, photoUrl)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
