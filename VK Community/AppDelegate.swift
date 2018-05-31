@@ -15,9 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        ClientID = 6472660
-        
-        Scope = 2 + 4 + 8192 + 262144
+        VKClientID = 6472660
+        VKScope = 2 + 4 + 8192 + 262144 + 4096
+        VKAPIVersion = 5.78
         
         return true
     }

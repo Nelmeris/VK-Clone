@@ -1,5 +1,5 @@
 //
-//  NewsCell.swift
+//  NewsFeedUITableViewCell.swift
 //  VK Community
 //
 //  Created by Артем on 28.05.2018.
@@ -9,7 +9,7 @@
 import UIKit
 import Keychain
 
-class NewsCell: UITableViewCell {
+class NewsFeedUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var authorPhoto: UIImageView! {
         didSet {
@@ -31,25 +31,28 @@ class NewsCell: UITableViewCell {
     @IBOutlet weak var likesIcon: UIImageView!
     
     @IBOutlet weak var commentsIcon: UIImageView!
+    
     @IBAction func LikesClick(_ sender: Any) {
-        let window = UIStoryboard(name: "Main", bundle: Bundle(for: VKAuthorization.self)).instantiateViewController(withIdentifier: "NewsFeed")
+        let parameters = ["type" : "post", "item_id" : String(postId), "owner_id" : String(authorId)]
+        
         if isLike {
             likesIcon.image = UIImage(named: "LikesOffIcon")
             isLike = false
             likes -= 1
-            VKRequest(sender: window, version: "5.78", method: "likes.delete", parameters: ["type" : "post", "item_id" : String(postId), "owner_id" : String(authorId)])
+            VKRequest(method: "likes.delete", parameters: parameters)
         } else {
             likesIcon.image = UIImage(named: "LikesIcon")
             isLike = true
             likes += 1
-            VKRequest(sender: window, version: "5.78", method: "likes.add", parameters: ["type" : "post", "item_id" : String(postId), "owner_id" : String(authorId)])
-            }
+            VKRequest(method: "likes.add", parameters: parameters)
+        }
             
-        likesCount.text = GetShortCount(likes)
+        likesCount.text = getShortCount(likes)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         authorName.text = ""
         likesCount.text = ""
         repostsCount.text = ""

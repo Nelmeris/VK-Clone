@@ -1,5 +1,5 @@
 //
-//  AuthorizationViewController.swift
+//  VKAuthorizationUIViewController.swift
 //  VKService
 //
 //  Created by Артем on 07.05.2018.
@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import Keychain
 
-class VKAuthorization: UIViewController, WKNavigationDelegate {
+class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var WebViewVK: WKWebView! {
         didSet {
@@ -20,22 +20,26 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
     
     // Составление запроса для авторизации и вызов его в WebViewVK
     override func viewDidLoad() {
+        let request = URLRequest(url: getVKAuthorizationURL())
+        
+        WebViewVK.load(request)
+    }
+    
+    func getVKAuthorizationURL() -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: String(ClientID ?? 0)),
+            URLQueryItem(name: "client_id", value: String(VKClientID)),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_url", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: String(Scope ?? 0)),
+            URLQueryItem(name: "scope", value: String(VKScope)),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: "5.52")
+            URLQueryItem(name: "v", value: String(VKAPIVersion))
         ]
         
-        let request = URLRequest(url: urlComponents.url!)
-        
-        WebViewVK.load(request)
+        return urlComponents.url!
     }
     
     // Получение адреса переадрессации
@@ -45,7 +49,17 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
             return
         }
         
-        // Получение параметров адреса
+        // Сохранение полученного токена
+        _ = Keychain.save(getParams(fragment)["access_token"]!, forKey: "token")
+        
+        decisionHandler(.cancel)
+        
+        // Возврат
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // Получение параметров адреса
+    func getParams(_ fragment: String) -> [String : String]{
         let params = fragment
             .components(separatedBy: "&")
             .map { $0.components(separatedBy: "=") }
@@ -56,14 +70,7 @@ class VKAuthorization: UIViewController, WKNavigationDelegate {
                 dict[key] = value
                 return dict
         }
-        
-        // Сохранение полученного токена
-        _ = Keychain.save(params["access_token"]!, forKey: "token")
-        
-        decisionHandler(.cancel)
-        
-        // Возврат
-        dismiss(animated: true, completion: nil)
+        return params
     }
     
 }

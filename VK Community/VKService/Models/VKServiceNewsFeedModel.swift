@@ -1,5 +1,5 @@
 //
-//  VKServiceNewsModel.swift
+//  VKServiceNewsFeedModel.swift
 //  VK Community
 //
 //  Created by Артем on 28.05.2018.
@@ -9,22 +9,22 @@
 import RealmSwift
 import SwiftyJSON
 
-class VKNewsList: VKBaseModel {
+class VKNewsListModel: VKBaseModel {
     
-    var items: [VKNews] = []
-    var profiles: [VKUser] = []
-    var groups: [VKGroup] = []
+    var items: [VKNewsModel] = []
+    var profiles: [VKUserModel] = []
+    var groups: [VKGroupModel] = []
     
     convenience required init(json: JSON) {
         self.init()
-        items = json["items"].map({ VKNews(json: $0.1) })
-        profiles = json["profiles"].map({ VKUser(json: $0.1) })
-        groups = json["groups"].map({ VKGroup(json: $0.1) })
+        items = json["items"].map({ VKNewsModel(json: $0.1) })
+        profiles = json["profiles"].map({ VKUserModel(json: $0.1) })
+        groups = json["groups"].map({ VKGroupModel(json: $0.1) })
     }
     
 }
 
-class VKNews {
+class VKNewsModel {
     
     var type = ""
     var source_id = 0
@@ -84,27 +84,11 @@ class VKNews {
         class Photo {
             
             var id = 0
-            var sizes: [Sizes]! = nil
-            
-            class Sizes {
-                
-                var type = ""
-                var url = ""
-                var width = 0
-                var height = 0
-                
-                init(_ json: JSON) {
-                    type = json["type"].stringValue
-                    url = json["url"].stringValue
-                    width = json["width"].intValue
-                    height = json["height"].intValue
-                }
-                
-            }
+            var sizes: [VKSizes]! = nil
             
             init(_ json: JSON) {
                 id = json["id"].intValue
-                sizes = json["sizes"].map({ Sizes($0.1) })
+                sizes = json["sizes"].map({ VKSizes($0.1) })
             }
             
         }

@@ -1,5 +1,5 @@
 //
-//  FriendCell.swift
+//  FriendsUITableViewCell.swift
 //  VK Community
 //
 //  Created by Артем on 03.05.2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 // Ячейка друга
-class FriendCell: UITableViewCell {
+class FriendsUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!

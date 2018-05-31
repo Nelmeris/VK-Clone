@@ -10,7 +10,7 @@ import SwiftyJSON
 import RealmSwift
 
 // Данные пользователя
-class VKUser: DataBaseModel {
+class VKUserModel: DataBaseModel {
     
     @objc dynamic var id = 0
     @objc dynamic var first_name = ""
@@ -21,7 +21,7 @@ class VKUser: DataBaseModel {
     @objc dynamic var online = 0
     @objc dynamic var online_mobile = 0
     
-    var photos = List<VKPhoto>()
+    var photos = List<VKPhotoModel>()
     
     convenience required init(json: JSON) {
         self.init()
@@ -41,7 +41,7 @@ class VKUser: DataBaseModel {
     }
     
     override func isEqual (_ object: DataBaseModel) -> Bool {
-        let object = object as! VKUser
+        let object = object as! VKUserModel
         return (self.id == object.id) &&
             (self.first_name == object.first_name) &&
             (self.last_name == object.last_name) &&

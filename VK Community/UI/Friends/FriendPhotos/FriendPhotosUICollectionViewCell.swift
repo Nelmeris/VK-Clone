@@ -1,5 +1,5 @@
 //
-//  FriendPhotoCollectionCell.swift
+//  FriendPhotosUICollectionViewCell.swift
 //  VK Community
 //
 //  Created by Артем on 04.05.2018.
@@ -8,8 +8,7 @@
 
 import UIKit
 
-// Ячейка для фото друга
-class FriendPhotoCollectionCell: UICollectionViewCell {
+class FriendPhotosCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photo: UIImageView!
     

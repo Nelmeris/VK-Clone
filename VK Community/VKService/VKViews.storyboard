@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Authorization-->
+        <!--AuthorizationUI View Controller-->
         <scene sceneID="ZHl-C1-iXz">
             <objects>
-                <viewController storyboardIdentifier="VKAuthorization" id="oK3-Fk-5zU" customClass="VKAuthorization" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VKAuthorization" id="oK3-Fk-5zU" customClass="VKAuthorizationUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iBZ-W9-XYM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

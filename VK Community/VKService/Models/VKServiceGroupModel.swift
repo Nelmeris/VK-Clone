@@ -9,7 +9,7 @@
 import SwiftyJSON
 
 // Данные группы
-class VKGroup: DataBaseModel {
+class VKGroupModel: DataBaseModel {
     
     @objc dynamic var id = 0
     @objc dynamic var name = ""
@@ -30,7 +30,7 @@ class VKGroup: DataBaseModel {
     }
     
     override func isEqual (_ object: DataBaseModel) -> Bool {
-        let object = object as! VKGroup
+        let object = object as! VKGroupModel
         return (self.id == object.id) &&
             (self.name == object.name) &&
             (self.photo_100 == object.photo_100) &&

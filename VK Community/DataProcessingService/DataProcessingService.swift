@@ -9,7 +9,7 @@
 import RealmSwift
 
 // Сохранение данных в Realm
-func SaveData<Type: DataBaseModel>(_ data: [Type]) {
+func RealmSaveData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()
@@ -21,7 +21,7 @@ func SaveData<Type: DataBaseModel>(_ data: [Type]) {
 }
 
 // Обновление данных в Realm
-func UpdateData<Type: DataBaseModel>(_ data: [Type]) {
+func RealmUpdateData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         
@@ -53,7 +53,7 @@ func UpdateData<Type: DataBaseModel>(_ data: [Type]) {
 }
 
 // Загрузка данных из Realm
-func LoadData<Type: DataBaseModel>() -> Results<Type>? {
+func RealmLoadData<Type: DataBaseModel>() -> Results<Type>? {
     do {
         let realm = try Realm()
         return realm.objects(Type.self)
@@ -64,7 +64,7 @@ func LoadData<Type: DataBaseModel>() -> Results<Type>? {
 }
 
 // Очистка базы Realm
-func ClearDataBase() {
+func RealmClearDataBase() {
     do {
         let realm = try Realm()
         realm.beginWrite()
@@ -75,8 +75,8 @@ func ClearDataBase() {
     }
 }
 
-// Очистка данных в Realm
-func ClearData<Type: DataBaseModel>(_ data: [Type]) {
+// Очистка данных Realm
+func RealmClearData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()
@@ -87,7 +87,8 @@ func ClearData<Type: DataBaseModel>(_ data: [Type]) {
     }
 }
 
-func DeleteData<Type: DataBaseModel>(_ data: [Type]) {
+// Удаление данных из Realm
+func RealmDeleteData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()

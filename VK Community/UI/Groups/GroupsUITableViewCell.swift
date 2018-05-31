@@ -1,5 +1,5 @@
 //
-//  GroupCell.swift
+//  GroupsUITableViewCell.swift
 //  VK Community
 //
 //  Created by Артем on 03.05.2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 // Ячейка группы
-class GroupCell: UITableViewCell {
+class GroupsUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: UIImageView!

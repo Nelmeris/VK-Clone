@@ -1,5 +1,5 @@
 //
-//  NewsList.swift
+//  NewsFeedUITableViewController.swift
 //  VK Community
 //
 //  Created by Артем on 28.05.2018.
@@ -9,13 +9,15 @@
 import UIKit
 import SDWebImage
 
-class NewsList: UITableViewController {
+class NewsFeedUITableViewController: UITableViewController {
     
-    var news: VKNewsList! = nil
+    var news: VKNewsListModel! = nil
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         DispatchQueue.global().async {
-            VKRequest(sender: self, version: "5.78", method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponse<VKNewsList>) in
+            VKRequest(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsListModel>) in
                 self.news = response.response
                 self.tableView.reloadData()
             }
@@ -23,37 +25,65 @@ class NewsList: UITableViewController {
     }
     
     override func viewDidLoad() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
+        super.viewDidLoad()
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let news = news else {
+            return 0
+        }
+        return news.items.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = self.news.items[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsFeedUITableViewCell
         
         cell.postId = news.post_id
         cell.authorId = news.source_id
         
         cell.postText.text = news.text
         
+        setLikes(cell: &cell, news: news)
+        
+        setCommentsCount(cell: &cell, news: news)
+        
+        cell.likes = news.likes.count
+        cell.likesCount.text = getShortCount(news.likes.count)
+        cell.repostsCount.text = getShortCount(news.reposts.count)
+        cell.viewsCount.text = getShortCount(news.views)
+        
+        setAuthorData(cell: &cell, news: news)
+        
+        cell.postPhoto.constraints[0].constant = 0
+        
+        attachmentProcessing(cell: &cell, attachments: news.attachments)
+        
+        return cell
+    }
+    
+}
+
+extension NewsFeedUITableViewController {
+    
+    func setLikes(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
         if news.likes.user_likes == 1 {
             cell.likesIcon.image = UIImage(named: "LikesIcon")
             cell.isLike = true
         }
-        
+    }
+    
+    func setCommentsCount(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
         if news.comments.can_post == 0 && news.comments.count == 0 {
             cell.commentsCount.text = nil
             cell.commentsIcon.image = nil
         } else {
-            cell.commentsCount.text = GetShortCount(news.comments.count)
+            cell.commentsCount.text = getShortCount(news.comments.count)
         }
-        
-        cell.likes = news.likes.count
-        cell.likesCount.text = GetShortCount(news.likes.count)
-        cell.repostsCount.text = GetShortCount(news.reposts.count)
-        cell.viewsCount.text = GetShortCount(news.views)
-        
-        let sourceData = GetSourceData(news.source_id)
+    }
+    
+    func setAuthorData(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
+        let sourceData = getSourceData(news.source_id)
         
         if let photoUrl = sourceData.photoUrl {
             cell.authorPhoto.sd_setImage(with: photoUrl, completed: nil)
@@ -62,17 +92,12 @@ class NewsList: UITableViewController {
         }
         
         cell.authorName.text = sourceData.name
-        
-        cell.postPhoto.constraints[0].constant = 0
-        
-        AttachmentProcessing(cell: &cell, attachments: news.attachments)
-        
-        return cell
     }
     
-    func AttachmentProcessing(cell: inout NewsCell, attachments: [VKNews.Attachments]) {
+    func attachmentProcessing(cell: inout NewsFeedUITableViewCell, attachments: [VKNewsModel.Attachments]) {
         for attachment in attachments {
-            if attachment.type == "photo" {
+            switch attachment.type {
+            case "photo":
                 let size = attachment.photo!.sizes.last!
                 
                 let url = URL(string: size.url)
@@ -80,11 +105,12 @@ class NewsList: UITableViewController {
                 cell.postPhoto.sd_setImage(with: url, completed: nil)
                 
                 break
+            default: break
             }
         }
     }
     
-    func GetSourceData(_ source_id: Int) -> (name: String, photoUrl: URL?) {
+    func getSourceData(_ source_id: Int) -> (name: String, photoUrl: URL?) {
         let name: String
         let photoUrl: URL?
         
@@ -105,13 +131,6 @@ class NewsList: UITableViewController {
         }
         
         return (name, photoUrl)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let news = news else {
-            return 0
-        }
-        return news.items.count
     }
     
 }

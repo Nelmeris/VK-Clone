@@ -1,5 +1,5 @@
 //
-//  GroupSearchList.swift
+//  GroupsSearchUITableViewController.swift
 //  VK Community
 //
 //  Created by Артем on 03.05.2018.
@@ -9,25 +9,32 @@
 import UIKit
 import RealmSwift
 
-class SearchGroupList: UITableViewController, UISearchResultsUpdating {
+class GroupsSearchUITableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var groups = [VKGroup]()
+    var groups = [VKGroupModel]()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         groups.removeAll()
     }
     
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController(searchResultsController: nil) {
+        didSet {
+            searchController.searchResultsUpdater = self
+            searchController.obscuresBackgroundDuringPresentation = false
+            searchController.searchBar.placeholder = "Поиск..."
+            
+            navigationItem.hidesSearchBarWhenScrolling = false
+            navigationItem.searchController = searchController
+        }
+    }
     
     //Настройка окна
     override func viewDidLoad() {
-        tableView.rowHeight = 75
+        super.viewDidLoad()
         
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск..."
-        navigationItem.searchController = searchController
+        tableView.rowHeight = 75
     }
     
     // Получение количества ячеек для результата поиска
@@ -37,14 +44,14 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
     
     // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupCell
+        let group = groups[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupsUITableViewCell
         
-        cell.name.text = groups[indexPath.row].name
+        cell.name.text = group.name
         
-        let url = URL(string: groups[indexPath.row].photo_100)
-        cell.photo.sd_setImage(with: url, completed: nil)
+        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
         
-        cell.participantsCount.text = GetShortCount(groups[indexPath.row].members_count)
+        cell.participantsCount.text = getShortCount(group.members_count)
         
         return cell
     }
@@ -59,10 +66,10 @@ class SearchGroupList: UITableViewController, UISearchResultsUpdating {
             return
         }
         
-        VKRequest(sender: self, method: "groups.search", parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()], completion: { [weak self] (response: VKItems<VKGroup>) in
+        VKRequest(method: "groups.search", parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()]) { [weak self] (response: VKItemsModel<VKGroupModel>) in
             self?.groups = response.items
             self?.tableView.reloadData()
-        })
+        }
     }
     
 }

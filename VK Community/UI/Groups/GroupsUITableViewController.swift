@@ -1,5 +1,5 @@
 //
-//  GroupList.swift
+//  GroupsUITableViewController.swift
 //  VK Community
 //
 //  Created by Артем on 03.05.2018.
@@ -9,22 +9,33 @@
 import UIKit
 import RealmSwift
 
-class GroupList: UITableViewController, UISearchResultsUpdating {
+class GroupsUITableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var groups: Results<VKGroup>?
-    var filteredGroups: Results<VKGroup>?
-    var notificationToken: NotificationToken?
+    var groups: Results<VKGroupModel>!
+    var filteredGroups: Results<VKGroupModel>!
+    
+    var notificationToken: NotificationToken!
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKItems<VKGroup>) in
-            UpdateData(response.items)
-        })
+        VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+            RealmUpdateData(response.items)
+        }
     }
     
-    let searchController = UISearchController(searchResultsController: nil)
+    var searchController = UISearchController(searchResultsController: nil) {
+        didSet {
+            searchController.searchResultsUpdater = self
+            searchController.obscuresBackgroundDuringPresentation = false
+            searchController.searchBar.placeholder = "Искать..."
+            
+            navigationItem.searchController = searchController
+            
+            definesPresentationContext = true
+        }
+    }
     
     // Настройки окна
     override func viewDidLoad() {
@@ -32,31 +43,26 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
         
         tableView.rowHeight = 75
         
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Искать..."
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        
-        groups = LoadData()
+        groups = RealmLoadData()
         filteredGroups = groups
-        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups!))
+        
+        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups))
     }
 
     // Получение количества ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups?.count ?? 0
+        return groups.count
     }
 
     // Составление ячеек для групп пользователя
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupCell
+        let group = groups[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupsUITableViewCell
 
-        cell.name.text = groups?[indexPath.row].name ?? ""
+        cell.name.text = group.name
         
-        if groups?[indexPath.row].photo_100 != "" {
-            let url = URL(string: groups![indexPath.row].photo_100)
-            cell.photo.sd_setImage(with: url, completed: nil)
+        if group.photo_100 != "" {
+            cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
         } else {
             cell.photo.image = UIImage(named: "DefaultGroupPhoto")
         }
@@ -66,15 +72,15 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
 
     // Реализация присоединения к выбранной группе
     @IBAction func JoinGroup(_ sender: UIStoryboardSegue) {
-        let allGroupsController = sender.source as! SearchGroupList
-        let groups = allGroupsController.groups
-        let group = groups[allGroupsController.tableView.indexPathForSelectedRow!.row]
+        let allGroupsController = sender.source as! GroupsSearchUITableViewController
+        let index = allGroupsController.tableView.indexPathForSelectedRow!.row
+        let group = allGroupsController.groups[index]
         
-        VKRequest(sender: self, method: "groups.join", parameters: ["group_id" : String(group.id)], completion: { _ in
-            VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKItems<VKGroup>) in
-                UpdateData(response.items)
-            })
-        })
+        VKRequest(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
+            VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+                RealmUpdateData(response.items)
+            }
+        }
     }
 
     // Реализация удаления группы из списка групп пользователя
@@ -85,11 +91,11 @@ class GroupList: UITableViewController, UISearchResultsUpdating {
             alert.addAction(action)
 
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKRequest(sender: self, method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)], completion: { _ in
-                    VKRequest(sender: self, method: "groups.get", parameters: ["extended" : "1"], completion: { (response: VKItems<VKGroup>) in
-                        UpdateData(response.items)
-                    })
-                })
+                VKRequest(method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)]) { _ in
+                    VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+                        RealmUpdateData(response.items)
+                    }
+                }
             }
             alert.addAction(action)
 

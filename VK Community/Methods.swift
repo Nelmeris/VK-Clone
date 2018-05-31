@@ -6,7 +6,9 @@
 //  Copyright © 2018 NONE. All rights reserved.
 //
 
-func GetShortCount(_ count: Int) -> String {
+import UIKit
+
+func getShortCount(_ count: Int) -> String {
     switch count {
     case let x where x >= 1000000:
         return String(format: "%.1f", Double(x) / 1000000) + "М"
@@ -15,4 +17,13 @@ func GetShortCount(_ count: Int) -> String {
     default:
         return String(count)
     }
+}
+
+func getActiveViewController() -> UIViewController {
+    var topController = UIApplication.shared.keyWindow?.rootViewController
+    while let presentedViewController = topController!.presentedViewController {
+        topController = presentedViewController
+    }
+    
+    return topController!
 }

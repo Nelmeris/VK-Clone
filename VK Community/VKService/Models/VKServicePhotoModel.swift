@@ -7,27 +7,38 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
 // Данные фотографии
-class VKPhoto: DataBaseModel {
+class VKPhotoModel: DataBaseModel {
     
     @objc dynamic var id = 0
-    @objc dynamic var photo_75 = ""
-    @objc dynamic var photo_130 = ""
+    var sizes = List<VKSizes>()
     
     required convenience init(json: JSON) {
         self.init()
         
         self.id = json["id"].intValue
-        self.photo_75 = json["photo_75"].stringValue
-        self.photo_130 = json["photo_130"].stringValue
+        let sizes = json["sizes"].map({ VKSizes($0.1) })
+        for size in sizes {
+            self.sizes.append(size)
+        }
     }
     
     override func isEqual (_ object: DataBaseModel) -> Bool {
-        let object = object as! VKPhoto
-        return (self.id == object.id) &&
-            (self.photo_75 == object.photo_75) &&
-            (self.photo_130 == object.photo_130)
+        let object = object as! VKPhotoModel
+        
+        guard sizes.count == object.sizes.count else {
+            return false
+        }
+        
+        for sizeIndex in 0...sizes.count - 1 {
+            guard sizes[sizeIndex].isEqual(object.sizes[sizeIndex]) else {
+                return false
+            }
+        }
+        
+        return self.id == object.id
     }
     
 }
