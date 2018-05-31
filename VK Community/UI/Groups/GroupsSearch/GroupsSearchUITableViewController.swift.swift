@@ -19,20 +19,22 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         groups.removeAll()
     }
     
-    var searchController = UISearchController(searchResultsController: nil) {
-        didSet {
-            searchController.searchResultsUpdater = self
-            searchController.obscuresBackgroundDuringPresentation = false
-            searchController.searchBar.placeholder = "Поиск..."
-            
-            navigationItem.hidesSearchBarWhenScrolling = false
-            navigationItem.searchController = searchController
-        }
+    var searchController = UISearchController(searchResultsController: nil)
+    
+    func initSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск..."
+        
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = searchController
     }
     
     //Настройка окна
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initSearchController()
         
         tableView.rowHeight = 75
     }

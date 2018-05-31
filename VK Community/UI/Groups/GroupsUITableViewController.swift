@@ -25,17 +25,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
     
-    var searchController = UISearchController(searchResultsController: nil) {
-        didSet {
-            searchController.searchResultsUpdater = self
-            searchController.obscuresBackgroundDuringPresentation = false
-            searchController.searchBar.placeholder = "Искать..."
-            
-            navigationItem.searchController = searchController
-            
-            definesPresentationContext = true
-        }
-    }
+    var searchController = UISearchController(searchResultsController: nil)
     
     // Настройки окна
     override func viewDidLoad() {
@@ -43,10 +33,22 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         
         tableView.rowHeight = 75
         
+        initSearchController()
+        
         groups = RealmLoadData()
         filteredGroups = groups
         
         PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups))
+    }
+    
+    func initSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Искать..."
+        
+        navigationItem.searchController = searchController
+        
+        definesPresentationContext = true
     }
 
     // Получение количества ячеек для групп пользователя

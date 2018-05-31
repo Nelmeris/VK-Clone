@@ -41,4 +41,8 @@ class VKMessageModel: DataBaseModel {
         }
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }

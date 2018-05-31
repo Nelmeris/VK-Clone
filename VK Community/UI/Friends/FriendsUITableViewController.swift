@@ -29,6 +29,48 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
             
             RealmUpdateData(newUsers)
         }
+        
+//        DispatchQueue.global().async {
+//            let users: Results<VKUserModel> = RealmLoadData()!
+//
+//            for index in 0...users.count - 1 {
+//                VKRequest(method: "photos.getAll", parameters: ["owner_id": String(users[index].id)]) { (response: VKItemsModel<VKPhotoModel>) in
+//                    for newPhoto in response.items {
+//                        var flag = false
+//                        for photo in users[index].photos {
+//                            if newPhoto.isEqual(photo) {
+//                                flag = true
+//                                break
+//                            }
+//                        }
+//                        if !flag {
+//                            do {
+//                                let realm = try Realm()
+//                                realm.beginWrite()
+//                                users[index].photos.append(newPhoto)
+//                                try realm.commitWrite()
+//                            } catch let error {
+//                                print(error)
+//                            }
+//                        }
+//                    }
+//
+//                    for photo in users[index].photos {
+//                        var flag = false
+//                        for newPhoto in response.items {
+//                            if photo.isEqual(newPhoto) {
+//                                flag = true
+//                                break
+//                            }
+//                        }
+//                        if !flag {
+//                            RealmDeleteData([photo])
+//                        }
+//                    }
+//                }
+//                sleep(1)
+//            }
+//        }
     }
     
     // Сохранение фото
@@ -48,17 +90,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         }
     }
     
-    var searchController = UISearchController(searchResultsController: nil) {
-        didSet {
-            searchController.searchResultsUpdater = self
-            searchController.obscuresBackgroundDuringPresentation = false
-            searchController.searchBar.placeholder = "Искать..."
-            
-            navigationItem.searchController = searchController
-            
-            definesPresentationContext = true
-        }
-    }
+    var searchController = UISearchController(searchResultsController: nil)
     
     // Настройки окна
     override func viewDidLoad() {
@@ -66,10 +98,22 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         
         tableView.rowHeight = 75
         
+        initSearchController()
+        
         friends = RealmLoadData()!
         filteredFriends = friends
         
         PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
+    }
+    
+    func initSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Искать..."
+        
+        navigationItem.searchController = searchController
+        
+        definesPresentationContext = true
     }
     
     // Получение количества ячеек для друзей

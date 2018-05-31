@@ -16,9 +16,8 @@ class DialogsUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(method: "messages.getDialogs") { (response: VKItemsModel<VKDialogModel>) in
-            RealmClearData(response.items)
-            RealmSaveData(response.items)
+        VKRequest(method: "messages.getDialogs", parameters: ["count" : "50"]) { (response: VKItemsModel<VKDialogModel>) in
+            RealmUpdateData(response.items)
         }
     }
     
@@ -43,10 +42,35 @@ class DialogsUITableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
         
         let date = Date(timeIntervalSince1970: Double(dialog.message.date))
-        cell.lastMessageDate.text = date.description
+        let dateFormatter = getDateFormatter(date)
+        
+        cell.lastMessageDate.text = dateFormatter.string(from: date)
+        
         cell.lastMessage.text = dialog.message.body
         
+        if dialog.type == "chat" {
+            cell.name.text = dialog.title
+            cell.photo.sd_setImage(with: URL(string: dialog.photo_200), completed: nil)
+        }
+        
         return cell
+    }
+    
+    func getDateFormatter(_ date: Date) -> DateFormatter {
+        let dateFormatter = DateFormatter()
+        
+        switch Calendar.current {
+        case let x where x.component(.day, from: date) == x.component(.day, from: Date()):
+            dateFormatter.dateFormat = "hh:mm"
+        case _ where Date().timeIntervalSince(date) <= 172800:
+            dateFormatter.dateFormat = "вчера"
+        case let x where x.component(.year, from: date) == x.component(.year, from: Date()):
+            dateFormatter.dateFormat = "dd MMM"
+        default:
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+        }
+        
+        return dateFormatter
     }
     
 }
