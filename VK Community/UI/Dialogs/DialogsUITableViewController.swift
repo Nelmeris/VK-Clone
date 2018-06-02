@@ -103,7 +103,7 @@ class DialogsUITableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
         
         let date = Date(timeIntervalSince1970: Double(dialog.message.date))
         let dateFormatter = getDateFormatter(date)
@@ -120,12 +120,12 @@ class DialogsUITableViewController: UITableViewController {
             cell.photo.image = UIImage(named: "DefaultDialogPhoto")
         }
         
-        setStatusIcon(cell: &cell, dialog: dialog)
+        setStatusIcon(cell: cell, dialog: dialog)
         
         return cell
     }
     
-    func setStatusIcon(cell: inout DialogsUITableViewCell, dialog: VKDialogModel) {
+    func setStatusIcon(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
         if dialog.online == 1 {
             if dialog.online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")

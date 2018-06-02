@@ -19,7 +19,9 @@ class NewsFeedUITableViewController: UITableViewController {
         DispatchQueue.global().async {
             VKRequest(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsListModel>) in
                 self.news = response.response
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -41,27 +43,27 @@ class NewsFeedUITableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let news = self.news.items[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsFeedUITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsFeedUITableViewCell
         
         cell.postId = news.post_id
         cell.authorId = news.source_id
         
         cell.postText.text = news.text
         
-        setLikes(cell: &cell, news: news)
+        setLikes(cell: cell, news: news)
         
-        setCommentsCount(cell: &cell, news: news)
+        setCommentsCount(cell: cell, news: news)
         
         cell.likes = news.likes.count
         cell.likesCount.text = getShortCount(news.likes.count)
         cell.repostsCount.text = getShortCount(news.reposts.count)
         cell.viewsCount.text = getShortCount(news.views)
         
-        setAuthorData(cell: &cell, news: news)
+        setAuthorData(cell: cell, news: news)
         
         cell.postPhoto.constraints[0].constant = 0
         
-        attachmentProcessing(cell: &cell, attachments: news.attachments)
+        attachmentProcessing(cell: cell, attachments: news.attachments)
         
         return cell
     }
@@ -70,14 +72,14 @@ class NewsFeedUITableViewController: UITableViewController {
 
 extension NewsFeedUITableViewController {
     
-    func setLikes(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
+    func setLikes(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
         if news.likes.user_likes == 1 {
             cell.likesIcon.image = UIImage(named: "LikesIcon")
             cell.isLike = true
         }
     }
     
-    func setCommentsCount(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
+    func setCommentsCount(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
         if news.comments.can_post == 0 && news.comments.count == 0 {
             cell.commentsCount.text = nil
             cell.commentsIcon.image = nil
@@ -86,7 +88,7 @@ extension NewsFeedUITableViewController {
         }
     }
     
-    func setAuthorData(cell: inout NewsFeedUITableViewCell, news: VKNewsModel) {
+    func setAuthorData(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
         let sourceData = getSourceData(news.source_id)
         
         if let photoUrl = sourceData.photoUrl {
@@ -98,7 +100,7 @@ extension NewsFeedUITableViewController {
         cell.authorName.text = sourceData.name
     }
     
-    func attachmentProcessing(cell: inout NewsFeedUITableViewCell, attachments: [VKNewsModel.Attachments]) {
+    func attachmentProcessing(cell: NewsFeedUITableViewCell, attachments: [VKNewsModel.Attachments]) {
         for attachment in attachments {
             switch attachment.type {
             case "photo":

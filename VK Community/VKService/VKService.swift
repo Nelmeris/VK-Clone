@@ -24,7 +24,9 @@ var VKUser: VKUserModel! = nil
 func VKTokenReceiving() {
     let storyboard = UIStoryboard(name: "VKViews", bundle: Bundle(for: VKAuthorizationUIViewController.self))
     let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
-    getActiveViewController().present(viewController, animated: true, completion: nil)
+    DispatchQueue.main.async {
+        getActiveViewController().present(viewController, animated: true, completion: nil)
+    }
 }
 
 // Проверка существования токена
@@ -81,20 +83,22 @@ func VKRequest<Response: VKBaseModel>(version: String = String(VKAPIVersion), me
     guard let url = VKRequestURL(method, version, parameters) else { return }
     
     Alamofire.request(url.url, parameters: url.parameters).responseData { response in
-        do {
-            let json = try VKGetJSONResponse(response)
-            
-            let model = Response(json: json["response"])
-            
-            completion(model)
-        } catch VKRequestError.ResponseError(let error_msg) {
-            print("REQUEST ERROR! " + error_msg)
-        } catch VKRequestError.URLError(let error_msg) {
-            print("REQUEST ERROR! " + error_msg)
-        } catch VKRequestError.AccessTokenError(let error_msg) {
-            print("REQUEST ERROR! " + error_msg)
-            VKTokenReceiving()
-        } catch {}
+        DispatchQueue.global().async {
+            do {
+                let json = try VKGetJSONResponse(response)
+                
+                let model = Response(json: json["response"])
+                
+                completion(model)
+            } catch VKRequestError.ResponseError(let error_msg) {
+                print("REQUEST ERROR! " + error_msg)
+            } catch VKRequestError.URLError(let error_msg) {
+                print("REQUEST ERROR! " + error_msg)
+            } catch VKRequestError.AccessTokenError(let error_msg) {
+                print("REQUEST ERROR! " + error_msg)
+                VKTokenReceiving()
+            } catch {}
+        }
     }
 }
 

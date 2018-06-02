@@ -114,19 +114,19 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let friend = friends[indexPath.row]
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsUITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsUITableViewCell
         
         cell.firstName.text = friend.first_name
         cell.lastName.text = friend.last_name
         
-        setUserPhoto(cell: &cell, friend: friend)
+        setUserPhoto(cell: cell, friend: friend)
         
-        setStatusIcon(cell: &cell, friend: friend)
+        setStatusIcon(cell: cell, friend: friend)
         
         return cell
     }
     
-    func setUserPhoto(cell: inout FriendsUITableViewCell, friend: VKUserModel) {
+    func setUserPhoto(cell: FriendsUITableViewCell, friend: VKUserModel) {
         if friend.photo_100 != "" {
             cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
         } else {
@@ -134,7 +134,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         }
     }
     
-    func setStatusIcon(cell: inout FriendsUITableViewCell, friend: VKUserModel) {
+    func setStatusIcon(cell: FriendsUITableViewCell, friend: VKUserModel) {
         if friend.online == 1 {
             if friend.online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")

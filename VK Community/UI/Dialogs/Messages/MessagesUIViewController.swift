@@ -42,7 +42,9 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
             self.messages = response.response.items
             self.in_read = response.response.in_read
             self.out_read = response.response.out_read
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -52,7 +54,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
-        var cell: MessagesUITableViewCell
+        let cell: MessagesUITableViewCell
         
         if message.from_id == VKUser.id {
             cell = tableView.dequeueReusableCell(withIdentifier: "MyMessage") as! MessagesUITableViewCell
@@ -97,7 +99,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     func setLongPoll(ts: Int) {
         let longPollData = (RealmLoadData()! as Results<VKMessageLongPollServer>)[0]
         VKRequest(url: "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=30&mode=104&version=3") { (response: VKResponseModel<VKUpdateModel>) in
-            print(response.response.ts)
             self.setLongPoll(ts: response.response.ts)
             
             for update in response.response.updates {

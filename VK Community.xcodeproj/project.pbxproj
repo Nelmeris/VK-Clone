@@ -591,7 +591,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/VK\\ Community/Profile\\ &\\ Settings",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/VK Community/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
