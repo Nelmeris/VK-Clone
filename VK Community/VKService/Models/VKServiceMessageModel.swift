@@ -16,7 +16,7 @@ class VKMessageResponseModel: VKBaseModel {
     var in_read = 0
     var out_read = 0
     
-    convenience required init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         
         count = json["count"].intValue
@@ -45,7 +45,7 @@ class VKMessageLongPollServer: DataBaseModel {
     
 }
 
-class VKMessageLongPollResponse: VKBaseModel {
+class VKUpdateModel: VKBaseModel {
     
     var ts = 0
     var pts = 0
@@ -54,23 +54,67 @@ class VKMessageLongPollResponse: VKBaseModel {
     class Update {
         
         var code = 0
-        var id = 0
-        var text = ""
+        var update: UpdateModel = UpdateModel(JSON())
         
-        convenience required init(json: JSON) {
+        class UpdateModel {
+            required convenience init(_ json: JSON) {
+                self.init()
+            }
+        }
+        
+        class NewMessage: UpdateModel {
+            
+            var message_id = 0
+            var flags = 0
+            var peer_id = 0
+            var timestamp = 0
+            var text = ""
+            
+            required convenience init(_ json: JSON) {
+                self.init()
+                
+                message_id = json[1].intValue
+                flags = json[2].intValue
+                peer_id = json[3].intValue
+                timestamp = json[4].intValue
+                text = json[5].stringValue
+            }
+            
+        }
+        
+        class ReadMessages: UpdateModel {
+            var peer_id = 0
+            var local_id = 0
+            
+            required convenience init(_ json: JSON) {
+                self.init()
+                
+                peer_id = json[1].intValue
+                local_id = json[2].intValue
+            }
+        }
+        
+        required convenience init(json: JSON) {
             self.init()
             
+            print(json)
+            
             code = json[0].intValue
-            id = json[3].intValue
-            text = json[5].stringValue
+            
+            switch code {
+            case 4:
+                update = NewMessage(json)
+            case 6,7:
+                update = ReadMessages(json)
+            default:
+                update = UpdateModel(json)
+            }
         }
         
     }
     
     convenience required init(json: JSON) {
         self.init()
-        
-        print(json)
         
         ts = json["ts"].intValue
         pts = json["pts"].intValue
@@ -115,9 +159,10 @@ class VKMessageModel: DataBaseModel {
         }
     }
     
-    convenience init(text: String, from_id: Int) {
+    convenience init(id: Int, text: String, from_id: Int) {
         self.init()
         
+        self.id = id
         body = text
         self.from_id = from_id
     }

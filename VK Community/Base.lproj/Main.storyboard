@@ -337,7 +337,7 @@
                                             <constraint firstAttribute="height" constant="601" id="s9Q-fQ-LVO"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SenderMessage" id="gsf-yy-Iyl" customClass="MessagesSenderUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SenderMessage" id="gsf-yy-Iyl" customClass="MessagesUITableViewCell" customModule="VK_Community" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gsf-yy-Iyl" id="b3x-2b-6fL">
@@ -372,11 +372,11 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="message" destination="pK3-Do-Zeb" id="M5l-WM-L3r"/>
-                                                    <outlet property="messageBox" destination="YgC-f6-e2b" id="wQB-hM-asS"/>
+                                                    <outlet property="message" destination="pK3-Do-Zeb" id="WIT-ga-OWS"/>
+                                                    <outlet property="messageBox" destination="YgC-f6-e2b" id="2ns-5C-rdu"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMessage" id="Npr-AA-DGY" customClass="MessagesMyUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMessage" id="Npr-AA-DGY" customClass="MessagesUITableViewCell" customModule="VK_Community" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Npr-AA-DGY" id="Ccc-eR-8hl">
@@ -409,8 +409,8 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="message" destination="uD8-0P-C6k" id="eeH-UL-Frk"/>
-                                                    <outlet property="messageBox" destination="xoX-Wn-zud" id="vZA-Bc-UCy"/>
+                                                    <outlet property="message" destination="uD8-0P-C6k" id="K6d-wA-UBc"/>
+                                                    <outlet property="messageBox" destination="xoX-Wn-zud" id="MQl-Gp-uIo"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -422,7 +422,7 @@
                                                 <rect key="frame" x="8" y="5" width="311" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-rz-naM">
                                                 <rect key="frame" x="327" y="9" width="40" height="22"/>

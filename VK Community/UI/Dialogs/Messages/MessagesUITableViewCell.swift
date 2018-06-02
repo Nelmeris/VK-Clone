@@ -8,19 +8,7 @@
 
 import UIKit
 
-class MessagesSenderUITableViewCell: UITableViewCell {
-    
-    @IBOutlet weak var message: UILabel!
-    
-    @IBOutlet weak var messageBox: UIView! {
-        didSet {
-            messageBox.layer.cornerRadius = messageBox.frame.height / 2
-        }
-    }
-    
-}
-
-class MessagesMyUITableViewCell: UITableViewCell {
+class MessagesUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var message: UILabel!
     
