@@ -16,6 +16,8 @@ class ProfileAndSettings: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         VKRequest(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
+            VKUser = response.item
+            
             self.userName.text = response.item!.first_name + " " + response.item!.last_name
             
             let url = URL(string: response.item!.photo_100)

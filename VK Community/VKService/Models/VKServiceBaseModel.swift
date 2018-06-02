@@ -52,3 +52,14 @@ class VKItemModel<Type: DataBaseModel>: VKBaseModel {
     }
     
 }
+
+class VKDataBaseResponseModel<Type: DataBaseModel>: VKBaseModel {
+    
+    var response: Type! = nil
+    
+    required convenience init(json: JSON) {
+        self.init()
+        response = Type(json: json)
+    }
+    
+}

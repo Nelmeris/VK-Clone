@@ -18,6 +18,8 @@ var VKClientID: Int! = nil
 var VKScope: Int! = nil
 var VKAPIVersion: Double! = nil
 
+var VKUser: VKUserModel! = nil
+
 // Получение нового токена
 func VKTokenReceiving() {
     let storyboard = UIStoryboard(name: "VKViews", bundle: Bundle(for: VKAuthorizationUIViewController.self))
@@ -67,7 +69,7 @@ func VKGetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
             }
         }
         
-        return json["response"]
+        return json
         
     case .failure(let error):
         throw VKRequestError.ResponseError(error.localizedDescription)
@@ -82,7 +84,7 @@ func VKRequest<Response: VKBaseModel>(version: String = String(VKAPIVersion), me
         do {
             let json = try VKGetJSONResponse(response)
             
-            let model = Response(json: json)
+            let model = Response(json: json["response"])
             
             completion(model)
         } catch VKRequestError.ResponseError(let error_msg) {
@@ -92,6 +94,18 @@ func VKRequest<Response: VKBaseModel>(version: String = String(VKAPIVersion), me
         } catch VKRequestError.AccessTokenError(let error_msg) {
             print("REQUEST ERROR! " + error_msg)
             VKTokenReceiving()
+        } catch {}
+    }
+}
+
+func VKRequest<Response: VKBaseModel>(url: String, completion: @escaping(Response) -> Void = {_ in}) {
+    Alamofire.request(url).responseData { response in
+        do {
+            let json = try VKGetJSONResponse(response)
+            
+            let model = Response(json: json)
+            
+            completion(model)
         } catch {}
     }
 }

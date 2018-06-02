@@ -27,6 +27,9 @@ class VKDialogModel: DataBaseModel {
     @objc dynamic var photo_100 = ""
     @objc dynamic var photo_200 = ""
     
+    @objc dynamic var online = 0
+    @objc dynamic var online_mobile = 0
+    
     required convenience init(json: JSON) {
         self.init()
         
@@ -35,23 +38,41 @@ class VKDialogModel: DataBaseModel {
         in_read = json["in_read"].intValue
         out_read = json["out_read"].intValue
         
+        title = json["message"]["title"].stringValue
+        users_count = json["message"]["users_count"].intValue
+        admin_id = json["message"]["admin_id"].intValue
+        photo_50 = json["message"]["photo_50"].stringValue
+        photo_100 = json["message"]["photo_100"].stringValue
+        photo_200 = json["message"]["photo_200"].stringValue
+        
         if message.chat_id != 0 {
             id = message.chat_id
             type = "chat"
-            title = json["message"]["title"].stringValue
-            users_count = json["message"]["users_count"].intValue
-            admin_id = json["message"]["admin_id"].intValue
-            photo_50 = json["message"]["photo_50"].stringValue
-            photo_100 = json["message"]["photo_100"].stringValue
-            photo_200 = json["message"]["photo_200"].stringValue
         } else {
-            id = message.id
-            type = "profile"
+            if message.user_id > 0 {
+                id = message.user_id
+                type = "profile"
+            } else {
+                id = -message.user_id
+                type = "group"
+            }
         }
     }
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    override func isEqual (_ object: DataBaseModel) -> Bool {
+        let object = object as! VKDialogModel
+        return (self.id == object.id) &&
+            (self.title == object.title) &&
+            (self.type == object.type) &&
+            (self.photo_100 == object.photo_100) &&
+            (self.online == object.online) &&
+            (self.online_mobile == object.online_mobile) &&
+            (self.message.date == object.message.date) &&
+            (self.message.body == object.message.body)
     }
     
 }

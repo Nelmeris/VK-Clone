@@ -9,10 +9,11 @@
 import RealmSwift
 
 // Сохранение данных в Realm
-func RealmSaveData<Type: DataBaseModel>(_ data: [Type]) {
+func RealmResaveData<Type: DataBaseModel>(_ data: [Type]) {
     do {
         let realm = try Realm()
         realm.beginWrite()
+        realm.delete(realm.objects(Type.self))
         realm.add(data)
         try realm.commitWrite()
     } catch let error {

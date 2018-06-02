@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 import RealmSwift
 
 class FriendsUITableViewController: UITableViewController, UISearchResultsUpdating {
@@ -21,6 +20,10 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        loadFriends()
+    }
+    
+    func loadFriends() {
         VKRequest(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
             let users: Results<VKUserModel> = RealmLoadData()!
             var newUsers = response.items
@@ -28,49 +31,29 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
             self.saveUserPhotos(newUsers: &newUsers, users: users)
             
             RealmUpdateData(newUsers)
+            
+            DispatchQueue.main.async {
+                let users: Results<VKUserModel> = RealmLoadData()!
+                var usersIds: [Int] = []
+                for user in users {
+                    usersIds.append(user.id)
+                }
+                DispatchQueue.global().async {
+                    if usersIds.count != 0 {
+                        for index in 0...usersIds.count - 1 {
+                            VKRequest(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
+                                DispatchQueue.main.async {
+                                    addNewPhotos(user: users[index], newPhotos: response.items)
+                                    
+                                    deleteOldPhotos(user: users[index], newPhotos: response.items)
+                                }
+                            }
+                            sleep(3)
+                        }
+                    }
+                }
+            }
         }
-        
-//        DispatchQueue.global().async {
-//            let users: Results<VKUserModel> = RealmLoadData()!
-//
-//            for index in 0...users.count - 1 {
-//                VKRequest(method: "photos.getAll", parameters: ["owner_id": String(users[index].id)]) { (response: VKItemsModel<VKPhotoModel>) in
-//                    for newPhoto in response.items {
-//                        var flag = false
-//                        for photo in users[index].photos {
-//                            if newPhoto.isEqual(photo) {
-//                                flag = true
-//                                break
-//                            }
-//                        }
-//                        if !flag {
-//                            do {
-//                                let realm = try Realm()
-//                                realm.beginWrite()
-//                                users[index].photos.append(newPhoto)
-//                                try realm.commitWrite()
-//                            } catch let error {
-//                                print(error)
-//                            }
-//                        }
-//                    }
-//
-//                    for photo in users[index].photos {
-//                        var flag = false
-//                        for newPhoto in response.items {
-//                            if photo.isEqual(newPhoto) {
-//                                flag = true
-//                                break
-//                            }
-//                        }
-//                        if !flag {
-//                            RealmDeleteData([photo])
-//                        }
-//                    }
-//                }
-//                sleep(1)
-//            }
-//        }
     }
     
     // Сохранение фото
@@ -104,6 +87,13 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         filteredFriends = friends
         
         PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
+        
+        DispatchQueue.global().async {
+            while true {
+                self.loadFriends()
+                sleep(30)
+            }
+        }
     }
     
     func initSearchController() {
@@ -148,11 +138,9 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         if friend.online == 1 {
             if friend.online_mobile == 1 {
                 cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
-                cell.onlineMobileStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 10
                 cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
             } else {
                 cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
-                cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / 2
                 cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
             }
         } else {
@@ -166,6 +154,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         let viewController = segue.destination as! FriendPhotosUIViewController
         if let indexPath = self.tableView.indexPathForSelectedRow {
             viewController.user = (RealmLoadData()! as Results<VKUserModel>)[indexPath.row]
+            viewController.userId = viewController.user.id
         }
     }
     

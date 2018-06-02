@@ -9,6 +9,18 @@
 import SwiftyJSON
 import RealmSwift
 
+class VKUsersResponseModel: VKBaseModel {
+    
+    var response: [VKUserModel]! = nil
+    
+    required convenience init(json: JSON) {
+        self.init()
+        
+        response = json.map({ VKUserModel(json: $0.1) })
+    }
+    
+}
+
 // Данные пользователя
 class VKUserModel: DataBaseModel {
     

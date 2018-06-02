@@ -13,6 +13,7 @@ import RealmSwift
 class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var user: VKUserModel! = nil
+    var userId: Int! = nil
     
     var notificationToken: NotificationToken!
     
@@ -20,46 +21,24 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        VKRequest(method: "photos.getAll", parameters: ["owner_id": String(user!.id)]) { (response: VKItemsModel<VKPhotoModel>) in
-            self.addNewPhotos(newPhotos: response.items, photos: self.user.photos)
-            
-            self.deleteOldPhotos(newPhotos: response.items, photos: self.user.photos)
-        }
+        loadPhotos()
     }
     
-    func addNewPhotos(newPhotos: [VKPhotoModel], photos: List<VKPhotoModel>) {
-        for newPhoto in newPhotos {
-            var flag = false
-            for photo in photos {
-                if newPhoto.isEqual(photo) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
-                do {
-                    let realm = try Realm()
-                    realm.beginWrite()
-                    self.user.photos.append(newPhoto)
-                    try realm.commitWrite()
-                } catch let error {
-                    print(error)
-                }
+    override func viewDidLoad() {
+        DispatchQueue.global().async {
+            while true {
+                self.loadPhotos()
+                sleep(30)
             }
         }
     }
     
-    func deleteOldPhotos(newPhotos: [VKPhotoModel], photos: List<VKPhotoModel>) {
-        for photo in photos {
-            var flag = false
-            for newPhoto in newPhotos {
-                if photo.isEqual(newPhoto) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
-                RealmDeleteData([photo])
+    func loadPhotos() {
+        VKRequest(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
+            DispatchQueue.main.async {
+                addNewPhotos(user: self.user, newPhotos: response.items)
+                
+                deleteOldPhotos(user: self.user, newPhotos: response.items)
             }
         }
     }
@@ -102,4 +81,45 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
         return cell
     }
     
+}
+
+func addNewPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
+    for newPhoto in newPhotos {
+        var flag = false
+        for photo in user.photos {
+            if newPhoto.isEqual(photo) {
+                flag = true
+                break
+            }
+        }
+        if !flag {
+            addNewPhoto(user, newPhoto)
+        }
+    }
+}
+
+func addNewPhoto(_ user: VKUserModel, _ newPhoto: VKPhotoModel) {
+    do {
+        let realm = try Realm()
+        realm.beginWrite()
+        user.photos.append(newPhoto)
+        try realm.commitWrite()
+    } catch let error {
+        print(error)
+    }
+}
+
+func deleteOldPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
+    for photo in user.photos {
+        var flag = false
+        for newPhoto in newPhotos {
+            if photo.isEqual(newPhoto) {
+                flag = true
+                break
+            }
+        }
+        if !flag {
+            RealmDeleteData([photo])
+        }
+    }
 }

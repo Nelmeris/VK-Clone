@@ -8,6 +8,18 @@
 
 import SwiftyJSON
 
+class VKGroupsResponseModel: VKBaseModel {
+    
+    var response: [VKGroupModel]! = nil
+    
+    required convenience init(json: JSON) {
+        self.init()
+        
+        response = json.map({ VKGroupModel(json: $0.1) })
+    }
+    
+}
+
 // Данные группы
 class VKGroupModel: DataBaseModel {
     

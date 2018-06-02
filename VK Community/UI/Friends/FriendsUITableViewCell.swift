@@ -14,9 +14,22 @@ class FriendsUITableViewCell: UITableViewCell {
     @IBOutlet weak var firstName: UILabel!
     @IBOutlet weak var lastName: UILabel!
     
-    @IBOutlet weak var photo: UIImageView!
+    @IBOutlet weak var photo: UIImageView! {
+        didSet {
+            photo.layer.cornerRadius = photo.frame.height / 2
+        }
+    }
     
-    @IBOutlet weak var onlineStatusIcon: UIImageView!
-    @IBOutlet weak var onlineMobileStatusIcon: UIImageView!
+    @IBOutlet weak var onlineStatusIcon: UIImageView! {
+        didSet {
+            onlineStatusIcon.layer.cornerRadius = onlineStatusIcon.frame.height / 2
+        }
+    }
+    
+    @IBOutlet weak var onlineMobileStatusIcon: UIImageView! {
+        didSet {
+            onlineMobileStatusIcon.layer.cornerRadius = onlineMobileStatusIcon.frame.height / 10
+        }
+    }
     
 }

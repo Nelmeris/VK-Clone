@@ -15,6 +15,19 @@ class DialogsUITableViewCell: UITableViewCell {
             photo.layer.cornerRadius = photo.frame.height / 2
         }
     }
+    
+    @IBOutlet weak var onlineStatusIcon: UIImageView! {
+        didSet {
+            onlineStatusIcon.layer.cornerRadius = onlineStatusIcon.frame.height / 2
+        }
+    }
+    
+    @IBOutlet weak var onlineMobileStatusIcon: UIImageView! {
+        didSet {
+            onlineMobileStatusIcon.layer.cornerRadius = onlineMobileStatusIcon.frame.height / 10
+        }
+    }
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
     @IBOutlet weak var lastMessageDate: UILabel!
@@ -26,12 +39,11 @@ class DialogsUITableViewCell: UITableViewCell {
         name.text = ""
         lastMessage.text = ""
         lastMessageDate.text = ""
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
-        photo.layer.cornerRadius = photo.frame.height / 2
+        onlineMobileStatusIcon.image = nil
+        onlineStatusIcon.image = nil
+        onlineMobileStatusIcon.backgroundColor = UIColor.clear
+        onlineStatusIcon.backgroundColor = UIColor.clear
     }
     
 }

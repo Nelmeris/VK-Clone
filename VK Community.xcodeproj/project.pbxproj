@@ -14,6 +14,8 @@
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
 		F628172B20BD89A6002185C4 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628172A20BD89A6002185C4 /* Methods.swift */; };
 		F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9120C07D990037A767 /* VKServiceSizes.swift */; };
+		F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */; };
+		F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */; };
 		F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */; };
@@ -66,6 +68,8 @@
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F628172A20BD89A6002185C4 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
 		F62B3B9120C07D990037A767 /* VKServiceSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceSizes.swift; sourceTree = "<group>"; };
+		F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUIViewController.swift; sourceTree = "<group>"; };
+		F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewController.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeedModel.swift; sourceTree = "<group>"; };
@@ -185,6 +189,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		F62B3B9320C168820037A767 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */,
+				F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		F64C2B7D20BC725100741AD9 /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +212,7 @@
 			children = (
 				F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */,
 				F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */,
+				F62B3B9320C168820037A767 /* Messages */,
 			);
 			path = Dialogs;
 			sourceTree = "<group>";
@@ -401,6 +415,7 @@
 			files = (
 				F688B0C320B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift in Sources */,
 				F672784D209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift in Sources */,
+				F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendsUITableViewCell.swift in Sources */,
 				F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */,
 				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
@@ -421,6 +436,7 @@
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,
+				F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */,
 				F628172B20BD89A6002185C4 /* Methods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */,
 				F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */,
