@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class VKGroupsResponseModel: VKBaseModel {
     
-    var response: [VKGroupModel]! = nil
+    var response: [VKGroupModel] = []
     
     required convenience init(json: JSON) {
         self.init()
@@ -20,7 +20,6 @@ class VKGroupsResponseModel: VKBaseModel {
     
 }
 
-// Данные группы
 class VKGroupModel: DataBaseModel {
     
     @objc dynamic var id = 0

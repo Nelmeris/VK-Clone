@@ -16,6 +16,7 @@
 		F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9120C07D990037A767 /* VKServiceSizes.swift */; };
 		F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */; };
 		F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */; };
+		F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6303BC020C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift */; };
 		F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */; };
@@ -26,6 +27,8 @@
 		F67266E7209B6F300086B1B7 /* FriendsUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */; };
 		F672784D209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */; };
 		F67313CD2098C28900AC0A1F /* FriendsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */; };
+		F673356320C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F673356220C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift */; };
+		F673356520C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */; };
 		F688B0C320B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */; };
 		F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */; };
 		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
@@ -40,6 +43,15 @@
 		F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */; };
 		F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */; };
 		F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B48B5C20B6358100D908F9 /* DataPairs.swift */; };
+		F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C420C31CD80062CEED /* VKTokenService.swift */; };
+		F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C720C325820062CEED /* MainUITabBarController.swift */; };
+		F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */; };
+		F6D634D020C354660062CEED /* VKMessageUpdateCode4Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634CF20C354660062CEED /* VKMessageUpdateCode4Processing.swift */; };
+		F6D634D220C354D80062CEED /* VKMessageUpdateCode7Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D120C354D80062CEED /* VKMessageUpdateCode7Processing.swift */; };
+		F6D634D520C356FC0062CEED /* VKMessageLongPollServerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D420C356FC0062CEED /* VKMessageLongPollServerModel.swift */; };
+		F6D634D720C357310062CEED /* VKMessageUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */; };
+		F6D634DA20C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */; };
+		F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */; };
 		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +82,7 @@
 		F62B3B9120C07D990037A767 /* VKServiceSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceSizes.swift; sourceTree = "<group>"; };
 		F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUIViewController.swift; sourceTree = "<group>"; };
 		F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITableViewCell.swift; sourceTree = "<group>"; };
+		F6303BC020C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateCode6Processing.swift; sourceTree = "<group>"; };
 		F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewController.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeedModel.swift; sourceTree = "<group>"; };
@@ -80,6 +93,8 @@
 		F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsUITableViewCell.swift; sourceTree = "<group>"; };
 		F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosUICollectionViewCell.swift; sourceTree = "<group>"; };
 		F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsUITableViewController.swift; sourceTree = "<group>"; };
+		F673356220C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VKMessageUpdateCode8&9Processing.swift"; sourceTree = "<group>"; };
+		F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateOnlineStatusChangedModel.swift; sourceTree = "<group>"; };
 		F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorizationUIViewController.swift; sourceTree = "<group>"; };
 		F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceGroupModel.swift; sourceTree = "<group>"; };
 		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
@@ -94,6 +109,15 @@
 		F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewController.swift; sourceTree = "<group>"; };
 		F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewCell.swift; sourceTree = "<group>"; };
 		F6B48B5C20B6358100D908F9 /* DataPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPairs.swift; sourceTree = "<group>"; };
+		F6D634C420C31CD80062CEED /* VKTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKTokenService.swift; sourceTree = "<group>"; };
+		F6D634C720C325820062CEED /* MainUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUITabBarController.swift; sourceTree = "<group>"; };
+		F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageLongPollService.swift; sourceTree = "<group>"; };
+		F6D634CF20C354660062CEED /* VKMessageUpdateCode4Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateCode4Processing.swift; sourceTree = "<group>"; };
+		F6D634D120C354D80062CEED /* VKMessageUpdateCode7Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateCode7Processing.swift; sourceTree = "<group>"; };
+		F6D634D420C356FC0062CEED /* VKMessageLongPollServerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageLongPollServerModel.swift; sourceTree = "<group>"; };
+		F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateModel.swift; sourceTree = "<group>"; };
+		F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateNewMessageModel.swift; sourceTree = "<group>"; };
+		F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateReadMessagesModel.swift; sourceTree = "<group>"; };
 		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +180,7 @@
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
 				F628172A20BD89A6002185C4 /* Methods.swift */,
+				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
 			);
 			path = "VK Community";
 			sourceTree = "<group>";
@@ -230,9 +255,10 @@
 		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
 			isa = PBXGroup;
 			children = (
+				F6D634C620C31CDC0062CEED /* TokenService */,
+				F6D634C920C346760062CEED /* MessageLongPollService */,
 				F688B0B920B1DBB4009BB1B8 /* Models */,
 				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
-				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */,
 				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
 			);
 			path = VKService;
@@ -287,6 +313,56 @@
 				F62B3B8820C04B040037A767 /* FriendPhotos */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		F6D634C620C31CDC0062CEED /* TokenService */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634C420C31CD80062CEED /* VKTokenService.swift */,
+				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */,
+			);
+			path = TokenService;
+			sourceTree = "<group>";
+		};
+		F6D634C920C346760062CEED /* MessageLongPollService */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634D320C356E20062CEED /* Models */,
+				F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */,
+				F6D634CE20C354250062CEED /* UpdateProcessingService */,
+			);
+			path = MessageLongPollService;
+			sourceTree = "<group>";
+		};
+		F6D634CE20C354250062CEED /* UpdateProcessingService */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634CF20C354660062CEED /* VKMessageUpdateCode4Processing.swift */,
+				F6303BC020C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift */,
+				F6D634D120C354D80062CEED /* VKMessageUpdateCode7Processing.swift */,
+				F673356220C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift */,
+			);
+			path = UpdateProcessingService;
+			sourceTree = "<group>";
+		};
+		F6D634D320C356E20062CEED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634D420C356FC0062CEED /* VKMessageLongPollServerModel.swift */,
+				F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */,
+				F6D634D820C357540062CEED /* Updates */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6D634D820C357540062CEED /* Updates */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */,
+				F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */,
+				F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */,
+			);
+			path = Updates;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,15 +491,20 @@
 			files = (
 				F688B0C320B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift in Sources */,
 				F672784D209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift in Sources */,
+				F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */,
 				F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendsUITableViewCell.swift in Sources */,
 				F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */,
+				F6D634D020C354660062CEED /* VKMessageUpdateCode4Processing.swift in Sources */,
 				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
 				F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */,
+				F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */,
 				F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */,
 				F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */,
+				F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendsUITableViewController.swift in Sources */,
+				F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */,
 				F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */,
 				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
 				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,
@@ -434,14 +515,21 @@
 				F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */,
 				F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
+				F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,
 				F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */,
 				F628172B20BD89A6002185C4 /* Methods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */,
 				F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */,
+				F673356320C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift in Sources */,
+				F6D634D520C356FC0062CEED /* VKMessageLongPollServerModel.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupsUITableViewController.swift in Sources */,
+				F6D634D220C354D80062CEED /* VKMessageUpdateCode7Processing.swift in Sources */,
 				F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */,
+				F673356520C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift in Sources */,
+				F6D634DA20C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift in Sources */,
+				F6D634D720C357310062CEED /* VKMessageUpdateModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

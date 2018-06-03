@@ -9,107 +9,87 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import Keychain
 import RealmSwift
 
-let VKScheme = "https"
-let VKHost = "api.vk.com/method/"
-var VKClientID: Int! = nil
-var VKScope: Int! = nil
-var VKAPIVersion: Double! = nil
-
-var VKUser: VKUserModel! = nil
-
-// Получение нового токена
-func VKTokenReceiving() {
-    let storyboard = UIStoryboard(name: "VKViews", bundle: Bundle(for: VKAuthorizationUIViewController.self))
-    let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
-    DispatchQueue.main.async {
-        getActiveViewController().present(viewController, animated: true, completion: nil)
-    }
-}
-
-// Проверка существования токена
-func VKTokenIsExist() -> Bool {
-    return Keychain.load("token") != nil
-}
-
-// Создание URL запроса
-func VKRequestURL(_ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
-    guard VKTokenIsExist() else {
-        VKTokenReceiving()
-        return nil
-    }
+class VKService {
     
-    let requestURL = VKScheme + "://" + VKHost + method
+    static let scheme = "https"
+    static let host = "api.vk.com/method/"
+    static let clientId = 6472660
+    static let scope = 2 + 4 + 8192 + 262144 + 4096
+    static let apiVersion = 5.78
     
-    var requestParameters = parameters
-    requestParameters["access_token"] = Keychain.load("token")
-    requestParameters["v"] = version
+    static var user: VKUserModel!
     
-    return (requestURL, requestParameters)
-}
-
-enum VKRequestError: Error {
-    case ResponseError(String)
-    case URLError(String)
-    case AccessTokenError(String)
-}
-
-// Преобразование Data в JSON
-func VKGetJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
-    switch response.result {
-    case .success(let value):
-        let json = try! JSON(data: value)
+    static func getRequestUrl(_ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
+        let requestURL = VKService.scheme + "://" + VKService.host + method
         
-        if let error = json["error"].dictionary {
-            let error_msg = error["error_msg"]!.stringValue
-            if error_msg.range(of: "token") != nil || error_msg.range(of: "access") != nil {
-                throw VKRequestError.AccessTokenError(error_msg)
-            } else {
-                throw VKRequestError.URLError(error_msg)
+        var requestParameters = parameters
+        requestParameters["access_token"] = VKTokenService.getToken()
+        requestParameters["v"] = version
+        
+        return (requestURL, requestParameters)
+    }
+    
+    enum RequestError: Error {
+        case ResponseError(String)
+        case URLError(String)
+        case AccessTokenError(String)
+    }
+    
+    static func getJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
+        switch response.result {
+        case .success(let value):
+            let json = try! JSON(data: value)
+            
+            if let error = json["error"].dictionary {
+                let error_msg = error["error_msg"]!.stringValue
+                if error_msg.range(of: "token") != nil || error_msg.range(of: "access") != nil {
+                    throw RequestError.AccessTokenError(error_msg)
+                } else {
+                    throw RequestError.URLError(error_msg)
+                }
             }
+            
+            return json
+            
+        case .failure(let error):
+            throw RequestError.ResponseError(error.localizedDescription)
         }
-        
-        return json
-        
-    case .failure(let error):
-        throw VKRequestError.ResponseError(error.localizedDescription)
     }
-}
-
-// Выполнение запроса
-func VKRequest<Response: VKBaseModel>(version: String = String(VKAPIVersion), method: String, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
-    guard let url = VKRequestURL(method, version, parameters) else { return }
     
-    Alamofire.request(url.url, parameters: url.parameters).responseData { response in
-        DispatchQueue.global().async {
+    static func request<Response: VKBaseModel>(version: String = String(VKService.apiVersion), method: String, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
+        guard let url = getRequestUrl(method, version, parameters) else { return }
+        
+        Alamofire.request(url.url, parameters: url.parameters).responseData(queue: DispatchQueue.global()){ response in
             do {
-                let json = try VKGetJSONResponse(response)
+                let json = try getJSONResponse(response)
                 
                 let model = Response(json: json["response"])
                 
                 completion(model)
-            } catch VKRequestError.ResponseError(let error_msg) {
+            } catch RequestError.ResponseError(let error_msg) {
                 print("REQUEST ERROR! " + error_msg)
-            } catch VKRequestError.URLError(let error_msg) {
+            } catch RequestError.URLError(let error_msg) {
                 print("REQUEST ERROR! " + error_msg)
-            } catch VKRequestError.AccessTokenError(let error_msg) {
+            } catch RequestError.AccessTokenError(let error_msg) {
                 print("REQUEST ERROR! " + error_msg)
-                VKTokenReceiving()
+                VKTokenService.tokenReceiving()
+            } catch {}
+        }
+        
+    }
+    
+    static func request<Response: VKBaseModel>(url: String, completion: @escaping(Response) -> Void = {_ in}) {
+        Alamofire.request(url).responseData(queue: DispatchQueue.global()) { response in
+            do {
+                let json = try getJSONResponse(response)
+                
+                let model = Response(json: json)
+                
+                completion(model)
             } catch {}
         }
     }
-}
-
-func VKRequest<Response: VKBaseModel>(url: String, completion: @escaping(Response) -> Void = {_ in}) {
-    Alamofire.request(url).responseData { response in
-        do {
-            let json = try VKGetJSONResponse(response)
-            
-            let model = Response(json: json)
-            
-            completion(model)
-        } catch {}
-    }
+    
 }

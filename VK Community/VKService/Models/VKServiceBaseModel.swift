@@ -20,7 +20,7 @@ class VKBaseModel {
 
 class VKResponseModel<Type: VKBaseModel>: VKBaseModel {
     
-    var response: Type! = nil
+    var response: Type!
     
     required convenience init(json: JSON) {
         self.init()
@@ -44,7 +44,7 @@ class VKItemsModel<Type: DataBaseModel>: VKBaseModel {
 
 class VKItemModel<Type: DataBaseModel>: VKBaseModel {
     
-    var item: Type! = nil
+    var item: Type!
     
     required convenience init(json: JSON) {
         self.init()
@@ -55,7 +55,7 @@ class VKItemModel<Type: DataBaseModel>: VKBaseModel {
 
 class VKDataBaseResponseModel<Type: DataBaseModel>: VKBaseModel {
     
-    var response: Type! = nil
+    var response: Type!
     
     required convenience init(json: JSON) {
         self.init()

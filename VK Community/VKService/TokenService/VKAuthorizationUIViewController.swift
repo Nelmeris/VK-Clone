@@ -31,12 +31,12 @@ class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
         urlComponents.host = "oauth.vk.com"
         urlComponents.path = "/authorize"
         urlComponents.queryItems = [
-            URLQueryItem(name: "client_id", value: String(VKClientID)),
+            URLQueryItem(name: "client_id", value: String(VKService.clientId)),
             URLQueryItem(name: "display", value: "mobile"),
             URLQueryItem(name: "redirect_url", value: "https://oauth.vk.com/blank.html"),
-            URLQueryItem(name: "scope", value: String(VKScope)),
+            URLQueryItem(name: "scope", value: String(VKService.scope)),
             URLQueryItem(name: "response_type", value: "token"),
-            URLQueryItem(name: "v", value: String(VKAPIVersion))
+            URLQueryItem(name: "v", value: String(VKService.apiVersion))
         ]
         
         return urlComponents.url!

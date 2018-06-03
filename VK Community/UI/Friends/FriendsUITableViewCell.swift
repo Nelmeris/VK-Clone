@@ -32,4 +32,14 @@ class FriendsUITableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        photo.image = #imageLiteral(resourceName: "DefaultUserPhoto")
+        
+        onlineStatusIcon.image = nil
+        onlineStatusIcon.backgroundColor = UIColor.clear
+        
+        onlineMobileStatusIcon.image = nil
+        onlineMobileStatusIcon.backgroundColor = UIColor.clear
+    }
+    
 }

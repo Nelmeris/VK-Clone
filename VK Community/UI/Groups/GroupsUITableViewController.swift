@@ -18,9 +18,9 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
     // Получение данных о группах пользователя
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
-        VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+        VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
             RealmUpdateData(response.items)
         }
     }
@@ -63,13 +63,15 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
         cell.name.text = group.name
         
-        if group.photo_100 != "" {
-            cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
-        } else {
-            cell.photo.image = UIImage(named: "DefaultGroupPhoto")
-        }
+        setGroupPhoto(cell: cell, group: group)
 
         return cell
+    }
+    
+    func setGroupPhoto(cell: GroupsUITableViewCell, group: VKGroupModel) {
+        guard group.photo_100 != "" else { return }
+        
+        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
     }
 
     // Реализация присоединения к выбранной группе
@@ -78,8 +80,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         let index = allGroupsController.tableView.indexPathForSelectedRow!.row
         let group = allGroupsController.groups[index]
         
-        VKRequest(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
-            VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+        VKService.request(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
+            VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
                 RealmUpdateData(response.items)
             }
         }
@@ -93,8 +95,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
             alert.addAction(action)
 
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKRequest(method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)]) { _ in
-                    VKRequest(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
+                VKService.request(method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)]) { _ in
+                    VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
                         RealmUpdateData(response.items)
                     }
                 }
@@ -108,15 +110,17 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        
         guard searchController.searchBar.text != "" else {
             groups = filteredGroups
             tableView.reloadData()
             return
         }
         
-        groups = filteredGroups!.filter("name contains[cd] '\(searchText)'")
+        let searchText = searchController.searchBar.text!
+        
+        let predicate = "name contains[cd] '\(searchText)'"
+        
+        groups = filteredGroups.filter(predicate)
         
         tableView.reloadData()
     }

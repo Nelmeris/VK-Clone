@@ -11,7 +11,7 @@ import RealmSwift
 
 class VKUsersResponseModel: VKBaseModel {
     
-    var response: [VKUserModel]! = nil
+    var response: [VKUserModel] = []
     
     required convenience init(json: JSON) {
         self.init()
@@ -21,7 +21,6 @@ class VKUsersResponseModel: VKBaseModel {
     
 }
 
-// Данные пользователя
 class VKUserModel: DataBaseModel {
     
     @objc dynamic var id = 0

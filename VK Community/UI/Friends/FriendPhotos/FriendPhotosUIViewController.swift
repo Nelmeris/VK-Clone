@@ -12,14 +12,14 @@ import RealmSwift
 
 class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var user: VKUserModel! = nil
-    var userId: Int! = nil
+    var user: VKUserModel!
+    var userId: Int!
     
     var notificationToken: NotificationToken!
     
     // Получение данных о фотографиях пользователя
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
         loadPhotos()
     }
@@ -34,11 +34,11 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func loadPhotos() {
-        VKRequest(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
+        VKService.request(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
             DispatchQueue.main.async {
-                addNewPhotos(user: self.user, newPhotos: response.items)
-                
                 deleteOldPhotos(user: self.user, newPhotos: response.items)
+                
+                addNewPhotos(user: self.user, newPhotos: response.items)
             }
         }
     }

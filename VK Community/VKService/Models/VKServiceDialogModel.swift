@@ -7,8 +7,8 @@
 //
 
 import SwiftyJSON
+import RealmSwift
 
-// Данные диалога
 class VKDialogModel: DataBaseModel {
     
     @objc dynamic var id = 0
@@ -16,7 +16,9 @@ class VKDialogModel: DataBaseModel {
     @objc dynamic var title = ""
     
     @objc dynamic var unread = 0
-    @objc dynamic var message: VKMessageModel! = nil
+    @objc dynamic var message: VKMessageModel!
+    
+    var messages = List<VKMessageModel>()
     
     @objc dynamic var in_read = 0
     @objc dynamic var out_read = 0
@@ -46,7 +48,7 @@ class VKDialogModel: DataBaseModel {
         photo_200 = json["message"]["photo_200"].stringValue
         
         if message.chat_id != 0 {
-            id = message.chat_id
+            id = 2000000000 + message.chat_id
             type = "chat"
         } else {
             if message.user_id > 0 {

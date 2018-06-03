@@ -11,13 +11,13 @@ import SDWebImage
 
 class NewsFeedUITableViewController: UITableViewController {
     
-    var news: VKNewsListModel! = nil
+    var news: VKNewsListModel!
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
         DispatchQueue.global().async {
-            VKRequest(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsListModel>) in
+            VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsListModel>) in
                 self.news = response.response
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -29,8 +29,10 @@ class NewsFeedUITableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        VKRequest(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
-            VKUser = response.item
+        DispatchQueue.global().async {
+            VKService.request(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
+                VKService.user = response.item
+            }
         }
     }
     

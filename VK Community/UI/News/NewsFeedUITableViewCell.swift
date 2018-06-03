@@ -39,12 +39,12 @@ class NewsFeedUITableViewCell: UITableViewCell {
             likesIcon.image = UIImage(named: "LikesOffIcon")
             isLike = false
             likes -= 1
-            VKRequest(method: "likes.delete", parameters: parameters)
+            VKService.request(method: "likes.delete", parameters: parameters)
         } else {
             likesIcon.image = UIImage(named: "LikesIcon")
             isLike = true
             likes += 1
-            VKRequest(method: "likes.add", parameters: parameters)
+            VKService.request(method: "likes.add", parameters: parameters)
         }
             
         likesCount.text = getShortCount(likes)

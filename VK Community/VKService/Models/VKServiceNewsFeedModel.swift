@@ -33,9 +33,9 @@ class VKNewsModel {
     var post_type = ""
     var text = ""
     
-    var attachments: [Attachments]! = nil
+    var attachments: [Attachments] = []
     
-    var likes: Likes! = nil
+    var likes: Likes!
     class Likes {
         
         var count = 0
@@ -48,7 +48,7 @@ class VKNewsModel {
         
     }
     
-    var reposts: Reposts! = nil
+    var reposts: Reposts!
     class Reposts {
         
         var count = 0
@@ -61,7 +61,7 @@ class VKNewsModel {
         
     }
     
-    var comments: Comments! = nil
+    var comments: Comments!
     class Comments {
         
         var count = 0
@@ -79,12 +79,12 @@ class VKNewsModel {
     class Attachments {
         
         var type = ""
-        var photo: Photo? = nil
+        var photo: Photo?
         
         class Photo {
             
             var id = 0
-            var sizes: [VKSizes]! = nil
+            var sizes: [VKSizes] = []
             
             init(_ json: JSON) {
                 id = json["id"].intValue

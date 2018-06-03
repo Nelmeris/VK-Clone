@@ -18,13 +18,13 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
         loadFriends()
     }
     
     func loadFriends() {
-        VKRequest(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
+        VKService.request(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
             let users: Results<VKUserModel> = RealmLoadData()!
             var newUsers = response.items
             
@@ -41,7 +41,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
                 DispatchQueue.global().async {
                     if usersIds.count != 0 {
                         for index in 0...usersIds.count - 1 {
-                            VKRequest(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
+                            VKService.request(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
                                 DispatchQueue.main.async {
                                     addNewPhotos(user: users[index], newPhotos: response.items)
                                     
@@ -127,25 +127,20 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     }
     
     func setUserPhoto(cell: FriendsUITableViewCell, friend: VKUserModel) {
-        if friend.photo_100 != "" {
-            cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
-        } else {
-            cell.photo.image = UIImage(named: "DefaultUserPhoto")
-        }
+        guard friend.photo_100 != "" else { return }
+        
+        cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
     }
     
     func setStatusIcon(cell: FriendsUITableViewCell, friend: VKUserModel) {
-        if friend.online == 1 {
-            if friend.online_mobile == 1 {
-                cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
-                cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
-            } else {
-                cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
-                cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
-            }
+        guard friend.online == 1 else { return }
+        
+        if friend.online_mobile == 1 {
+            cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
+            cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
         } else {
-            cell.onlineStatusIcon.image = nil
-            cell.onlineStatusIcon.backgroundColor = UIColor.clear
+            cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
+            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
         }
     }
     
@@ -160,20 +155,20 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        let array = searchText.components(separatedBy: " ")
-        
         guard searchController.searchBar.text != "" else {
             friends = filteredFriends
             tableView.reloadData()
             return
         }
         
-        if array.count > 1 && array[1] != "" {
-            friends = filteredFriends.filter("(first_name CONTAINS[cd] '\(array[0])' AND last_name CONTAINS[cd] '\(array[1])') OR (first_name CONTAINS[cd] '\(array[1])' AND last_name CONTAINS[cd] '\(array[0])')")
-        } else {
-            friends = filteredFriends.filter("first_name CONTAINS[cd] '\(array[0])' OR last_name CONTAINS[cd] '\(array[0])'")
-        }
+        let searchText = searchController.searchBar.text!
+        let array = searchText.components(separatedBy: " ")
+        
+        let predicate = array.count > 1 && array[1] != "" ?
+            "(first_name CONTAINS[cd] '\(array[0])' AND last_name CONTAINS[cd] '\(array[1])') OR (first_name CONTAINS[cd] '\(array[1])' AND last_name CONTAINS[cd] '\(array[0])')" :
+            "first_name CONTAINS[cd] '\(array[0])' OR last_name CONTAINS[cd] '\(array[0])'"
+        
+        friends = filteredFriends.filter(predicate)
         
         tableView.reloadData()
     }

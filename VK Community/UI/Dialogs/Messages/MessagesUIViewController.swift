@@ -11,64 +11,77 @@ import RealmSwift
 
 class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
-    var dialog: VKDialogModel! = nil
-    var dialogId: Int! = nil
+    var dialog: VKDialogModel!
+    var dialogId: Int!
     
-    var messages: [VKMessageModel] = []
-    var in_read = 0
-    var out_read = 0
+    var notificationToken: NotificationToken!
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            
+            PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        switch dialog.type {
-        case "profile":
-            dialogId = dialog.id
-        case "chat":
-            dialogId = 2000000000 + dialog.id
-        case "group":
-            dialogId = -dialog.id
-        default: break
-        }
+        dialogId = dialog.type == "group" ? -dialog.id : dialog.id
         
-        VKRequest(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId)]) { (response: VKResponseModel<VKMessageResponseModel>) in
-            self.messages = response.response.items
-            self.in_read = response.response.in_read
-            self.out_read = response.response.out_read
+        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId)]) { (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                deleteOldMessages(dialog: self.dialog, newMessages: response.response.items)
+                
+                addNewMessages(dialog: self.dialog, newMessages: response.response.items)
+                
+                do {
+                    let realm = try Realm()
+                    realm.beginWrite()
+                    self.dialog.in_read = response.response.in_read
+                    self.dialog.out_read = response.response.out_read
+                    try realm.commitWrite()
+                } catch let error {
+                    print(error)
+                }
             }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return dialog.messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+        let message = dialog.messages[indexPath.row]
         let cell: MessagesUITableViewCell
         
-        if message.from_id == VKUser.id {
-            cell = tableView.dequeueReusableCell(withIdentifier: "MyMessage") as! MessagesUITableViewCell
-        } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: "SenderMessage") as! MessagesUITableViewCell
-        }
+        let cellId = message.from_id == VKService.user.id ? "MyMessage" : "SenderMessage"
+        
+        cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! MessagesUITableViewCell
         
         let transform = CGAffineTransform(rotationAngle: 3.1415926)
         cell.transform = transform
         
-        cell.message.text = messages[indexPath.row].body
+        cell.message.text = message.body
         
-        if message.from_id == VKUser.id && out_read < message.id {
+        if message.read_state == 0 {
             cell.backgroundColor = UIColor(red:0.92, green:0.95, blue:1.00, alpha:1.0)
+        }
+        
+        let date = Date(timeIntervalSince1970: Double(message.date))
+        let dateFormatter = getDateFormatter(date)
+        
+        cell.messageDate.text = dateFormatter.string(from: date)
+        
+        if cellId == "SenderMessage" {
+            if (indexPath.row == 0 || dialog.messages[indexPath.row - 1].from_id != message.from_id) {
+                let photo = dialog.type == "chat" ? message.photo_100 : dialog.photo_100
+                cell.senderPhoto.sd_setImage(with: URL(string: photo), completed: nil)
+            } else {
+                cell.senderPhoto.image = nil
+            }
         }
         
         return cell
@@ -83,28 +96,11 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.title = dialog.title
         
-        VKRequest(method: "messages.getLongPollServer") { (response: VKDataBaseResponseModel<VKMessageLongPollServer>) in
-            let data = [response.response!]
-            RealmResaveData(data)
-            self.setLongPoll(ts: data[0].ts)
-        }
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         let transform = CGAffineTransform(rotationAngle: -3.1415926)
         tableView.transform = transform
-    }
-    
-    func setLongPoll(ts: Int) {
-        let longPollData = (RealmLoadData()! as Results<VKMessageLongPollServer>)[0]
-        VKRequest(url: "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=30&mode=104&version=3") { (response: VKResponseModel<VKUpdateModel>) in
-            self.setLongPoll(ts: response.response.ts)
-            
-            for update in response.response.updates {
-                self.updateProcessing(update)
-            }
-        }
     }
     
     @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
@@ -117,7 +113,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         
-        scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height - 75), animated: true)
+        scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height - 80), animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -140,7 +136,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func sendMessage(_ sender: Any) {
         if message.text != "" {
-            VKRequest(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
+            VKService.request(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
             message.text = ""
         }
     }
@@ -148,33 +144,43 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
 
 
 
-extension MessagesUIViewController {
-    
-    func updateProcessing(_ update: VKUpdateModel.Update) {
-        switch update.code {
-        case 4:
-            
-            let newMessage = update.update as! VKUpdateModel.Update.NewMessage
-            if newMessage.peer_id == self.dialog.id {
-                self.messages.insert(VKMessageModel(id: newMessage.message_id, text: newMessage.text, from_id: newMessage.flags == 35 ? VKUser.id : newMessage.peer_id), at: 0)
-                self.tableView.beginUpdates()
-                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
-                self.tableView.endUpdates()
+func addNewMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {
+    for newMessage in newMessages {
+        var flag = false
+        for message in dialog.messages {
+            if newMessage.isEqual(message) {
+                flag = true
+                break
             }
-            
-        case 7:
-            
-            let readMessages = update.update as! VKUpdateModel.Update.ReadMessages
-            if readMessages.peer_id == self.dialog.id {
-                let messages = self.messages.filter { (message) -> Bool in
-                    return message.id >= self.in_read
-                }
-                self.out_read = readMessages.local_id
-                self.tableView.reloadRows(at: messages.map({ IndexPath(row: messages.index(of: $0)!, section: 0) }), with: .none)
-            }
-            
-        default: break
+        }
+        if !flag {
+            addNewMessage(dialog, newMessage)
         }
     }
-    
+}
+
+func addNewMessage(_ dialog: VKDialogModel, _ newMessage: VKMessageModel) {
+    do {
+        let realm = try Realm()
+        realm.beginWrite()
+        dialog.messages.append(newMessage)
+        try realm.commitWrite()
+    } catch let error {
+        print(error)
+    }
+}
+
+func deleteOldMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {
+    for message in dialog.messages {
+        var flag = false
+        for newMessage in newMessages {
+            if message.isEqual(newMessage) {
+                flag = true
+                break
+            }
+        }
+        if !flag {
+            RealmDeleteData([message])
+        }
+    }
 }

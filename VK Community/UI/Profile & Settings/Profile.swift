@@ -15,13 +15,14 @@ class ProfileAndSettings: UIViewController {
     @IBOutlet weak var userImage: UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
-        VKRequest(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
-            VKUser = response.item
+        VKService.request(method: "users.get", parameters: ["fields" : "photo_100"]) { [weak self] (response: VKItemModel<VKUserModel>) in
+            VKService.user = response.item
             
-            self.userName.text = response.item!.first_name + " " + response.item!.last_name
-            
-            let url = URL(string: response.item!.photo_100)
-            self.userImage.sd_setImage(with: url, completed: nil)
+            DispatchQueue.main.async {
+                self?.userName.text = response.item!.first_name + " " + response.item!.last_name
+                
+                self?.userImage.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
+            }
         }
     }
     

@@ -9,7 +9,7 @@
 import RealmSwift
 import UIKit
 
-func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>) {
+func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>, insertAnimation: UITableViewRowAnimation = .automatic) {
     token = data.observe { (changes: RealmCollectionChange) in
         switch changes {
         case .initial:
@@ -18,7 +18,7 @@ func PairTableAndData<Type: DataBaseModel>(sender: UITableView, token: inout Not
             
         case .update(_, let deletions, let insertions, let modifications):
             sender.beginUpdates()
-            sender.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+            sender.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: insertAnimation)
             sender.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
             sender.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .none)
             sender.endUpdates()

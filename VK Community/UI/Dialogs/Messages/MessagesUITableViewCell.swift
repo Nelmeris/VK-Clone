@@ -18,4 +18,16 @@ class MessagesUITableViewCell: UITableViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        self.backgroundColor = UIColor.clear
+    }
+    
+    @IBOutlet weak var messageDate: UILabel!
+    
+    @IBOutlet weak var senderPhoto: UIImageView! {
+        didSet {
+            senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
+        }
+    }
+    
 }

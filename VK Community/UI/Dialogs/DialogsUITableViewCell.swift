@@ -32,10 +32,21 @@ class DialogsUITableViewCell: UITableViewCell {
     @IBOutlet weak var lastMessage: UILabel!
     @IBOutlet weak var lastMessageDate: UILabel!
     
+    @IBOutlet weak var senderPhoto: UIImageView! {
+        didSet {
+            for constraint in senderPhoto.constraints {
+                if constraint.identifier == "Width" {
+                    constraint.constant = 0
+                }
+            }
+            senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
+        }
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        photo.image = nil
+        photo.image = #imageLiteral(resourceName: "DefaultDialogPhoto")
         name.text = ""
         lastMessage.text = ""
         lastMessageDate.text = ""
@@ -44,6 +55,13 @@ class DialogsUITableViewCell: UITableViewCell {
         onlineStatusIcon.image = nil
         onlineMobileStatusIcon.backgroundColor = UIColor.clear
         onlineStatusIcon.backgroundColor = UIColor.clear
+        
+        for constraint in senderPhoto.constraints {
+            if constraint.identifier == "Width" {
+                constraint.constant = 0
+            }
+        }
+        senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
     }
     
 }

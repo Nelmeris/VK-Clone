@@ -11,13 +11,7 @@ import RealmSwift
 
 class GroupsSearchUITableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var groups = [VKGroupModel]()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
-        groups.removeAll()
-    }
+    var groups: [VKGroupModel] = []
     
     var searchController = UISearchController(searchResultsController: nil)
     
@@ -51,26 +45,34 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         
         cell.name.text = group.name
         
-        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
+        setGroupPhoto(cell, group)
         
         cell.participantsCount.text = getShortCount(group.members_count)
         
         return cell
     }
     
+    func setGroupPhoto(_ cell: GroupsUITableViewCell, _ group: VKGroupModel) {
+        guard group.photo_100 != "" else { return }
+        
+        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
+    }
+    
     // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text!
-        
         guard searchController.searchBar.text != "" else {
             groups.removeAll()
             tableView.reloadData()
             return
         }
         
-        VKRequest(method: "groups.search", parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText.lowercased()]) { [weak self] (response: VKItemsModel<VKGroupModel>) in
+        let searchText = searchController.searchBar.text!
+        
+        VKService.request(method: "groups.search", parameters: ["fields" : "members_count", "sort" : "0", "q" : searchText]) { [weak self] (response: VKItemsModel<VKGroupModel>) in
             self?.groups = response.items
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
     

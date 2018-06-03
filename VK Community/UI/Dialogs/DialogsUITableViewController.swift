@@ -14,13 +14,66 @@ class DialogsUITableViewController: UITableViewController {
     var notificationToken: NotificationToken?
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
         loadDialogs()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.rowHeight = 75
+        
+        let data: Results<VKDialogModel>! = RealmLoadData()
+        
+        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let dialogs: Results<VKDialogModel> = RealmLoadData()!
+        
+        return dialogs.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
+        
+        let date = Date(timeIntervalSince1970: Double(dialog.message.date))
+        let dateFormatter = getDateFormatter(date)
+        
+        cell.lastMessageDate.text = dateFormatter.string(from: date)
+        
+        cell.lastMessage.text = dialog.message.body
+        
+        cell.name.text = dialog.title
+        
+        if dialog.photo_100 != "" {
+            cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
+        }
+        
+        setSenderPhoto(cell: cell, dialog: dialog)
+        
+        setStatusIcon(cell: cell, dialog: dialog)
+        
+        return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination as! MessagesUIViewController
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            viewController.dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
+        }
+    }
+    
+}
+
+
+
+extension DialogsUITableViewController {
+    
     func loadDialogs() {
-        VKRequest(method: "messages.getDialogs", parameters: ["count" : "50"]) { (response: VKItemsModel<VKDialogModel>) in
+        VKService.request(method: "messages.getDialogs", parameters: ["count" : "50"]) { (response: VKItemsModel<VKDialogModel>) in
             
             var dialogs = response.items
             
@@ -49,7 +102,7 @@ class DialogsUITableViewController: UITableViewController {
             }
             groupsIds.removeLast()
             
-            VKRequest(method: "users.get", parameters: ["user_ids" : profilesIds, "fields" : "photo_100,online"]) { (response: VKUsersResponseModel) in
+            VKService.request(method: "users.get", parameters: ["user_ids" : profilesIds, "fields" : "photo_100,online"]) { (response: VKUsersResponseModel) in
                 var newIndex = 0
                 for index in 0...dialogs.count - 1 {
                     if dialogs[index].type == "profile" {
@@ -61,7 +114,7 @@ class DialogsUITableViewController: UITableViewController {
                     }
                 }
                 
-                VKRequest(method: "groups.getById", parameters: ["group_ids" : groupsIds, "fields" : "photo_100"]) { (response: VKGroupsResponseModel) in
+                VKService.request(method: "groups.getById", parameters: ["group_ids" : groupsIds, "fields" : "photo_100"]) { (response: VKGroupsResponseModel) in
                     var newIndex = 0
                     for index in 0...dialogs.count - 1 {
                         if dialogs[index].type == "group" {
@@ -71,6 +124,10 @@ class DialogsUITableViewController: UITableViewController {
                         }
                     }
                     
+                    dialogs = dialogs.sorted { (d1, d2) -> Bool in
+                        return d1.message.date >= d2.message.date
+                    }
+                    
                     RealmUpdateData(dialogs)
                 }
             }
@@ -78,89 +135,55 @@ class DialogsUITableViewController: UITableViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    func setDialogPhoto(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
+        guard dialog.photo_100 != "" else { return }
         
-        tableView.rowHeight = 75
+        cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
+    }
+    
+    func setSenderPhoto(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
         
-        let data: Results<VKDialogModel>! = RealmLoadData()
+        if dialog.type == "chat" || dialog.message.out == 1 {
+            cell.senderPhoto.constraints.filter { c -> Bool in
+                return c.identifier == "Width"
+            }[0].constant = 24
+        }
         
-        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
-        
-        DispatchQueue.global().async {
-            while true {
-                self.loadDialogs()
-                sleep(30)
+        if dialog.type == "chat" {
+            
+            if dialog.message.user_id == VKService.user.id {
+                cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
+            } else {
+                var users: Results<VKUserModel> = RealmLoadData()!
+                users = users.filter("id = \(dialog.message.user_id)")
+                
+                if users.count != 0 {
+                    cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo_100), completed: nil)
+                } else {
+                    cell.senderPhoto.image = #imageLiteral(resourceName: "DefaultUserPhoto")
+                }
             }
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dialogs: Results<VKDialogModel> = RealmLoadData()!
-        
-        return dialogs.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
-        
-        let date = Date(timeIntervalSince1970: Double(dialog.message.date))
-        let dateFormatter = getDateFormatter(date)
-        
-        cell.lastMessageDate.text = dateFormatter.string(from: date)
-        
-        cell.lastMessage.text = dialog.message.body
-        
-        cell.name.text = dialog.title
-        
-        if dialog.photo_100 != "" {
-            cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
+            
         } else {
-            cell.photo.image = UIImage(named: "DefaultDialogPhoto")
+            cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
         }
-        
-        setStatusIcon(cell: cell, dialog: dialog)
-        
-        return cell
+    
     }
     
     func setStatusIcon(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
         if dialog.online == 1 {
             if dialog.online_mobile == 1 {
-                cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
+                cell.onlineMobileStatusIcon.image = #imageLiteral(resourceName: "OnlineMobileIcon")
                 cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
             } else {
-                cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
+                cell.onlineStatusIcon.image = #imageLiteral(resourceName: "OnlineIcon")
                 cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
             }
         } else {
             cell.onlineStatusIcon.image = nil
             cell.onlineStatusIcon.backgroundColor = UIColor.clear
-        }
-    }
-    
-    func getDateFormatter(_ date: Date) -> DateFormatter {
-        let dateFormatter = DateFormatter()
-        
-        switch Calendar.current {
-        case let x where x.component(.day, from: date) == x.component(.day, from: Date()):
-            dateFormatter.dateFormat = "HH:mm"
-        case _ where Date().timeIntervalSince(date) <= 172800:
-            dateFormatter.dateFormat = "вчера"
-        case let x where x.component(.year, from: date) == x.component(.year, from: Date()):
-            dateFormatter.dateFormat = "dd MMM"
-        default:
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-        }
-        
-        return dateFormatter
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let viewController = segue.destination as! MessagesUIViewController
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            viewController.dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
         }
     }
     

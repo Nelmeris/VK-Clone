@@ -9,7 +9,6 @@
 import SwiftyJSON
 import RealmSwift
 
-// Данные фотографии
 class VKPhotoModel: DataBaseModel {
     
     @objc dynamic var id = 0
