@@ -30,17 +30,20 @@ class VKUpdatesModel: VKBaseModel {
             switch code {
             case 4:
                 update = VKUpdateNewMessage(json)
+                
             case 6,7:
                 update = VKUpdateReadMessages(json)
+                
             case 8,9:
                 update = VKUpdateOnlineStatusChanged(json)
+                
             default: break
             }
         }
         
     }
     
-    convenience required init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         
         ts = json["ts"].intValue
@@ -51,7 +54,9 @@ class VKUpdatesModel: VKBaseModel {
 }
 
 class VKBaseUpdateModel {
+    
     required convenience init(_ json: JSON) {
         self.init()
     }
+    
 }

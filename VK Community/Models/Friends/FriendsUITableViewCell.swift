@@ -26,20 +26,11 @@ class FriendsUITableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var onlineMobileStatusIcon: UIImageView! {
-        didSet {
-            onlineMobileStatusIcon.layer.cornerRadius = onlineMobileStatusIcon.frame.height / 10
-        }
-    }
-    
     override func prepareForReuse() {
         photo.image = #imageLiteral(resourceName: "DefaultUserPhoto")
         
         onlineStatusIcon.image = nil
         onlineStatusIcon.backgroundColor = UIColor.clear
-        
-        onlineMobileStatusIcon.image = nil
-        onlineMobileStatusIcon.backgroundColor = UIColor.clear
     }
     
 }

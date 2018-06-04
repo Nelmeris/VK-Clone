@@ -1,6 +1,6 @@
 //
-//  Photo.swift
-//  VKService
+//  VKServicePhotoModel.swift
+//  VK Community
 //
 //  Created by Артем on 11.05.2018.
 //  Copyright © 2018 Nelmeris. All rights reserved.
@@ -9,7 +9,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKPhotoModel: DataBaseModel {
+class VKPhotoModel: RealmModel {
     
     @objc dynamic var id = 0
     var sizes = List<VKSizes>()
@@ -24,7 +24,7 @@ class VKPhotoModel: DataBaseModel {
         }
     }
     
-    override func isEqual (_ object: DataBaseModel) -> Bool {
+    override func isEqual (_ object: RealmModel) -> Bool {
         let object = object as! VKPhotoModel
         
         guard sizes.count == object.sizes.count else {

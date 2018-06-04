@@ -1,5 +1,5 @@
 //
-//  Methods.swift
+//  GlobalMethods.swift
 //  VK Community
 //
 //  Created by Артем on 29.05.2018.
@@ -71,4 +71,11 @@ func getDateFormatter(_ date: Date) -> DateFormatter {
     
     return dateFormatter
     
+}
+
+func getDateString(_ date: Int) -> String {
+    let date = Date(timeIntervalSince1970: Double(date))
+    let dateFormatter = getDateFormatter(date)
+    
+    return dateFormatter.string(from: date)
 }

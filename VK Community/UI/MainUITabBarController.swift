@@ -16,7 +16,7 @@ class MainUITabBarController: UITabBarController {
         
         DispatchQueue.global().async {
             VKMessageLongPollService.loadLongPollData() {
-                let longPollData: Results<VKMessageLongPollServer> = RealmLoadData()!
+                let longPollData: Results<VKMessageLongPollServer> = RealmService.loadData()!
                 VKMessageLongPollService.startLongPoll(ts: longPollData[0].ts)
             }
         }

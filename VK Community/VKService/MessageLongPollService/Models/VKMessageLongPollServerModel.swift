@@ -9,7 +9,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKMessageLongPollServer: DataBaseModel {
+class VKMessageLongPollServer: RealmModel {
     
     @objc dynamic var key = ""
     @objc dynamic var server = ""

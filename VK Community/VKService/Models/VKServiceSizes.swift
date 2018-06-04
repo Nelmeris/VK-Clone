@@ -26,10 +26,10 @@ class VKSizes: Object {
     }
     
     func isEqual (_ object: VKSizes) -> Bool {
-        return (self.type == object.type) &&
-            (self.url == object.url) &&
-            (self.width == object.width) &&
-            (self.height == object.height)
+        return (type == object.type) &&
+            (url == object.url) &&
+            (width == object.width) &&
+            (height == object.height)
     }
     
 }

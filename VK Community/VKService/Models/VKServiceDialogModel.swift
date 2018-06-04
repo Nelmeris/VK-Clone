@@ -9,7 +9,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKDialogModel: DataBaseModel {
+class VKDialogModel: RealmModel {
     
     @objc dynamic var id = 0
     @objc dynamic var type = ""
@@ -65,16 +65,16 @@ class VKDialogModel: DataBaseModel {
         return "id"
     }
     
-    override func isEqual (_ object: DataBaseModel) -> Bool {
+    override func isEqual (_ object: RealmModel) -> Bool {
         let object = object as! VKDialogModel
         return (self.id == object.id) &&
-            (self.title == object.title) &&
-            (self.type == object.type) &&
-            (self.photo_100 == object.photo_100) &&
-            (self.online == object.online) &&
-            (self.online_mobile == object.online_mobile) &&
-            (self.message.date == object.message.date) &&
-            (self.message.body == object.message.body)
+            (title == object.title) &&
+            (type == object.type) &&
+            (photo_100 == object.photo_100) &&
+            (online == object.online) &&
+            (online_mobile == object.online_mobile) &&
+            (message.date == object.message.date) &&
+            (message.body == object.message.body)
     }
     
 }

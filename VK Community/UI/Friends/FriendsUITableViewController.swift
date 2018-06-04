@@ -16,66 +16,14 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     var notificationToken: NotificationToken!
     
-    // Получение данных о друзьях
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         loadFriends()
     }
     
-    func loadFriends() {
-        VKService.request(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
-            let users: Results<VKUserModel> = RealmLoadData()!
-            var newUsers = response.items
-            
-            self.saveUserPhotos(newUsers: &newUsers, users: users)
-            
-            RealmUpdateData(newUsers)
-            
-            DispatchQueue.main.async {
-                let users: Results<VKUserModel> = RealmLoadData()!
-                var usersIds: [Int] = []
-                for user in users {
-                    usersIds.append(user.id)
-                }
-                DispatchQueue.global().async {
-                    if usersIds.count != 0 {
-                        for index in 0...usersIds.count - 1 {
-                            VKService.request(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
-                                DispatchQueue.main.async {
-                                    addNewPhotos(user: users[index], newPhotos: response.items)
-                                    
-                                    deleteOldPhotos(user: users[index], newPhotos: response.items)
-                                }
-                            }
-                            sleep(3)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    // Сохранение фото
-    func saveUserPhotos(newUsers: inout [VKUserModel], users: Results<VKUserModel>) {
-        for newUser in newUsers {
-            let newUserIndex = newUsers.index(of: newUser)!
-            let newUserID = newUser.value(forKey: "id") as! Int
-            for user in users {
-                let userIndex = users.index(of: user)!
-                let userID = user.value(forKey: "id") as! Int
-                
-                if newUserID == userID {
-                    newUsers[newUserIndex].photos = newUsers[userIndex].photos
-                    break
-                }
-            }
-        }
-    }
-    
     var searchController = UISearchController(searchResultsController: nil)
     
-    // Настройки окна
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,10 +31,10 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         
         initSearchController()
         
-        friends = RealmLoadData()!
+        friends = RealmService.loadData()!
         filteredFriends = friends
         
-        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
+        RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
         
         DispatchQueue.global().async {
             while true {
@@ -106,12 +54,10 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         definesPresentationContext = true
     }
     
-    // Получение количества ячеек для друзей
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friends.count
     }
     
-    // Составление ячеек для друзей
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let friend = friends[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsUITableViewCell
@@ -119,41 +65,21 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         cell.firstName.text = friend.first_name
         cell.lastName.text = friend.last_name
         
-        setUserPhoto(cell: cell, friend: friend)
+        setUserPhoto(cell, friend)
         
-        setStatusIcon(cell: cell, friend: friend)
+        setStatusIcon(cell, friend)
         
         return cell
     }
     
-    func setUserPhoto(cell: FriendsUITableViewCell, friend: VKUserModel) {
-        guard friend.photo_100 != "" else { return }
-        
-        cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
-    }
-    
-    func setStatusIcon(cell: FriendsUITableViewCell, friend: VKUserModel) {
-        guard friend.online == 1 else { return }
-        
-        if friend.online_mobile == 1 {
-            cell.onlineMobileStatusIcon.image = UIImage(named: "OnlineMobileIcon")
-            cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
-        } else {
-            cell.onlineStatusIcon.image = UIImage(named: "OnlineIcon")
-            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
-        }
-    }
-    
-    // Передача ID выбранного друга на следующий экран
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! FriendPhotosUIViewController
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            viewController.user = (RealmLoadData()! as Results<VKUserModel>)[indexPath.row]
+            viewController.user = (RealmService.loadData()! as Results<VKUserModel>)[indexPath.row]
             viewController.userId = viewController.user.id
         }
     }
     
-    // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
         guard searchController.searchBar.text != "" else {
             friends = filteredFriends
@@ -171,6 +97,95 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         friends = filteredFriends.filter(predicate)
         
         tableView.reloadData()
+    }
+    
+}
+
+
+
+extension FriendsUITableViewController {
+    
+    func loadFriends() {
+        VKService.request(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
+            let users: Results<VKUserModel> = RealmService.loadData()!
+            var newUsers = response.items
+            
+            self.saveUserPhotos(&newUsers, users)
+            
+            RealmService.updateData(newUsers)
+            
+            DispatchQueue.main.async {
+                let users: Results<VKUserModel> = RealmService.loadData()!
+                var usersIds: [Int] = []
+                for user in users {
+                    usersIds.append(user.id)
+                }
+                DispatchQueue.global().async {
+                    if usersIds.count != 0 {
+                        for index in 0...usersIds.count - 1 {
+                            VKService.request(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
+                                DispatchQueue.main.async {
+                                    FriendPhotosUIViewController.addNewPhotos(user: users[index], newPhotos: response.items)
+                                    
+                                    FriendPhotosUIViewController.deleteOldPhotos(user: users[index], newPhotos: response.items)
+                                }
+                            }
+                            sleep(3)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func saveUserPhotos(_ newUsers: inout [VKUserModel], _ users: Results<VKUserModel>) {
+        for newUser in newUsers {
+            let newUserIndex = newUsers.index(of: newUser)!
+            let newUserID = newUser.value(forKey: "id") as! Int
+            for user in users {
+                let userIndex = users.index(of: user)!
+                let userID = user.value(forKey: "id") as! Int
+                
+                if newUserID == userID {
+                    newUsers[newUserIndex].photos = newUsers[userIndex].photos
+                    break
+                }
+            }
+        }
+    }
+    
+    
+    
+    func setUserPhoto(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
+        guard friend.photo_100 != "" else { return }
+        
+        cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
+    }
+    
+    func setStatusIcon(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
+        if friend.online == 1 {
+            cell.onlineStatusIcon.image = friend.online_mobile == 1 ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
+            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
+            
+            cell.onlineStatusIcon.layer.cornerRadius = friend.online_mobile == 1 ?
+                cell.onlineStatusIcon.frame.height / 10 :
+                cell.onlineStatusIcon.frame.height / 2
+            
+            cell.onlineStatusIcon.constraints.filter { c -> Bool in
+                return c.identifier == "Width"
+                }[0].constant = friend.online_mobile == 1 ?
+                    cell.photo.frame.height / 4.5 :
+                cell.photo.frame.height / 4
+            
+            cell.onlineStatusIcon.constraints.filter { c -> Bool in
+                return c.identifier == "Height"
+                }[0].constant = friend.online_mobile == 1 ?
+                    cell.photo.frame.height / 3.5 :
+                cell.photo.frame.height / 4
+        } else {
+            cell.onlineStatusIcon.image = nil
+            cell.onlineStatusIcon.backgroundColor = UIColor.clear
+        }
     }
     
 }

@@ -27,7 +27,7 @@ class VKMessageResponseModel: VKBaseModel {
     
 }
 
-class VKMessageModel: DataBaseModel {
+class VKMessageModel: RealmModel {
     
     @objc dynamic var id = 0
     @objc dynamic var date = 0
@@ -74,7 +74,7 @@ class VKMessageModel: DataBaseModel {
         self.date = date
     }
     
-    override func isEqual(_ object: DataBaseModel) -> Bool {
+    override func isEqual(_ object: RealmModel) -> Bool {
         let object = object as! VKMessageModel
         return (id == object.id) &&
             (date == object.date) &&

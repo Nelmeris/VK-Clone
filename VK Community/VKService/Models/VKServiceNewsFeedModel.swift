@@ -15,8 +15,9 @@ class VKNewsListModel: VKBaseModel {
     var profiles: [VKUserModel] = []
     var groups: [VKGroupModel] = []
     
-    convenience required init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
+        
         items = json["items"].map({ VKNewsModel(json: $0.1) })
         profiles = json["profiles"].map({ VKUserModel(json: $0.1) })
         groups = json["groups"].map({ VKGroupModel(json: $0.1) })

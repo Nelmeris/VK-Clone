@@ -1,6 +1,6 @@
 //
-//  User.swift
-//  VKService
+//  VKServiceUserModel.swift
+//  VK Community
 //
 //  Created by Артем on 09.05.2018.
 //  Copyright © 2018 Nelmeris. All rights reserved.
@@ -21,7 +21,7 @@ class VKUsersResponseModel: VKBaseModel {
     
 }
 
-class VKUserModel: DataBaseModel {
+class VKUserModel: RealmModel {
     
     @objc dynamic var id = 0
     @objc dynamic var first_name = ""
@@ -34,33 +34,33 @@ class VKUserModel: DataBaseModel {
     
     var photos = List<VKPhotoModel>()
     
-    convenience required init(json: JSON) {
+    required convenience init(json: JSON) {
         self.init()
         
-        self.id = json["id"].intValue
-        self.first_name = json["first_name"].stringValue
-        self.last_name = json["last_name"].stringValue
-        self.photo_50 = json["photo_50"].stringValue
-        self.photo_100 = json["photo_100"].stringValue
-        self.photo_200_orig = json["photo_200_orig"].stringValue
-        self.online = json["online"].intValue
-        self.online_mobile = json["online_mobile"].intValue
+        id = json["id"].intValue
+        first_name = json["first_name"].stringValue
+        last_name = json["last_name"].stringValue
+        photo_50 = json["photo_50"].stringValue
+        photo_100 = json["photo_100"].stringValue
+        photo_200_orig = json["photo_200_orig"].stringValue
+        online = json["online"].intValue
+        online_mobile = json["online_mobile"].intValue
     }
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
-    override func isEqual (_ object: DataBaseModel) -> Bool {
+    override func isEqual (_ object: RealmModel) -> Bool {
         let object = object as! VKUserModel
-        return (self.id == object.id) &&
-            (self.first_name == object.first_name) &&
-            (self.last_name == object.last_name) &&
-            (self.photo_50 == object.photo_50) &&
-            (self.photo_100 == object.photo_100) &&
-            (self.photo_200_orig == object.photo_200_orig) &&
-            (self.online == object.online) &&
-            (self.online_mobile == object.online_mobile)
+        return (id == object.id) &&
+            (first_name == object.first_name) &&
+            (last_name == object.last_name) &&
+            (photo_50 == object.photo_50) &&
+            (photo_100 == object.photo_100) &&
+            (photo_200_orig == object.photo_200_orig) &&
+            (online == object.online) &&
+            (online_mobile == object.online_mobile)
     }
     
 }

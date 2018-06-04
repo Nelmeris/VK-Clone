@@ -36,12 +36,12 @@ class NewsFeedUITableViewCell: UITableViewCell {
         let parameters = ["type" : "post", "item_id" : String(postId), "owner_id" : String(authorId)]
         
         if isLike {
-            likesIcon.image = UIImage(named: "LikesOffIcon")
+            likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
             isLike = false
             likes -= 1
             VKService.request(method: "likes.delete", parameters: parameters)
         } else {
-            likesIcon.image = UIImage(named: "LikesIcon")
+            likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
             isLike = true
             likes += 1
             VKService.request(method: "likes.add", parameters: parameters)
@@ -63,8 +63,8 @@ class NewsFeedUITableViewCell: UITableViewCell {
         postPhoto.constraints[0].constant = 0
         authorPhoto.image = nil
         
-        likesIcon.image = UIImage(named: "LikesOffIcon")
-        commentsIcon.image = UIImage(named: "CommentsIcon")
+        likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
+        commentsIcon.image = #imageLiteral(resourceName: "LikesIcon")
     }
     
 }

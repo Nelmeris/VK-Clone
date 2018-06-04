@@ -11,7 +11,7 @@ import RealmSwift
 
 class DialogsUITableViewController: UITableViewController {
     
-    var notificationToken: NotificationToken?
+    var notificationToken: NotificationToken!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,37 +24,28 @@ class DialogsUITableViewController: UITableViewController {
         
         tableView.rowHeight = 75
         
-        let data: Results<VKDialogModel>! = RealmLoadData()
+        let data: Results<VKDialogModel>! = RealmService.loadData()
         
-        PairTableAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
+        RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dialogs: Results<VKDialogModel> = RealmLoadData()!
+        let dialogs: Results<VKDialogModel> = RealmService.loadData()!
         
         return dialogs.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
+        let dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
         
-        let date = Date(timeIntervalSince1970: Double(dialog.message.date))
-        let dateFormatter = getDateFormatter(date)
-        
-        cell.lastMessageDate.text = dateFormatter.string(from: date)
-        
+        cell.lastMessageDate.text = getDateString(dialog.message.date)
         cell.lastMessage.text = dialog.message.body
-        
         cell.name.text = dialog.title
         
-        if dialog.photo_100 != "" {
-            cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
-        }
-        
-        setSenderPhoto(cell: cell, dialog: dialog)
-        
-        setStatusIcon(cell: cell, dialog: dialog)
+        setDialogPhoto(cell,  dialog)
+        setSenderPhoto(cell,  dialog)
+        setStatusIcon(cell,  dialog)
         
         return cell
     }
@@ -62,7 +53,7 @@ class DialogsUITableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! MessagesUIViewController
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            viewController.dialog = (RealmLoadData()! as Results<VKDialogModel>)[indexPath.row]
+            viewController.dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
         }
     }
     
@@ -128,7 +119,7 @@ extension DialogsUITableViewController {
                         return d1.message.date >= d2.message.date
                     }
                     
-                    RealmUpdateData(dialogs)
+                    RealmService.updateData(dialogs)
                 }
             }
             
@@ -137,13 +128,13 @@ extension DialogsUITableViewController {
     
     
     
-    func setDialogPhoto(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
+    func setDialogPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         guard dialog.photo_100 != "" else { return }
         
         cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
     }
     
-    func setSenderPhoto(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
+    func setSenderPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         
         if dialog.type == "chat" || dialog.message.out == 1 {
             cell.senderPhoto.constraints.filter { c -> Bool in
@@ -156,7 +147,7 @@ extension DialogsUITableViewController {
             if dialog.message.user_id == VKService.user.id {
                 cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
             } else {
-                var users: Results<VKUserModel> = RealmLoadData()!
+                var users: Results<VKUserModel> = RealmService.loadData()!
                 users = users.filter("id = \(dialog.message.user_id)")
                 
                 if users.count != 0 {
@@ -172,15 +163,26 @@ extension DialogsUITableViewController {
     
     }
     
-    func setStatusIcon(cell: DialogsUITableViewCell, dialog: VKDialogModel) {
+    func setStatusIcon(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         if dialog.online == 1 {
-            if dialog.online_mobile == 1 {
-                cell.onlineMobileStatusIcon.image = #imageLiteral(resourceName: "OnlineMobileIcon")
-                cell.onlineMobileStatusIcon.backgroundColor = tableView.backgroundColor
-            } else {
-                cell.onlineStatusIcon.image = #imageLiteral(resourceName: "OnlineIcon")
-                cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
-            }
+            cell.onlineStatusIcon.image = dialog.online_mobile == 1 ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
+            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
+            
+            cell.onlineStatusIcon.layer.cornerRadius = dialog.online_mobile == 1 ?
+                cell.onlineStatusIcon.frame.height / 10 :
+                cell.onlineStatusIcon.frame.height / 2
+            
+            cell.onlineStatusIcon.constraints.filter { c -> Bool in
+                return c.identifier == "Width"
+                }[0].constant = dialog.online_mobile == 1 ?
+                    cell.photo.frame.height / 4.5 :
+                    cell.photo.frame.height / 4
+            
+            cell.onlineStatusIcon.constraints.filter { c -> Bool in
+                return c.identifier == "Height"
+                }[0].constant = dialog.online_mobile == 1 ?
+                    cell.photo.frame.height / 3.5 :
+                    cell.photo.frame.height / 4
         } else {
             cell.onlineStatusIcon.image = nil
             cell.onlineStatusIcon.backgroundColor = UIColor.clear

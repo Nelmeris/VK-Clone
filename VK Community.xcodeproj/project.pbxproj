@@ -12,7 +12,7 @@
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
 		F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */; };
-		F628172B20BD89A6002185C4 /* Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628172A20BD89A6002185C4 /* Methods.swift */; };
+		F628172B20BD89A6002185C4 /* GlobalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = F628172A20BD89A6002185C4 /* GlobalMethods.swift */; };
 		F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9120C07D990037A767 /* VKServiceSizes.swift */; };
 		F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */; };
 		F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */; };
@@ -34,7 +34,7 @@
 		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
 		F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */; };
 		F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */; };
-		F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */; };
+		F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */; };
 		F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BF20B1DBB4009BB1B8 /* VKService.swift */; };
 		F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */; };
 		F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */; };
@@ -42,7 +42,7 @@
 		F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */; };
 		F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */; };
 		F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */; };
-		F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B48B5C20B6358100D908F9 /* DataPairs.swift */; };
+		F6B48B5D20B6358100D908F9 /* RealmDataPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */; };
 		F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C420C31CD80062CEED /* VKTokenService.swift */; };
 		F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C720C325820062CEED /* MainUITabBarController.swift */; };
 		F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */; };
@@ -52,7 +52,7 @@
 		F6D634D720C357310062CEED /* VKMessageUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */; };
 		F6D634DA20C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */; };
 		F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */; };
-		F6E3F84F2095EBC700519835 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* Profile.swift */; };
+		F6E3F84F2095EBC700519835 /* ProfileAndSettingsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,7 +78,7 @@
 		F61E297E2093B06E0070DEC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F61E29812093B06E0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F61E29832093B06E0070DEC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F628172A20BD89A6002185C4 /* Methods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Methods.swift; sourceTree = "<group>"; };
+		F628172A20BD89A6002185C4 /* GlobalMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMethods.swift; sourceTree = "<group>"; };
 		F62B3B9120C07D990037A767 /* VKServiceSizes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceSizes.swift; sourceTree = "<group>"; };
 		F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUIViewController.swift; sourceTree = "<group>"; };
 		F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITableViewCell.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
 		F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServicePhotoModel.swift; sourceTree = "<group>"; };
 		F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceUserModel.swift; sourceTree = "<group>"; };
-		F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProcessingService.swift; sourceTree = "<group>"; };
+		F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		F688B0BF20B1DBB4009BB1B8 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
 		F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseModel.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMessageModel.swift; sourceTree = "<group>"; };
 		F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewController.swift; sourceTree = "<group>"; };
 		F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewCell.swift; sourceTree = "<group>"; };
-		F6B48B5C20B6358100D908F9 /* DataPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPairs.swift; sourceTree = "<group>"; };
+		F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataPairs.swift; sourceTree = "<group>"; };
 		F6D634C420C31CD80062CEED /* VKTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKTokenService.swift; sourceTree = "<group>"; };
 		F6D634C720C325820062CEED /* MainUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUITabBarController.swift; sourceTree = "<group>"; };
 		F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageLongPollService.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateModel.swift; sourceTree = "<group>"; };
 		F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateNewMessageModel.swift; sourceTree = "<group>"; };
 		F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateReadMessagesModel.swift; sourceTree = "<group>"; };
-		F6E3F84E2095EBC700519835 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAndSettingsUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,15 +172,15 @@
 			isa = PBXGroup;
 			children = (
 				F688B0B520B1DBB4009BB1B8 /* VKService */,
-				F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */,
+				F688B0CB20B1DBDD009BB1B8 /* RealmService */,
+				F673356820C4BD3D00C773FC /* Models */,
 				F62B3B8E20C055C50037A767 /* UI */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
 				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
-				F628172A20BD89A6002185C4 /* Methods.swift */,
-				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
+				F628172A20BD89A6002185C4 /* GlobalMethods.swift */,
 			);
 			path = "VK Community";
 			sourceTree = "<group>";
@@ -189,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */,
-				F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */,
 			);
 			path = FriendPhotos;
 			sourceTree = "<group>";
@@ -205,6 +204,7 @@
 		F62B3B8E20C055C50037A767 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
 				F64C2B7D20BC725100741AD9 /* News */,
 				F64C2B8420BC97BE00741AD9 /* Dialogs */,
 				F6B2C8AE209643220056110D /* Friends */,
@@ -218,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */,
-				F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -227,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */,
-				F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -236,7 +234,6 @@
 			isa = PBXGroup;
 			children = (
 				F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */,
-				F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */,
 				F62B3B9320C168820037A767 /* Messages */,
 			);
 			path = Dialogs;
@@ -247,9 +244,69 @@
 			children = (
 				F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */,
 				F62B3B8D20C055B10037A767 /* GroupsSearch */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		F673356820C4BD3D00C773FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F673356920C4BD5600C773FC /* News */,
+				F673356A20C4BD5C00C773FC /* Dialogs */,
+				F673356B20C4BD6200C773FC /* Friends */,
+				F673356C20C4BD6700C773FC /* Groups */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F673356920C4BD5600C773FC /* News */ = {
+			isa = PBXGroup;
+			children = (
+				F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		F673356A20C4BD5C00C773FC /* Dialogs */ = {
+			isa = PBXGroup;
+			children = (
+				F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */,
+				F673356E20C4BD8E00C773FC /* Messages */,
+			);
+			path = Dialogs;
+			sourceTree = "<group>";
+		};
+		F673356B20C4BD6200C773FC /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */,
+				F673356F20C4BDA100C773FC /* FriendPhotos */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		F673356C20C4BD6700C773FC /* Groups */ = {
+			isa = PBXGroup;
+			children = (
 				F67266E2209B34370086B1B7 /* GroupsUITableViewCell.swift */,
 			);
 			path = Groups;
+			sourceTree = "<group>";
+		};
+		F673356E20C4BD8E00C773FC /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		F673356F20C4BDA100C773FC /* FriendPhotos */ = {
+			isa = PBXGroup;
+			children = (
+				F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */,
+			);
+			path = FriendPhotos;
 			sourceTree = "<group>";
 		};
 		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
@@ -279,14 +336,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F688B0CB20B1DBDD009BB1B8 /* DataProcessingService */ = {
+		F688B0CB20B1DBDD009BB1B8 /* RealmService */ = {
 			isa = PBXGroup;
 			children = (
 				F688B0D020B1E0DD009BB1B8 /* Models */,
-				F688B0BE20B1DBB4009BB1B8 /* DataProcessingService.swift */,
-				F6B48B5C20B6358100D908F9 /* DataPairs.swift */,
+				F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */,
+				F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */,
 			);
-			path = DataProcessingService;
+			path = RealmService;
 			sourceTree = "<group>";
 		};
 		F688B0D020B1E0DD009BB1B8 /* Models */ = {
@@ -300,7 +357,7 @@
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F6E3F84E2095EBC700519835 /* Profile.swift */,
+				F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */,
 			);
 			path = "Profile & Settings";
 			sourceTree = "<group>";
@@ -309,7 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */,
-				F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */,
 				F62B3B8820C04B040037A767 /* FriendPhotos */,
 			);
 			path = Friends;
@@ -501,7 +557,7 @@
 				F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */,
 				F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */,
-				F6B48B5D20B6358100D908F9 /* DataPairs.swift in Sources */,
+				F6B48B5D20B6358100D908F9 /* RealmDataPairs.swift in Sources */,
 				F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendsUITableViewController.swift in Sources */,
 				F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */,
@@ -512,14 +568,14 @@
 				F68B230B20C027B600B6E773 /* VKServiceDialogModel.swift in Sources */,
 				F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */,
 				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
-				F688B0C820B1DBB4009BB1B8 /* DataProcessingService.swift in Sources */,
+				F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */,
 				F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */,
-				F6E3F84F2095EBC700519835 /* Profile.swift in Sources */,
+				F6E3F84F2095EBC700519835 /* ProfileAndSettingsUIViewController.swift in Sources */,
 				F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,
 				F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */,
-				F628172B20BD89A6002185C4 /* Methods.swift in Sources */,
+				F628172B20BD89A6002185C4 /* GlobalMethods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */,
 				F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */,
 				F673356320C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift in Sources */,

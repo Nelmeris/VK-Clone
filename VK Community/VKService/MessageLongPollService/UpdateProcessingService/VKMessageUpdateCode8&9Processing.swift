@@ -16,7 +16,7 @@ extension VKMessageLongPollService {
         let onlineStatusChanged = update.update as! VKUpdateOnlineStatusChanged
         
         DispatchQueue.main.async {
-            var dialogs: Results<VKDialogModel> = RealmLoadData()!
+            var dialogs: Results<VKDialogModel> = RealmService.loadData()!
             
             dialogs = dialogs.filter("id = \(-onlineStatusChanged.user_id)")
             
@@ -43,7 +43,7 @@ extension VKMessageLongPollService {
         let onlineStatusChanged = update.update as! VKUpdateOnlineStatusChanged
         
         DispatchQueue.main.async {
-            var dialogs: Results<VKDialogModel> = RealmLoadData()!
+            var dialogs: Results<VKDialogModel> = RealmService.loadData()!
             
             dialogs = dialogs.filter("id = \(-onlineStatusChanged.user_id)")
             

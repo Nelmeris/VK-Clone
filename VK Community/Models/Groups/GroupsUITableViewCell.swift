@@ -8,11 +8,16 @@
 
 import UIKit
 
-// Ячейка группы
 class GroupsUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var photo: UIImageView!
+    
+    @IBOutlet weak var photo: UIImageView! {
+        didSet {
+            photo.layer.cornerRadius = photo.frame.height / 2
+        }
+    }
+    
     @IBOutlet weak var participantsCount: UILabel!
     
 }

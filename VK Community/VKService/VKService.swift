@@ -1,6 +1,6 @@
 //
-//  Service.swift
-//  VKService
+//  VKService.swift
+//  VK Community
 //
 //  Created by Артем on 09.05.2018.
 //  Copyright © 2018 Nelmeris. All rights reserved.

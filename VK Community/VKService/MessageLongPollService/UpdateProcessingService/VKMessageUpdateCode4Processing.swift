@@ -16,7 +16,7 @@ extension VKMessageLongPollService {
         let newMessage = update.update as! VKUpdateNewMessage
         
         DispatchQueue.main.async {
-            let dialogs: Results<VKDialogModel> = RealmLoadData()!
+            let dialogs: Results<VKDialogModel> = RealmService.loadData()!
             
             let dialog = dialogs.filter("id = \(newMessage.peer_id)")[0]
             
@@ -57,10 +57,6 @@ extension VKMessageLongPollService {
                 print(error)
             }
         }
-        
-    }
-    
-    static func Code4AnotherProcessing(_ update: VKUpdatesModel.Update) {
         
     }
     

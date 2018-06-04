@@ -22,23 +22,16 @@ class DialogsUITableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var onlineMobileStatusIcon: UIImageView! {
-        didSet {
-            onlineMobileStatusIcon.layer.cornerRadius = onlineMobileStatusIcon.frame.height / 10
-        }
-    }
-    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
     @IBOutlet weak var lastMessageDate: UILabel!
     
     @IBOutlet weak var senderPhoto: UIImageView! {
         didSet {
-            for constraint in senderPhoto.constraints {
-                if constraint.identifier == "Width" {
-                    constraint.constant = 0
-                }
-            }
+            senderPhoto.constraints.filter { c -> Bool in
+                return c.identifier == "Width"
+            }[0].constant = 0
+            
             senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
         }
     }
@@ -51,16 +44,13 @@ class DialogsUITableViewCell: UITableViewCell {
         lastMessage.text = ""
         lastMessageDate.text = ""
         
-        onlineMobileStatusIcon.image = nil
-        onlineStatusIcon.image = nil
-        onlineMobileStatusIcon.backgroundColor = UIColor.clear
+        onlineStatusIcon.image = #imageLiteral(resourceName: "OnlineIcon")
         onlineStatusIcon.backgroundColor = UIColor.clear
         
-        for constraint in senderPhoto.constraints {
-            if constraint.identifier == "Width" {
-                constraint.constant = 0
-            }
-        }
+        senderPhoto.constraints.filter { c -> Bool in
+            return c.identifier == "Width"
+            }[0].constant = 0
+        
         senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
     }
     

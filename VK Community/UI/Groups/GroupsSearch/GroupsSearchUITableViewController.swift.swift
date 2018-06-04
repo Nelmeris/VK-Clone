@@ -24,7 +24,6 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         navigationItem.searchController = searchController
     }
     
-    //Настройка окна
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,12 +32,10 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         tableView.rowHeight = 75
     }
     
-    // Получение количества ячеек для результата поиска
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groups.count
     }
     
-    // Составление ячеек для результата поиска
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let group = groups[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupsUITableViewCell
@@ -52,13 +49,6 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         return cell
     }
     
-    func setGroupPhoto(_ cell: GroupsUITableViewCell, _ group: VKGroupModel) {
-        guard group.photo_100 != "" else { return }
-        
-        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
-    }
-    
-    // Реализация поиска
     func updateSearchResults(for searchController: UISearchController) {
         guard searchController.searchBar.text != "" else {
             groups.removeAll()
@@ -74,6 +64,18 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+}
+
+
+
+extension GroupsSearchUITableViewController {
+    
+    func setGroupPhoto(_ cell: GroupsUITableViewCell, _ group: VKGroupModel) {
+        guard group.photo_100 != "" else { return }
+        
+        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
     }
     
 }

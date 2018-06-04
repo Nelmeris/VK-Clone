@@ -37,9 +37,8 @@ class NewsFeedUITableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let news = news else {
-            return 0
-        }
+        guard let news = news else { return 0 }
+        
         return news.items.count
     }
     
@@ -52,20 +51,20 @@ class NewsFeedUITableViewController: UITableViewController {
         
         cell.postText.text = news.text
         
-        setLikes(cell: cell, news: news)
+        setLikes(cell, news)
         
-        setCommentsCount(cell: cell, news: news)
+        setCommentsCount(cell, news)
         
         cell.likes = news.likes.count
         cell.likesCount.text = getShortCount(news.likes.count)
         cell.repostsCount.text = getShortCount(news.reposts.count)
         cell.viewsCount.text = getShortCount(news.views)
         
-        setAuthorData(cell: cell, news: news)
+        setAuthorData(cell, news)
         
         cell.postPhoto.constraints[0].constant = 0
         
-        attachmentProcessing(cell: cell, attachments: news.attachments)
+        attachmentProcessing(cell, news.attachments)
         
         return cell
     }
@@ -74,14 +73,14 @@ class NewsFeedUITableViewController: UITableViewController {
 
 extension NewsFeedUITableViewController {
     
-    func setLikes(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
-        if news.likes.user_likes == 1 {
-            cell.likesIcon.image = UIImage(named: "LikesIcon")
-            cell.isLike = true
-        }
+    func setLikes(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
+        guard news.likes.user_likes == 1 else { return }
+        
+        cell.likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
+        cell.isLike = true
     }
     
-    func setCommentsCount(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
+    func setCommentsCount(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
         if news.comments.can_post == 0 && news.comments.count == 0 {
             cell.commentsCount.text = nil
             cell.commentsIcon.image = nil
@@ -90,19 +89,19 @@ extension NewsFeedUITableViewController {
         }
     }
     
-    func setAuthorData(cell: NewsFeedUITableViewCell, news: VKNewsModel) {
+    func setAuthorData(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
         let sourceData = getSourceData(news.source_id)
         
         if let photoUrl = sourceData.photoUrl {
             cell.authorPhoto.sd_setImage(with: photoUrl, completed: nil)
         } else {
-            cell.authorPhoto.image = UIImage(named: news.source_id > 0 ? "DefaultUserPhoto" : "DefaultGroupPhoto")
+            cell.authorPhoto.image = news.source_id > 0 ? #imageLiteral(resourceName: "DefaultUserPhoto") : #imageLiteral(resourceName: "DefaultGroupPhoto")
         }
         
         cell.authorName.text = sourceData.name
     }
     
-    func attachmentProcessing(cell: NewsFeedUITableViewCell, attachments: [VKNewsModel.Attachments]) {
+    func attachmentProcessing(_ cell: NewsFeedUITableViewCell, _ attachments: [VKNewsModel.Attachments]) {
         for attachment in attachments {
             switch attachment.type {
             case "photo":

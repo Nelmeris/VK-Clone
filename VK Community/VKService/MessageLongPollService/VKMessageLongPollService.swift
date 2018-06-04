@@ -14,18 +14,19 @@ class VKMessageLongPollService {
     static func loadLongPollData(completion: @escaping () -> Void) {
         VKService.request(method: "messages.getLongPollServer") { (response: VKDataBaseResponseModel<VKMessageLongPollServer>) in
             let data = [response.response!]
-            RealmResaveData(data)
+            RealmService.resaveData(data)
             completion()
         }
     }
     
     static func startLongPoll(ts: Int) {
-        let longPollData = (RealmLoadData()! as Results<VKMessageLongPollServer>)[0]
-        VKService.request(url: "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=30&mode=104&version=3") { (response: VKResponseModel<VKUpdatesModel>) in
+        let longPollData = (RealmService.loadData()! as Results<VKMessageLongPollServer>)[0]
+        let url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=30&mode=104&version=3"
+        
+        VKService.request(url: url) { (response: VKResponseModel<VKUpdatesModel>) in
             VKMessageLongPollService.startLongPoll(ts: response.response.ts)
             
             DispatchQueue.main.async {
-                
                 let visibleViewController = getVisibleViewController()
                 
                 DispatchQueue.global().async {
@@ -33,9 +34,9 @@ class VKMessageLongPollService {
                         VKMessageLongPollService.updateProcessing(visibleViewController, update)
                     }
                 }
-                
             }
         }
+        
     }
     
     static func updateProcessing(_ visibleViewController: UIViewController?, _ update: VKUpdatesModel.Update) {
@@ -50,8 +51,6 @@ class VKMessageLongPollService {
                 }
                 return
             }
-            
-            Code4AnotherProcessing(update)
             return
             
         case 6:
