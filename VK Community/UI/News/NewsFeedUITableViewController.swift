@@ -26,16 +26,6 @@ class NewsFeedUITableViewController: UITableViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        DispatchQueue.global().async {
-            VKService.request(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
-                VKService.user = response.item
-            }
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let news = news else { return 0 }
         

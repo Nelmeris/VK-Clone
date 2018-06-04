@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="830" y="774"/>
         </scene>
-        <!--Новости-->
+        <!--News Feed-->
         <scene sceneID="kAR-MV-03A">
             <objects>
-                <tableViewController storyboardIdentifier="NewsFeed" id="ZxT-aA-1Ue" customClass="NewsFeedUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NewsFeed" id="ZxT-aA-1Ue" userLabel="News Feed" customClass="NewsFeedUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="dVR-8u-t4X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="2140" y="-778.07881773399015"/>
         </scene>
-        <!--Новости-->
+        <!--News Feed Navigation-->
         <scene sceneID="OTc-oR-QMc">
             <objects>
-                <navigationController id="Jwr-SC-5RX" sceneMemberID="viewController">
+                <navigationController id="Jwr-SC-5RX" userLabel="News Feed Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="NewsIcon" id="4SQ-yy-fJG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="KT5-gJ-e9q">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="830" y="-778"/>
         </scene>
-        <!--Сообщения-->
+        <!--Dialogs-->
         <scene sceneID="NVw-hu-Hfd">
             <objects>
-                <tableViewController id="zAU-za-DJ6" customClass="DialogsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zAU-za-DJ6" userLabel="Dialogs" customClass="DialogsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="13Z-YS-alZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="2140" y="29.55665024630542"/>
         </scene>
-        <!--Сообщения-->
+        <!--Messages-->
         <scene sceneID="EAj-Ub-f8n">
             <objects>
-                <viewController id="mJx-zI-y0q" userLabel="Сообщения" customClass="MessagesUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mJx-zI-y0q" userLabel="Messages" customClass="MessagesUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ypC-hf-hNy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -336,18 +336,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MRZ-JZ-DY5">
                                         <rect key="frame" x="0.0" y="601" width="375" height="40"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сообщение" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-6k-wee">
-                                                <rect key="frame" x="8" y="5" width="311" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Сообщение" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k9u-6k-wee">
+                                                <rect key="frame" x="8" y="5" width="271" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" returnKeyType="go" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whz-rz-naM">
-                                                <rect key="frame" x="327" y="9" width="40" height="22"/>
+                                                <rect key="frame" x="287" y="9" width="80" height="22"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="40" id="qz9-CE-DpS"/>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="qz9-CE-DpS"/>
                                                 </constraints>
-                                                <state key="normal" title="Send"/>
+                                                <state key="normal" title="Отправить"/>
                                                 <connections>
                                                     <action selector="sendMessage:" destination="mJx-zI-y0q" eventType="touchUpInside" id="rkz-DY-CJG"/>
                                                 </connections>
@@ -440,7 +440,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xoX-Wn-zud">
-                                                            <rect key="frame" x="70" y="6.6666666666666679" width="235" height="32.333333333333329"/>
+                                                            <rect key="frame" x="70" y="6.6666666666666679" width="290" height="32.333333333333329"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Time" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gh9-5n-e6q">
                                                                     <rect key="frame" x="89" y="12.666666666666664" width="28" height="14.666666666666664"/>
@@ -515,10 +515,10 @@
             </objects>
             <point key="canvasLocation" x="3108" y="29.55665024630542"/>
         </scene>
-        <!--Сообщения-->
+        <!--Dialogs & Messages Navigation-->
         <scene sceneID="WhN-6v-vqT">
             <objects>
-                <navigationController id="ApK-1a-Owf" sceneMemberID="viewController">
+                <navigationController id="ApK-1a-Owf" userLabel="Dialogs &amp; Messages Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Сообщения" image="MessagesIcon" id="YUq-eX-LR3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C6d-9V-foN">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -610,10 +610,10 @@
             </objects>
             <point key="canvasLocation" x="2140" y="774"/>
         </scene>
-        <!--Settings Navigation-->
+        <!--Profile & Settings Navigation-->
         <scene sceneID="g9g-xg-3pq">
             <objects>
-                <navigationController id="qtK-4b-enf" userLabel="Settings Navigation" sceneMemberID="viewController">
+                <navigationController id="qtK-4b-enf" userLabel="Profile &amp; Settings Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Профиль" image="ProfileIcon" id="ZCt-wc-rEC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zuK-Lm-7gJ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -627,10 +627,10 @@
             </objects>
             <point key="canvasLocation" x="-1612" y="774"/>
         </scene>
-        <!--Фото-->
+        <!--Photos-->
         <scene sceneID="bcF-gu-Cuf">
             <objects>
-                <viewController id="le6-jR-BHW" customClass="FriendPhotosUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="le6-jR-BHW" userLabel="Photos" customClass="FriendPhotosUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aCw-yM-w4M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,10 +719,10 @@
             </objects>
             <point key="canvasLocation" x="3486" y="774"/>
         </scene>
-        <!--Group Search List-->
+        <!--Groups Search-->
         <scene sceneID="pLQ-FA-KdI">
             <objects>
-                <tableViewController id="L8n-o5-gua" userLabel="Group Search List" customClass="GroupsSearchUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="L8n-o5-gua" userLabel="Groups Search" customClass="GroupsSearchUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zIS-yf-Qw3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -802,10 +802,10 @@
             </objects>
             <point key="canvasLocation" x="830" y="1615"/>
         </scene>
-        <!--MainUI Tab Bar Controller-->
+        <!--Main-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" customClass="MainUITabBarController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" userLabel="Main" customClass="MainUITabBarController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -823,10 +823,10 @@
             </objects>
             <point key="canvasLocation" x="-425" y="30"/>
         </scene>
-        <!--Group List-->
+        <!--Groups-->
         <scene sceneID="69O-ur-Gzk">
             <objects>
-                <tableViewController id="tqP-xB-ifD" userLabel="Group List" customClass="GroupsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="tqP-xB-ifD" userLabel="Groups" customClass="GroupsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ejp-8R-7uK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -886,10 +886,10 @@
             </objects>
             <point key="canvasLocation" x="-426" y="1615"/>
         </scene>
-        <!--Group Navigation-->
+        <!--Groups Navigation-->
         <scene sceneID="Un1-nO-2gy">
             <objects>
-                <navigationController id="Y6v-jX-au9" userLabel="Group Navigation" sceneMemberID="viewController">
+                <navigationController id="Y6v-jX-au9" userLabel="Groups Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="GroupsIcon" id="VHT-SJ-laU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="thD-QR-Rsb">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -903,10 +903,10 @@
             </objects>
             <point key="canvasLocation" x="-426" y="774"/>
         </scene>
-        <!--Профиль-->
+        <!--Profile & Settings-->
         <scene sceneID="ynq-bN-KTh">
             <objects>
-                <viewController id="Wfp-I4-TuC" customClass="ProfileAndSettingsUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wfp-I4-TuC" userLabel="Profile &amp; Settings" customClass="ProfileAndSettingsUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raL-ah-vfl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -15,6 +15,10 @@ class MainUITabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         DispatchQueue.global().async {
+            VKService.request(method: "users.get", parameters: ["fields" : "photo_100"]) { (response: VKItemModel<VKUserModel>) in
+                VKService.user = response.item
+            }
+            
             VKMessageLongPollService.loadLongPollData() {
                 let longPollData: Results<VKMessageLongPollServer> = RealmService.loadData()!
                 VKMessageLongPollService.startLongPoll(ts: longPollData[0].ts)

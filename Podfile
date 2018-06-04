@@ -10,7 +10,6 @@ target 'VK Community' do
   pod 'Keychain'
   pod 'SDWebImage'
   pod 'RealmSwift'
-  Pod 'ChameleonFramework/Swift'
 
   # Pods for VK Community
 
