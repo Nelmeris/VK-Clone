@@ -64,7 +64,7 @@ class NewsFeedUITableViewCell: UITableViewCell {
         authorPhoto.image = nil
         
         likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
-        commentsIcon.image = #imageLiteral(resourceName: "LikesIcon")
+        commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")
     }
     
 }

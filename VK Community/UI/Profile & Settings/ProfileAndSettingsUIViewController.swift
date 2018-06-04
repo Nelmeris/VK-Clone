@@ -19,6 +19,8 @@ class ProfileAndSettingsUIViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         userName.text = VKService.user.first_name + " " + VKService.user.last_name
         
         userImage.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)

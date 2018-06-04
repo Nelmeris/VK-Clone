@@ -906,7 +906,7 @@
         <!--Профиль-->
         <scene sceneID="ynq-bN-KTh">
             <objects>
-                <viewController id="Wfp-I4-TuC" customClass="ProfileAndSettings" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wfp-I4-TuC" customClass="ProfileAndSettingsUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="raL-ah-vfl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -915,7 +915,7 @@
                                 <rect key="frame" x="0.0" y="231" width="375" height="581"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Settings" id="zvR-BS-rXg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Settings" id="zvR-BS-rXg">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zvR-BS-rXg" id="kas-Ch-TaR">
@@ -968,7 +968,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Профиль" id="gPh-3H-kaB"/>
                     <connections>
-                        <outlet property="userImage" destination="z1W-n7-XhE" id="VcY-2s-tc3"/>
+                        <outlet property="userImage" destination="z1W-n7-XhE" id="Vhn-GU-cz0"/>
                         <outlet property="userName" destination="adc-KQ-3h7" id="0T0-yV-h6m"/>
                     </connections>
                 </viewController>
