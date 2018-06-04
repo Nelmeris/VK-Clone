@@ -25,6 +25,7 @@ extension VKMessageLongPollService {
                         controller.dialog.messages[index].read_state = 1
                     }
                 }
+                controller.dialog.out_read = readMessages.local_id
                 try realm.commitWrite()
             } catch let error {
                 print(error)

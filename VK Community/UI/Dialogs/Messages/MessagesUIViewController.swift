@@ -30,6 +30,9 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var message: UITextField! {
         didSet {
             message.delegate = self
+            message.layer.cornerRadius = message.frame.height / 2
+            message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
+            message.layer.borderWidth = 1
         }
     }
     
@@ -90,11 +93,11 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.transform = transform
         
+        cell.messageDate.text = getDateString(message.date)
+        
         cell.message.text = message.body
         
         setBackgroudColor(cell, message)
-        
-        cell.messageDate.text = getDateString(message.date)
         
         setSenderPhoto(cell, message, indexPath)
         
@@ -175,7 +178,7 @@ extension MessagesUIViewController {
     func setBackgroudColor(_ cell: MessagesUITableViewCell, _ message: VKMessageModel) {
         guard message.read_state == 0 else { return }
         
-        cell.backgroundColor = UIColor(red:0.92, green:0.95, blue:1.00, alpha:1.0)
+        cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.96, alpha:1.0)
     }
     
     func addNewMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {

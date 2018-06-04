@@ -17,9 +17,14 @@
 		F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */; };
 		F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */; };
 		F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6303BC020C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift */; };
+		F645DB8120C5BA2400310323 /* NewsFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */; };
+		F645DB8320C5BA3A00310323 /* DialogsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */; };
+		F645DB8520C5BA4B00310323 /* GroupsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */; };
+		F645DB8720C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */; };
 		F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */; };
+		F66C097E20C5B3D3009EEC7E /* FriendsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */; };
 		F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */; };
 		F67266DB209B1B190086B1B7 /* GroupsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */; };
 		F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */; };
@@ -83,9 +88,14 @@
 		F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUIViewController.swift; sourceTree = "<group>"; };
 		F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesUITableViewCell.swift; sourceTree = "<group>"; };
 		F6303BC020C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateCode6Processing.swift; sourceTree = "<group>"; };
+		F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeedStoryboard.storyboard; sourceTree = "<group>"; };
+		F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DialogsStoryboard.storyboard; sourceTree = "<group>"; };
+		F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupsStoryboard.storyboard; sourceTree = "<group>"; };
+		F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Profile&SettingsStoryboard.storyboard"; sourceTree = "<group>"; };
 		F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewController.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeedModel.swift; sourceTree = "<group>"; };
+		F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendsStoryboard.storyboard; sourceTree = "<group>"; };
 		F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosUIViewController.swift; sourceTree = "<group>"; };
 		F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsUITableViewController.swift; sourceTree = "<group>"; };
 		F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsSearchUITableViewController.swift.swift; sourceTree = "<group>"; };
@@ -225,6 +235,7 @@
 		F64C2B7D20BC725100741AD9 /* News */ = {
 			isa = PBXGroup;
 			children = (
+				F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */,
 				F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */,
 			);
 			path = News;
@@ -233,6 +244,7 @@
 		F64C2B8420BC97BE00741AD9 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
+				F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */,
 				F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */,
 				F62B3B9320C168820037A767 /* Messages */,
 			);
@@ -242,6 +254,7 @@
 		F67266D9209B1B090086B1B7 /* Groups */ = {
 			isa = PBXGroup;
 			children = (
+				F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */,
 				F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */,
 				F62B3B8D20C055B10037A767 /* GroupsSearch */,
 			);
@@ -357,6 +370,7 @@
 		F6B2C8AD209643190056110D /* Profile & Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */,
 				F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */,
 			);
 			path = "Profile & Settings";
@@ -365,6 +379,7 @@
 		F6B2C8AE209643220056110D /* Friends */ = {
 			isa = PBXGroup;
 			children = (
+				F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */,
 				F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */,
 				F62B3B8820C04B040037A767 /* FriendPhotos */,
 			);
@@ -484,7 +499,12 @@
 			files = (
 				F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */,
 				F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */,
+				F645DB8720C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard in Resources */,
+				F66C097E20C5B3D3009EEC7E /* FriendsStoryboard.storyboard in Resources */,
+				F645DB8520C5BA4B00310323 /* GroupsStoryboard.storyboard in Resources */,
+				F645DB8320C5BA3A00310323 /* DialogsStoryboard.storyboard in Resources */,
 				F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */,
+				F645DB8120C5BA2400310323 /* NewsFeedStoryboard.storyboard in Resources */,
 				F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
