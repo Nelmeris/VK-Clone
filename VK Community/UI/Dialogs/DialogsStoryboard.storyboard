@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4sR-GP-BrA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mi8-0h-t8F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -92,7 +92,7 @@
                                     <outlet property="onlineStatusIcon" destination="sUp-7I-d7h" id="QXH-Ab-TrD"/>
                                     <outlet property="photo" destination="01F-bh-ijH" id="PbP-uH-SJa"/>
                                     <outlet property="senderPhoto" destination="Ygi-b4-19r" id="kdw-jo-4H8"/>
-                                    <segue destination="tf6-fO-73D" kind="show" trigger="accessoryAction" id="lv9-qb-cug"/>
+                                    <segue destination="tf6-fO-73D" kind="show" id="bF1-ec-JKB"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e4-nL-MBP">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b83-SP-l2f">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
@@ -308,10 +308,37 @@
             </objects>
             <point key="canvasLocation" x="3108" y="29.55665024630542"/>
         </scene>
+        <!--Dialogs & Messages Navigation-->
+        <scene sceneID="6sO-lq-giu">
+            <objects>
+                <navigationController id="mi8-0h-t8F" userLabel="Dialogs &amp; Messages Navigation" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Сообщения" image="MessagesIcon" id="xNf-Tm-03M"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IQy-mc-2ri">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.24313725489999999" green="0.47450980390000003" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4sR-GP-BrA" kind="relationship" relationship="rootViewController" id="pjI-fi-2fR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MtU-mi-EBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1095" y="29"/>
+        </scene>
     </scenes>
     <resources>
         <image name="DefaultDialogPhoto" width="256" height="256"/>
         <image name="DefaultUserPhoto" width="256" height="256"/>
+        <image name="MessagesIcon" width="24" height="24"/>
         <image name="OnlineIcon" width="117" height="117"/>
         <image name="SendButton" width="104" height="104"/>
     </resources>

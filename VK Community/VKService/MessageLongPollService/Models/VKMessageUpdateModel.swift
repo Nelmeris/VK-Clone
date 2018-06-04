@@ -23,8 +23,6 @@ class VKUpdatesModel: VKBaseModel {
         required convenience init(json: JSON) {
             self.init()
             
-            print(json)
-            
             code = json[0].intValue
             
             switch code {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rEO-Lj-14w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SPk-Kd-K92">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -72,7 +72,7 @@
                                     <outlet property="lastName" destination="HDv-bC-yQf" id="rFZ-Fw-Bri"/>
                                     <outlet property="onlineStatusIcon" destination="xbL-MN-1ml" id="T0b-AH-6IT"/>
                                     <outlet property="photo" destination="H2W-bz-r8m" id="yY3-Se-hd6"/>
-                                    <segue destination="9II-p3-X1t" kind="show" trigger="accessoryAction" id="Xbj-kw-OIj"/>
+                                    <segue destination="9II-p3-X1t" kind="show" id="jB6-bO-wYQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ONW-kr-8Be">
-                                <rect key="frame" x="0.0" y="163" width="375" height="504"/>
+                                <rect key="frame" x="0.0" y="207" width="375" height="411"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gTA-D6-iID">
                                     <size key="itemSize" width="100" height="100"/>
@@ -131,7 +131,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlH-3w-j0T">
-                                <rect key="frame" x="0.0" y="20" width="375" height="143.5"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="143.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="gAn-5v-qk3">
                                         <rect key="frame" x="147.5" y="15" width="80" height="80"/>
@@ -180,9 +180,36 @@
             </objects>
             <point key="canvasLocation" x="3486" y="774"/>
         </scene>
+        <!--Friends Navigation-->
+        <scene sceneID="nx4-M5-UeR">
+            <objects>
+                <navigationController id="SPk-Kd-K92" userLabel="Friends Navigation" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Друзья" image="FriendsIcon" id="0os-5P-2tX"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="sfs-yn-wBn">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.24313725489999999" green="0.47450980390000003" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="rEO-Lj-14w" kind="relationship" relationship="rootViewController" id="2J0-PO-3tu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FXj-Nt-v15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="774"/>
+        </scene>
     </scenes>
     <resources>
         <image name="DefaultUserPhoto" width="256" height="256"/>
+        <image name="FriendsIcon" width="24" height="24"/>
         <image name="OnlineIcon" width="117" height="117"/>
     </resources>
 </document>
