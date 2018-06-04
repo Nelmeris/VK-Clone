@@ -68,7 +68,7 @@ extension NewsFeedUITableViewController {
     }
     
     func setCommentsCount(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
-        guard news.comments.can_post == 0 && news.comments.count == 0 else { return }
+        guard news.comments.can_post == 1 && news.comments.count != 0 else { return }
         
         cell.commentsCount.text = getShortCount(news.comments.count)
         cell.commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")

@@ -11,20 +11,28 @@ import Keychain
 
 class NewsFeedUITableViewCell: UITableViewCell {
     
+    var authorId = 0
+    var postId = 0
+    var likes = 0
+    
+    @IBOutlet weak var authorName: UILabel!
     @IBOutlet weak var authorPhoto: UIImageView! {
         didSet {
             authorPhoto.layer.cornerRadius = authorPhoto.frame.height / 2
         }
     }
-    var authorId = 0
-    var postId = 0
-    @IBOutlet weak var authorName: UILabel!
+    
     @IBOutlet weak var postText: UILabel!
-    var likes = 0
+    
     @IBOutlet weak var likesCount: UILabel!
     @IBOutlet weak var repostsCount: UILabel!
-    @IBOutlet weak var commentsCount: UILabel!
+    @IBOutlet weak var commentsCount: UILabel! {
+        didSet {
+            commentsCount.text = nil
+        }
+    }
     @IBOutlet weak var viewsCount: UILabel!
+    
     @IBOutlet weak var postPhoto: UIImageView! {
         didSet {
             postPhoto.constraints.filter { c -> Bool in
@@ -33,8 +41,11 @@ class NewsFeedUITableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var likesIcon: UIImageView!
-    
+    @IBOutlet weak var likesIcon: UIImageView! {
+        didSet {
+            likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
+        }
+    }
     @IBOutlet weak var commentsIcon: UIImageView! {
         didSet {
             commentsIcon.image = nil
@@ -60,11 +71,11 @@ class NewsFeedUITableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        authorName.text = ""
-        likesCount.text = ""
-        repostsCount.text = ""
-        commentsCount.text = ""
-        viewsCount.text = ""
+        authorName.text = nil
+        likesCount.text = nil
+        repostsCount.text = nil
+        commentsCount.text = nil
+        viewsCount.text = nil
         
         postPhoto.constraints.filter { c -> Bool in
             return c.identifier == "Height"

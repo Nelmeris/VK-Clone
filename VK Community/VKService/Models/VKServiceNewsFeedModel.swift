@@ -69,6 +69,7 @@ class VKNewsModel {
         var can_post = 0
         
         init(_ json: JSON) {
+            print(json)
             count = json["count"].intValue
             can_post = json["can_post"].intValue
         }
