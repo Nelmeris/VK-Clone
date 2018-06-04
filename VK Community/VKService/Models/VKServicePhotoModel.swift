@@ -12,32 +12,28 @@ import RealmSwift
 class VKPhotoModel: RealmModel {
     
     @objc dynamic var id = 0
-    var sizes = List<VKSizes>()
+    var sizes = List<VKSizesModel>()
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        self.id = json["id"].intValue
-        let sizes = json["sizes"].map({ VKSizes($0.1) })
-        for size in sizes {
-            self.sizes.append(size)
+        id = json["id"].intValue
+        
+        for size in json["sizes"].map({ VKSizesModel($0.1) }) {
+            sizes.append(size)
         }
     }
     
     override func isEqual (_ object: RealmModel) -> Bool {
         let object = object as! VKPhotoModel
         
-        guard sizes.count == object.sizes.count else {
-            return false
-        }
+        guard sizes.count == object.sizes.count else { return false }
         
         for sizeIndex in 0...sizes.count - 1 {
-            guard sizes[sizeIndex].isEqual(object.sizes[sizeIndex]) else {
-                return false
-            }
+            guard sizes[sizeIndex].isEqual(object.sizes[sizeIndex]) else { return false }
         }
         
-        return self.id == object.id
+        return id == object.id
     }
     
 }

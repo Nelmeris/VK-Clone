@@ -8,21 +8,21 @@
 
 import SwiftyJSON
 
-class VKUpdateNewMessage: VKBaseUpdateModel {
+class VKMessageUpdateNewMessageModel: VKBaseMessageUpdateModel {
     
-    var message_id = 0
-    var flags = 0
-    var peer_id = 0
-    var timestamp = 0
+    var id = 0
+    var flags: VKMessageUpdateFlagsModel! = nil
+    var peerId = 0
+    var date = Date()
     var text = ""
     
     required convenience init(_ json: JSON) {
         self.init()
         
-        message_id = json[1].intValue
-        flags = json[2].intValue
-        peer_id = json[3].intValue
-        timestamp = json[4].intValue
+        id = json[1].intValue
+        flags = VKMessageUpdateFlagsModel(json[2].intValue)
+        peerId = json[3].intValue
+        date = Date(timeIntervalSince1970: Double(json[4].intValue))
         text = json[5].stringValue
     }
     

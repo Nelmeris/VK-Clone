@@ -41,7 +41,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         dialogId = dialog.type == "group" ? -dialog.id : dialog.id
         
-        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "100"]) { (response: VKResponseModel<VKMessageResponseModel>) in
+        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
                 self.deleteOldMessages(dialog: self.dialog, newMessages: response.response.items)
                 
@@ -50,8 +50,8 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
                 do {
                     let realm = try Realm()
                     realm.beginWrite()
-                    self.dialog.in_read = response.response.in_read
-                    self.dialog.out_read = response.response.out_read
+                    self.dialog.inRead = response.response.inRead
+                    self.dialog.outRead = response.response.outRead
                     try realm.commitWrite()
                 } catch let error {
                     print(error)
@@ -87,7 +87,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         let message = dialog.messages[indexPath.row]
         let cell: MessagesUITableViewCell
         
-        let cellId = message.from_id == VKService.user.id ? "MyMessage" : "SenderMessage"
+        let cellId = message.fromId == VKService.user.id ? "MyMessage" : "SenderMessage"
         
         cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! MessagesUITableViewCell
         
@@ -95,7 +95,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.messageDate.text = getDateString(message.date)
         
-        cell.message.text = message.body
+        cell.message.text = message.text
         
         setBackgroudColor(cell, message)
         
@@ -127,10 +127,10 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func sendMessage(_ sender: Any) {
-        if message.text != "" {
-            VKService.request(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
-            message.text = ""
-        }
+        guard message.text != "" else { return }
+        
+        VKService.request(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
+        message.text = ""
     }
     
 }
@@ -140,9 +140,9 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
 extension MessagesUIViewController {
         
     func setOnlineStatus(_ navigationItem: UINavigationItem) {
-        guard dialog.online == 1 else { return }
+        guard dialog.isOnline else { return }
         
-        if dialog.online_mobile == 0 {
+        if !dialog.isOnlineMobile {
             navigationItem.title = navigationItem.title! + " (Онлайн)"
         } else {
             navigationItem.title = navigationItem.title! + " (Онлайн с телефона)"
@@ -150,21 +150,21 @@ extension MessagesUIViewController {
     }
     
     func setSenderPhoto(_ cell: MessagesUITableViewCell, _ message: VKMessageModel, _ indexPath: IndexPath) {
-        guard message.from_id != VKService.user.id else { return }
+        guard message.fromId != VKService.user.id else { return }
         
-        if (indexPath.row == 0 || dialog.messages[indexPath.row - 1].from_id != message.from_id) {
+        if (indexPath.row == 0 || dialog.messages[indexPath.row - 1].fromId != message.fromId) {
             var photo = ""
             if dialog.type == "chat" {
                 
                 var users: Results<VKUserModel> = RealmService.loadData()!
-                users = users.filter("id = \(message.user_id)")
+                users = users.filter("id = \(message.userId)")
                 
                 if users.count != 0 {
-                    photo = users[0].photo_100
+                    photo = users[0].photo100
                 }
                 
             } else {
-                photo = dialog.photo_100
+                photo = dialog.photo100
             }
             
             guard photo != "" else { return }
@@ -176,7 +176,7 @@ extension MessagesUIViewController {
     }
     
     func setBackgroudColor(_ cell: MessagesUITableViewCell, _ message: VKMessageModel) {
-        guard message.read_state == 0 else { return }
+        guard !message.isRead else { return }
         
         cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.96, alpha:1.0)
     }

@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class VKBaseModel {
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
     }
     
@@ -22,10 +22,10 @@ class VKResponseModel<Type: VKBaseModel>: VKBaseModel {
     
     var response: Type!
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        response = Type(json: json)
+        response = Type(json)
     }
     
 }
@@ -35,11 +35,11 @@ class VKItemsModel<Type: RealmModel>: VKBaseModel {
     var count: Int = 0
     var items: [Type] = []
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
         count = json["count"].intValue
-        items = json["items"].map({ Type(json: $0.1) })
+        items = json["items"].map({ Type($0.1) })
     }
     
 }
@@ -48,22 +48,22 @@ class VKItemModel<Type: RealmModel>: VKBaseModel {
     
     var item: Type!
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        item = Type(json: json[0])
+        item = Type(json[0])
     }
     
 }
 
-class VKDataBaseResponseModel<Type: RealmModel>: VKBaseModel {
+class VKRealmResponseModel<Type: RealmModel>: VKBaseModel {
     
     var response: Type!
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        response = Type(json: json)
+        response = Type(json)
     }
     
 }

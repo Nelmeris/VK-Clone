@@ -40,7 +40,7 @@ class DialogsUITableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
         
         cell.lastMessageDate.text = getDateString(dialog.message.date)
-        cell.lastMessage.text = dialog.message.body
+        cell.lastMessage.text = dialog.message.text
         cell.name.text = dialog.title
         
         setDialogPhoto(cell,  dialog)
@@ -72,12 +72,14 @@ extension DialogsUITableViewController {
             var groupsIdsInt: [Int] = []
             
             for item in dialogs {
-                if item.type == "profile" {
+                switch item.type {
+                case "profile":
                     profilesIdsInt.append(item.id)
-                }
-                
-                if item.type == "group" {
+                    
+                case "group":
                     groupsIdsInt.append(item.id)
+                    
+                default: break
                 }
             }
             
@@ -97,10 +99,10 @@ extension DialogsUITableViewController {
                 var newIndex = 0
                 for index in 0...dialogs.count - 1 {
                     if dialogs[index].type == "profile" {
-                        dialogs[index].photo_100 = response.response[newIndex].photo_100
-                        dialogs[index].title = response.response[newIndex].first_name + " " + response.response[newIndex].last_name
-                        dialogs[index].online = response.response[newIndex].online
-                        dialogs[index].online_mobile = response.response[newIndex].online_mobile
+                        dialogs[index].photo100 = response.response[newIndex].photo100
+                        dialogs[index].title = response.response[newIndex].firstName + " " + response.response[newIndex].lastName
+                        dialogs[index].isOnline = response.response[newIndex].isOnline
+                        dialogs[index].isOnlineMobile = response.response[newIndex].isOnlineMobile
                         newIndex += 1
                     }
                 }
@@ -109,7 +111,7 @@ extension DialogsUITableViewController {
                     var newIndex = 0
                     for index in 0...dialogs.count - 1 {
                         if dialogs[index].type == "group" {
-                            dialogs[index].photo_100 = response.response[newIndex].photo_100
+                            dialogs[index].photo100 = response.response[newIndex].photo100
                             dialogs[index].title = response.response[newIndex].name
                             newIndex += 1
                         }
@@ -129,63 +131,54 @@ extension DialogsUITableViewController {
     
     
     func setDialogPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
-        guard dialog.photo_100 != "" else { return }
+        guard dialog.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: dialog.photo_100), completed: nil)
+        cell.photo.sd_setImage(with: URL(string: dialog.photo100), completed: nil)
     }
     
     func setSenderPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         
-        if dialog.type == "chat" || dialog.message.out == 1 {
-            cell.senderPhoto.constraints.filter { c -> Bool in
-                return c.identifier == "Width"
-            }[0].constant = 24
-        }
+        guard dialog.type == "chat" || dialog.message.isOut else { return }
+        
+        cell.senderPhoto.constraints.filter { c -> Bool in
+            return c.identifier == "Width"
+            }[0].constant = 28
         
         if dialog.type == "chat" {
             
-            if dialog.message.user_id == VKService.user.id {
-                cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
+            if dialog.message.userId == VKService.user.id {
+                cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
             } else {
                 var users: Results<VKUserModel> = RealmService.loadData()!
-                users = users.filter("id = \(dialog.message.user_id)")
+                users = users.filter("id = \(dialog.message.userId)")
                 if users.count != 0 {
-                    cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo_100), completed: nil)
+                    cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo100), completed: nil)
                 } else {
                     cell.senderPhoto.image = #imageLiteral(resourceName: "DefaultUserPhoto")
                 }
             }
             
         } else {
-            cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo_100), completed: nil)
+            cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
         }
     
     }
     
     func setStatusIcon(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
-        if dialog.online == 1 {
-            cell.onlineStatusIcon.image = dialog.online_mobile == 1 ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
-            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
-            
-            cell.onlineStatusIcon.layer.cornerRadius = dialog.online_mobile == 1 ?
-                cell.onlineStatusIcon.frame.height / 10 :
-                cell.onlineStatusIcon.frame.height / 2
-            
-            cell.onlineStatusIcon.constraints.filter { c -> Bool in
-                return c.identifier == "Width"
-                }[0].constant = dialog.online_mobile == 1 ?
-                    cell.photo.frame.height / 4.5 :
-                    cell.photo.frame.height / 4
-            
-            cell.onlineStatusIcon.constraints.filter { c -> Bool in
-                return c.identifier == "Height"
-                }[0].constant = dialog.online_mobile == 1 ?
-                    cell.photo.frame.height / 3.5 :
-                    cell.photo.frame.height / 4
-        } else {
-            cell.onlineStatusIcon.image = nil
-            cell.onlineStatusIcon.backgroundColor = UIColor.clear
-        }
+        guard dialog.isOnline else { return }
+        
+        cell.onlineStatusIcon.image = dialog.isOnlineMobile ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
+        cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
+        
+        cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / (dialog.isOnlineMobile ? 7 : 2)
+        
+        cell.onlineStatusIcon.constraints.filter { c -> Bool in
+            return c.identifier == "Width"
+            }[0].constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 4.5 : 4)
+        
+        cell.onlineStatusIcon.constraints.filter { c -> Bool in
+            return c.identifier == "Height"
+            }[0].constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 3.5 : 4)
     }
     
 }

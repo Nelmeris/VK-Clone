@@ -62,8 +62,8 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         let friend = friends[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsUITableViewCell
         
-        cell.firstName.text = friend.first_name
-        cell.lastName.text = friend.last_name
+        cell.firstName.text = friend.firstName
+        cell.lastName.text = friend.lastName
         
         setUserPhoto(cell, friend)
         
@@ -74,10 +74,10 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! FriendPhotosUIViewController
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            viewController.user = (RealmService.loadData()! as Results<VKUserModel>)[indexPath.row]
-            viewController.userId = viewController.user.id
-        }
+        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        
+        viewController.user = (RealmService.loadData()! as Results<VKUserModel>)[indexPath.row]
+        viewController.userId = viewController.user.id
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -157,35 +157,26 @@ extension FriendsUITableViewController {
     
     
     func setUserPhoto(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
-        guard friend.photo_100 != "" else { return }
+        guard friend.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: friend.photo_100), completed: nil)
+        cell.photo.sd_setImage(with: URL(string: friend.photo100), completed: nil)
     }
     
     func setStatusIcon(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
-        if friend.online == 1 {
-            cell.onlineStatusIcon.image = friend.online_mobile == 1 ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
-            cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
-            
-            cell.onlineStatusIcon.layer.cornerRadius = friend.online_mobile == 1 ?
-                cell.onlineStatusIcon.frame.height / 10 :
-                cell.onlineStatusIcon.frame.height / 2
-            
-            cell.onlineStatusIcon.constraints.filter { c -> Bool in
-                return c.identifier == "Width"
-                }[0].constant = friend.online_mobile == 1 ?
-                    cell.photo.frame.height / 4.5 :
-                cell.photo.frame.height / 4
-            
-            cell.onlineStatusIcon.constraints.filter { c -> Bool in
-                return c.identifier == "Height"
-                }[0].constant = friend.online_mobile == 1 ?
-                    cell.photo.frame.height / 3.5 :
-                cell.photo.frame.height / 4
-        } else {
-            cell.onlineStatusIcon.image = nil
-            cell.onlineStatusIcon.backgroundColor = UIColor.clear
-        }
+        guard friend.isOnline else { return }
+        
+        cell.onlineStatusIcon.image = friend.isOnlineMobile ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon")
+        cell.onlineStatusIcon.backgroundColor = tableView.backgroundColor
+        
+        cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / (friend.isOnlineMobile ? 7 : 2)
+        
+        cell.onlineStatusIcon.constraints.filter { c -> Bool in
+            return c.identifier == "Width"
+            }[0].constant = cell.photo.frame.height / (friend.isOnlineMobile ? 4.5 : 4)
+        
+        cell.onlineStatusIcon.constraints.filter { c -> Bool in
+            return c.identifier == "Height"
+            }[0].constant = cell.photo.frame.height / (friend.isOnlineMobile ? 3.5 : 4)
     }
     
 }

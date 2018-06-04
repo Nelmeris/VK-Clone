@@ -36,7 +36,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var userImage: UIImageView! {
         didSet {
-            let url = URL(string: user.photo_100)
+            let url = URL(string: user.photo100)
             userImage.sd_setImage(with: url, completed: nil)
             userImage.layer.cornerRadius = userImage.frame.height / 2
         }
@@ -44,7 +44,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     
     @IBOutlet weak var userFullName: UILabel! {
         didSet {
-            userFullName.text = user.first_name + " " + user.last_name
+            userFullName.text = user.firstName + " " + user.lastName
         }
     }
     

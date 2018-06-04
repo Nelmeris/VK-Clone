@@ -54,15 +54,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Ygi-b4-19r">
-                                            <rect key="frame" x="79" y="34" width="24" height="24"/>
+                                            <rect key="frame" x="79" y="34" width="28" height="28"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="24" identifier="Width" id="jOv-1B-HpS"/>
-                                                <constraint firstAttribute="height" constant="24" id="uss-de-Xw6"/>
+                                                <constraint firstAttribute="width" constant="28" identifier="Width" id="jOv-1B-HpS"/>
+                                                <constraint firstAttribute="height" constant="28" id="uss-de-Xw6"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-65-xh2">
-                                            <rect key="frame" x="110" y="37" width="89.5" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="114" y="38.5" width="95" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>

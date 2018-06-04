@@ -44,7 +44,7 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
         
         setGroupPhoto(cell, group)
         
-        cell.participantsCount.text = getShortCount(group.members_count)
+        cell.participantsCount.text = getShortCount(group.membersCount)
         
         return cell
     }
@@ -73,9 +73,9 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
 extension GroupsSearchUITableViewController {
     
     func setGroupPhoto(_ cell: GroupsUITableViewCell, _ group: VKGroupModel) {
-        guard group.photo_100 != "" else { return }
+        guard group.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
+        cell.photo.sd_setImage(with: URL(string: group.photo100), completed: nil)
     }
     
 }

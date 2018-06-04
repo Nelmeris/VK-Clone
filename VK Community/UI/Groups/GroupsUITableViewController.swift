@@ -117,9 +117,9 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 extension GroupsUITableViewController {
     
     func setGroupPhoto(cell: GroupsUITableViewCell, group: VKGroupModel) {
-        guard group.photo_100 != "" else { return }
+        guard group.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: group.photo_100), completed: nil)
+        cell.photo.sd_setImage(with: URL(string: group.photo100), completed: nil)
     }
     
 }

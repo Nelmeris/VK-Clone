@@ -9,7 +9,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKSizes: Object {
+class VKSizesModel: Object {
     
     @objc dynamic var type = ""
     @objc dynamic var url = ""
@@ -25,7 +25,7 @@ class VKSizes: Object {
         height = json["height"].intValue
     }
     
-    func isEqual (_ object: VKSizes) -> Bool {
+    func isEqual (_ object: VKSizesModel) -> Bool {
         return (type == object.type) &&
             (url == object.url) &&
             (width == object.width) &&

@@ -11,14 +11,14 @@ import RealmSwift
 
 extension VKMessageLongPollService {
     
-    static func Code8DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdatesModel.Update) {
+    static func Code8DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKMessageUpdatesModel.Update) {
         
-        let onlineStatusChanged = update.update as! VKUpdateOnlineStatusChanged
+        let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
         
         DispatchQueue.main.async {
             var dialogs: Results<VKDialogModel> = RealmService.loadData()!
             
-            dialogs = dialogs.filter("id = \(-onlineStatusChanged.user_id)")
+            dialogs = dialogs.filter("id = \(-onlineStatusChanged.userId)")
             
             if dialogs.count != 0 {
                 let dialog = dialogs[0]
@@ -27,7 +27,7 @@ extension VKMessageLongPollService {
                     let realm = try Realm()
                     realm.beginWrite()
                     
-                    dialog.online = 1
+                    dialog.isOnline = true
                     
                     try realm.commitWrite()
                 } catch let error {
@@ -38,14 +38,14 @@ extension VKMessageLongPollService {
         
     }
     
-    static func Code9DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdatesModel.Update) {
+    static func Code9DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKMessageUpdatesModel.Update) {
         
-        let onlineStatusChanged = update.update as! VKUpdateOnlineStatusChanged
+        let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
         
         DispatchQueue.main.async {
             var dialogs: Results<VKDialogModel> = RealmService.loadData()!
             
-            dialogs = dialogs.filter("id = \(-onlineStatusChanged.user_id)")
+            dialogs = dialogs.filter("id = \(-onlineStatusChanged.userId)")
             
             if dialogs.count != 0 {
                 let dialog = dialogs[0]
@@ -54,7 +54,7 @@ extension VKMessageLongPollService {
                     let realm = try Realm()
                     realm.beginWrite()
                     
-                    dialog.online = 0
+                    dialog.isOnline = false
                     
                     try realm.commitWrite()
                 } catch let error {

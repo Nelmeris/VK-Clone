@@ -56,7 +56,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Text" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIW-yb-D08">
-                                                    <rect key="frame" x="15" y="75" width="313" height="20.5"/>
+                                                    <rect key="frame" x="15" y="75" width="313" height="15.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="HaV-O1-pMF"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -139,7 +142,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="rVl-tT-mb3" secondAttribute="bottom" constant="15" id="fTS-DV-jeR"/>
                                                 <constraint firstItem="Svo-ye-deQ" firstAttribute="top" secondItem="YZj-o6-tOv" secondAttribute="top" id="gRQ-5D-UAE"/>
                                                 <constraint firstAttribute="bottom" secondItem="Svo-ye-deQ" secondAttribute="bottom" constant="15" id="hPQ-7X-IRn"/>
-                                                <constraint firstItem="gpp-b2-xBr" firstAttribute="top" secondItem="zIW-yb-D08" secondAttribute="bottom" id="j90-Rp-lc6"/>
+                                                <constraint firstItem="gpp-b2-xBr" firstAttribute="top" secondItem="zIW-yb-D08" secondAttribute="bottom" constant="5" id="j90-Rp-lc6"/>
                                                 <constraint firstItem="gpp-b2-xBr" firstAttribute="leading" secondItem="lN7-8b-keL" secondAttribute="leading" constant="15" id="jRi-Ju-WcS"/>
                                                 <constraint firstAttribute="bottom" secondItem="ejN-vo-hhj" secondAttribute="bottom" constant="15" id="kDB-2Q-0vY"/>
                                                 <constraint firstItem="Hw5-nQ-guj" firstAttribute="centerY" secondItem="YuV-OT-rAG" secondAttribute="centerY" id="nQp-cp-gfY"/>
@@ -189,7 +192,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siB-qV-8bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="-778.07881773399015"/>
+            <point key="canvasLocation" x="2140" y="-778.56071964017997"/>
         </scene>
         <!--News Feed Navigation-->
         <scene sceneID="2Z0-GU-HC5">

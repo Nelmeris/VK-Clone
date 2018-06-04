@@ -19,6 +19,7 @@ class DialogsUITableViewCell: UITableViewCell {
     @IBOutlet weak var onlineStatusIcon: UIImageView! {
         didSet {
             onlineStatusIcon.layer.cornerRadius = onlineStatusIcon.frame.height / 2
+            onlineStatusIcon.image = nil
         }
     }
     
@@ -40,11 +41,11 @@ class DialogsUITableViewCell: UITableViewCell {
         super.prepareForReuse()
         
         photo.image = #imageLiteral(resourceName: "DefaultDialogPhoto")
-        name.text = ""
-        lastMessage.text = ""
-        lastMessageDate.text = ""
+        name.text = nil
+        lastMessage.text = nil
+        lastMessageDate.text = nil
         
-        onlineStatusIcon.image = #imageLiteral(resourceName: "OnlineIcon")
+        onlineStatusIcon.image = nil
         onlineStatusIcon.backgroundColor = UIColor.clear
         
         senderPhoto.constraints.filter { c -> Bool in

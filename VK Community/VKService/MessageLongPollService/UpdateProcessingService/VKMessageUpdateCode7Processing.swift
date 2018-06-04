@@ -11,21 +11,21 @@ import RealmSwift
 
 extension VKMessageLongPollService {
     
-    static func Code7MessageProcessing(_ controller: MessagesUIViewController, _ update: VKUpdatesModel.Update) {
+    static func Code7MessageProcessing(_ controller: MessagesUIViewController, _ update: VKMessageUpdatesModel.Update) {
         
-        let readMessages = update.update as! VKUpdateReadMessages
-        guard readMessages.peer_id == controller.dialogId else { return }
+        let readMessages = update.update as! VKMessageUpdateReadMessagesModel
+        guard readMessages.peerId == controller.dialogId else { return }
         
         DispatchQueue.main.async {
             do {
                 let realm = try Realm()
                 realm.beginWrite()
                 for index in 0...controller.dialog.messages.count - 1{
-                    if controller.dialog.messages[index].id <= readMessages.local_id && controller.dialog.out_read <= controller.dialog.messages[index].id {
-                        controller.dialog.messages[index].read_state = 1
+                    if controller.dialog.messages[index].id <= readMessages.localId && controller.dialog.outRead <= controller.dialog.messages[index].id {
+                        controller.dialog.messages[index].isRead = true
                     }
                 }
-                controller.dialog.out_read = readMessages.local_id
+                controller.dialog.outRead = readMessages.localId
                 try realm.commitWrite()
             } catch let error {
                 print(error)

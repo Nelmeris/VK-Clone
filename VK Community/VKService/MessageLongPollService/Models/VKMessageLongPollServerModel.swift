@@ -9,14 +9,14 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKMessageLongPollServer: RealmModel {
+class VKMessageLongPollServerModel: RealmModel {
     
     @objc dynamic var key = ""
     @objc dynamic var server = ""
     @objc dynamic var ts = 0
     @objc dynamic var pts = 0
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
         key = json["key"].stringValue

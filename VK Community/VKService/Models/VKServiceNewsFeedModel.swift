@@ -9,18 +9,18 @@
 import RealmSwift
 import SwiftyJSON
 
-class VKNewsListModel: VKBaseModel {
+class VKNewsFeedModel: VKBaseModel {
     
     var items: [VKNewsModel] = []
     var profiles: [VKUserModel] = []
     var groups: [VKGroupModel] = []
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        items = json["items"].map({ VKNewsModel(json: $0.1) })
-        profiles = json["profiles"].map({ VKUserModel(json: $0.1) })
-        groups = json["groups"].map({ VKGroupModel(json: $0.1) })
+        items = json["items"].map({ VKNewsModel($0.1) })
+        profiles = json["profiles"].map({ VKUserModel($0.1) })
+        groups = json["groups"].map({ VKGroupModel($0.1) })
     }
     
 }
@@ -28,10 +28,9 @@ class VKNewsListModel: VKBaseModel {
 class VKNewsModel {
     
     var type = ""
-    var source_id = 0
+    var sourceId = 0
     var date = 0
-    var post_id = 0
-    var post_type = ""
+    var postId = 0
     var text = ""
     
     var attachments: [Attachments] = []
@@ -40,11 +39,11 @@ class VKNewsModel {
     class Likes {
         
         var count = 0
-        var user_likes = 0
+        var isUserLike = false
         
         init(_ json: JSON) {
             count = json["count"].intValue
-            user_likes = json["user_likes"].intValue
+            isUserLike = json["user_likes"].intValue == 0 ? false : true
         }
         
     }
@@ -53,11 +52,11 @@ class VKNewsModel {
     class Reposts {
         
         var count = 0
-        var user_reposted = 0
+        var canReposted = false
         
         init(_ json: JSON) {
             count = json["count"].intValue
-            user_reposted = json["user_reposted"].intValue
+            canReposted = json["user_reposted"].intValue == 0 ? false : true
         }
         
     }
@@ -66,12 +65,11 @@ class VKNewsModel {
     class Comments {
         
         var count = 0
-        var can_post = 0
+        var canPost = false
         
         init(_ json: JSON) {
-            print(json)
             count = json["count"].intValue
-            can_post = json["can_post"].intValue
+            canPost = json["can_post"].intValue == 0 ? false : true
         }
         
     }
@@ -81,26 +79,14 @@ class VKNewsModel {
     class Attachments {
         
         var type = ""
-        var photo: Photo?
-        
-        class Photo {
-            
-            var id = 0
-            var sizes: [VKSizes] = []
-            
-            init(_ json: JSON) {
-                id = json["id"].intValue
-                sizes = json["sizes"].map({ VKSizes($0.1) })
-            }
-            
-        }
+        var photo: VKPhotoModel?
         
         init(_ json: JSON) {
             type = json["type"].stringValue
             
             switch type {
             case "photo":
-                photo = Photo(json["photo"])
+                photo = VKPhotoModel(json["photo"])
             default:
                 break
             }
@@ -108,12 +94,11 @@ class VKNewsModel {
         
     }
     
-    init(json: JSON) {
+    init(_ json: JSON) {
         type = json["type"].stringValue
-        source_id = json["source_id"].intValue
+        sourceId = json["source_id"].intValue
         date = json["date"].intValue
-        post_id = json["post_id"].intValue
-        post_type = json["post_type"].stringValue
+        postId = json["post_id"].intValue
         text = json["text"].stringValue
         
         attachments = json["attachments"].map({ Attachments($0.1) })

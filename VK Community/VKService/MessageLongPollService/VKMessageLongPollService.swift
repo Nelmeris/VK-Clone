@@ -8,22 +8,24 @@
 
 import UIKit
 import RealmSwift
+import Alamofire
+import SwiftyJSON
 
 class VKMessageLongPollService {
     
     static func loadLongPollData(completion: @escaping () -> Void) {
-        VKService.request(method: "messages.getLongPollServer") { (response: VKDataBaseResponseModel<VKMessageLongPollServer>) in
+        VKService.request(method: "messages.getLongPollServer") { (response: VKRealmResponseModel<VKMessageLongPollServerModel>) in
             let data = [response.response!]
             RealmService.resaveData(data)
             completion()
         }
     }
     
-    static func startLongPoll(ts: Int) {
-        let longPollData = (RealmService.loadData()! as Results<VKMessageLongPollServer>)[0]
-        let url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=30&mode=104&version=3"
+    static func startLongPoll(ts: Int, wait: Int = 30, mode: Int = 104, version: Int = 3) {
+        let longPollData = (RealmService.loadData()! as Results<VKMessageLongPollServerModel>)[0]
+        let url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=\(wait)&mode=\(mode)&version=\(version)"
         
-        VKService.request(url: url) { (response: VKResponseModel<VKUpdatesModel>) in
+        VKMessageLongPollService.request(url) { response in
             VKMessageLongPollService.startLongPoll(ts: response.response.ts)
             
             DispatchQueue.main.async {
@@ -39,7 +41,19 @@ class VKMessageLongPollService {
         
     }
     
-    static func updateProcessing(_ visibleViewController: UIViewController?, _ update: VKUpdatesModel.Update) {
+    static func request(_ url: String, completion: @escaping(VKResponseModel<VKMessageUpdatesModel>) -> Void = {_ in}) {
+        Alamofire.request(url).responseData(queue: DispatchQueue.global()) { response in
+            do {
+                let json = try VKService.getJSONResponse(response)
+                
+                let updates = VKResponseModel<VKMessageUpdatesModel>(json)
+                
+                completion(updates)
+            } catch {}
+        }
+    }
+    
+    static func updateProcessing(_ visibleViewController: UIViewController?, _ update: VKMessageUpdatesModel.Update) {
         switch update.code {
         case 4:
             guard visibleViewController == nil else {

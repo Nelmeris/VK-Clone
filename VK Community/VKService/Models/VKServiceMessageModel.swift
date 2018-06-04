@@ -13,16 +13,16 @@ class VKMessageResponseModel: VKBaseModel {
     
     var count = 0
     var items: [VKMessageModel] = []
-    var in_read = 0
-    var out_read = 0
+    var inRead = 0
+    var outRead = 0
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
         count = json["count"].intValue
-        items = json["items"].map({ VKMessageModel(json: $0.1) })
-        in_read = json["in_read"].intValue
-        out_read = json["out_read"].intValue
+        items = json["items"].map({ VKMessageModel($0.1) })
+        inRead = json["in_read"].intValue
+        outRead = json["out_read"].intValue
     }
     
 }
@@ -30,47 +30,40 @@ class VKMessageResponseModel: VKBaseModel {
 class VKMessageModel: RealmModel {
     
     @objc dynamic var id = 0
-    @objc dynamic var date = 0
-    @objc dynamic var out = 0
-    @objc dynamic var user_id = 0
-    @objc dynamic var read_state = 0
-    @objc dynamic var title = ""
-    @objc dynamic var body = ""
-    @objc dynamic var chat_id = 0
+    @objc dynamic var date = Date()
+    @objc dynamic var isOut = false
+    @objc dynamic var userId = 0
+    @objc dynamic var isRead = false
+    @objc dynamic var text = ""
+    @objc dynamic var chatId = 0
     
-    @objc dynamic var from_id = 0
+    @objc dynamic var fromId = 0
     
-    var chat_active = List<Int>()
+    var chatActive = List<Int>()
     
-    @objc dynamic var photo_100 = ""
-    
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
         id = json["id"].intValue
-        date = json["date"].intValue
-        out = json["out"].intValue
-        user_id = json["user_id"].intValue
-        read_state = json["read_state"].intValue
-        title = json["title"].stringValue
-        body = json["body"].stringValue
-        chat_id = json["chat_id"].intValue
+        date = Date(timeIntervalSince1970: Double(json["date"].intValue))
+        isOut = json["out"].intValue == 0 ? false : true
+        userId = json["user_id"].intValue
+        isRead = json["read_state"].intValue == 0 ? false : true
+        text = json["body"].stringValue
+        chatId = json["chat_id"].intValue
         
-        photo_100 = json["photo_100"].stringValue
-        
-        from_id = json["from_id"].intValue
+        fromId = json["from_id"].intValue
         
         if let intArray = json["chat_active"].arrayObject as? [Int] {
-            chat_active.append(objectsIn: intArray)
+            chatActive.append(objectsIn: intArray)
         }
     }
     
-    convenience init(id: Int, text: String, from_id: Int, date: Int) {
+    convenience init(id: Int, text: String, fromId: Int, date: Date) {
         self.init()
         
         self.id = id
-        body = text
-        self.from_id = from_id
+        self.text = text
         self.date = date
     }
     
@@ -78,10 +71,8 @@ class VKMessageModel: RealmModel {
         let object = object as! VKMessageModel
         return (id == object.id) &&
             (date == object.date) &&
-            (user_id == object.user_id) &&
-            (from_id == object.from_id) &&
-            (title == object.title) &&
-            (body == object.body)
+            (userId == object.userId) &&
+            (text == object.text)
     }
     
 }

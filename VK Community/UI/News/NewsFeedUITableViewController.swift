@@ -11,13 +11,13 @@ import SDWebImage
 
 class NewsFeedUITableViewController: UITableViewController {
     
-    var news: VKNewsListModel!
+    var news: VKNewsFeedModel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         DispatchQueue.global().async {
-            VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsListModel>) in
+            VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { (response: VKResponseModel<VKNewsFeedModel>) in
                 self.news = response.response
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -36,8 +36,8 @@ class NewsFeedUITableViewController: UITableViewController {
         let news = self.news.items[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsFeedUITableViewCell
         
-        cell.postId = news.post_id
-        cell.authorId = news.source_id
+        cell.postId = news.postId
+        cell.authorId = news.sourceId
         
         cell.postText.text = news.text
         
@@ -62,25 +62,25 @@ class NewsFeedUITableViewController: UITableViewController {
 extension NewsFeedUITableViewController {
     
     func setLikes(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
-        guard news.likes.user_likes == 1 else { return }
+        guard news.likes.isUserLike else { return }
         
         cell.likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
     }
     
     func setCommentsCount(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
-        guard news.comments.can_post == 1 && news.comments.count != 0 else { return }
+        guard news.comments.canPost && news.comments.count != 0 else { return }
         
         cell.commentsCount.text = getShortCount(news.comments.count)
         cell.commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")
     }
     
     func setAuthorData(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
-        let sourceData = getSourceData(news.source_id)
+        let sourceData = getSourceData(news.sourceId)
         
         if let photoUrl = sourceData.photoUrl {
             cell.authorPhoto.sd_setImage(with: photoUrl, completed: nil)
         } else {
-            cell.authorPhoto.image = news.source_id > 0 ? #imageLiteral(resourceName: "DefaultUserPhoto") : #imageLiteral(resourceName: "DefaultGroupPhoto")
+            cell.authorPhoto.image = news.sourceId > 0 ? #imageLiteral(resourceName: "DefaultUserPhoto") : #imageLiteral(resourceName: "DefaultGroupPhoto")
         }
         
         cell.authorName.text = sourceData.name
@@ -105,23 +105,23 @@ extension NewsFeedUITableViewController {
         }
     }
     
-    func getSourceData(_ source_id: Int) -> (name: String, photoUrl: URL?) {
+    func getSourceData(_ sourceId: Int) -> (name: String, photoUrl: URL?) {
         let name: String
         let photoUrl: URL?
         
-        if source_id > 0 {
+        if sourceId > 0 {
             let source = self.news.profiles.filter { profile -> Bool in
-                return profile.id == source_id
+                return profile.id == sourceId
                 }.first!
             
-            photoUrl = URL(string: source.photo_100)
-            name = source.first_name + " " + source.last_name
+            photoUrl = URL(string: source.photo100)
+            name = source.firstName + " " + source.lastName
         } else {
             let source = self.news.groups.filter { group -> Bool in
-                return -group.id == source_id
+                return -group.id == sourceId
                 }.first!
             
-            photoUrl = URL(string: source.photo_100)
+            photoUrl = URL(string: source.photo100)
             name = source.name
         }
         

@@ -8,16 +8,16 @@
 
 import SwiftyJSON
 
-class VKUpdateReadMessages: VKBaseUpdateModel {
+class VKMessageUpdateReadMessagesModel: VKBaseMessageUpdateModel {
     
-    var peer_id = 0
-    var local_id = 0
+    var peerId = 0
+    var localId = 0
     
     required convenience init(_ json: JSON) {
         self.init()
         
-        peer_id = json[1].intValue
-        local_id = json[2].intValue
+        peerId = json[1].intValue
+        localId = json[2].intValue
     }
     
 }

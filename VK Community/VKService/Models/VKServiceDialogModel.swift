@@ -15,47 +15,39 @@ class VKDialogModel: RealmModel {
     @objc dynamic var type = ""
     @objc dynamic var title = ""
     
-    @objc dynamic var unread = 0
     @objc dynamic var message: VKMessageModel!
     
     var messages = List<VKMessageModel>()
     
-    @objc dynamic var in_read = 0
-    @objc dynamic var out_read = 0
+    @objc dynamic var inRead = 0
+    @objc dynamic var outRead = 0
     
-    @objc dynamic var users_count = 0
-    @objc dynamic var admin_id = 0
-    @objc dynamic var photo_50 = ""
-    @objc dynamic var photo_100 = ""
-    @objc dynamic var photo_200 = ""
+    @objc dynamic var usersCount = 0
+    @objc dynamic var photo100 = ""
     
-    @objc dynamic var online = 0
-    @objc dynamic var online_mobile = 0
+    @objc dynamic var isOnline = false
+    @objc dynamic var isOnlineMobile = false
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
-        unread = json["unread"].intValue
-        message = VKMessageModel(json: json["message"])
-        in_read = json["in_read"].intValue
-        out_read = json["out_read"].intValue
+        message = VKMessageModel(json["message"])
+        inRead = json["in_read"].intValue
+        outRead = json["out_read"].intValue
         
         title = json["message"]["title"].stringValue
-        users_count = json["message"]["users_count"].intValue
-        admin_id = json["message"]["admin_id"].intValue
-        photo_50 = json["message"]["photo_50"].stringValue
-        photo_100 = json["message"]["photo_100"].stringValue
-        photo_200 = json["message"]["photo_200"].stringValue
+        usersCount = json["message"]["users_count"].intValue
+        photo100 = json["message"]["photo_100"].stringValue
         
-        if message.chat_id != 0 {
-            id = 2000000000 + message.chat_id
+        if message.chatId != 0 {
+            id = 2000000000 + message.chatId
             type = "chat"
         } else {
-            if message.user_id > 0 {
-                id = message.user_id
+            if message.userId > 0 {
+                id = message.userId
                 type = "profile"
             } else {
-                id = -message.user_id
+                id = -message.userId
                 type = "group"
             }
         }
@@ -70,11 +62,11 @@ class VKDialogModel: RealmModel {
         return (self.id == object.id) &&
             (title == object.title) &&
             (type == object.type) &&
-            (photo_100 == object.photo_100) &&
-            (online == object.online) &&
-            (online_mobile == object.online_mobile) &&
+            (photo100 == object.photo100) &&
+            (isOnline == object.isOnline) &&
+            (isOnlineMobile == object.isOnlineMobile) &&
             (message.date == object.message.date) &&
-            (message.body == object.message.body)
+            (message.text == object.message.text)
     }
     
 }

@@ -18,8 +18,9 @@ class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    // Составление запроса для авторизации и вызов его в WebViewVK
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         let request = URLRequest(url: getVKAuthorizationURL())
         
         WebViewVK.load(request)
@@ -42,23 +43,19 @@ class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
         return urlComponents.url!
     }
     
-    // Получение адреса переадрессации
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
             decisionHandler(.allow)
             return
         }
         
-        // Сохранение полученного токена
         _ = Keychain.save(getParams(fragment)["access_token"]!, forKey: "token")
         
         decisionHandler(.cancel)
         
-        // Возврат
         dismiss(animated: true, completion: nil)
     }
     
-    // Получение параметров адреса
     func getParams(_ fragment: String) -> [String : String]{
         let params = fragment
             .components(separatedBy: "&")

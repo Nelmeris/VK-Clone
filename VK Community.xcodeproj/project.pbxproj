@@ -24,6 +24,7 @@
 		F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */; };
+		F64FFDD920C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64FFDD820C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift */; };
 		F66C097E20C5B3D3009EEC7E /* FriendsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */; };
 		F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */; };
 		F67266DB209B1B190086B1B7 /* GroupsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */; };
@@ -95,6 +96,7 @@
 		F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewController.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeedModel.swift; sourceTree = "<group>"; };
+		F64FFDD820C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateFlagsModel.swift; sourceTree = "<group>"; };
 		F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FriendsStoryboard.storyboard; sourceTree = "<group>"; };
 		F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPhotosUIViewController.swift; sourceTree = "<group>"; };
 		F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsUITableViewController.swift; sourceTree = "<group>"; };
@@ -399,8 +401,8 @@
 			isa = PBXGroup;
 			children = (
 				F6D634D320C356E20062CEED /* Models */,
-				F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */,
 				F6D634CE20C354250062CEED /* UpdateProcessingService */,
+				F6D634CA20C3477D0062CEED /* VKMessageLongPollService.swift */,
 			);
 			path = MessageLongPollService;
 			sourceTree = "<group>";
@@ -432,6 +434,7 @@
 				F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */,
 				F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */,
 				F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */,
+				F64FFDD820C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift */,
 			);
 			path = Updates;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,
+				F64FFDD920C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift in Sources */,
 				F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */,
 				F628172B20BD89A6002185C4 /* GlobalMethods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */,

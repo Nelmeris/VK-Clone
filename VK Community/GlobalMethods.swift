@@ -42,14 +42,17 @@ func getVisibleViewController(base: UIViewController? = UIApplication.shared.key
     if let nav = base as? UINavigationController {
         return getVisibleViewController(base: nav.visibleViewController)
     }
+    
     if let tab = base as? UITabBarController {
         if let selected = tab.selectedViewController {
             return getVisibleViewController(base: selected)
         }
     }
+    
     if let presented = base?.presentedViewController {
         return getVisibleViewController(base: presented)
     }
+    
     return base
     
 }
@@ -59,22 +62,26 @@ func getDateFormatter(_ date: Date) -> DateFormatter {
     let dateFormatter = DateFormatter()
     
     switch Calendar.current {
+        
     case let x where x.component(.day, from: date) == x.component(.day, from: Date()):
         dateFormatter.dateFormat = "HH:mm"
+        
     case _ where Date().timeIntervalSince(date) <= 172800:
         dateFormatter.dateFormat = "вчера"
+        
     case let x where x.component(.year, from: date) == x.component(.year, from: Date()):
         dateFormatter.dateFormat = "dd MMM"
+        
     default:
         dateFormatter.dateFormat = "dd.MM.yyyy"
+        
     }
     
     return dateFormatter
     
 }
 
-func getDateString(_ date: Int) -> String {
-    let date = Date(timeIntervalSince1970: Double(date))
+func getDateString(_ date: Date) -> String {
     let dateFormatter = getDateFormatter(date)
     
     return dateFormatter.string(from: date)

@@ -8,14 +8,14 @@
 
 import SwiftyJSON
 
-class VKUpdateOnlineStatusChanged: VKBaseUpdateModel {
+class VKMessageUpdateOnlineStatusChangedModel: VKBaseMessageUpdateModel {
     
-    var user_id = 0
+    var userId = 0
     
     required convenience init(_ json: JSON) {
         self.init()
         
-        user_id = json[1].intValue
+        userId = json[1].intValue
     }
     
 }

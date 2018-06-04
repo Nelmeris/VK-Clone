@@ -10,7 +10,6 @@ import RealmSwift
 
 class RealmService {
     
-    // Сохранение данных в Realm
     static func resaveData<Type: RealmModel>(_ data: [Type]) {
         do {
             let realm = try Realm()
@@ -23,21 +22,18 @@ class RealmService {
         }
     }
     
-    // Обновление данных в Realm
     static func updateData<Type: RealmModel>(_ data: [Type]) {
         do {
             let realm = try Realm()
             
             realm.beginWrite()
             
-            // Удаление элементов
             var delete = realm.objects(Type.self)
             for item in data {
                 delete = delete.filter("id != %@", item.value(forKey: "id") as! Int)
             }
             realm.delete(delete)
             
-            // Игнорирование не измененных элементов
             var data = data
             for item1 in data {
                 for item2 in realm.objects(Type.self) {
@@ -55,7 +51,6 @@ class RealmService {
         }
     }
     
-    // Загрузка данных из Realm
     static func loadData<Type: RealmModel>() -> Results<Type>? {
         do {
             let realm = try Realm()
@@ -66,7 +61,6 @@ class RealmService {
         }
     }
     
-    // Очистка базы Realm
     static func clearDataBase() {
         do {
             let realm = try Realm()
@@ -78,7 +72,6 @@ class RealmService {
         }
     }
     
-    // Очистка данных Realm
     static func clearData<Type: RealmModel>(_ data: [Type]) {
         do {
             let realm = try Realm()
@@ -90,7 +83,6 @@ class RealmService {
         }
     }
     
-    // Удаление данных из Realm
     static func deleteData<Type: RealmModel>(_ data: [Type]) {
         do {
             let realm = try Realm()

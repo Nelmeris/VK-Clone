@@ -9,7 +9,7 @@
 import SwiftyJSON
 import RealmSwift
 
-class VKUpdatesModel: VKBaseModel {
+class VKMessageUpdatesModel: VKBaseModel {
     
     var ts = 0
     var pts = 0
@@ -18,7 +18,7 @@ class VKUpdatesModel: VKBaseModel {
     class Update {
         
         var code = 0
-        var update: VKBaseUpdateModel! = nil
+        var update: VKBaseMessageUpdateModel! = nil
         
         required convenience init(json: JSON) {
             self.init()
@@ -27,13 +27,13 @@ class VKUpdatesModel: VKBaseModel {
             
             switch code {
             case 4:
-                update = VKUpdateNewMessage(json)
+                update = VKMessageUpdateNewMessageModel(json)
                 
             case 6,7:
-                update = VKUpdateReadMessages(json)
+                update = VKMessageUpdateReadMessagesModel(json)
                 
             case 8,9:
-                update = VKUpdateOnlineStatusChanged(json)
+                update = VKMessageUpdateOnlineStatusChangedModel(json)
                 
             default: break
             }
@@ -41,7 +41,7 @@ class VKUpdatesModel: VKBaseModel {
         
     }
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
         
         ts = json["ts"].intValue
@@ -51,7 +51,7 @@ class VKUpdatesModel: VKBaseModel {
     
 }
 
-class VKBaseUpdateModel {
+class VKBaseMessageUpdateModel {
     
     required convenience init(_ json: JSON) {
         self.init()

@@ -20,7 +20,7 @@ class MainUITabBarController: UITabBarController {
             }
             
             VKMessageLongPollService.loadLongPollData() {
-                let longPollData: Results<VKMessageLongPollServer> = RealmService.loadData()!
+                let longPollData: Results<VKMessageLongPollServerModel> = RealmService.loadData()!
                 VKMessageLongPollService.startLongPoll(ts: longPollData[0].ts)
             }
         }

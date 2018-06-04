@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmModel: Object {
     
-    required convenience init(json: JSON) {
+    required convenience init(_ json: JSON) {
         self.init()
     }
     
