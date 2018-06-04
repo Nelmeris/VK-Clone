@@ -25,24 +25,31 @@ class NewsFeedUITableViewCell: UITableViewCell {
     @IBOutlet weak var repostsCount: UILabel!
     @IBOutlet weak var commentsCount: UILabel!
     @IBOutlet weak var viewsCount: UILabel!
-    @IBOutlet weak var postPhoto: UIImageView!
+    @IBOutlet weak var postPhoto: UIImageView! {
+        didSet {
+            postPhoto.constraints.filter { c -> Bool in
+                return c.identifier == "Height"
+                }[0].constant = 0
+        }
+    }
     
-    var isLike = false
     @IBOutlet weak var likesIcon: UIImageView!
     
-    @IBOutlet weak var commentsIcon: UIImageView!
+    @IBOutlet weak var commentsIcon: UIImageView! {
+        didSet {
+            commentsIcon.image = nil
+        }
+    }
     
     @IBAction func LikesClick(_ sender: Any) {
         let parameters = ["type" : "post", "item_id" : String(postId), "owner_id" : String(authorId)]
         
-        if isLike {
+        if likesIcon.image == #imageLiteral(resourceName: "LikesIcon") {
             likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
-            isLike = false
             likes -= 1
             VKService.request(method: "likes.delete", parameters: parameters)
         } else {
             likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
-            isLike = true
             likes += 1
             VKService.request(method: "likes.add", parameters: parameters)
         }
@@ -59,12 +66,13 @@ class NewsFeedUITableViewCell: UITableViewCell {
         commentsCount.text = ""
         viewsCount.text = ""
         
-        postPhoto.image = nil
-        postPhoto.constraints[0].constant = 0
+        postPhoto.constraints.filter { c -> Bool in
+            return c.identifier == "Height"
+            }[0].constant = 0
         authorPhoto.image = nil
         
         likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
-        commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")
+        commentsIcon.image = nil
     }
     
 }

@@ -52,8 +52,6 @@ class NewsFeedUITableViewController: UITableViewController {
         
         setAuthorData(cell, news)
         
-        cell.postPhoto.constraints[0].constant = 0
-        
         attachmentProcessing(cell, news.attachments)
         
         return cell
@@ -67,16 +65,13 @@ extension NewsFeedUITableViewController {
         guard news.likes.user_likes == 1 else { return }
         
         cell.likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
-        cell.isLike = true
     }
     
     func setCommentsCount(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
-        if news.comments.can_post == 0 && news.comments.count == 0 {
-            cell.commentsCount.text = nil
-            cell.commentsIcon.image = nil
-        } else {
-            cell.commentsCount.text = getShortCount(news.comments.count)
-        }
+        guard news.comments.can_post == 0 && news.comments.count == 0 else { return }
+        
+        cell.commentsCount.text = getShortCount(news.comments.count)
+        cell.commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")
     }
     
     func setAuthorData(_ cell: NewsFeedUITableViewCell, _ news: VKNewsModel) {
@@ -98,7 +93,10 @@ extension NewsFeedUITableViewController {
                 let size = attachment.photo!.sizes.last!
                 
                 let url = URL(string: size.url)
-                cell.postPhoto.constraints[0].constant = cell.postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
+                
+                cell.postPhoto.constraints.filter { c -> Bool in
+                    return c.identifier == "Height"
+                }[0].constant = cell.postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
                 cell.postPhoto.sd_setImage(with: url, completed: nil)
                 
                 break
