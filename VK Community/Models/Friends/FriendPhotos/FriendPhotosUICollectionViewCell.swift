@@ -10,10 +10,6 @@ import UIKit
 
 class FriendPhotosCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var photo: UIImageView! {
-        didSet {
-            photo.layer.cornerRadius = photo.frame.height / 2
-        }
-    }
+    @IBOutlet weak var photo: UIImageView!
     
 }

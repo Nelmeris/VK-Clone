@@ -38,7 +38,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         dialogId = dialog.type == "group" ? -dialog.id : dialog.id
         
-        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId)]) { (response: VKResponseModel<VKMessageResponseModel>) in
+        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "100"]) { (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
                 self.deleteOldMessages(dialog: self.dialog, newMessages: response.response.items)
                 
@@ -66,7 +66,9 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
         
-        self.title = dialog.title
+        navigationItem.title = dialog.title
+        
+        setOnlineStatus(navigationItem)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -133,12 +135,37 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
 
 
 extension MessagesUIViewController {
+        
+    func setOnlineStatus(_ navigationItem: UINavigationItem) {
+        guard dialog.online == 1 else { return }
+        
+        if dialog.online_mobile == 0 {
+            navigationItem.title = navigationItem.title! + " (Онлайн)"
+        } else {
+            navigationItem.title = navigationItem.title! + " (Онлайн с телефона)"
+        }
+    }
     
     func setSenderPhoto(_ cell: MessagesUITableViewCell, _ message: VKMessageModel, _ indexPath: IndexPath) {
         guard message.from_id != VKService.user.id else { return }
         
         if (indexPath.row == 0 || dialog.messages[indexPath.row - 1].from_id != message.from_id) {
-            let photo = dialog.type == "chat" ? message.photo_100 : dialog.photo_100
+            var photo = ""
+            if dialog.type == "chat" {
+                
+                var users: Results<VKUserModel> = RealmService.loadData()!
+                users = users.filter("id = \(message.user_id)")
+                
+                if users.count != 0 {
+                    photo = users[0].photo_100
+                }
+                
+            } else {
+                photo = dialog.photo_100
+            }
+            
+            guard photo != "" else { return }
+            
             cell.senderPhoto.sd_setImage(with: URL(string: photo), completed: nil)
         } else {
             cell.senderPhoto.image = nil

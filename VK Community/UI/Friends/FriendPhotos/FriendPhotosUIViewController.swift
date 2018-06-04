@@ -38,6 +38,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
         didSet {
             let url = URL(string: user.photo_100)
             userImage.sd_setImage(with: url, completed: nil)
+            userImage.layer.cornerRadius = userImage.frame.height / 2
         }
     }
     

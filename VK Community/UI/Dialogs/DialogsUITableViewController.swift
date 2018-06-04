@@ -149,7 +149,6 @@ extension DialogsUITableViewController {
             } else {
                 var users: Results<VKUserModel> = RealmService.loadData()!
                 users = users.filter("id = \(dialog.message.user_id)")
-                
                 if users.count != 0 {
                     cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo_100), completed: nil)
                 } else {
