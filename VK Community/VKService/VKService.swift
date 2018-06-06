@@ -21,6 +21,38 @@ class VKService {
     
     static var user: VKUserModel!
     
+    enum requestError: Error {
+        case response(String)
+        case url(String)
+        case accessToken(String)
+        case manyRequests(String)
+    }
+    
+    static func getJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
+        switch response.result {
+        case .success(let value):
+            let json = try! JSON(data: value)
+            
+            guard let error = json["error"].dictionary else { return json }
+            
+            let error_msg = error["error_msg"]!.stringValue
+            
+            switch error_msg {
+            case let msg where msg.range(of: "token") != nil || msg.range(of: "access") != nil:
+                throw requestError.accessToken("REQUEST ERROR! " + error_msg)
+                
+            case let msg where msg.range(of: "many requests") != nil:
+                throw requestError.manyRequests("REQUEST ERROR! " + error_msg)
+                
+            default:
+                throw requestError.url("REQUEST ERROR! " + error_msg)
+            }
+            
+        case .failure(let error):
+            throw requestError.response("REQUEST ERROR! " + error.localizedDescription)
+        }
+    }
+    
     static func getRequestUrl(_ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
         let requestURL = VKService.scheme + "://" + VKService.host + method
         
@@ -31,53 +63,41 @@ class VKService {
         return (requestURL, requestParameters)
     }
     
-    enum requestError: Error {
-        case ResponseError(String)
-        case URLError(String)
-        case AccessTokenError(String)
-    }
-    
-    static func getJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
-        switch response.result {
-        case .success(let value):
-            let json = try! JSON(data: value)
-            
-            if let error = json["error"].dictionary {
-                let error_msg = error["error_msg"]!.stringValue
-                if error_msg.range(of: "token") != nil || error_msg.range(of: "access") != nil {
-                    throw requestError.AccessTokenError("REQUEST ERROR! " + error_msg)
-                } else {
-                    throw requestError.URLError("REQUEST ERROR! " + error_msg)
-                }
-            }
-            
-            return json
-            
-        case .failure(let error):
-            throw requestError.ResponseError("REQUEST ERROR! " + error.localizedDescription)
-        }
-    }
-    
-    static func request<Response: VKBaseModel>(version: String = String(VKService.apiVersion), method: String, parameters: [String : String] = ["" : ""], completion: @escaping(Response) -> Void = {_ in}) {
-        guard let url = getRequestUrl(method, version, parameters) else { return }
+    static func request<Response: VKBaseModel>(version: String = String(VKService.apiVersion),
+                                               method: String,
+                                               parameters: [String : String] = ["" : ""],
+                                               queue: DispatchQueue = DispatchQueue.global(),
+                                               completion: @escaping(Response) -> Void = {_ in}) {
         
-        Alamofire.request(url.url, parameters: url.parameters).responseData(queue: DispatchQueue.global()){ response in
+
+        guard let url = getRequestUrl(method, version, parameters) else { return }
+            
+        VKService.makeRequest(url.url, url.parameters) { (response: Response) in
+            completion(response)
+        }
+        
+    }
+    
+    static func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String : String], completion: @escaping(Response) -> Void = {_ in}) {
+        Alamofire.request(url, parameters: parameters).responseData { response in
             do {
                 let json = try getJSONResponse(response)
                 
                 let model = Response(json["response"])
                 
                 completion(model)
-            } catch requestError.ResponseError(let error_msg) {
+            } catch requestError.response(let error_msg) {
                 print(error_msg)
-            } catch requestError.URLError(let error_msg) {
+            } catch requestError.url(let error_msg) {
                 print(error_msg)
-            } catch requestError.AccessTokenError(let error_msg) {
-                print(error_msg)
+            } catch requestError.accessToken {
                 VKTokenService.tokenReceiving()
+            } catch requestError.manyRequests {
+                makeRequest(url, parameters) { (response: Response) in
+                    completion(response)
+                }
             } catch {}
         }
-        
     }
     
 }
