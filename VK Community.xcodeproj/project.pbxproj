@@ -48,6 +48,7 @@
 		F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */; };
 		F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */; };
 		F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */; };
+		F694C8DF20CC0ABE00D87629 /* GetCacheImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */; };
 		F6B48B5D20B6358100D908F9 /* RealmDataPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */; };
 		F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C420C31CD80062CEED /* VKTokenService.swift */; };
 		F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634C720C325820062CEED /* MainUITabBarController.swift */; };
@@ -120,6 +121,7 @@
 		F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMessageModel.swift; sourceTree = "<group>"; };
 		F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewController.swift; sourceTree = "<group>"; };
 		F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogsUITableViewCell.swift; sourceTree = "<group>"; };
+		F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCacheImageOperation.swift; sourceTree = "<group>"; };
 		F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataPairs.swift; sourceTree = "<group>"; };
 		F6D634C420C31CD80062CEED /* VKTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKTokenService.swift; sourceTree = "<group>"; };
 		F6D634C720C325820062CEED /* MainUITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUITabBarController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
 				F628172A20BD89A6002185C4 /* GlobalMethods.swift */,
+				F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */,
 			);
 			path = "VK Community";
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */,
 				F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */,
 				F6E3F84F2095EBC700519835 /* ProfileAndSettingsUIViewController.swift in Sources */,
+				F694C8DF20CC0ABE00D87629 /* GetCacheImageOperation.swift in Sources */,
 				F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,

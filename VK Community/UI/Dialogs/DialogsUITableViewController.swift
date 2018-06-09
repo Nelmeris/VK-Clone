@@ -138,7 +138,13 @@ extension DialogsUITableViewController {
     
     func setSenderPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         
-        guard dialog.type == "chat" || dialog.message.isOut else { return }
+        guard dialog.type == "chat" || dialog.message.isOut else {
+            cell.leadingSpace.constant = 0
+            cell.senderPhoto.image = nil
+            return
+        }
+        
+        cell.leadingSpace.constant = 7
         
         cell.senderPhoto.constraints.filter { c -> Bool in
             return c.identifier == "Width"

@@ -65,7 +65,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         cell.firstName.text = friend.firstName
         cell.lastName.text = friend.lastName
         
-        setUserPhoto(cell, friend)
+        setUserPhoto(cell, friend, indexPath)
         
         setStatusIcon(cell, friend)
         
@@ -98,6 +98,12 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         
         tableView.reloadData()
     }
+    
+    let queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInteractive
+        return queue
+    }()
     
 }
 
@@ -156,10 +162,20 @@ extension FriendsUITableViewController {
     
     
     
-    func setUserPhoto(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
+    
+    
+    func setUserPhoto(_ cell: FriendsUITableViewCell, _ friend: VKUserModel, _ indexPath: IndexPath) {
         guard friend.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: friend.photo100), completed: nil)
+        let getCacheImageOperation = GetCacheImage(url: friend.photo100)
+        
+        getCacheImageOperation.completionBlock = {
+            OperationQueue.main.addOperation {
+                cell.photo.image = getCacheImageOperation.outputImage
+            }
+        }
+        
+        queue.addOperation(getCacheImageOperation)
     }
     
     func setStatusIcon(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
@@ -179,4 +195,29 @@ extension FriendsUITableViewController {
             }[0].constant = cell.photo.frame.height / (friend.isOnlineMobile ? 3.5 : 4)
     }
     
+}
+
+class SetImageToFriendsRow: Operation {
+    private let indexPath: IndexPath
+    private weak var tableView: UITableView?
+    private var cell: FriendsUITableViewCell?
+    
+    init(cell: FriendsUITableViewCell, indexPath: IndexPath, tableView: UITableView) {
+        self.indexPath = indexPath
+        self.tableView = tableView
+        self.cell = cell
+    }
+    
+    override func main() {
+        guard let tableView = tableView,
+            let cell = cell,
+            let getCacheImage = dependencies[0] as? GetCacheImage,
+            let image = getCacheImage.outputImage else { return }
+        
+        if let newIndexPath = tableView.indexPath(for: cell), newIndexPath == indexPath {
+            cell.photo.image = image
+        } else if tableView.indexPath(for: cell) == nil {
+            cell.photo.image = image
+        }
+    }
 }

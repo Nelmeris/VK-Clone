@@ -111,6 +111,12 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         
         tableView.reloadData()
     }
+    
+    let queue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.qualityOfService = .userInteractive
+        return queue
+    }()
 
 }
 
@@ -119,7 +125,40 @@ extension GroupsUITableViewController {
     func setGroupPhoto(cell: GroupsUITableViewCell, group: VKGroupModel) {
         guard group.photo100 != "" else { return }
         
-        cell.photo.sd_setImage(with: URL(string: group.photo100), completed: nil)
+        let getCacheImageOperation = GetCacheImage(url: group.photo100)
+        
+        getCacheImageOperation.completionBlock = {
+            OperationQueue.main.addOperation {
+                cell.photo.image = getCacheImageOperation.outputImage
+            }
+        }
+        
+        queue.addOperation(getCacheImageOperation)
     }
     
+}
+
+class SetImageToGroupsRow: Operation {
+    private let indexPath: IndexPath
+    private weak var tableView: UITableView?
+    private var cell: GroupsUITableViewCell?
+    
+    init(cell: GroupsUITableViewCell, indexPath: IndexPath, tableView: UITableView) {
+        self.indexPath = indexPath
+        self.tableView = tableView
+        self.cell = cell
+    }
+    
+    override func main() {
+        guard let tableView = tableView,
+            let cell = cell,
+            let getCacheImage = dependencies[0] as? GetCacheImage,
+            let image = getCacheImage.outputImage else { return }
+        
+        if let newIndexPath = tableView.indexPath(for: cell), newIndexPath == indexPath {
+            cell.photo.image = image
+        } else if tableView.indexPath(for: cell) == nil {
+            cell.photo.image = image
+        }
+    }
 }
