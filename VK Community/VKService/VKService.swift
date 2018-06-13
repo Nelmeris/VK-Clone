@@ -69,17 +69,18 @@ class VKService {
                                                queue: DispatchQueue = DispatchQueue.global(),
                                                completion: @escaping(Response) -> Void = {_ in}) {
         
-
-        guard let url = getRequestUrl(method, version, parameters) else { return }
+        queue.async {
+            guard let url = getRequestUrl(method, version, parameters) else { return }
             
-        VKService.makeRequest(url.url, url.parameters) { (response: Response) in
-            completion(response)
+            VKService.makeRequest(url.url, url.parameters, queue) { (response: Response) in
+                completion(response)
+            }
         }
         
     }
     
-    static func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String : String], completion: @escaping(Response) -> Void = {_ in}) {
-        Alamofire.request(url, parameters: parameters).responseData { response in
+    static func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String : String], _ queue: DispatchQueue = DispatchQueue.global(), completion: @escaping(Response) -> Void = {_ in}) {
+        Alamofire.request(url, parameters: parameters).responseData(queue: queue) { response in
             do {
                 let json = try getJSONResponse(response)
                 
