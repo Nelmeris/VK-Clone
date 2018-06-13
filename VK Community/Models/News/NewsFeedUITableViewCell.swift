@@ -33,11 +33,11 @@ class NewsFeedUITableViewCell: UITableViewCell {
     }
     @IBOutlet weak var viewsCount: UILabel!
     
-    @IBOutlet weak var postPhoto: UIImageView! {
+    @IBOutlet weak var postPhoto: UIImageView!
+    
+    @IBOutlet weak var postPhotoHeight: NSLayoutConstraint! {
         didSet {
-            postPhoto.constraints.filter { c -> Bool in
-                return c.identifier == "Height"
-                }[0].constant = 0
+            postPhotoHeight.constant = 0
         }
     }
     
@@ -77,9 +77,7 @@ class NewsFeedUITableViewCell: UITableViewCell {
         commentsCount.text = nil
         viewsCount.text = nil
         
-        postPhoto.constraints.filter { c -> Bool in
-            return c.identifier == "Height"
-            }[0].constant = 0
+        postPhotoHeight.constant = 0
         authorPhoto.image = nil
         
         likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")

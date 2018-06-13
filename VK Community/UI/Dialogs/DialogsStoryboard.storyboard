@@ -91,8 +91,11 @@
                                     <outlet property="leadingSpace" destination="yOj-1m-5xt" id="3bq-sx-AxF"/>
                                     <outlet property="name" destination="HvK-bW-W9O" id="xlS-YN-ouy"/>
                                     <outlet property="onlineStatusIcon" destination="sUp-7I-d7h" id="QXH-Ab-TrD"/>
+                                    <outlet property="onlineStatusIconHeight" destination="cnQ-k6-wxX" id="cCK-F2-vzY"/>
+                                    <outlet property="onlineStatusIconWidth" destination="obP-tk-NaO" id="Xez-wb-8Il"/>
                                     <outlet property="photo" destination="01F-bh-ijH" id="PbP-uH-SJa"/>
                                     <outlet property="senderPhoto" destination="Ygi-b4-19r" id="kdw-jo-4H8"/>
+                                    <outlet property="senderPhotoWidth" destination="jOv-1B-HpS" id="e0W-ar-eyK"/>
                                     <segue destination="tf6-fO-73D" kind="show" id="bF1-ec-JKB"/>
                                 </connections>
                             </tableViewCell>

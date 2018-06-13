@@ -71,6 +71,8 @@
                                     <outlet property="firstName" destination="EHn-2d-HqU" id="RoY-0q-YPj"/>
                                     <outlet property="lastName" destination="HDv-bC-yQf" id="rFZ-Fw-Bri"/>
                                     <outlet property="onlineStatusIcon" destination="xbL-MN-1ml" id="T0b-AH-6IT"/>
+                                    <outlet property="onlineStatusIconHeight" destination="YEA-56-w1e" id="U4A-NB-yjd"/>
+                                    <outlet property="onlineStatusIconWidth" destination="mME-wH-9yo" id="iIv-fA-ZkU"/>
                                     <outlet property="photo" destination="H2W-bz-r8m" id="yY3-Se-hd6"/>
                                     <segue destination="9II-p3-X1t" kind="show" id="jB6-bO-wYQ"/>
                                 </connections>

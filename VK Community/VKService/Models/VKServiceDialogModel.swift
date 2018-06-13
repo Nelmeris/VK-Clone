@@ -9,6 +9,22 @@
 import SwiftyJSON
 import RealmSwift
 
+class VKDialogResponseModel: VKBaseModel {
+    
+    var items: [VKDialogModel] = []
+    var profiles: [VKUserModel] = []
+    var groups: [VKGroupModel] = []
+    
+    required convenience init(_ json: JSON) {
+        self.init()
+        
+        items = json["items"].map({ VKDialogModel($0.1) })
+        profiles = json["profiles"].map({ VKUserModel($0.1) })
+        groups = json["groups"].map({ VKGroupModel($0.1) })
+    }
+    
+}
+
 class VKDialogModel: RealmModel {
     
     @objc dynamic var id = 0

@@ -18,11 +18,21 @@ class MainUITabBarController: UITabBarController {
         
         VKMessageLongPollService.loadLongPollData() {
             let longPollData: Results<VKMessageLongPollServerModel> = RealmService.loadData()!
-            VKMessageLongPollService.startLongPoll(ts: longPollData[0].ts)
+            VKMessageLongPollService.startLongPoll(ts: longPollData.first!.ts)
         }
         
-        VKService.request(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
-            RealmService.updateData(response.items)
+        DispatchQueue.global().async {
+            while true {
+                VKService.methods.getFriends { data in
+                    RealmService.updateData(data)
+                }
+                
+                VKService.methods.getGroups { data in
+                    RealmService.updateData(data)
+                }
+                
+                sleep(30)
+            }
         }
     }
     

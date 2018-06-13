@@ -12,11 +12,15 @@ import RealmSwift
 class VKUsersResponseModel: VKBaseModel {
     
     var response: [VKUserModel] = []
+    var items: [VKUserModel] = []
+    var photos: [[VKPhotoModel]] = [[]]
     
     required convenience init(_ json: JSON) {
         self.init()
         
         response = json.map({ VKUserModel($0.1) })
+        items = json["items"].map({ VKUserModel($0.1) })
+        photos = json["photos"].map({ $0.1["items"].map( { VKPhotoModel($0.1) } ) })
     }
     
 }

@@ -33,13 +33,18 @@ class DialogsUITableViewCell: UITableViewCell {
     
     @IBOutlet weak var senderPhoto: UIImageView! {
         didSet {
-            senderPhoto.constraints.filter { c -> Bool in
-                return c.identifier == "Width"
-            }[0].constant = 0
-            
             senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
         }
     }
+    
+    @IBOutlet weak var senderPhotoWidth: NSLayoutConstraint! {
+        didSet {
+            senderPhotoWidth.constant = 0
+        }
+    }
+    
+    @IBOutlet weak var onlineStatusIconHeight: NSLayoutConstraint!
+    @IBOutlet weak var onlineStatusIconWidth: NSLayoutConstraint!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -52,9 +57,7 @@ class DialogsUITableViewCell: UITableViewCell {
         onlineStatusIcon.image = nil
         onlineStatusIcon.backgroundColor = UIColor.clear
         
-        senderPhoto.constraints.filter { c -> Bool in
-            return c.identifier == "Width"
-            }[0].constant = 0
+        senderPhotoWidth.constant = 0
         
         senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
     }

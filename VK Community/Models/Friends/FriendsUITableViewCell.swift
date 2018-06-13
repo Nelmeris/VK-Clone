@@ -26,6 +26,9 @@ class FriendsUITableViewCell: UITableViewCell {
         }
     }
     
+    @IBOutlet weak var onlineStatusIconHeight: NSLayoutConstraint!
+    @IBOutlet weak var onlineStatusIconWidth: NSLayoutConstraint!
+    
     override func prepareForReuse() {
         photo.image = #imageLiteral(resourceName: "DefaultUserPhoto")
         

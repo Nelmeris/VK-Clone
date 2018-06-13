@@ -94,9 +94,7 @@ extension NewsFeedUITableViewController {
                 
                 let url = URL(string: size.url)
                 
-                cell.postPhoto.constraints.filter { c -> Bool in
-                    return c.identifier == "Height"
-                }[0].constant = cell.postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
+                cell.postPhotoHeight.constant = cell.postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
                 cell.postPhoto.sd_setImage(with: url, completed: nil)
                 
                 break

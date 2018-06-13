@@ -16,7 +16,9 @@ class DialogsUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadDialogs()
+        VKService.methods.getDialogs { data in
+            RealmService.updateData(data)
+        }
     }
     
     override func viewDidLoad() {
@@ -63,73 +65,6 @@ class DialogsUITableViewController: UITableViewController {
 
 extension DialogsUITableViewController {
     
-    func loadDialogs() {
-        VKService.request(method: "messages.getDialogs", parameters: ["count" : "50"]) { (response: VKItemsModel<VKDialogModel>) in
-            
-            var dialogs = response.items
-            
-            var profilesIdsInt: [Int] = []
-            var groupsIdsInt: [Int] = []
-            
-            for item in dialogs {
-                switch item.type {
-                case "profile":
-                    profilesIdsInt.append(item.id)
-                    
-                case "group":
-                    groupsIdsInt.append(item.id)
-                    
-                default: break
-                }
-            }
-            
-            var profilesIds: String = ""
-            for item in profilesIdsInt {
-                profilesIds.append(String(item) + ",")
-            }
-            profilesIds.removeLast()
-            
-            var groupsIds: String = ""
-            for item in groupsIdsInt {
-                groupsIds.append(String(item) + ",")
-            }
-            groupsIds.removeLast()
-            
-            VKService.request(method: "users.get", parameters: ["user_ids" : profilesIds, "fields" : "photo_100,online"]) { (response: VKUsersResponseModel) in
-                var newIndex = 0
-                for index in 0...dialogs.count - 1 {
-                    if dialogs[index].type == "profile" {
-                        dialogs[index].photo100 = response.response[newIndex].photo100
-                        dialogs[index].title = response.response[newIndex].firstName + " " + response.response[newIndex].lastName
-                        dialogs[index].isOnline = response.response[newIndex].isOnline
-                        dialogs[index].isOnlineMobile = response.response[newIndex].isOnlineMobile
-                        newIndex += 1
-                    }
-                }
-                
-                VKService.request(method: "groups.getById", parameters: ["group_ids" : groupsIds, "fields" : "photo_100"]) { (response: VKGroupsResponseModel) in
-                    var newIndex = 0
-                    for index in 0...dialogs.count - 1 {
-                        if dialogs[index].type == "group" {
-                            dialogs[index].photo100 = response.response[newIndex].photo100
-                            dialogs[index].title = response.response[newIndex].name
-                            newIndex += 1
-                        }
-                    }
-                    
-                    dialogs = dialogs.sorted { (d1, d2) -> Bool in
-                        return d1.message.date >= d2.message.date
-                    }
-                    
-                    RealmService.updateData(dialogs)
-                }
-            }
-            
-        }
-    }
-    
-    
-    
     func setDialogPhoto(_ cell: DialogsUITableViewCell, _ dialog: VKDialogModel) {
         guard dialog.photo100 != "" else { return }
         
@@ -146,9 +81,7 @@ extension DialogsUITableViewController {
         
         cell.leadingSpace.constant = 7
         
-        cell.senderPhoto.constraints.filter { c -> Bool in
-            return c.identifier == "Width"
-            }[0].constant = 28
+        cell.senderPhotoWidth.constant = 28
         
         if dialog.type == "chat" {
             
@@ -178,13 +111,9 @@ extension DialogsUITableViewController {
         
         cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / (dialog.isOnlineMobile ? 7 : 2)
         
-        cell.onlineStatusIcon.constraints.filter { c -> Bool in
-            return c.identifier == "Width"
-            }[0].constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 4.5 : 4)
+        cell.onlineStatusIconWidth.constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 4.5 : 4)
         
-        cell.onlineStatusIcon.constraints.filter { c -> Bool in
-            return c.identifier == "Height"
-            }[0].constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 3.5 : 4)
+        cell.onlineStatusIconHeight.constant = cell.photo.frame.height / (dialog.isOnlineMobile ? 3.5 : 4)
     }
     
 }

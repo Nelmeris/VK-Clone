@@ -19,7 +19,9 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadFriends()
+        VKService.methods.getFriends { data in
+            RealmService.updateData(data)
+        }
     }
     
     var searchController = UISearchController(searchResultsController: nil)
@@ -35,13 +37,6 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         filteredFriends = friends
         
         RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
-        
-        DispatchQueue.global().async {
-            while true {
-                self.loadFriends()
-                sleep(30)
-            }
-        }
     }
     
     func initSearchController() {
@@ -111,59 +106,6 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
 
 extension FriendsUITableViewController {
     
-    func loadFriends() {
-        VKService.request(method: "friends.get", parameters: ["fields" : "id,photo_100,online", "order" : "hints"]) { (response: VKItemsModel<VKUserModel>) in
-            let users: Results<VKUserModel> = RealmService.loadData()!
-            var newUsers = response.items
-            
-            self.saveUserPhotos(&newUsers, users)
-            
-            RealmService.updateData(newUsers)
-            
-            DispatchQueue.main.async {
-                let users: Results<VKUserModel> = RealmService.loadData()!
-                var usersIds: [Int] = []
-                for user in users {
-                    usersIds.append(user.id)
-                }
-                DispatchQueue.global().async {
-                    if usersIds.count != 0 {
-                        for index in 0...usersIds.count - 1 {
-                            VKService.request(method: "photos.getAll", parameters: ["owner_id": String(usersIds[index])]) { (response: VKItemsModel<VKPhotoModel>) in
-                                DispatchQueue.main.async {
-                                    FriendPhotosUIViewController.addNewPhotos(user: users[index], newPhotos: response.items)
-                                    
-                                    FriendPhotosUIViewController.deleteOldPhotos(user: users[index], newPhotos: response.items)
-                                }
-                            }
-                            sleep(3)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func saveUserPhotos(_ newUsers: inout [VKUserModel], _ users: Results<VKUserModel>) {
-        for newUser in newUsers {
-            let newUserIndex = newUsers.index(of: newUser)!
-            let newUserID = newUser.value(forKey: "id") as! Int
-            for user in users {
-                let userIndex = users.index(of: user)!
-                let userID = user.value(forKey: "id") as! Int
-                
-                if newUserID == userID {
-                    newUsers[newUserIndex].photos = newUsers[userIndex].photos
-                    break
-                }
-            }
-        }
-    }
-    
-    
-    
-    
-    
     func setUserPhoto(_ cell: FriendsUITableViewCell, _ friend: VKUserModel, _ indexPath: IndexPath) {
         guard friend.photo100 != "" else { return }
         
@@ -186,13 +128,9 @@ extension FriendsUITableViewController {
         
         cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / (friend.isOnlineMobile ? 7 : 2)
         
-        cell.onlineStatusIcon.constraints.filter { c -> Bool in
-            return c.identifier == "Width"
-            }[0].constant = cell.photo.frame.height / (friend.isOnlineMobile ? 4.5 : 4)
+        cell.onlineStatusIconWidth.constant = cell.photo.frame.height / (friend.isOnlineMobile ? 4.5 : 4)
         
-        cell.onlineStatusIcon.constraints.filter { c -> Bool in
-            return c.identifier == "Height"
-            }[0].constant = cell.photo.frame.height / (friend.isOnlineMobile ? 3.5 : 4)
+        cell.onlineStatusIconHeight.constant = cell.photo.frame.height / (friend.isOnlineMobile ? 3.5 : 4)
     }
     
 }

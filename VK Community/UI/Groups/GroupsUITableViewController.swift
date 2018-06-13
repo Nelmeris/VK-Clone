@@ -19,8 +19,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
-            RealmService.updateData(response.items)
+        VKService.methods.getGroups { data in
+            RealmService.updateData(data)
         }
     }
     
@@ -29,7 +29,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 75
+        tableView.estimatedRowHeight = 75
         
         initSearchController()
         
@@ -70,8 +70,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         let group = allGroupsController.groups[index]
         
         VKService.request(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
-            VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
-                RealmService.updateData(response.items)
+            VKService.methods.getGroups { data in
+                RealmService.updateData(data)
             }
         }
     }
@@ -84,8 +84,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
                 VKService.request(method: "groups.leave", parameters: ["group_id" : String(self.groups![indexPath.row].id)]) { _ in
-                    VKService.request(method: "groups.get", parameters: ["extended" : "1"]) { (response: VKItemsModel<VKGroupModel>) in
-                        RealmService.updateData(response.items)
+                    VKService.methods.getGroups { data in
+                        RealmService.updateData(data)
                     }
                 }
             }
