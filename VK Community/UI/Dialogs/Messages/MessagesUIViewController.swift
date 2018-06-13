@@ -41,17 +41,17 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         
         dialogId = dialog.type == "group" ? -dialog.id : dialog.id
         
-        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { (response: VKResponseModel<VKMessageResponseModel>) in
+        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { [weak self] (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
-                self.deleteOldMessages(dialog: self.dialog, newMessages: response.response.items)
+                self?.deleteOldMessages(dialog: (self?.dialog)!, newMessages: response.response.items)
                 
-                self.addNewMessages(dialog: self.dialog, newMessages: response.response.items)
+                self?.addNewMessages(dialog: (self?.dialog)!, newMessages: response.response.items)
                 
                 do {
                     let realm = try Realm()
                     realm.beginWrite()
-                    self.dialog.inRead = response.response.inRead
-                    self.dialog.outRead = response.response.outRead
+                    self?.dialog.inRead = response.response.inRead
+                    self?.dialog.outRead = response.response.outRead
                     try realm.commitWrite()
                 } catch let error {
                     print(error)
@@ -94,11 +94,9 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.transform = transform
         
         cell.messageDate.text = getDateString(message.date)
-        
         cell.message.text = message.text
         
         setBackgroudColor(cell, message)
-        
         setSenderPhoto(cell, message, indexPath)
         
         return cell
@@ -142,37 +140,34 @@ extension MessagesUIViewController {
     func setOnlineStatus(_ navigationItem: UINavigationItem) {
         guard dialog.isOnline else { return }
         
-        if !dialog.isOnlineMobile {
-            navigationItem.title = navigationItem.title! + " (Онлайн)"
-        } else {
-            navigationItem.title = navigationItem.title! + " (Онлайн с телефона)"
-        }
+        navigationItem.title = navigationItem.title! + (!dialog.isOnlineMobile ? " (Онлайн)" : " (Онлайн с телефона)")
     }
     
     func setSenderPhoto(_ cell: MessagesUITableViewCell, _ message: VKMessageModel, _ indexPath: IndexPath) {
         guard message.fromId != VKService.user.id else { return }
         
-        if (indexPath.row == 0 || dialog.messages[indexPath.row - 1].fromId != message.fromId) {
-            var photo = ""
-            if dialog.type == "chat" {
-                
-                var users: Results<VKUserModel> = RealmService.loadData()!
-                users = users.filter("id = \(message.userId)")
-                
-                if users.count != 0 {
-                    photo = users[0].photo100
-                }
-                
-            } else {
-                photo = dialog.photo100
+        guard (indexPath.row == 0 || dialog.messages[indexPath.row - 1].fromId != message.fromId) else {
+            cell.senderPhoto.image = nil
+            return
+        }
+        
+        var photo = ""
+        if dialog.type == "chat" {
+            
+            var users: Results<VKUserModel> = RealmService.loadData()!
+            users = users.filter("id = \(message.userId)")
+            
+            if users.count != 0 {
+                photo = users[0].photo100
             }
             
-            guard photo != "" else { return }
-            
-            cell.senderPhoto.sd_setImage(with: URL(string: photo), completed: nil)
         } else {
-            cell.senderPhoto.image = nil
+            photo = dialog.photo100
         }
+        
+        guard photo != "" else { return }
+        
+        cell.senderPhoto.sd_setImage(with: URL(string: photo), completed: nil)
     }
     
     func setBackgroudColor(_ cell: MessagesUITableViewCell, _ message: VKMessageModel) {

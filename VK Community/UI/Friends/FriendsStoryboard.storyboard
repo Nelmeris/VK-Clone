@@ -30,6 +30,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="H2W-bz-r8m">
                                             <rect key="frame" x="16" y="7.5" width="60" height="60"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="701-NF-fCm"/>
                                                 <constraint firstAttribute="width" secondItem="H2W-bz-r8m" secondAttribute="height" multiplier="1:1" id="JNk-4W-r18"/>
@@ -37,12 +38,14 @@
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHn-2d-HqU">
                                             <rect key="frame" x="91" y="27" width="83" height="21"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HDv-bC-yQf">
                                             <rect key="frame" x="179" y="27" width="82" height="21"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -61,10 +64,11 @@
                                         <constraint firstItem="EHn-2d-HqU" firstAttribute="centerY" secondItem="HYd-ib-iee" secondAttribute="centerY" id="GMJ-Xn-dl6"/>
                                         <constraint firstItem="HDv-bC-yQf" firstAttribute="centerY" secondItem="HYd-ib-iee" secondAttribute="centerY" id="IFy-Hc-HGP"/>
                                         <constraint firstItem="H2W-bz-r8m" firstAttribute="leading" secondItem="HYd-ib-iee" secondAttribute="leadingMargin" id="SOA-Nv-eqV"/>
+                                        <constraint firstItem="H2W-bz-r8m" firstAttribute="top" secondItem="HYd-ib-iee" secondAttribute="top" constant="7" id="Y5B-TJ-rwT"/>
                                         <constraint firstItem="EHn-2d-HqU" firstAttribute="leading" secondItem="H2W-bz-r8m" secondAttribute="trailing" constant="15" id="a8T-mE-6zU"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="HDv-bC-yQf" secondAttribute="trailing" id="aNp-Rl-xHI"/>
                                         <constraint firstItem="xbL-MN-1ml" firstAttribute="bottom" secondItem="H2W-bz-r8m" secondAttribute="bottom" id="bjN-wX-WPP"/>
-                                        <constraint firstItem="H2W-bz-r8m" firstAttribute="centerY" secondItem="HYd-ib-iee" secondAttribute="centerY" id="zxb-jU-hwR"/>
+                                        <constraint firstAttribute="bottom" secondItem="H2W-bz-r8m" secondAttribute="bottom" constant="7" id="jTx-Bv-l6n"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

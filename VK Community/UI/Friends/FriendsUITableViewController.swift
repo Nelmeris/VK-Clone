@@ -29,8 +29,6 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 75
-        
         initSearchController()
         
         friends = RealmService.loadData()!
@@ -110,14 +108,13 @@ extension FriendsUITableViewController {
         guard friend.photo100 != "" else { return }
         
         let getCacheImageOperation = GetCacheImage(url: friend.photo100)
+        let setImageToRowOperation = SetImageToFriendsRow(cell, indexPath, tableView)
         
-        getCacheImageOperation.completionBlock = {
-            OperationQueue.main.addOperation {
-                cell.photo.image = getCacheImageOperation.outputImage
-            }
-        }
+        setImageToRowOperation.addDependency(getCacheImageOperation)
         
         queue.addOperation(getCacheImageOperation)
+        
+        OperationQueue.main.addOperation(setImageToRowOperation)
     }
     
     func setStatusIcon(_ cell: FriendsUITableViewCell, _ friend: VKUserModel) {
@@ -140,7 +137,7 @@ class SetImageToFriendsRow: Operation {
     private weak var tableView: UITableView?
     private var cell: FriendsUITableViewCell?
     
-    init(cell: FriendsUITableViewCell, indexPath: IndexPath, tableView: UITableView) {
+    init(_ cell: FriendsUITableViewCell, _ indexPath: IndexPath, _ tableView: UITableView) {
         self.indexPath = indexPath
         self.tableView = tableView
         self.cell = cell

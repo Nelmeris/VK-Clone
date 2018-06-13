@@ -15,12 +15,12 @@ extension VKService {
             let code = "var friends = API.friends.get({\"fields\" : \"id,photo_100,online\", \"order\" : \"hints\"}); friends.photos = []; var i = 0; while(friends.items[i] != null) { friends.photos.push(API.photos.getAll({\"owner_id\" : friends.items[i].id})); i = i + 1;};return friends;"
             
             VKService.request(method: "execute", parameters: ["code" : code]) { (response: VKUsersResponseModel) in
-                let friends = response.items
+                var friends = response.items
                 
                 for friend in friends.enumerated() {
-                    for photo in response.photos[friend.offset] {
-                        friends[friend.offset].photos.append(photo)
-                    }
+                    FriendPhotosUIViewController.deleteOldPhotos(user: friends[friend.offset], newPhotos: response.photos[friend.offset])
+                    
+                    FriendPhotosUIViewController.addNewPhotos(user: friends[friend.offset], newPhotos: response.photos[friend.offset])
                 }
                 
                 completion(friends)
@@ -34,7 +34,7 @@ extension VKService {
         }
         
         static func getDialogs(completion: @escaping([VKDialogModel]) -> Void) {
-            VKService.request(method: "execute", parameters: ["code" : "var dialogs = API.messages.getDialogs({\"count\" : \"50\"}); var i = 0; var profiles = \"\"; var groups = \"\"; while(dialogs.items[i] != null) { if(dialogs.items[i].message.user_id > 0) { profiles = profiles + dialogs.items[i].message.user_id + \",\"; } else { groups = groups + -dialogs.items[i].message.user_id + \",\"; } i = i + 1; }; dialogs.profiles = API.users.get({\"user_ids\" : profiles, \"fields\" : \"photo_100,online\"}); dialogs.groups = API.groups.getById({\"group_ids\" : groups, \"fields\" : \"photo_100\"}); return dialogs;"]) { (response: VKDialogResponseModel) in
+            VKService.request(method: "execute", parameters: ["code" : "var dialogs = API.messages.getDialogs({\"count\" : \"50\"});var i = 0; var profiles = \"\"; var groups = \"\"; while(dialogs.items[i] != null) { if(dialogs.items[i].message.user_id > 0) { profiles = profiles + dialogs.items[i].message.user_id + \",\"; } else { groups = groups + -dialogs.items[i].message.user_id + \",\"; } i = i + 1; }; dialogs.profiles = API.users.get({\"user_ids\" : profiles, \"fields\" : \"photo_100,online\"}); dialogs.groups = API.groups.getById({\"group_ids\" : groups, \"fields\" : \"photo_100\"}); return dialogs;"]) { (response: VKDialogResponseModel) in
                 let dialogs = response.items
                 for dialog in dialogs {
                     if dialog.type == "profile" {

@@ -20,16 +20,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.methods.getUser(id: userId) { response in
-            do {
-                let realm = try Realm()
-                realm.beginWrite()
-                self.user.photos = response.photos
-                try realm.commitWrite()
-            } catch let error {
-                print(error)
-            }
-        }
+        loadPhotos()
     }
     
     @IBOutlet weak var userImage: UIImageView! {
@@ -67,6 +58,63 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
         cell.photo.sd_setImage(with: URL(string: photo.sizes.last!.url), completed: nil)
         
         return cell
+    }
+    
+}
+
+extension FriendPhotosUIViewController {
+    
+    func loadPhotos() {
+        VKService.request(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
+            DispatchQueue.main.async {
+                FriendPhotosUIViewController.deleteOldPhotos(user: self.user, newPhotos: response.items)
+                
+                FriendPhotosUIViewController.addNewPhotos(user: self.user, newPhotos: response.items)
+            }
+        }
+    }
+    
+    
+    
+    static func addNewPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
+        for newPhoto in newPhotos {
+            var flag = false
+            for photo in user.photos {
+                if newPhoto.isEqual(photo) {
+                    flag = true
+                    break
+                }
+            }
+            if !flag {
+                addNewPhoto(user, newPhoto)
+            }
+        }
+    }
+    
+    static func addNewPhoto(_ user: VKUserModel, _ newPhoto: VKPhotoModel) {
+        do {
+            let realm = try Realm()
+            realm.beginWrite()
+            user.photos.append(newPhoto)
+            try realm.commitWrite()
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    static func deleteOldPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
+        for photo in user.photos {
+            var flag = false
+            for newPhoto in newPhotos {
+                if photo.isEqual(newPhoto) {
+                    flag = true
+                    break
+                }
+            }
+            if !flag {
+                RealmService.deleteData([photo])
+            }
+        }
     }
     
 }

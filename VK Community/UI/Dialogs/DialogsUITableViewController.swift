@@ -27,7 +27,6 @@ class DialogsUITableViewController: UITableViewController {
         tableView.rowHeight = 75
         
         let data: Results<VKDialogModel>! = RealmService.loadData()
-        
         RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
     }
     
@@ -54,9 +53,9 @@ class DialogsUITableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! MessagesUIViewController
-        if let indexPath = self.tableView.indexPathForSelectedRow {
-            viewController.dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
-        }
+        guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
+        
+        viewController.dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
     }
     
 }
@@ -83,22 +82,17 @@ extension DialogsUITableViewController {
         
         cell.senderPhotoWidth.constant = 28
         
-        if dialog.type == "chat" {
-            
-            if dialog.message.userId == VKService.user.id {
-                cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
-            } else {
-                var users: Results<VKUserModel> = RealmService.loadData()!
-                users = users.filter("id = \(dialog.message.userId)")
-                if users.count != 0 {
-                    cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo100), completed: nil)
-                } else {
-                    cell.senderPhoto.image = #imageLiteral(resourceName: "DefaultUserPhoto")
-                }
-            }
-            
-        } else {
+        guard dialog.type == "chat" || dialog.message.userId == VKService.user.id else {
             cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
+            return
+        }
+            
+        var users: Results<VKUserModel> = RealmService.loadData()!
+        users = users.filter("id = \(dialog.message.userId)")
+        if users.count != 0 {
+            cell.senderPhoto.sd_setImage(with: URL(string: users[0].photo100), completed: nil)
+        } else {
+            cell.senderPhoto.image = #imageLiteral(resourceName: "DefaultUserPhoto")
         }
     
     }

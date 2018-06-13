@@ -29,7 +29,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = 75
         
         initSearchController()
         
@@ -59,7 +59,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
         cell.name.text = group.name
         
-        setGroupPhoto(cell: cell, group: group)
+        setGroupPhoto(cell, group, indexPath)
 
         return cell
     }
@@ -78,7 +78,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .default, title: "Покинуть") { (action, indexPath) in
-            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(self.groups![indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
+            let alert = UIAlertController(title: "Вы уверены, что хотите покинуть \"\(self.groups[indexPath.row].name)\"?", message: nil, preferredStyle: .actionSheet)
             var action = UIAlertAction(title: "Отмена", style: .cancel)
             alert.addAction(action)
 
@@ -122,18 +122,17 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
 
 extension GroupsUITableViewController {
     
-    func setGroupPhoto(cell: GroupsUITableViewCell, group: VKGroupModel) {
+    func setGroupPhoto(_ cell: GroupsUITableViewCell, _ group: VKGroupModel, _ indexPath: IndexPath) {
         guard group.photo100 != "" else { return }
         
         let getCacheImageOperation = GetCacheImage(url: group.photo100)
+        let setImageToRowOperation = SetImageToGroupsRow(cell, indexPath, tableView)
         
-        getCacheImageOperation.completionBlock = {
-            OperationQueue.main.addOperation {
-                cell.photo.image = getCacheImageOperation.outputImage
-            }
-        }
+        setImageToRowOperation.addDependency(getCacheImageOperation)
         
         queue.addOperation(getCacheImageOperation)
+        
+        OperationQueue.main.addOperation(setImageToRowOperation)
     }
     
 }
@@ -143,7 +142,7 @@ class SetImageToGroupsRow: Operation {
     private weak var tableView: UITableView?
     private var cell: GroupsUITableViewCell?
     
-    init(cell: GroupsUITableViewCell, indexPath: IndexPath, tableView: UITableView) {
+    init(_ cell: GroupsUITableViewCell, _ indexPath: IndexPath, _ tableView: UITableView) {
         self.indexPath = indexPath
         self.tableView = tableView
         self.cell = cell

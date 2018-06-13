@@ -94,4 +94,14 @@ class RealmService {
         }
     }
     
+    static func getFileURL() -> URL? {
+        do {
+            let realm = try Realm()
+            return realm.configuration.fileURL
+        } catch let error {
+            print(error)
+            return nil
+        }
+    }
+    
 }
