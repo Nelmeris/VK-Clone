@@ -19,7 +19,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.methods.getFriends { data in
+        VKService.shared.getFriends { data in
             RealmService.updateData(data)
         }
     }

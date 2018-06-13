@@ -16,7 +16,7 @@ class DialogsUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.methods.getDialogs { data in
+        VKService.shared.getDialogs { data in
             RealmService.updateData(data)
         }
     }
@@ -82,7 +82,7 @@ extension DialogsUITableViewController {
         cell.senderPhotoWidth.constant = 28
         
         guard !dialog.message.isOut else {
-            cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
+            cell.senderPhoto.sd_setImage(with: URL(string: VKService.shared.user.photo100), completed: nil)
             return
         }
             

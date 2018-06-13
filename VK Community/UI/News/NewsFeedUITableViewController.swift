@@ -18,7 +18,7 @@ class NewsFeedUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { [weak self] (response: NewsFeed) in
+        VKService.shared.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { [weak self] (response: NewsFeed) in
             self?.news = response.response
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

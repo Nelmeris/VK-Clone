@@ -14,7 +14,7 @@ import SwiftyJSON
 class VKMessageLongPollService {
     
     static func loadLongPollData(completion: @escaping () -> Void) {
-        VKService.request(method: "messages.getLongPollServer") { (response: VKRealmResponseModel<VKMessageLongPollServerModel>) in
+        VKService.shared.request(method: "messages.getLongPollServer") { (response: VKRealmResponseModel<VKMessageLongPollServerModel>) in
             let data = [response.response!]
             RealmService.resaveData(data)
             completion()
@@ -44,7 +44,7 @@ class VKMessageLongPollService {
     static func request(_ url: String, completion: @escaping(VKResponseModel<VKMessageUpdatesModel>) -> Void = {_ in}) {
         Alamofire.request(url).responseData(queue: DispatchQueue.global()) { response in
             do {
-                let json = try VKService.getJSONResponse(response)
+                let json = try VKService.shared.getJSONResponse(response)
                 
                 let updates = VKResponseModel<VKMessageUpdatesModel>(json)
                 

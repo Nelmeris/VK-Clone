@@ -65,7 +65,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
 extension FriendPhotosUIViewController {
     
     func loadPhotos() {
-        VKService.request(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
+        VKService.shared.request(method: "photos.getAll", parameters: ["owner_id": String(userId)]) { (response: VKItemsModel<VKPhotoModel>) in
             DispatchQueue.main.async {
                 FriendPhotosUIViewController.deleteOldPhotos(user: self.user, newPhotos: response.items)
                 

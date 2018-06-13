@@ -12,8 +12,8 @@ import RealmSwift
 class MainUITabBarController: UITabBarController {
     
     override func viewDidLoad() {
-        VKService.request(method: "users.get", parameters: ["fields" : "photo_100"], queue: DispatchQueue.main) { (response: VKItemModel<VKUserModel>) in
-            VKService.user = response.item
+        VKService.shared.request(method: "users.get", parameters: ["fields" : "photo_100"], queue: DispatchQueue.main) { (response: VKItemModel<VKUserModel>) in
+            VKService.shared.user = response.item
         }
         
         VKMessageLongPollService.loadLongPollData() {
@@ -23,11 +23,11 @@ class MainUITabBarController: UITabBarController {
         
         DispatchQueue.global().async {
             while true {
-                VKService.methods.getFriends { data in
+                VKService.shared.getFriends { data in
                     RealmService.updateData(data)
                 }
                 
-                VKService.methods.getGroups { data in
+                VKService.shared.getGroups { data in
                     RealmService.updateData(data)
                 }
                 

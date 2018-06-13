@@ -13,13 +13,17 @@ import RealmSwift
 
 class VKService {
     
-    static let scheme = "https"
-    static let host = "api.vk.com/method/"
-    static let clientId = 6472660 // => 6472660
-    static let scope = 2 + 4 + 8192 + 262144 + 4096
-    static let apiVersion = 5.78
+    private init() {}
     
-    static var user: VKUserModel!
+    static let shared = VKService()
+    
+    let scheme = "https"
+    let host = "api.vk.com/method/"
+    let clientId = 6472660 // => 6472660
+    let scope = 2 + 4 + 8192 + 262144 + 4096
+    let apiVersion = 5.78
+    
+    var user: VKUserModel!
     
     enum requestError: Error {
         case response(String)
@@ -28,7 +32,7 @@ class VKService {
         case manyRequests(String)
     }
     
-    static func getJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
+    func getJSONResponse(_ response: DataResponse<Data>) throws -> JSON {
         switch response.result {
         case .success(let value):
             let json = try! JSON(data: value)
@@ -53,8 +57,8 @@ class VKService {
         }
     }
     
-    static func getRequestUrl(_ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
-        let requestURL = VKService.scheme + "://" + VKService.host + method
+    func getRequestUrl(_ method: String, _ version: String, _ parameters: [String : String] = ["" : ""]) -> (url: String, parameters: [String: String])? {
+        let requestURL = scheme + "://" + host + method
         
         var requestParameters = parameters
         requestParameters["access_token"] = VKTokenService.getToken()
@@ -63,26 +67,26 @@ class VKService {
         return (requestURL, requestParameters)
     }
     
-    static func request<Response: VKBaseModel>(version: String = String(VKService.apiVersion),
+    func request<Response: VKBaseModel>(version: String = String(VKService.shared.apiVersion),
                                                method: String,
                                                parameters: [String : String] = ["" : ""],
                                                queue: DispatchQueue = DispatchQueue.global(),
                                                completion: @escaping(Response) -> Void = {_ in}) {
         
         queue.async {
-            guard let url = getRequestUrl(method, version, parameters) else { return }
+            guard let url = self.getRequestUrl(method, version, parameters) else { return }
             
-            VKService.makeRequest(url.url, url.parameters, queue) { (response: Response) in
+            self.makeRequest(url.url, url.parameters, queue) { (response: Response) in
                 completion(response)
             }
         }
         
     }
     
-    static func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String : String], _ queue: DispatchQueue = DispatchQueue.global(), completion: @escaping(Response) -> Void = {_ in}) {
+    func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String : String], _ queue: DispatchQueue = DispatchQueue.global(), completion: @escaping(Response) -> Void = {_ in}) {
         Alamofire.request(url, parameters: parameters).responseData(queue: queue) { response in
             do {
-                let json = try getJSONResponse(response)
+                let json = try self.getJSONResponse(response)
                 
                 let model = Response(json["response"])
                 
@@ -94,10 +98,12 @@ class VKService {
             } catch requestError.accessToken {
                 VKTokenService.tokenReceiving()
             } catch requestError.manyRequests {
-                makeRequest(url, parameters) { (response: Response) in
+                self.makeRequest(url, parameters) { (response: Response) in
                     completion(response)
                 }
-            } catch {}
+            } catch let error {
+                print(error)
+            }
         }
     }
     

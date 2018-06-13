@@ -19,7 +19,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.methods.getGroups { data in
+        VKService.shared.getGroups { data in
             RealmService.updateData(data)
         }
     }
@@ -67,8 +67,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
         let index = allGroupsController.tableView.indexPathForSelectedRow!.row
         let group = allGroupsController.groups[index]
         
-        VKService.request(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
-            VKService.methods.getGroups { data in
+        VKService.shared.request(method: "groups.join", parameters: ["group_id" : String(group.id)]) { _ in
+            VKService.shared.getGroups { data in
                 RealmService.updateData(data)
             }
         }
@@ -81,8 +81,8 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
             alert.addAction(action)
 
             action = UIAlertAction(title: "Покинуть", style: .destructive) { (action) in
-                VKService.request(method: "groups.leave", parameters: ["group_id" : String(self.groups[indexPath.row].id)]) { _ in
-                    VKService.methods.getGroups { data in
+                VKService.shared.request(method: "groups.leave", parameters: ["group_id" : String(self.groups[indexPath.row].id)]) { _ in
+                    VKService.shared.getGroups { data in
                         RealmService.updateData(data)
                     }
                 }

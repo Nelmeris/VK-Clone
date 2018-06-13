@@ -39,7 +39,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { [weak self] (response: VKResponseModel<VKMessageResponseModel>) in
+        VKService.shared.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { [weak self] (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
                 self?.deleteOldMessages(dialog: (self?.dialog)!, newMessages: response.response.items)
                 
@@ -125,7 +125,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func sendMessage(_ sender: Any) {
         guard message.text != "" else { return }
         
-        VKService.request(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
+        VKService.shared.request(method: "messages.send", parameters: ["peer_id" : String(dialogId), "message" : message.text!])
         message.text = ""
     }
     

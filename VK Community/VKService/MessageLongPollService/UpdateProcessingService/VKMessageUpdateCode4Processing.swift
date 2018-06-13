@@ -50,7 +50,7 @@ extension VKMessageLongPollService {
                 realm.beginWrite()
                 controller.dialog.messages.insert(VKMessageModel(id: newMessage.id,
                                                                  text: newMessage.text,
-                                                                 fromId: newMessage.flags.isOut ? VKService.user.id : newMessage.peerId,
+                                                                 fromId: newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId,
                                                                  date: newMessage.date,
                                                                  isOut: newMessage.flags.isOut), at: 0)
                 try realm.commitWrite()
