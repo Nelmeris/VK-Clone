@@ -24,7 +24,6 @@ class DialogsUITableViewCell: UITableViewCell {
     }
     
     
-    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var lastMessage: UILabel!
     @IBOutlet weak var lastMessageDate: UILabel!

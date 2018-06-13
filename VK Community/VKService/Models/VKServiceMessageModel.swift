@@ -46,9 +46,9 @@ class VKMessageModel: RealmModel {
         
         id = json["id"].intValue
         date = Date(timeIntervalSince1970: Double(json["date"].intValue))
-        isOut = json["out"].intValue == 0 ? false : true
+        isOut = json["out"].intValue == 1
         userId = json["user_id"].intValue
-        isRead = json["read_state"].intValue == 0 ? false : true
+        isRead = json["read_state"].intValue == 1
         text = json["body"].stringValue
         chatId = json["chat_id"].intValue
         
@@ -59,12 +59,13 @@ class VKMessageModel: RealmModel {
         }
     }
     
-    convenience init(id: Int, text: String, fromId: Int, date: Date) {
+    convenience init(id: Int, text: String, fromId: Int, date: Date, isOut: Bool) {
         self.init()
         
         self.id = id
         self.text = text
         self.date = date
+        self.isOut = isOut
     }
     
     override func isEqual(_ object: RealmModel) -> Bool {
@@ -72,7 +73,8 @@ class VKMessageModel: RealmModel {
         return (id == object.id) &&
             (date == object.date) &&
             (userId == object.userId) &&
-            (text == object.text)
+            (text == object.text) &&
+            (isOut == object.isOut)
     }
     
 }

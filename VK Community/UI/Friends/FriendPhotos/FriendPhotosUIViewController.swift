@@ -78,14 +78,7 @@ extension FriendPhotosUIViewController {
     
     static func addNewPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
         for newPhoto in newPhotos {
-            var flag = false
-            for photo in user.photos {
-                if newPhoto.isEqual(photo) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
+            if !user.photos.contains(newPhoto) {
                 addNewPhoto(user, newPhoto)
             }
         }
@@ -104,14 +97,7 @@ extension FriendPhotosUIViewController {
     
     static func deleteOldPhotos(user: VKUserModel, newPhotos: [VKPhotoModel]) {
         for photo in user.photos {
-            var flag = false
-            for newPhoto in newPhotos {
-                if photo.isEqual(newPhoto) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
+            if !newPhotos.contains(photo) {
                 RealmService.deleteData([photo])
             }
         }

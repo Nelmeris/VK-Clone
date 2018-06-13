@@ -35,10 +35,10 @@ class RealmService {
             realm.delete(delete)
             
             var data = data
-            for item1 in data {
+            for (index, item) in data.enumerated() {
                 for item2 in realm.objects(Type.self) {
-                    if item1.isEqual(item2) {
-                        data.remove(at: data.index(of: item1)!)
+                    if item.isEqual(item2) {
+                        data.remove(at: data.index(of: item)!)
                         break
                     }
                 }

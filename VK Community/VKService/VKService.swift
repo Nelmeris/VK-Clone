@@ -15,7 +15,7 @@ class VKService {
     
     static let scheme = "https"
     static let host = "api.vk.com/method/"
-    static let clientId = 6472660
+    static let clientId = 6472660 // => 6472660
     static let scope = 2 + 4 + 8192 + 262144 + 4096
     static let apiVersion = 5.78
     

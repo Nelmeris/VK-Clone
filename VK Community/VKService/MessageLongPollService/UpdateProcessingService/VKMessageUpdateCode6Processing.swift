@@ -20,9 +20,9 @@ extension VKMessageLongPollService {
             do {
                 let realm = try Realm()
                 realm.beginWrite()
-                for index in 0...controller.dialog.messages.count - 1 {
-                    if controller.dialog.messages[index].id <= readMessages.localId && controller.dialog.inRead <= controller.dialog.messages[index].id {
-                        controller.dialog.messages[index].isRead = true
+                for item in controller.dialog.messages {
+                    if item.id <= readMessages.localId && controller.dialog.inRead <= item.id {
+                        item.isRead = true
                     }
                 }
                 controller.dialog.inRead = readMessages.localId

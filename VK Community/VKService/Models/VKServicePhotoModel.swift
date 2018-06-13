@@ -29,8 +29,8 @@ class VKPhotoModel: RealmModel {
         
         guard sizes.count == object.sizes.count else { return false }
         
-        for sizeIndex in 0...sizes.count - 1 {
-            guard sizes[sizeIndex].isEqual(object.sizes[sizeIndex]) else { return false }
+        for (index, size) in sizes.enumerated() {
+            guard size.isEqual(object.sizes[index]) else { return false }
         }
         
         return id == object.id

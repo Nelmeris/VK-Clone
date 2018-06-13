@@ -17,7 +17,7 @@
             <objects>
                 <tableViewController id="4sR-GP-BrA" userLabel="Dialogs" customClass="DialogsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j8z-O3-dQg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
@@ -74,12 +74,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Oma-BE-feW" firstAttribute="top" secondItem="GOj-fu-7Qd" secondAttribute="topMargin" id="1uj-fv-2ON"/>
-                                        <constraint firstItem="01F-bh-ijH" firstAttribute="centerY" secondItem="GOj-fu-7Qd" secondAttribute="centerY" id="8GC-RP-wPt"/>
+                                        <constraint firstAttribute="bottom" secondItem="01F-bh-ijH" secondAttribute="bottom" constant="6" id="Kky-Lc-8dc"/>
                                         <constraint firstItem="sUp-7I-d7h" firstAttribute="bottom" secondItem="01F-bh-ijH" secondAttribute="bottom" id="LiG-VE-E0y"/>
                                         <constraint firstItem="HvK-bW-W9O" firstAttribute="leading" secondItem="01F-bh-ijH" secondAttribute="trailing" constant="8" id="N3J-38-QPg"/>
                                         <constraint firstItem="Oma-BE-feW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HvK-bW-W9O" secondAttribute="trailing" constant="10" id="SLu-lp-C3g"/>
                                         <constraint firstItem="Ygi-b4-19r" firstAttribute="top" secondItem="HvK-bW-W9O" secondAttribute="bottom" constant="7" id="Ueb-eB-zwm"/>
                                         <constraint firstItem="Ygi-b4-19r" firstAttribute="leading" secondItem="HvK-bW-W9O" secondAttribute="leading" id="WKQ-4s-hr7"/>
+                                        <constraint firstItem="01F-bh-ijH" firstAttribute="top" secondItem="GOj-fu-7Qd" secondAttribute="top" constant="6" id="bQD-D4-yBv"/>
                                         <constraint firstItem="KHd-65-xh2" firstAttribute="centerY" secondItem="Ygi-b4-19r" secondAttribute="centerY" id="bjt-YQ-dmM"/>
                                         <constraint firstItem="HvK-bW-W9O" firstAttribute="top" secondItem="01F-bh-ijH" secondAttribute="top" id="cOM-zQ-iIs"/>
                                         <constraint firstItem="01F-bh-ijH" firstAttribute="width" secondItem="01F-bh-ijH" secondAttribute="height" multiplier="1:1" id="eOX-wg-CTW"/>
@@ -123,11 +124,11 @@
             <objects>
                 <viewController id="tf6-fO-73D" userLabel="Messages" customClass="MessagesUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wdP-r6-4Nb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2e4-nL-MBP">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b83-SP-l2f">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
@@ -317,7 +318,7 @@
                 <navigationController id="mi8-0h-t8F" userLabel="Dialogs &amp; Messages Navigation" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Сообщения" image="MessagesIcon" id="xNf-Tm-03M"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IQy-mc-2ri">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="IQy-mc-2ri">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

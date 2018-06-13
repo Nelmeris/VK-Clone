@@ -39,8 +39,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        dialogId = dialog.type == "group" ? -dialog.id : dialog.id
-        
         VKService.request(method: "messages.getHistory", parameters: ["peer_id" : String(dialogId), "count" : "20"]) { [weak self] (response: VKResponseModel<VKMessageResponseModel>) in
             DispatchQueue.main.async {
                 self?.deleteOldMessages(dialog: (self?.dialog)!, newMessages: response.response.items)
@@ -87,7 +85,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         let message = dialog.messages[indexPath.row]
         let cell: MessagesUITableViewCell
         
-        let cellId = message.fromId == VKService.user.id ? "MyMessage" : "SenderMessage"
+        let cellId = message.isOut ? "MyMessage" : "SenderMessage"
         
         cell = tableView.dequeueReusableCell(withIdentifier: cellId) as! MessagesUITableViewCell
         
@@ -110,7 +108,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
         
-        scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height - 80), animated: true)
+        scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height), animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -144,28 +142,25 @@ extension MessagesUIViewController {
     }
     
     func setSenderPhoto(_ cell: MessagesUITableViewCell, _ message: VKMessageModel, _ indexPath: IndexPath) {
-        guard message.fromId != VKService.user.id else { return }
+        guard !message.isOut else { return }
         
         guard (indexPath.row == 0 || dialog.messages[indexPath.row - 1].fromId != message.fromId) else {
             cell.senderPhoto.image = nil
             return
         }
         
-        var photo = ""
+        var photo = dialog.photo100
+        
         if dialog.type == "chat" {
             
-            var users: Results<VKUserModel> = RealmService.loadData()!
+            var users: Results<VKUserModel> = RealmService.loadData()!.filter("id = \(message.userId)")
             users = users.filter("id = \(message.userId)")
             
-            if users.count != 0 {
-                photo = users[0].photo100
+            if !users.isEmpty {
+                photo = users.first!.photo100
             }
             
-        } else {
-            photo = dialog.photo100
         }
-        
-        guard photo != "" else { return }
         
         cell.senderPhoto.sd_setImage(with: URL(string: photo), completed: nil)
     }
@@ -173,19 +168,12 @@ extension MessagesUIViewController {
     func setBackgroudColor(_ cell: MessagesUITableViewCell, _ message: VKMessageModel) {
         guard !message.isRead else { return }
         
-        cell.backgroundColor = UIColor(red:0.93, green:0.94, blue:0.96, alpha:1.0)
+        cell.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9411764706, blue: 0.9607843137, alpha: 1)
     }
     
     func addNewMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {
         for newMessage in newMessages {
-            var flag = false
-            for message in dialog.messages {
-                if newMessage.isEqual(message) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
+            if !dialog.messages.contains(newMessage) {
                 addNewMessage(dialog, newMessage)
             }
         }
@@ -204,14 +192,7 @@ extension MessagesUIViewController {
     
     func deleteOldMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {
         for message in dialog.messages {
-            var flag = false
-            for newMessage in newMessages {
-                if message.isEqual(newMessage) {
-                    flag = true
-                    break
-                }
-            }
-            if !flag {
+            if newMessages.contains(message) {
                 RealmService.deleteData([message])
             }
         }

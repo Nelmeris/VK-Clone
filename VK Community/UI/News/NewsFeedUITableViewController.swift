@@ -9,6 +9,8 @@
 import UIKit
 import SDWebImage
 
+typealias NewsFeed = VKResponseModel<VKNewsFeedModel> // Тест
+
 class NewsFeedUITableViewController: UITableViewController {
     
     var news: VKNewsFeedModel!
@@ -16,7 +18,7 @@ class NewsFeedUITableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { [weak self] (response: VKResponseModel<VKNewsFeedModel>) in
+        VKService.request(method: "newsfeed.get", parameters: ["filters" : "post", "count" : "50"]) { [weak self] (response: NewsFeed) in
             self?.news = response.response
             DispatchQueue.main.async {
                 self?.tableView.reloadData()

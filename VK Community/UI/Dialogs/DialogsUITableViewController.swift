@@ -24,8 +24,6 @@ class DialogsUITableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = 75
-        
         let data: Results<VKDialogModel>! = RealmService.loadData()
         RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
     }
@@ -55,7 +53,9 @@ class DialogsUITableViewController: UITableViewController {
         let viewController = segue.destination as! MessagesUIViewController
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
-        viewController.dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
+        let dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
+        viewController.dialog = dialog
+        viewController.dialogId = dialog.type == "group" ? -dialog.id : dialog.id
     }
     
 }
@@ -79,10 +79,9 @@ extension DialogsUITableViewController {
         }
         
         cell.leadingSpace.constant = 7
-        
         cell.senderPhotoWidth.constant = 28
         
-        guard dialog.type == "chat" || dialog.message.userId == VKService.user.id else {
+        guard !dialog.message.isOut else {
             cell.senderPhoto.sd_setImage(with: URL(string: VKService.user.photo100), completed: nil)
             return
         }

@@ -192,7 +192,6 @@
 				F673356820C4BD3D00C773FC /* Models */,
 				F62B3B8E20C055C50037A767 /* UI */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
-				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
 				F61E29832093B06E0070DEC9 /* Info.plist */,
@@ -222,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
+				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
 				F64C2B7D20BC725100741AD9 /* News */,
 				F64C2B8420BC97BE00741AD9 /* Dialogs */,
 				F6B2C8AE209643220056110D /* Friends */,

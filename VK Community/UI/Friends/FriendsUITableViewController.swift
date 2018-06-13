@@ -42,6 +42,8 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Искать..."
         
+        searchController.searchBar.isTranslucent = false
+        
         navigationItem.searchController = searchController
         
         definesPresentationContext = true
@@ -59,7 +61,6 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         cell.lastName.text = friend.lastName
         
         setUserPhoto(cell, friend, indexPath)
-        
         setStatusIcon(cell, friend)
         
         return cell
@@ -84,8 +85,8 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
         let array = searchText.components(separatedBy: " ")
         
         let predicate = array.count > 1 && array[1] != "" ?
-            "(first_name CONTAINS[cd] '\(array[0])' AND last_name CONTAINS[cd] '\(array[1])') OR (first_name CONTAINS[cd] '\(array[1])' AND last_name CONTAINS[cd] '\(array[0])')" :
-            "first_name CONTAINS[cd] '\(array[0])' OR last_name CONTAINS[cd] '\(array[0])'"
+            "(firstName CONTAINS[cd] '\(array[0])' AND lastName CONTAINS[cd] '\(array[1])') OR (firstName CONTAINS[cd] '\(array[1])' AND lastName CONTAINS[cd] '\(array[0])')" :
+            "firstName CONTAINS[cd] '\(array[0])' OR lastName CONTAINS[cd] '\(array[0])'"
         
         friends = filteredFriends.filter(predicate)
         
@@ -126,7 +127,6 @@ extension FriendsUITableViewController {
         cell.onlineStatusIcon.layer.cornerRadius = cell.onlineStatusIcon.frame.height / (friend.isOnlineMobile ? 7 : 2)
         
         cell.onlineStatusIconWidth.constant = cell.photo.frame.height / (friend.isOnlineMobile ? 4.5 : 4)
-        
         cell.onlineStatusIconHeight.constant = cell.photo.frame.height / (friend.isOnlineMobile ? 3.5 : 4)
     }
     
