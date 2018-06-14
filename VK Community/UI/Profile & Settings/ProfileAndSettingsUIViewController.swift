@@ -18,8 +18,6 @@ class ProfileAndSettingsUIViewController: UIViewController {
         }
     }
     
-    // Test
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
