@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HCI-jo-XKa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HCI-jo-XKa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Groups-->
         <scene sceneID="Uue-GV-T5y">
             <objects>
-                <tableViewController id="qsI-lC-O2d" userLabel="Groups" customClass="GroupsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qsI-lC-O2d" userLabel="Groups" customClass="GroupsUITableViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mqX-C2-lup">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyGroup" rowHeight="75" id="36M-4c-JEf" customClass="GroupsUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyGroup" rowHeight="75" id="36M-4c-JEf" customClass="GroupsUITableViewCell" customModule="VK_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="36M-4c-JEf" id="0Ge-dk-0qM">
@@ -34,8 +32,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultGroupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sJT-23-Ot0">
-                                            <rect key="frame" x="16" y="7.5" width="60" height="60"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultGroupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sJT-23-Ot0" customClass="RoundUIImageView" customModule="VK_X" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="7" width="60" height="60"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sJT-23-Ot0" secondAttribute="height" multiplier="1:1" id="TlM-Cw-X41"/>
@@ -79,13 +77,13 @@
         <!--Groups Search-->
         <scene sceneID="lOg-a8-AAF">
             <objects>
-                <tableViewController id="qta-FP-8x2" userLabel="Groups Search" customClass="GroupsSearchUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="qta-FP-8x2" userLabel="Groups Search" customClass="GroupsSearchUITableViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8va-iw-mbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="75" id="MxM-U9-IA9" customClass="GroupsUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="75" id="MxM-U9-IA9" customClass="GroupsUITableViewCell" customModule="VK_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MxM-U9-IA9" id="jA9-4d-5bO">
@@ -93,7 +91,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultGroupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="VfS-dv-fZq">
-                                            <rect key="frame" x="16" y="7.5" width="60" height="60"/>
+                                            <rect key="frame" x="16" y="7" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="VfS-dv-fZq" secondAttribute="height" multiplier="1:1" id="6YQ-gz-Qah"/>
                                                 <constraint firstAttribute="height" constant="60" id="s7U-Jl-3Mj"/>

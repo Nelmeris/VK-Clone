@@ -56,11 +56,10 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     let friend = friends[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsUITableViewCell
     
-    cell.firstName.text = friend.firstName
-    cell.lastName.text = friend.lastName
+    cell.name.text = friend.firstName + " " + friend.lastName
     
-    cell.setUserPhoto(friend, tableView, indexPath)
-    cell.setStatusIcon(friend, tableView.backgroundColor!)
+    cell.setPhoto(friend.photo100, tableView, indexPath)
+    cell.onlineStatusIcon.initial(friend.isOnline, friend.isOnlineMobile, cell.photo.frame, tableView.backgroundColor!)
     
     return cell
   }
@@ -91,11 +90,4 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     tableView.reloadData()
   }
-  
-  let queue: OperationQueue = {
-    let queue = OperationQueue()
-    queue.qualityOfService = .userInteractive
-    return queue
-  }()
-  
 }

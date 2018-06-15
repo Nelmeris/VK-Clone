@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mi8-0h-t8F">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mi8-0h-t8F">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,35 +13,39 @@
         <!--Dialogs-->
         <scene sceneID="8DV-41-u0c">
             <objects>
-                <tableViewController id="4sR-GP-BrA" userLabel="Dialogs" customClass="DialogsUITableViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4sR-GP-BrA" userLabel="Dialogs" customClass="DialogsUITableViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j8z-O3-dQg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DialogCell" rowHeight="75" id="8Jp-cS-2e8" customClass="DialogsUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DialogCell" rowHeight="75" id="8Jp-cS-2e8" customClass="DialogsUITableViewCell" customModule="VK_X" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="75"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Jp-cS-2e8" id="GOj-fu-7Qd">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Jp-cS-2e8" id="GOj-fu-7Qd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultDialogPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="01F-bh-ijH">
-                                            <rect key="frame" x="8" y="6" width="62.5" height="62.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultDialogPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="01F-bh-ijH" customClass="RoundUIImageView" customModule="VK_X" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="6" width="62" height="62"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="62" id="LBd-Ss-BbZ"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnlineIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sUp-7I-d7h">
-                                            <rect key="frame" x="55.5" y="53" width="15" height="15.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnlineIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sUp-7I-d7h" customClass="OnlineStatusUIImageView" customModule="VK_X" customModuleProvider="target">
+                                            <rect key="frame" x="55" y="53" width="15" height="15"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" identifier="Height" id="cnQ-k6-wxX"/>
                                                 <constraint firstAttribute="width" constant="15" identifier="Width" id="obP-tk-NaO"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="onlineStatusIconHeight" destination="cnQ-k6-wxX" id="Pyb-qF-NhK"/>
+                                                <outlet property="onlineStatusIconWidth" destination="obP-tk-NaO" id="KeK-nx-gIk"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dialog Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvK-bW-W9O">
-                                            <rect key="frame" x="78.5" y="6" width="98" height="21"/>
+                                            <rect key="frame" x="78" y="6" width="98" height="21"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -56,8 +58,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Ygi-b4-19r">
-                                            <rect key="frame" x="79" y="34.5" width="28" height="28"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Ygi-b4-19r" customClass="RoundUIImageView" customModule="VK_X" customModuleProvider="target">
+                                            <rect key="frame" x="78" y="34" width="28" height="28"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="28" identifier="Width" id="jOv-1B-HpS"/>
@@ -65,7 +67,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHd-65-xh2">
-                                            <rect key="frame" x="114" y="39" width="95" height="18"/>
+                                            <rect key="frame" x="113" y="39" width="95" height="18"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,8 +99,6 @@
                                     <outlet property="leadingSpace" destination="yOj-1m-5xt" id="3bq-sx-AxF"/>
                                     <outlet property="name" destination="HvK-bW-W9O" id="xlS-YN-ouy"/>
                                     <outlet property="onlineStatusIcon" destination="sUp-7I-d7h" id="QXH-Ab-TrD"/>
-                                    <outlet property="onlineStatusIconHeight" destination="cnQ-k6-wxX" id="cCK-F2-vzY"/>
-                                    <outlet property="onlineStatusIconWidth" destination="obP-tk-NaO" id="Xez-wb-8Il"/>
                                     <outlet property="photo" destination="01F-bh-ijH" id="PbP-uH-SJa"/>
                                     <outlet property="senderPhoto" destination="Ygi-b4-19r" id="kdw-jo-4H8"/>
                                     <outlet property="senderPhotoWidth" destination="jOv-1B-HpS" id="e0W-ar-eyK"/>
@@ -122,7 +122,7 @@
         <!--Messages-->
         <scene sceneID="MkP-z4-kwt">
             <objects>
-                <viewController id="tf6-fO-73D" userLabel="Messages" customClass="MessagesUIViewController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tf6-fO-73D" userLabel="Messages" customClass="MessagesUIViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wdP-r6-4Nb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -137,14 +137,14 @@
                                             <constraint firstAttribute="height" constant="595" id="SHZ-Y4-yie"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SenderMessage" id="kw2-bk-ftg" customClass="MessagesUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SenderMessage" id="kw2-bk-ftg" customClass="MessagesUITableViewCell" customModule="VK_X" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kw2-bk-ftg" id="upv-vD-EhF">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8H-C6-VmN">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A8H-C6-VmN" customClass="RoundUIView" customModule="VK_X" customModuleProvider="target">
                                                             <rect key="frame" x="57" y="6" width="129" height="32"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36n-xk-8Wc">
@@ -171,7 +171,7 @@
                                                                 <constraint firstItem="36n-xk-8Wc" firstAttribute="top" secondItem="A8H-C6-VmN" secondAttribute="top" constant="5" id="sM0-2a-isC"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DbZ-rU-CMA">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultUserPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="DbZ-rU-CMA" customClass="RoundUIImageView" customModule="VK_X" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="6" width="32" height="32"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="17f-Ja-kjd"/>
@@ -195,14 +195,14 @@
                                                     <outlet property="senderPhoto" destination="DbZ-rU-CMA" id="5JB-K0-Kb8"/>
                                                 </connections>
                                             </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMessage" id="vBJ-IX-kaz" customClass="MessagesUITableViewCell" customModule="VK_Community" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyMessage" id="vBJ-IX-kaz" customClass="MessagesUITableViewCell" customModule="VK_X" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vBJ-IX-kaz" id="tz8-RS-e74">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Och-A6-F77">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Och-A6-F77" customClass="RoundUIView" customModule="VK_X" customModuleProvider="target">
                                                             <rect key="frame" x="231" y="5" width="129" height="34"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="09:11" textAlignment="right" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdA-x5-P2B">

@@ -41,7 +41,7 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
     
     cell.name.text = group.name
     
-    cell.setGroupPhoto(group)
+    cell.setPhoto(group.photo100, tableView, indexPath)
     
     cell.participantsCount.text = getShortCount(group.membersCount)
     

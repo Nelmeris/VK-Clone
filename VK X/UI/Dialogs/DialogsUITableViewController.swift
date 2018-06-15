@@ -41,9 +41,9 @@ class DialogsUITableViewController: UITableViewController {
     cell.lastMessage.text = dialog.message.text
     cell.name.text = dialog.title
     
-    cell.setDialogPhoto(dialog)
+    cell.setPhoto(dialog.photo100)
     cell.setSenderPhoto(dialog)
-    cell.setStatusIcon(dialog, tableView.backgroundColor!)
+    cell.onlineStatusIcon.initial(dialog.isOnline, dialog.isOnlineMobile, cell.photo.frame, tableView.backgroundColor!)
     
     return cell
   }

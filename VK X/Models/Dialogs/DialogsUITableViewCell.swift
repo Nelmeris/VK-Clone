@@ -9,32 +9,15 @@
 import UIKit
 import RealmSwift
 
-class DialogsUITableViewCell: UITableViewCell {
-  @IBOutlet weak var photo: UIImageView! {
-    didSet {
-      photo.layer.cornerRadius = photo.frame.height / 2
-    }
-  }
+class DialogsUITableViewCell: DataBasicUITableViewCell {
+  @IBOutlet weak var onlineStatusIcon: OnlineStatusUIImageView!
   
-  @IBOutlet weak var onlineStatusIcon: UIImageView! {
-    didSet {
-      onlineStatusIcon.layer.cornerRadius = onlineStatusIcon.frame.height / 2
-      onlineStatusIcon.image = nil
-    }
-  }
-  
-  
-  @IBOutlet weak var name: UILabel!
   @IBOutlet weak var lastMessage: UILabel!
   @IBOutlet weak var lastMessageDate: UILabel!
   
   @IBOutlet weak var leadingSpace: NSLayoutConstraint!
   
-  @IBOutlet weak var senderPhoto: UIImageView! {
-    didSet {
-      senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
-    }
-  }
+  @IBOutlet weak var senderPhoto: RoundUIImageView!
   
   @IBOutlet weak var senderPhotoWidth: NSLayoutConstraint! {
     didSet {
@@ -54,21 +37,15 @@ class DialogsUITableViewCell: UITableViewCell {
     lastMessageDate.text = nil
     
     onlineStatusIcon.image = nil
-    onlineStatusIcon.backgroundColor = .clear
+    onlineStatusIcon.backgroundColor = nil
     
     senderPhotoWidth.constant = 0
     
-    senderPhoto.layer.cornerRadius = senderPhoto.frame.height / 2
+    senderPhoto.layoutSubviews()
   }
 }
 
 extension DialogsUITableViewCell {
-  func setDialogPhoto(_ dialog: VKDialogModel) {
-    guard dialog.photo100 != "" else { return }
-    
-    photo.sd_setImage(with: URL(string: dialog.photo100), completed: nil)
-  }
-  
   func setSenderPhoto(_ dialog: VKDialogModel) {
     guard dialog.type == "chat" || dialog.message.isOut else {
       leadingSpace.constant = 0
@@ -91,17 +68,5 @@ extension DialogsUITableViewCell {
     } else {
       senderPhoto.image = #imageLiteral(resourceName: "DefaultUserPhoto")
     }
-  }
-  
-  func setStatusIcon(_ dialog: VKDialogModel, _ backgroundColor: UIColor) {
-    guard dialog.isOnline else { return }
-    
-    onlineStatusIcon.image = (dialog.isOnlineMobile ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon"))
-    onlineStatusIcon.backgroundColor = backgroundColor
-    
-    onlineStatusIcon.layer.cornerRadius = onlineStatusIcon.frame.height / (dialog.isOnlineMobile ? 7 : 2)
-    
-    onlineStatusIconWidth.constant = photo.frame.height / (dialog.isOnlineMobile ? 4.5 : 4)
-    onlineStatusIconHeight.constant = photo.frame.height / (dialog.isOnlineMobile ? 3.5 : 4)
   }
 }

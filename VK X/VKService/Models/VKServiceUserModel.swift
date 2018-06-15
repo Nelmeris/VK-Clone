@@ -55,7 +55,6 @@ class VKUserModel: RealmModel {
       (lastName == object.lastName) &&
       (photo100 == object.photo100) &&
       (isOnline == object.isOnline) &&
-      (isOnlineMobile == object.isOnlineMobile) &&
-      (photos.isEqual(object.photos))
+      (isOnlineMobile == object.isOnlineMobile)
   }
 }

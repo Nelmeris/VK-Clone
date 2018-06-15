@@ -14,40 +14,27 @@ class NewsFeedUITableViewCell: UITableViewCell {
   var postId = 0
   
   @IBOutlet weak var authorName: UILabel!
-  @IBOutlet weak var authorPhoto: UIImageView! {
-    didSet {
-      authorPhoto.layer.cornerRadius = authorPhoto.frame.height / 2
-    }
-  }
+  @IBOutlet weak var authorPhoto: RoundUIImageView!
   
   @IBOutlet weak var postText: UILabel!
   
   @IBOutlet weak var likesCount: UILabel!
   @IBOutlet weak var repostsCount: UILabel!
-  @IBOutlet weak var commentsCount: UILabel! {
-    didSet {
-      commentsCount.text = nil
-    }
-  }
+  @IBOutlet weak var commentsCount: UILabel!
   @IBOutlet weak var viewsCount: UILabel!
   
   @IBOutlet weak var postPhoto: UIImageView!
   
-  @IBOutlet weak var postPhotoHeight: NSLayoutConstraint! {
-    didSet {
-      postPhotoHeight.constant = 0
-    }
-  }
+  @IBOutlet weak var postPhotoHeight: NSLayoutConstraint!
   
-  @IBOutlet weak var likesIcon: UIImageView! {
-    didSet {
-      likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
-    }
-  }
-  @IBOutlet weak var commentsIcon: UIImageView! {
-    didSet {
-      commentsIcon.image = nil
-    }
+  @IBOutlet weak var likesIcon: UIImageView!
+  @IBOutlet weak var commentsIcon: UIImageView!
+  
+  override func awakeFromNib() {
+    commentsIcon.image = nil
+    commentsCount.text = nil
+    likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
+    postPhotoHeight.constant = 0
   }
   
   @IBAction func LikesClick(_ sender: Any) {
@@ -60,23 +47,19 @@ class NewsFeedUITableViewCell: UITableViewCell {
     
     guard let likes = Int(likesCount.text!) else { return }
     
-    likesCount.text = getShortCount(isLike ? likes - 1 : likes + 1)
+    likesCount.text = getShortCount(likes + (isLike ? -1 : 1))
   }
   
   override func prepareForReuse() {
     super.prepareForReuse()
     
-    authorName.text = nil
-    likesCount.text = nil
-    repostsCount.text = nil
     commentsCount.text = nil
-    viewsCount.text = nil
+    commentsIcon.image = nil
     
     postPhotoHeight.constant = 0
     authorPhoto.image = nil
     
     likesIcon.image = #imageLiteral(resourceName: "LikesOffIcon")
-    commentsIcon.image = nil
   }
 }
 
@@ -112,7 +95,7 @@ extension NewsFeedUITableViewCell {
       case "photo":
         let size = attachment.photo!.sizes.last!
         
-        postPhotoHeight.constant = postPhoto.frame.width * CGFloat(size.height) / CGFloat(size.width)
+        postPhotoHeight.constant = (frame.width - 30) * CGFloat(size.height) / CGFloat(size.width)
         postPhoto.sd_setImage(with: URL(string: size.url), completed: nil)
         
       default: break

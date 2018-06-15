@@ -27,12 +27,14 @@ class RealmService {
       
       realm.beginWrite()
       
+      // Удаляем из БД элементы, которые отсутствуют в полученных данных
       var delete = realm.objects(Type.self)
       data.forEach { data in
         delete = delete.filter("id != %@", data.value(forKey: "id") as! Int)
       }
       realm.delete(delete)
       
+      // Удаляем из полученных данных элементы, которые уже есть в БД
       var data = data
       
       for newData in data {
