@@ -10,28 +10,38 @@ import UIKit
 import Keychain
 
 class VKTokenService {
-  static func tokenIsExist() -> Bool {
+  private init() {}
+  
+  static let shared = VKTokenService()
+  
+  func tokenIsExist() -> Bool {
     return Keychain.load("token") != nil
   }
   
-  static func tokenReceiving() {
+  func tokenReceiving() {
     let storyboard = UIStoryboard(name: "VKViews", bundle: nil)
     let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
     
-    DispatchQueue.main.async {
-      let activeViewController = getActiveViewController()!
-      
-      guard !(activeViewController is VKAuthorizationUIViewController) else { return }
-      activeViewController.present(viewController, animated: true, completion: nil)
-    }
+    while getActiveViewController() == nil { continue }
+    let activeViewController = getActiveViewController()!
+    
+    guard !(activeViewController is VKAuthorizationUIViewController) else { return }
+    activeViewController.present(viewController, animated: true)
   }
   
-  static func getToken() -> String? {
-    guard VKTokenService.tokenIsExist() else {
-      VKTokenService.tokenReceiving()
-      return nil
+  let dispatchGroup = DispatchGroup()
+  
+  @objc func getToken(completion: @escaping (String) -> Void = {_ in}) {
+    guard tokenIsExist() else {
+      DispatchQueue.main.async {
+        self.tokenReceiving()
+      }
+      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "tokenReceived"), object: nil, queue: nil) { (not) in
+        completion(Keychain.load("token")!)
+      }
+      return
     }
     
-    return Keychain.load("token")!
+    completion(Keychain.load("token")!)
   }
 }

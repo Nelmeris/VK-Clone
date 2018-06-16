@@ -52,7 +52,9 @@ class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
     
     decisionHandler(.cancel)
     
-    dismiss(animated: true, completion: nil)
+    dismiss(animated: true) {
+      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tokenReceived"), object: nil)
+    }
   }
   
   func getParams(_ fragment: String) -> [String: String]{

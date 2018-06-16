@@ -56,14 +56,16 @@ class VKService {
     }
   }
   
-  private func getRequestUrl(_ method: String, _ version: String, _ parameters: [String: String] = [: ]) -> (url: String, parameters: [String: String])? {
+  private func getRequestUrl(_ method: String, _ version: String, _ parameters: [String: String] = [: ],
+                             completion: @escaping ((url: String, parameters: [String: String])) -> Void){
     let requestURL = scheme + "://" + host + method
     
     var requestParameters = parameters
-    requestParameters["access_token"] = VKTokenService.getToken()
     requestParameters["v"] = version
-    
-    return (requestURL, requestParameters)
+    VKTokenService.shared.getToken() { token in
+      requestParameters["access_token"] = token
+      completion((requestURL, requestParameters))
+    }
   }
   
   private func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String: String], _ queue: DispatchQueue = DispatchQueue.global(), completion: @escaping(Response) -> Void = {_ in}) {
@@ -79,7 +81,7 @@ class VKService {
       } catch requestError.url(let error_msg) {
         print(error_msg)
       } catch requestError.accessToken {
-        VKTokenService.tokenReceiving()
+        VKTokenService.shared.tokenReceiving()
       } catch requestError.manyRequests {
         self.makeRequest(url, parameters) { (response: Response) in
           completion(response)
@@ -95,11 +97,11 @@ class VKService {
                                       parameters: [String: String] = [: ],
                                       queue: DispatchQueue = DispatchQueue.global(),
                                       completion: @escaping(Response) -> Void = {_ in}) {
-    queue.async {
-      guard let url = self.getRequestUrl(method, version, parameters) else { return }
-      
-      self.makeRequest(url.url, url.parameters, queue) { (response: Response) in
-        completion(response)
+    DispatchQueue.global().async {
+      self.getRequestUrl(method, version, parameters) { url in
+        self.makeRequest(url.url, url.parameters, queue) { (response: Response) in
+          completion(response)
+        }
       }
     }
   }

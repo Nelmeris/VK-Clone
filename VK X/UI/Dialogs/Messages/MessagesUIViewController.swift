@@ -136,7 +136,7 @@ extension MessagesUIViewController {
   func setOnlineStatus(_ navigationItem: UINavigationItem) {
     guard dialog.isOnline else { return }
     
-    navigationItem.title = navigationItem.title! + " (Онлайн" + (!dialog.isOnlineMobile ? ")" : " с телефона)")
+    navigationItem.title = navigationItem.title! + " онлайн" + (!dialog.isOnlineMobile ? "" : " с телефона)")
   }
   
   func addNewMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {

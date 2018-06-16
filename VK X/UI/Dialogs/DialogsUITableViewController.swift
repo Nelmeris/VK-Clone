@@ -48,6 +48,10 @@ class DialogsUITableViewController: UITableViewController {
     return cell
   }
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     let viewController = segue.destination as! MessagesUIViewController
     guard let indexPath = tableView.indexPathForSelectedRow else { return }

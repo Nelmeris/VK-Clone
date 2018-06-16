@@ -12,7 +12,11 @@ import RealmSwift
 class MessagesUITableViewCell: UITableViewCell {
   @IBOutlet weak var message: UILabel!
   
-  @IBOutlet weak var messageBox: RoundUIView!
+  @IBOutlet weak var messageBox: UIView! {
+    didSet {
+      messageBox.layer.cornerRadius = messageBox.frame.height / 2
+    }
+  }
   
   @IBOutlet weak var messageDate: UILabel!
   

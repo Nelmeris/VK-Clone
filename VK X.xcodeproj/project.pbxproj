@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5743154420D495D000F29FDE /* UsersGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743154320D495D000F29FDE /* UsersGet.swift */; };
 		57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */; };
 		57B9FDD120D404E90098AA00 /* OnlineStatusUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */; };
 		57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1FCC520D0B76400116749 /* VKServiceMethods.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
+		5743154320D495D000F29FDE /* UsersGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersGet.swift; sourceTree = "<group>"; };
 		57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
 		57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
 		57C1FCC520D0B76400116749 /* VKServiceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMethods.swift; sourceTree = "<group>"; };
@@ -160,6 +162,14 @@
 				177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5743154220D495A500F29FDE /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				5743154320D495D000F29FDE /* UsersGet.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
@@ -338,6 +348,7 @@
 		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
 			isa = PBXGroup;
 			children = (
+				5743154220D495A500F29FDE /* Requests */,
 				F6D634C620C31CDC0062CEED /* TokenService */,
 				F6D634C920C346760062CEED /* MessageLongPollService */,
 				F688B0B920B1DBB4009BB1B8 /* Models */,
@@ -585,6 +596,7 @@
 				F672784D209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift in Sources */,
 				F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */,
 				F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */,
+				5743154420D495D000F29FDE /* UsersGet.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendsUITableViewCell.swift in Sources */,
 				F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */,
 				F6D634D020C354660062CEED /* VKMessageUpdateCode4Processing.swift in Sources */,

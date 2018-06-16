@@ -51,14 +51,6 @@ class RoundUIImageView: UIImageView {
   }
 }
 
-class RoundUIView: UIView {
-  override func layoutSubviews() {
-    super.layoutSubviews()
-    clipsToBounds = true
-    layer.cornerRadius = frame.height / 2
-  }
-}
-
 
 
 class SetImageToRow: Operation {
