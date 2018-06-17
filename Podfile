@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'VK Community' do
+target 'VK X' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
@@ -11,6 +11,6 @@ target 'VK Community' do
   pod 'SDWebImage'
   pod 'RealmSwift'
 
-  # Pods for VK Community
+  # Pods for VK X
 
 end

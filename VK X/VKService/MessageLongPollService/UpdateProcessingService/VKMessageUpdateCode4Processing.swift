@@ -10,13 +10,14 @@ import UIKit
 import RealmSwift
 
 extension VKMessageLongPollService {
-  static func Code4DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKMessageUpdatesModel.Update) {
+  static func Code4DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
     
     let newMessage = update.update as! VKMessageUpdateNewMessageModel
     
     DispatchQueue.main.async {
       let dialogs: Results<VKDialogModel> = RealmService.loadData()!
       
+      print(newMessage.peerId)
       let dialog = dialogs.filter("id = \(newMessage.peerId)").first!
       
       do {
@@ -27,7 +28,6 @@ extension VKMessageLongPollService {
         dialog.message.text = newMessage.text
         dialog.message.isOut = newMessage.flags.isOut
         dialog.message.date = newMessage.date
-        dialog.message.userId = 0
         
         try realm.commitWrite()
       } catch let error {
@@ -36,7 +36,7 @@ extension VKMessageLongPollService {
     }
   }
   
-  static func Code4MessageProcessing(_ controller: MessagesUIViewController, _ update: VKMessageUpdatesModel.Update) {
+  static func Code4MessageProcessing(_ controller: MessagesUIViewController, _ update: VKUpdateModel) {
     let newMessage = update.update as! VKMessageUpdateNewMessageModel
     
     guard newMessage.peerId == controller.dialogId else { return }

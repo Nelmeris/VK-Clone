@@ -68,12 +68,12 @@ class VKService {
     }
   }
   
-  private func makeRequest<Response: VKBaseModel>(_ url: String, _ parameters: [String: String], _ queue: DispatchQueue = DispatchQueue.global(), completion: @escaping(Response) -> Void = {_ in}) {
+  private func makeRequest<Response: Decodable>(_ url: String, _ parameters: [String: String], _ queue: DispatchQueue, completion: @escaping(Response) -> Void = {_ in}) {
     Alamofire.request(url, parameters: parameters).responseData(queue: queue) { response in
       do {
-        let json = try self.getJSONResponse(response)
-        
-        let model = Response(json["response"])
+        let json = (try! JSON(data: response.value!))["response"]
+        let data = try json.rawData()
+        let model = try JSONDecoder().decode(Response.self, from: data)
         
         completion(model)
       } catch requestError.response(let error_msg) {
@@ -83,7 +83,7 @@ class VKService {
       } catch requestError.accessToken {
         VKTokenService.shared.tokenReceiving()
       } catch requestError.manyRequests {
-        self.makeRequest(url, parameters) { (response: Response) in
+        self.makeRequest(url, parameters, queue) { (response: Response) in
           completion(response)
         }
       } catch let error {
@@ -92,15 +92,51 @@ class VKService {
     }
   }
   
-  func request<Response: VKBaseModel>(version: String = String(VKService.shared.apiVersion),
+  private func makeIrrevocableRequest(_ url: String, _ parameters: [String: String], _ queue: DispatchQueue, completion: @escaping() -> Void = {}) {
+    Alamofire.request(url, parameters: parameters).responseData(queue: queue) { response in
+      do {
+        _ = try self.getJSONResponse(response)
+        
+        completion()
+      } catch requestError.response(let error_msg) {
+        print(error_msg)
+      } catch requestError.url(let error_msg) {
+        print(error_msg)
+      } catch requestError.accessToken {
+        VKTokenService.shared.tokenReceiving()
+      } catch requestError.manyRequests {
+        self.makeIrrevocableRequest(url, parameters, queue) {
+          completion()
+        }
+      } catch let error {
+        print(error)
+      }
+    }
+  }
+  
+  func request<Response: Decodable>(version: String = String(VKService.shared.apiVersion),
                                       method: String,
                                       parameters: [String: String] = [: ],
                                       queue: DispatchQueue = DispatchQueue.global(),
                                       completion: @escaping(Response) -> Void = {_ in}) {
-    DispatchQueue.global().async {
+    DispatchQueue.global().async(flags: .barrier) {
       self.getRequestUrl(method, version, parameters) { url in
         self.makeRequest(url.url, url.parameters, queue) { (response: Response) in
           completion(response)
+        }
+      }
+    }
+  }
+  
+  func irrevocableRequest(version: String = String(VKService.shared.apiVersion),
+                                                      method: String,
+                                                      parameters: [String: String] = [: ],
+                                                      queue: DispatchQueue = DispatchQueue.global(),
+                                                      completion: @escaping() -> Void = {}) {
+    DispatchQueue.global().async {
+      self.getRequestUrl(method, version, parameters) { url in
+        self.makeIrrevocableRequest(url.url, url.parameters, queue) {
+          completion()
         }
       }
     }

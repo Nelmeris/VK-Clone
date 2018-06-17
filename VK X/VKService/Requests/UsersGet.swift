@@ -63,13 +63,8 @@ class UsersGet: Operation {
   override func main() {
     let code = "var friends = API.friends.get({\"fields\": \"id,photo_100,online\", \"order\": \"hints\"}); friends.photos = []; var i = 0; while(friends.items[i] != null) { friends.photos.push(API.photos.getAll({\"owner_id\": friends.items[i].id})); i = i + 1;};return friends;"
     
-    VKService.shared.request(method: "execute", parameters: ["code": code]) { [weak self] (response: VKUsersResponseModel) in
-      let friends = response.items
-      
-      for (index, friend) in friends.enumerated() {
-        FriendPhotosUIViewController.deleteOldPhotos(user: friend, newPhotos: response.photos[index])
-        FriendPhotosUIViewController.addNewPhotos(user: friend, newPhotos: response.photos[index])
-      }
+    VKService.shared.request(method: "execute", parameters: ["code": code]) { [weak self] (response: VKUsersModel) in
+      let friends = response.users
       
       self?.response = friends
       

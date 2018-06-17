@@ -11,6 +11,7 @@
 		57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */; };
 		57B9FDD120D404E90098AA00 /* OnlineStatusUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */; };
 		57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1FCC520D0B76400116749 /* VKServiceMethods.swift */; };
+		D175C2B78D07153E0A419551 /* Pods_VK_X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */; };
 		F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60759D9B93A05C377252725 /* Pods_VK_Community.framework */; };
 		F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61E29772093B06B0070DEC9 /* AppDelegate.swift */; };
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
@@ -41,7 +42,6 @@
 		F673356520C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */; };
 		F688B0C320B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */; };
 		F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */; };
-		F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */; };
 		F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */; };
 		F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */; };
 		F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */; };
@@ -80,13 +80,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK X.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK X/Pods-VK X.debug.xcconfig"; sourceTree = "<group>"; };
 		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
 		5743154320D495D000F29FDE /* UsersGet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersGet.swift; sourceTree = "<group>"; };
 		57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
 		57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
 		57C1FCC520D0B76400116749 /* VKServiceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMethods.swift; sourceTree = "<group>"; };
+		5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_X.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60759D9B93A05C377252725 /* Pods_VK_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.debug.xcconfig"; sourceTree = "<group>"; };
+		DF333117F72AD12B55F888C5 /* Pods-VK X.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK X.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK X/Pods-VK X.release.xcconfig"; sourceTree = "<group>"; };
 		F61E29742093B06B0070DEC9 /* VK X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61E29772093B06B0070DEC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F61E297C2093B06B0070DEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,7 +121,6 @@
 		F673356420C49FAB00C773FC /* VKMessageUpdateOnlineStatusChangedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateOnlineStatusChangedModel.swift; sourceTree = "<group>"; };
 		F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorizationUIViewController.swift; sourceTree = "<group>"; };
 		F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceGroupModel.swift; sourceTree = "<group>"; };
-		F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceBaseModel.swift; sourceTree = "<group>"; };
 		F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServicePhotoModel.swift; sourceTree = "<group>"; };
 		F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceUserModel.swift; sourceTree = "<group>"; };
 		F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
+				D175C2B78D07153E0A419551 /* Pods_VK_X.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +163,54 @@
 			children = (
 				CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */,
 				177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */,
+				0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */,
+				DF333117F72AD12B55F888C5 /* Pods-VK X.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		571960D720D4F5920097AA47 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
+				F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */,
+				F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */,
+				F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */,
+				F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */,
+				F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		571960D820D4F59B0097AA47 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
+				F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */,
+				F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */,
+				F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */,
+				F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */,
+				F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */,
+				F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */,
+				F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */,
+				F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		571960D920D4F5E60097AA47 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */,
+				F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */,
+				F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */,
+				F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */,
+				F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */,
+				F67266E2209B34370086B1B7 /* GroupsUITableViewCell.swift */,
+				57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */,
+				57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		5743154220D495A500F29FDE /* Requests */ = {
@@ -176,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				B60759D9B93A05C377252725 /* Pods_VK_Community.framework */,
+				5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -201,10 +251,11 @@
 		F61E29762093B06B0070DEC9 /* VK X */ = {
 			isa = PBXGroup;
 			children = (
+				571960D720D4F5920097AA47 /* View */,
+				571960D820D4F59B0097AA47 /* Controllers */,
+				F673356820C4BD3D00C773FC /* Models */,
 				F688B0B520B1DBB4009BB1B8 /* VKService */,
 				F688B0CB20B1DBDD009BB1B8 /* RealmService */,
-				F673356820C4BD3D00C773FC /* Models */,
-				F62B3B8E20C055C50037A767 /* UI */,
 				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
 				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
 				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
@@ -215,154 +266,11 @@
 			path = "VK X";
 			sourceTree = "<group>";
 		};
-		F62B3B8820C04B040037A767 /* FriendPhotos */ = {
-			isa = PBXGroup;
-			children = (
-				F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */,
-			);
-			path = FriendPhotos;
-			sourceTree = "<group>";
-		};
-		F62B3B8D20C055B10037A767 /* GroupsSearch */ = {
-			isa = PBXGroup;
-			children = (
-				F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */,
-			);
-			path = GroupsSearch;
-			sourceTree = "<group>";
-		};
-		F62B3B8E20C055C50037A767 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				F61E297B2093B06B0070DEC9 /* Main.storyboard */,
-				F6D634C720C325820062CEED /* MainUITabBarController.swift */,
-				F64C2B7D20BC725100741AD9 /* News */,
-				F64C2B8420BC97BE00741AD9 /* Dialogs */,
-				F6B2C8AE209643220056110D /* Friends */,
-				F67266D9209B1B090086B1B7 /* Groups */,
-				F6B2C8AD209643190056110D /* Profile & Settings */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		F62B3B9320C168820037A767 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				F62B3B9420C168A90037A767 /* MessagesUIViewController.swift */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
-		F64C2B7D20BC725100741AD9 /* News */ = {
-			isa = PBXGroup;
-			children = (
-				F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */,
-				F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */,
-			);
-			path = News;
-			sourceTree = "<group>";
-		};
-		F64C2B8420BC97BE00741AD9 /* Dialogs */ = {
-			isa = PBXGroup;
-			children = (
-				F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */,
-				F6939FBB20C020D100A7326F /* DialogsUITableViewController.swift */,
-				F62B3B9320C168820037A767 /* Messages */,
-			);
-			path = Dialogs;
-			sourceTree = "<group>";
-		};
-		F67266D9209B1B090086B1B7 /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */,
-				F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */,
-				F62B3B8D20C055B10037A767 /* GroupsSearch */,
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
 		F673356820C4BD3D00C773FC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F673356920C4BD5600C773FC /* News */,
-				F673356A20C4BD5C00C773FC /* Dialogs */,
-				F673356B20C4BD6200C773FC /* Friends */,
-				F673356C20C4BD6700C773FC /* Groups */,
-				57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */,
-				57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F673356920C4BD5600C773FC /* News */ = {
-			isa = PBXGroup;
-			children = (
-				F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */,
-			);
-			path = News;
-			sourceTree = "<group>";
-		};
-		F673356A20C4BD5C00C773FC /* Dialogs */ = {
-			isa = PBXGroup;
-			children = (
-				F6939FBD20C020E100A7326F /* DialogsUITableViewCell.swift */,
-				F673356E20C4BD8E00C773FC /* Messages */,
-			);
-			path = Dialogs;
-			sourceTree = "<group>";
-		};
-		F673356B20C4BD6200C773FC /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				F67266E6209B6F300086B1B7 /* FriendsUITableViewCell.swift */,
-				F673356F20C4BDA100C773FC /* FriendPhotos */,
-			);
-			path = Friends;
-			sourceTree = "<group>";
-		};
-		F673356C20C4BD6700C773FC /* Groups */ = {
-			isa = PBXGroup;
-			children = (
-				F67266E2209B34370086B1B7 /* GroupsUITableViewCell.swift */,
-			);
-			path = Groups;
-			sourceTree = "<group>";
-		};
-		F673356E20C4BD8E00C773FC /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				F62B3B9620C168E60037A767 /* MessagesUITableViewCell.swift */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
-		F673356F20C4BDA100C773FC /* FriendPhotos */ = {
-			isa = PBXGroup;
-			children = (
-				F672784C209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift */,
-			);
-			path = FriendPhotos;
-			sourceTree = "<group>";
-		};
-		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
-			isa = PBXGroup;
-			children = (
-				5743154220D495A500F29FDE /* Requests */,
-				F6D634C620C31CDC0062CEED /* TokenService */,
-				F6D634C920C346760062CEED /* MessageLongPollService */,
-				F688B0B920B1DBB4009BB1B8 /* Models */,
-				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
-				57C1FCC520D0B76400116749 /* VKServiceMethods.swift */,
-				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
-			);
-			path = VKService;
-			sourceTree = "<group>";
-		};
-		F688B0B920B1DBB4009BB1B8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F688B0BB20B1DBB4009BB1B8 /* VKServiceBaseModel.swift */,
+				571960D920D4F5E60097AA47 /* Cells */,
+				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
 				F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */,
 				F68B230A20C027B600B6E773 /* VKServiceDialogModel.swift */,
 				F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */,
@@ -374,41 +282,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
+			isa = PBXGroup;
+			children = (
+				5743154220D495A500F29FDE /* Requests */,
+				F6D634C620C31CDC0062CEED /* TokenService */,
+				F6D634C920C346760062CEED /* MessageLongPollService */,
+				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
+				57C1FCC520D0B76400116749 /* VKServiceMethods.swift */,
+				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
+			);
+			path = VKService;
+			sourceTree = "<group>";
+		};
 		F688B0CB20B1DBDD009BB1B8 /* RealmService */ = {
 			isa = PBXGroup;
 			children = (
-				F688B0D020B1E0DD009BB1B8 /* Models */,
 				F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */,
 				F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */,
 			);
 			path = RealmService;
-			sourceTree = "<group>";
-		};
-		F688B0D020B1E0DD009BB1B8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F6B2C8AD209643190056110D /* Profile & Settings */ = {
-			isa = PBXGroup;
-			children = (
-				F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */,
-				F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */,
-			);
-			path = "Profile & Settings";
-			sourceTree = "<group>";
-		};
-		F6B2C8AE209643220056110D /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */,
-				F67313CC2098C28900AC0A1F /* FriendsUITableViewController.swift */,
-				F62B3B8820C04B040037A767 /* FriendPhotos */,
-			);
-			path = Friends;
 			sourceTree = "<group>";
 		};
 		F6D634C620C31CDC0062CEED /* TokenService */ = {
@@ -545,7 +438,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VK Community/Pods-VK Community-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-VK X/Pods-VK X-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Keychain/Keychain.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -564,7 +457,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VK Community/Pods-VK Community-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VK X/Pods-VK X-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C9C9546F5CB676EB732449A9 /* [CP] Check Pods Manifest.lock */ = {
@@ -578,7 +471,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VK Community-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-VK X-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -613,7 +506,6 @@
 				F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */,
 				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
 				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,
-				F688B0C520B1DBB4009BB1B8 /* VKServiceBaseModel.swift in Sources */,
 				F68B230B20C027B600B6E773 /* VKServiceDialogModel.swift in Sources */,
 				F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */,
 				57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */,
@@ -780,7 +672,7 @@
 		};
 		F61E29872093B06E0070DEC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */;
+			baseConfigurationReference = 0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -803,7 +695,7 @@
 		};
 		F61E29882093B06E0070DEC9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */;
+			baseConfigurationReference = DF333117F72AD12B55F888C5 /* Pods-VK X.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
