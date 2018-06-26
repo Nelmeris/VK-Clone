@@ -10,7 +10,6 @@ target 'VK X' do
   pod 'Keychain'
   pod 'SDWebImage'
   pod 'RealmSwift'
-  pod 'Firebase/Core'
 
   # Pods for VK X
 
