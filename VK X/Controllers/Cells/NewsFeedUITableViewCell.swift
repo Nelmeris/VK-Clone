@@ -10,9 +10,6 @@ import UIKit
 import Keychain
 
 class NewsFeedUITableViewCell: UITableViewCell {
-  var authorId = 0
-  var postId = 0
-  
   @IBOutlet weak var authorName: UILabel!
   @IBOutlet weak var authorPhoto: RoundUIImageView!
   
@@ -29,6 +26,9 @@ class NewsFeedUITableViewCell: UITableViewCell {
   
   @IBOutlet weak var likesIcon: UIImageView!
   @IBOutlet weak var commentsIcon: UIImageView!
+  
+  var authorId = 0
+  var postId = 0
   
   override func awakeFromNib() {
     commentsIcon.image = nil

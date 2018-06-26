@@ -35,8 +35,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     tableView.delegate = self
     tableView.dataSource = self
     
-    RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
-    
     message.delegate = self
     message.layer.cornerRadius = message.frame.height / 2
     message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
@@ -46,6 +44,8 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     
     tableView.transform = transform
+    
+    RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
   }
   
   override func viewWillAppear(_ animated: Bool) {

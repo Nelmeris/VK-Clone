@@ -29,19 +29,17 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     
     photoCollection.delegate = self
     photoCollection.dataSource = self
+    
+    RealmService.pairCollectionViewAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(user.photos))
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     loadPhotos()
-    
-    RealmService.pairCollectionViewAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(user.photos))
-    
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    print(user.photos.count)
     return user.photos.count
   }
   

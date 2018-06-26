@@ -56,6 +56,7 @@ class VKMessageModel: RealmModel {
     case date
     case text = "body"
     case fromId = "from_id"
+    case userId = "user_id"
     case isOut = "out"
     case isRead = "read_state"
   }
@@ -69,9 +70,19 @@ class VKMessageModel: RealmModel {
     let date = try containers.decode(Int.self, forKey: .date)
     self.date = Date(timeIntervalSince1970: Double(date))
     text = try containers.decode(String.self, forKey: .text)
-    fromId = (try? containers.decode(Int.self, forKey: .fromId)) ?? 0
     isOut = try containers.decode(Int.self, forKey: .isOut) == 1
     isRead = try containers.decode(Int.self, forKey: .isRead) == 1
+    
+    if let fromId = try? containers.decode(Int.self, forKey: .fromId) {
+      self.fromId = fromId
+    } else {
+      if isOut {
+        fromId = VKService.shared.user.id
+      } else {
+        let userId = try containers.decode(Int.self, forKey: .userId)
+        fromId = userId
+      }
+    }
   }
   
   convenience init(id: Int, text: String, fromId: Int, date: Date, isOut: Bool) {
@@ -79,6 +90,7 @@ class VKMessageModel: RealmModel {
     
     self.id = id
     self.text = text
+    self.fromId = fromId
     self.date = date
     self.isOut = isOut
   }

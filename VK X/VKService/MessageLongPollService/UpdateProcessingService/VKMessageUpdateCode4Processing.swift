@@ -17,7 +17,6 @@ extension VKMessageLongPollService {
     DispatchQueue.main.async {
       let dialogs: Results<VKDialogModel> = RealmService.loadData()!
       
-      print(newMessage.peerId)
       let dialog = dialogs.filter("id = \(newMessage.peerId)").first!
       
       do {
@@ -26,8 +25,14 @@ extension VKMessageLongPollService {
         
         dialog.message.id = newMessage.id
         dialog.message.text = newMessage.text
+        dialog.message.fromId = newMessage.peerId
         dialog.message.isOut = newMessage.flags.isOut
         dialog.message.date = newMessage.date
+        dialog.messages.insert(VKMessageModel(id: newMessage.id,
+                                                         text: newMessage.text,
+                                                         fromId: (newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId),
+                                                         date: newMessage.date,
+                                                         isOut: newMessage.flags.isOut), at: 0)
         
         try realm.commitWrite()
       } catch let error {
@@ -45,6 +50,7 @@ extension VKMessageLongPollService {
       do {
         let realm = try Realm()
         realm.beginWrite()
+        
         controller.dialog.messages.insert(VKMessageModel(id: newMessage.id,
                                                          text: newMessage.text,
                                                          fromId: (newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId),
