@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 extension VKMessageLongPollService {
-  static func Code8DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
+  func Code8DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
     let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
     
     DispatchQueue.main.async {
@@ -35,7 +35,7 @@ extension VKMessageLongPollService {
     }
   }
   
-  static func Code9DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
+  func Code9DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
     let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
     
     DispatchQueue.main.async {

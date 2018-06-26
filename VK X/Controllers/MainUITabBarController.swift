@@ -17,9 +17,9 @@ class MainUITabBarController: UITabBarController {
       Database.database().reference().child("ids").setValue(data.user.id)
     }
     
-    VKMessageLongPollService.loadLongPollData() {
+    VKMessageLongPollService.shared.loadLongPollData() {
       let longPollData: Results<VKMessageLongPollServerModel> = RealmService.loadData()!
-      VKMessageLongPollService.startLongPoll(ts: longPollData.first!.ts)
+      VKMessageLongPollService.shared.startLongPoll(ts: longPollData.first!.ts)
     }
     
     DispatchQueue.global().async {

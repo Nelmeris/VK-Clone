@@ -93,6 +93,7 @@ class VKMessageModel: RealmModel {
     self.fromId = fromId
     self.date = date
     self.isOut = isOut
+    self.isRead = false
   }
   
   override func isEqual(_ object: RealmModel) -> Bool {

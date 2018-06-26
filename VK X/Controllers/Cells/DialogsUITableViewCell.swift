@@ -28,6 +28,17 @@ class DialogsUITableViewCell: DataBasicUITableViewCell {
   @IBOutlet weak var onlineStatusIconHeight: NSLayoutConstraint!
   @IBOutlet weak var onlineStatusIconWidth: NSLayoutConstraint!
   
+  @IBOutlet weak var notReadMessageIcon: UIImageView! {
+    didSet {
+      notReadMessageIcon.image = nil
+    }
+  }
+  @IBOutlet weak var notReadMessageIconWidth: NSLayoutConstraint! {
+    didSet {
+      notReadMessageIconWidth.constant = 0
+    }
+  }
+  
   override func prepareForReuse() {
     super.prepareForReuse()
     
@@ -38,6 +49,9 @@ class DialogsUITableViewCell: DataBasicUITableViewCell {
     
     onlineStatusIcon.image = nil
     onlineStatusIcon.backgroundColor = nil
+    
+    notReadMessageIcon.image = nil
+    notReadMessageIconWidth.constant = 0
     
     senderPhotoWidth.constant = 0
     

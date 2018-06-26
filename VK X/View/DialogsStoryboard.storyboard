@@ -73,24 +73,33 @@
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NotReadMessageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dFg-zH-h6u">
+                                            <rect key="frame" x="346" y="41.5" width="13" height="13"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="13" id="7a0-AD-8dv"/>
+                                                <constraint firstAttribute="height" constant="13" id="GuU-nM-orx"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Oma-BE-feW" firstAttribute="top" secondItem="GOj-fu-7Qd" secondAttribute="topMargin" id="1uj-fv-2ON"/>
                                         <constraint firstAttribute="bottom" secondItem="01F-bh-ijH" secondAttribute="bottom" constant="6" id="Kky-Lc-8dc"/>
+                                        <constraint firstItem="dFg-zH-h6u" firstAttribute="trailing" secondItem="GOj-fu-7Qd" secondAttribute="trailingMargin" id="Kv7-vJ-ldL"/>
                                         <constraint firstItem="sUp-7I-d7h" firstAttribute="bottom" secondItem="01F-bh-ijH" secondAttribute="bottom" id="LiG-VE-E0y"/>
                                         <constraint firstItem="HvK-bW-W9O" firstAttribute="leading" secondItem="01F-bh-ijH" secondAttribute="trailing" constant="8" id="N3J-38-QPg"/>
                                         <constraint firstItem="Oma-BE-feW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HvK-bW-W9O" secondAttribute="trailing" constant="10" id="SLu-lp-C3g"/>
                                         <constraint firstItem="Ygi-b4-19r" firstAttribute="top" secondItem="HvK-bW-W9O" secondAttribute="bottom" constant="7" id="Ueb-eB-zwm"/>
                                         <constraint firstItem="Ygi-b4-19r" firstAttribute="leading" secondItem="HvK-bW-W9O" secondAttribute="leading" id="WKQ-4s-hr7"/>
+                                        <constraint firstItem="dFg-zH-h6u" firstAttribute="centerY" secondItem="KHd-65-xh2" secondAttribute="centerY" id="WTj-H8-p6n"/>
                                         <constraint firstItem="01F-bh-ijH" firstAttribute="top" secondItem="GOj-fu-7Qd" secondAttribute="top" constant="6" id="bQD-D4-yBv"/>
                                         <constraint firstItem="KHd-65-xh2" firstAttribute="centerY" secondItem="Ygi-b4-19r" secondAttribute="centerY" id="bjt-YQ-dmM"/>
                                         <constraint firstItem="HvK-bW-W9O" firstAttribute="top" secondItem="01F-bh-ijH" secondAttribute="top" id="cOM-zQ-iIs"/>
                                         <constraint firstItem="01F-bh-ijH" firstAttribute="width" secondItem="01F-bh-ijH" secondAttribute="height" multiplier="1:1" id="eOX-wg-CTW"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KHd-65-xh2" secondAttribute="trailing" constant="50" id="ggB-fV-ORK"/>
                                         <constraint firstItem="01F-bh-ijH" firstAttribute="leading" secondItem="GOj-fu-7Qd" secondAttribute="leading" constant="8" id="ggQ-RK-Cmj"/>
                                         <constraint firstItem="Oma-BE-feW" firstAttribute="trailing" secondItem="GOj-fu-7Qd" secondAttribute="trailingMargin" id="l9c-fE-7o3"/>
                                         <constraint firstItem="sUp-7I-d7h" firstAttribute="trailing" secondItem="01F-bh-ijH" secondAttribute="trailing" id="oyf-4k-CHc"/>
                                         <constraint firstItem="KHd-65-xh2" firstAttribute="leading" secondItem="Ygi-b4-19r" secondAttribute="trailing" constant="7" identifier="Trailing Space" id="yOj-1m-5xt"/>
+                                        <constraint firstItem="dFg-zH-h6u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KHd-65-xh2" secondAttribute="trailing" constant="35" id="ymv-1y-ECI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -98,6 +107,8 @@
                                     <outlet property="lastMessageDate" destination="Oma-BE-feW" id="9gN-Hi-YFF"/>
                                     <outlet property="leadingSpace" destination="yOj-1m-5xt" id="3bq-sx-AxF"/>
                                     <outlet property="name" destination="HvK-bW-W9O" id="xlS-YN-ouy"/>
+                                    <outlet property="notReadMessageIcon" destination="dFg-zH-h6u" id="HO7-nO-UpQ"/>
+                                    <outlet property="notReadMessageIconWidth" destination="7a0-AD-8dv" id="E1g-8S-Sy8"/>
                                     <outlet property="onlineStatusIcon" destination="sUp-7I-d7h" id="QXH-Ab-TrD"/>
                                     <outlet property="photo" destination="01F-bh-ijH" id="PbP-uH-SJa"/>
                                     <outlet property="senderPhoto" destination="Ygi-b4-19r" id="kdw-jo-4H8"/>
@@ -117,7 +128,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gx-t8-YZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2140" y="29.55665024630542"/>
+            <point key="canvasLocation" x="2140" y="29.23538230884558"/>
         </scene>
         <!--Messages-->
         <scene sceneID="MkP-z4-kwt">
@@ -342,6 +353,7 @@
         <image name="DefaultDialogPhoto" width="256" height="256"/>
         <image name="DefaultUserPhoto" width="256" height="256"/>
         <image name="MessagesIcon" width="24" height="24"/>
+        <image name="NotReadMessageIcon" width="34" height="34"/>
         <image name="OnlineIcon" width="117" height="117"/>
         <image name="SendButton" width="104" height="104"/>
     </resources>

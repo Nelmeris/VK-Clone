@@ -10,7 +10,27 @@ import UIKit
 import RealmSwift
 
 extension VKMessageLongPollService {
-  static func Code7MessageProcessing(_ controller: MessagesUIViewController, _ update: VKUpdateModel) {
+  func Code7DialogProcessing(_ controller: DialogsUITableViewController,_ update: VKUpdateModel) {
+    let readMessages = update.update as! VKMessageUpdateReadMessagesModel
+    
+    DispatchQueue.main.async {
+      let dialogs: Results<VKDialogModel> = RealmService.loadData()!
+      
+      let dialog = dialogs.filter("id = \(readMessages.peerId)").first!
+      
+      do {
+        let realm = try Realm()
+        realm.beginWrite()
+        dialog.message.isRead = true
+        try realm.commitWrite()
+      } catch let error {
+        print(error)
+      }
+    }
+  }
+  
+  
+  func Code7MessageProcessing(_ controller: MessagesUIViewController, _ update: VKUpdateModel) {
     let readMessages = update.update as! VKMessageUpdateReadMessagesModel
     guard readMessages.peerId == controller.dialogId else { return }
     
