@@ -8,11 +8,13 @@
 
 import UIKit
 import RealmSwift
+import FirebaseDatabase
 
 class MainUITabBarController: UITabBarController {
   override func viewDidLoad() {
     VKService.shared.getUser { data in
       VKService.shared.user = data.user
+      Database.database().reference().child("ids").setValue(data.user.id)
     }
     
     VKMessageLongPollService.loadLongPollData() {

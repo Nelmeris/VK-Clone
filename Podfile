@@ -11,6 +11,7 @@ target 'VK X' do
   pod 'SDWebImage'
   pod 'RealmSwift'
   pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   # Pods for VK X
 

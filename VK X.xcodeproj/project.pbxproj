@@ -12,7 +12,6 @@
 		57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1FCC520D0B76400116749 /* VKServiceMethods.swift */; };
 		57D6E50820E23CFD007DF6F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */; };
 		D175C2B78D07153E0A419551 /* Pods_VK_X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */; };
-		F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B60759D9B93A05C377252725 /* Pods_VK_Community.framework */; };
 		F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61E29772093B06B0070DEC9 /* AppDelegate.swift */; };
 		F61E297D2093B06B0070DEC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F61E297B2093B06B0070DEC9 /* Main.storyboard */; };
 		F61E297F2093B06E0070DEC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F61E297E2093B06E0070DEC9 /* Assets.xcassets */; };
@@ -25,7 +24,6 @@
 		F645DB8120C5BA2400310323 /* NewsFeedStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */; };
 		F645DB8320C5BA3A00310323 /* DialogsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */; };
 		F645DB8520C5BA4B00310323 /* GroupsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */; };
-		F645DB8720C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */; };
 		F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */; };
 		F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */; };
 		F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */; };
@@ -63,7 +61,6 @@
 		F6D634D720C357310062CEED /* VKMessageUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */; };
 		F6D634DA20C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */; };
 		F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */; };
-		F6E3F84F2095EBC700519835 /* ProfileAndSettingsUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,14 +78,12 @@
 
 /* Begin PBXFileReference section */
 		0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK X.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK X/Pods-VK X.debug.xcconfig"; sourceTree = "<group>"; };
-		177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.release.xcconfig"; sourceTree = "<group>"; };
 		57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
 		57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
 		57C1FCC520D0B76400116749 /* VKServiceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMethods.swift; sourceTree = "<group>"; };
 		57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_X.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60759D9B93A05C377252725 /* Pods_VK_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK Community.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK Community/Pods-VK Community.debug.xcconfig"; sourceTree = "<group>"; };
 		DF333117F72AD12B55F888C5 /* Pods-VK X.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK X.release.xcconfig"; path = "Pods/Target Support Files/Pods-VK X/Pods-VK X.release.xcconfig"; sourceTree = "<group>"; };
 		F61E29742093B06B0070DEC9 /* VK X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK X.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F61E29772093B06B0070DEC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +99,6 @@
 		F645DB8020C5BA2400310323 /* NewsFeedStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewsFeedStoryboard.storyboard; sourceTree = "<group>"; };
 		F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DialogsStoryboard.storyboard; sourceTree = "<group>"; };
 		F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GroupsStoryboard.storyboard; sourceTree = "<group>"; };
-		F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Profile&SettingsStoryboard.storyboard"; sourceTree = "<group>"; };
 		F64C2B7E20BC801100741AD9 /* NewsFeedUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewController.swift; sourceTree = "<group>"; };
 		F64C2B8020BC801C00741AD9 /* NewsFeedUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedUITableViewCell.swift; sourceTree = "<group>"; };
 		F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeedModel.swift; sourceTree = "<group>"; };
@@ -142,7 +136,6 @@
 		F6D634D620C357310062CEED /* VKMessageUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateModel.swift; sourceTree = "<group>"; };
 		F6D634D920C3577D0062CEED /* VKMessageUpdateNewMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateNewMessageModel.swift; sourceTree = "<group>"; };
 		F6D634DB20C357930062CEED /* VKMessageUpdateReadMessagesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMessageUpdateReadMessagesModel.swift; sourceTree = "<group>"; };
-		F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAndSettingsUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F02AE7A18D975A2C13651F2E /* Pods_VK_Community.framework in Frameworks */,
 				D175C2B78D07153E0A419551 /* Pods_VK_X.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,8 +153,6 @@
 		4B317F4DCB7E6FFC969F4758 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CB730A76BC98BD2768CB659F /* Pods-VK Community.debug.xcconfig */,
-				177FEE9BA07E2E2F09CED779 /* Pods-VK Community.release.xcconfig */,
 				0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */,
 				DF333117F72AD12B55F888C5 /* Pods-VK X.release.xcconfig */,
 			);
@@ -177,7 +167,6 @@
 				F645DB8220C5BA3A00310323 /* DialogsStoryboard.storyboard */,
 				F66C097D20C5B3D3009EEC7E /* FriendsStoryboard.storyboard */,
 				F645DB8420C5BA4B00310323 /* GroupsStoryboard.storyboard */,
-				F645DB8620C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,7 +182,6 @@
 				F67266D7209B17540086B1B7 /* FriendPhotosUIViewController.swift */,
 				F67266DA209B1B190086B1B7 /* GroupsUITableViewController.swift */,
 				F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */,
-				F6E3F84E2095EBC700519835 /* ProfileAndSettingsUIViewController.swift */,
 				571960D920D4F5E60097AA47 /* Cells */,
 			);
 			path = Controllers;
@@ -411,7 +399,6 @@
 			files = (
 				F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */,
 				F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */,
-				F645DB8720C5BA5A00310323 /* Profile&SettingsStoryboard.storyboard in Resources */,
 				F66C097E20C5B3D3009EEC7E /* FriendsStoryboard.storyboard in Resources */,
 				F645DB8520C5BA4B00310323 /* GroupsStoryboard.storyboard in Resources */,
 				F645DB8320C5BA3A00310323 /* DialogsStoryboard.storyboard in Resources */,
@@ -439,6 +426,7 @@
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -450,6 +438,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,7 +497,6 @@
 				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
 				F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */,
 				F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */,
-				F6E3F84F2095EBC700519835 /* ProfileAndSettingsUIViewController.swift in Sources */,
 				F694C8DF20CC0ABE00D87629 /* GetCacheImageOperation.swift in Sources */,
 				F6D634CB20C3477D0062CEED /* VKMessageLongPollService.swift in Sources */,
 				F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */,

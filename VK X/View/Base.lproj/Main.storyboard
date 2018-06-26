@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZJq-mB-PY5">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,17 +30,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJB-VH-fYn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="656" y="-200"/>
-        </scene>
-        <!--Profile&SettingsStoryboard-->
-        <scene sceneID="WOo-KN-GCf">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Profile&amp;SettingsStoryboard" id="Z0z-Qz-4kw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Pt8-hT-cF5"/>
-                    <navigationItem key="navigationItem" id="eMA-l4-K6E"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="teb-EF-MXZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="627" y="460"/>
         </scene>
         <!--GroupsStoryboard-->
         <scene sceneID="XCw-6U-FeO">
@@ -67,7 +56,7 @@
         <!--Main-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" userLabel="Main" customClass="MainUITabBarController" customModule="VK_Community" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" userLabel="Main" customClass="MainUITabBarController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -78,7 +67,6 @@
                         <segue destination="FkM-aQ-efb" kind="relationship" relationship="viewControllers" id="M2z-x3-3Kn"/>
                         <segue destination="8JC-7r-Ww0" kind="relationship" relationship="viewControllers" id="SD6-TU-Yx5"/>
                         <segue destination="7fm-Ap-59V" kind="relationship" relationship="viewControllers" id="jh0-OR-iBf"/>
-                        <segue destination="Z0z-Qz-4kw" kind="relationship" relationship="viewControllers" id="Sll-gN-y3z"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cHb-Ns-hVu" userLabel="First Responder" sceneMemberID="firstResponder"/>
