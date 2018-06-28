@@ -91,7 +91,10 @@ extension NewsFeedUITableViewCell {
     authorName.text = sourceData.name
   }
   
-  func attachmentProcessing(_ attachments: [VKAttachmentModel]) {
+  func attachmentProcessing(_ attachments: [VKAttachmentModel]?) {
+    guard let attachments = attachments else {
+      return
+    }
     for attachment in attachments {
       switch attachment.type {
       case "photo":

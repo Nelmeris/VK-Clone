@@ -71,6 +71,8 @@ class VKService {
   private func makeRequest<Response: Decodable>(_ url: String, _ parameters: [String: String], _ queue: DispatchQueue, completion: @escaping(Response) -> Void = {_ in}) {
     Alamofire.request(url, parameters: parameters).responseData(queue: queue) { response in
       do {
+        _ = try self.getJSONResponse(response)
+        
         let json = (try! JSON(data: response.value!))["response"]
         let data = try json.rawData()
         let model = try JSONDecoder().decode(Response.self, from: data)

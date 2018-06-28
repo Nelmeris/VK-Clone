@@ -53,10 +53,14 @@ class RealmService {
     }
   }
   
-  static func loadData<Type: RealmModel>() -> Results<Type>? {
+  static func loadData<Type: RealmModel>(keyForSort: String? = nil) -> Results<Type>? {
     do {
       let realm = try Realm()
-      return realm.objects(Type.self)
+      if let key = keyForSort {
+        return realm.objects(Type.self).sorted(byKeyPath: key, ascending: false)
+      } else {
+        return realm.objects(Type.self)
+      }
     } catch let error {
       print(error)
       return nil

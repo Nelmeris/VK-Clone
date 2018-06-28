@@ -66,9 +66,7 @@ extension VKService {
     """
     
     VKService.shared.request(method: "execute", parameters: ["code": code]) { (response: VKDialogsModel) in
-      let dialogs = response.dialogs
-      
-      completion(dialogs)
+      completion(response.dialogs)
     }
   }
   

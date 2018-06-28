@@ -36,7 +36,7 @@ struct VKNewsModel: Decodable {
   var text: String
   
   /// Вложения
-  var attachments: [VKAttachmentModel]
+  var attachments: [VKAttachmentModel]?
   
   var likes: VKLikesModel
   var reposts: VKRepostsModel
@@ -58,7 +58,7 @@ struct VKNewsModel: Decodable {
     sourceId = try containers.decode(Int.self, forKey: .sourceId)
     text = try containers.decode(String.self, forKey: .text)
     
-    attachments = try containers.decode([VKAttachmentModel].self, forKey: .attachments)
+    attachments = (try? containers.decode([VKAttachmentModel].self, forKey: .attachments)) ?? nil
     
     likes = try containers.decode(VKLikesModel.self, forKey: .likes)
     reposts = try containers.decode(VKRepostsModel.self, forKey: .reposts)

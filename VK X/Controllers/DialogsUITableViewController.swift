@@ -15,7 +15,7 @@ class DialogsUITableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let data: Results<VKDialogModel>! = RealmService.loadData()
+    let data: Results<VKDialogModel>! = RealmService.loadData(keyForSort: "message.date")
     RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(data))
   }
   
@@ -28,13 +28,13 @@ class DialogsUITableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let dialogs: Results<VKDialogModel> = RealmService.loadData()!
+    let dialogs: Results<VKDialogModel> = RealmService.loadData(keyForSort: "message.date")!
     
     return dialogs.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
+    let dialog = (RealmService.loadData(keyForSort: "message.date")! as Results<VKDialogModel>)[indexPath.row]
     let cell = tableView.dequeueReusableCell(withIdentifier: "DialogCell") as! DialogsUITableViewCell
     
     cell.lastMessageDate.text = getDateString(dialog.message.date)
@@ -57,7 +57,7 @@ class DialogsUITableViewController: UITableViewController {
     let viewController = segue.destination as! MessagesUIViewController
     guard let indexPath = tableView.indexPathForSelectedRow else { return }
     
-    let dialog = (RealmService.loadData()! as Results<VKDialogModel>)[indexPath.row]
+    let dialog = (RealmService.loadData(keyForSort: "message.date")! as Results<VKDialogModel>)[indexPath.row]
     viewController.dialog = dialog
     viewController.dialogId = dialog.id * (dialog.type == "group" ? -1 : 1)
   }
