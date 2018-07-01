@@ -22,17 +22,13 @@ class MainUITabBarController: UITabBarController {
       VKMessageLongPollService.shared.startLongPoll(ts: longPollData.first!.ts)
     }
     
-    DispatchQueue.global().async {
-      while true {
-        VKService.shared.getFriends { data in
-          RealmService.updateData(data)
-        }
-        
-        VKService.shared.getGroups { data in
-          RealmService.updateData(data)
-        }
-        
-        sleep(30)
+    Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+      VKService.shared.getFriends { data in
+        RealmService.updateData(data)
+      }
+      
+      VKService.shared.getGroups { data in
+        RealmService.updateData(data)
       }
     }
   }

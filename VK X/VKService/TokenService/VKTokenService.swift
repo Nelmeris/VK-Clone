@@ -19,24 +19,28 @@ class VKTokenService {
   }
   
   func tokenReceiving() {
-    let storyboard = UIStoryboard(name: "VKViews", bundle: nil)
-    let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
-    
-    while getActiveViewController() == nil { continue }
-    let activeViewController = getActiveViewController()!
-    
-    guard !(activeViewController is VKAuthorizationUIViewController) else { return }
-    activeViewController.present(viewController, animated: true)
+    DispatchQueue.main.async {
+      let storyboard = UIStoryboard(name: "VKViews", bundle: nil)
+      let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
+      
+      while getActiveViewController() == nil { continue }
+      let activeViewController = getActiveViewController()!
+      
+      guard !(activeViewController is VKAuthorizationUIViewController) else { return }
+      activeViewController.present(viewController, animated: true)
+    }
+  }
+  
+  func tokenDelete() {
+    Keychain.delete("token")
   }
   
   let dispatchGroup = DispatchGroup()
   
   @objc func getToken(completion: @escaping (String) -> Void = {_ in}) {
     guard tokenIsExist() else {
-      DispatchQueue.main.async {
-        self.tokenReceiving()
-      }
-      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "tokenReceived"), object: nil, queue: nil) { (not) in
+      self.tokenReceiving()
+      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "tokenReceived"), object: nil, queue: nil) { _ in
         completion(Keychain.load("token")!)
       }
       return

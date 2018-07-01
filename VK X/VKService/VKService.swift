@@ -83,10 +83,19 @@ class VKService {
       } catch requestError.url(let error_msg) {
         print(error_msg)
       } catch requestError.accessToken {
-        VKTokenService.shared.tokenReceiving()
+        VKTokenService.shared.tokenDelete()
+        var parameters = parameters
+        VKTokenService.shared.getToken { token in
+          parameters["access_token"] = token
+          self.makeRequest(url, parameters, queue) { (response: Response) in
+            completion(response)
+          }
+        }
       } catch requestError.manyRequests {
-        self.makeRequest(url, parameters, queue) { (response: Response) in
-          completion(response)
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) {_ in 
+          self.makeRequest(url, parameters, queue) { (response: Response) in
+            completion(response)
+          }
         }
       } catch let error {
         print(error)
@@ -105,10 +114,19 @@ class VKService {
       } catch requestError.url(let error_msg) {
         print(error_msg)
       } catch requestError.accessToken {
-        VKTokenService.shared.tokenReceiving()
+        VKTokenService.shared.tokenDelete()
+        var parameters = parameters
+        VKTokenService.shared.getToken { token in
+          parameters["access_token"] = token
+          self.makeIrrevocableRequest(url, parameters, queue) {
+            completion()
+          }
+        }
       } catch requestError.manyRequests {
-        self.makeIrrevocableRequest(url, parameters, queue) {
-          completion()
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) {_ in
+          self.makeIrrevocableRequest(url, parameters, queue) {
+            completion()
+          }
         }
       } catch let error {
         print(error)
@@ -135,7 +153,7 @@ class VKService {
                                                       parameters: [String: String] = [: ],
                                                       queue: DispatchQueue = DispatchQueue.global(),
                                                       completion: @escaping() -> Void = {}) {
-    DispatchQueue.global().async {
+    DispatchQueue.global().async(flags: .barrier) {
       self.getRequestUrl(method, version, parameters) { url in
         self.makeIrrevocableRequest(url.url, url.parameters, queue) {
           completion()
