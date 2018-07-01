@@ -12,15 +12,12 @@ import FirebaseDatabase
 
 class MainUITabBarController: UITabBarController {
   override func viewDidLoad() {
-    VKService.shared.getUser { data in
-      VKService.shared.user = data.user
-      Database.database().reference().child("ids").setValue(data.user.id)
+    VKService.shared.getUser { user in
+      VKService.shared.user = user
+      Database.database().reference().child("ids").setValue(user.id)
     }
     
-    VKMessageLongPollService.shared.loadLongPollData() {
-      let longPollData: Results<VKMessageLongPollServerModel> = RealmService.loadData()!
-      VKMessageLongPollService.shared.startLongPoll(ts: longPollData.first!.ts)
-    }
+    VKLongPollService.shared.start()
     
     Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
       VKService.shared.getFriends { data in

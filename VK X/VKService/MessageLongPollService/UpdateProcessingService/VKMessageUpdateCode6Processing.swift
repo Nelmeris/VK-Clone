@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-extension VKMessageLongPollService {
+extension VKLongPollOperation {
   func Code6MessageProcessing(_ controller: MessagesUIViewController,_ update: VKUpdateModel) {
     let readMessages = update.update as! VKMessageUpdateReadMessagesModel
     guard readMessages.peerId == controller.dialogId else { return }

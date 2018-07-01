@@ -1,5 +1,5 @@
 //
-//  VKMessageLongPollService.swift
+//  VKLongPollOperation.swift
 //  VK X
 //
 //  Created by Artem Kufaev on 03.06.2018.
@@ -11,43 +11,114 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class VKMessageLongPollService {
-  private init() {}
-  static public let shared = VKMessageLongPollService()
+class VKLongPollOperation: Operation {
+  enum State: String {
+    case ready, executing, finished
+    fileprivate var keyPath: String {
+      return "is" + rawValue.capitalized
+    }
+  }
+  
+  private var state = State.ready {
+    willSet {
+      willChangeValue(forKey: state.keyPath)
+      willChangeValue(forKey: newValue.keyPath)
+    }
+    didSet {
+      didChangeValue(forKey: state.keyPath)
+      didChangeValue(forKey: oldValue.keyPath)
+    }
+  }
+  
+  override var isAsynchronous: Bool {
+    return true
+  }
+  
+  override var isReady: Bool {
+    return super.isReady && state == .ready
+  }
+  
+  override var isExecuting: Bool {
+    return state == .executing
+  }
+  
+  override var isFinished: Bool {
+    return state == .finished
+  }
+  
+  override func start() {
+    if isCancelled {
+      state = .finished
+    } else {
+      main()
+      state = .executing
+    }
+  }
+  
+  override func cancel() {
+    request.cancel()
+    super.cancel()
+    state = .finished
+  }
+  
+  private var longPollData: VKMessageLongPollServerModel!
+  private var url: String!
+  private var wait: Int!
+  private var mode: Int!
+  private var version: Int!
+  
+  func getUrl() {
+    url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(longPollData.ts)&wait=\(wait!)&mode=\(mode!)&version=\(version!)"
+  }
+  
+  override func main() {
+    self.wait = 30
+    self.mode = 104
+    self.version = 3
+    
+    loadData {
+      self.getUrl()
+      self.request = Alamofire.request(self.url)
+      
+      self.repeat()
+    }
+  }
+  
+  private var request: DataRequest!
   
   /// Получение новых данных для LongPoll
-  func loadLongPollData(completion: @escaping () -> Void) {
+  func loadData(completion: @escaping () -> Void) {
     VKService.shared.request(method: "messages.getLongPollServer") { (response: VKMessageLongPollServerModel) in
-      let data = [response]
-      RealmService.resaveData(data)
+      self.longPollData = response
       completion()
     }
   }
   
-  /// Начало цикла LongPoll
-  func startLongPoll(ts: Int, wait: Int = 30, mode: Int = 104, version: Int = 3) {
-    let longPollData = (RealmService.loadData()! as Results<VKMessageLongPollServerModel>).first!
-    let url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(ts)&wait=\(wait)&mode=\(mode)&version=\(version)"
-    
-    request(url) { response in
-      self.startLongPoll(ts: response.ts)
+  func `repeat`() {
+    self.startRequest { response in
+      self.longPollData.ts = response.ts
+      self.getUrl()
+      self.repeat()
       
       for update in response.updates {
         self.updateProcessing(update)
       }
     }
-    
   }
   
-  func request(_ url: String, completion: @escaping(VKMessageUpdatesModel) -> Void = {_ in}) {
-    Alamofire.request(url).responseData(queue: DispatchQueue.global()) { response in
+  func startRequest(completion: @escaping(VKMessageUpdatesModel) -> Void = {_ in}) {
+    self.request = Alamofire.request(self.url)
+    
+    self.request.responseData(queue: DispatchQueue.global()) { response in
       do {
         let json = try VKService.shared.getJSONResponse(response)
         
         let updates = VKMessageUpdatesModel(json)
         
         completion(updates)
-      } catch {}
+      } catch let error {
+        print(error)
+      }
     }
   }
   
@@ -111,5 +182,17 @@ class VKMessageLongPollService {
         }
       }
     }
+  }
+}
+
+class VKLongPollService {
+  private init() {}
+  static let shared = VKLongPollService()
+  
+  var operation: VKLongPollOperation?
+  
+  func start() {
+    operation = VKLongPollOperation()
+    OperationQueue.main.addOperation(operation!)
   }
 }

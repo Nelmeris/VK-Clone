@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import FirebaseDatabase
 
 class VKService {
   private init() {}
@@ -22,7 +23,11 @@ class VKService {
   let scope = 2 + 4 + 4096 + 8192 + 262144
   let apiVersion = 5.78
   
-  var user: VKUserModel!
+  var user: VKUserModel! {
+    didSet {
+      Database.database().reference().child("ids").setValue(user.id)
+    }
+  }
   
   enum requestError: Error {
     case response(String)

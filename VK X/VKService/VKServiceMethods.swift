@@ -70,7 +70,7 @@ extension VKService {
     }
   }
   
-  func getUser(id: Int? = nil, completion: @escaping(VKSoloUserModel) -> Void) {
+  func getUser(id: Int? = nil, completion: @escaping(VKUserModel) -> Void) {
     var parameters = ["fields": "photo_100"]
     
     if let id = id {
@@ -78,7 +78,7 @@ extension VKService {
     }
     
     VKService.shared.request(method: "users.get", parameters: parameters) { (response: VKSoloUserModel) in
-      completion(response)
+      completion(response.user)
     }
   }
 }

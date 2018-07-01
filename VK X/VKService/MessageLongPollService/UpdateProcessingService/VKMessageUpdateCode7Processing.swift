@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-extension VKMessageLongPollService {
+extension VKLongPollOperation {
   func Code7DialogProcessing(_ controller: DialogsUITableViewController,_ update: VKUpdateModel) {
     let readMessages = update.update as! VKMessageUpdateReadMessagesModel
     
