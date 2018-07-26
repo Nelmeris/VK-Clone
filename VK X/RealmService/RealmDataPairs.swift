@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 extension RealmService {
-  static func pairTableViewAndData<Type: RealmModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>, insertAnimation: UITableView.RowAnimation = .automatic) {
+  static func pairTableViewAndData<Type: RealmModel>(sender: UITableView, token: inout NotificationToken?, data: AnyRealmCollection<Type>, insertAnimation: UITableViewRowAnimation = .automatic) {
     token = data.observe { (changes: RealmCollectionChange) in
       switch changes {
       case .initial:

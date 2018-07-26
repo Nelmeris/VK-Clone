@@ -24,8 +24,8 @@ class VKService {
   let apiVersion = 5.78
   
   var user: VKUserModel! {
-    didSet {
-      Database.database().reference().child("ids").setValue(user.id)
+    willSet {
+      Database.database().reference().child("ids").setValue(newValue.id)
     }
   }
   
@@ -67,7 +67,7 @@ class VKService {
     
     var requestParameters = parameters
     requestParameters["v"] = version
-    VKTokenService.shared.getToken() { token in
+    VKTokenService.shared.getToken { token in
       requestParameters["access_token"] = token
       completion((requestURL, requestParameters))
     }
@@ -146,7 +146,8 @@ class VKService {
                                       completion: @escaping(Response) -> Void = {_ in}) {
     DispatchQueue.global().async(flags: .barrier) {
       self.getRequestUrl(method, version, parameters) { url in
-        self.makeRequest(url.url, url.parameters, queue) { (response: Response) in
+        let (url, parameters) = url
+        self.makeRequest(url, parameters, queue) { (response: Response) in
           completion(response)
         }
       }
@@ -160,7 +161,8 @@ class VKService {
                                                       completion: @escaping() -> Void = {}) {
     DispatchQueue.global().async(flags: .barrier) {
       self.getRequestUrl(method, version, parameters) { url in
-        self.makeIrrevocableRequest(url.url, url.parameters, queue) {
+        let (url, parameters) = url
+        self.makeIrrevocableRequest(url, parameters, queue) {
           completion()
         }
       }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRO-2u-asP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRO-2u-asP">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -197,11 +200,132 @@
                             <outlet property="delegate" destination="7FG-j4-hc0" id="0Mq-Sk-nLT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Новости" id="Dfa-Bb-tyt"/>
+                    <navigationItem key="navigationItem" title="Новости" id="Dfa-Bb-tyt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="bJW-Tx-DLt">
+                            <connections>
+                                <segue destination="7bT-GX-8UG" kind="showDetail" id="sLc-y3-9ar"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siB-qV-8bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2140" y="-778.56071964017997"/>
+        </scene>
+        <!--New PostUI View Controller-->
+        <scene sceneID="BFE-Nf-ITX">
+            <objects>
+                <viewController id="7bT-GX-8UG" customClass="NewPostUIViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="veT-h9-3UQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22c-3e-vEk">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Новый пост" id="xAy-1z-Ran">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7nT-u9-huJ">
+                                            <connections>
+                                                <action selector="close:" destination="7bT-GX-8UG" id="I6X-Xw-AeI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="7Hr-r6-scc">
+                                            <connections>
+                                                <action selector="addNewPost:" destination="7bT-GX-8UG" id="arg-vW-F34"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vPg-QS-2QP">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2pV-N6-4aw"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" image="LocationIcon" id="EeJ-td-IFy">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <action selector="addGeostation:" destination="7bT-GX-8UG" id="vM3-hS-FJF"/>
+                                            <segue destination="iBt-B9-LTS" kind="show" id="14c-9p-QM7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Что нового?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kp1-7q-Ob5">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="22c-3e-vEk" firstAttribute="leading" secondItem="6Pn-ds-z3I" secondAttribute="leading" id="3qg-Kc-n86"/>
+                            <constraint firstItem="vPg-QS-2QP" firstAttribute="top" secondItem="Kp1-7q-Ob5" secondAttribute="bottom" id="B2X-Nk-NV2"/>
+                            <constraint firstItem="Kp1-7q-Ob5" firstAttribute="trailing" secondItem="6Pn-ds-z3I" secondAttribute="trailing" id="MJS-sN-WNZ"/>
+                            <constraint firstItem="vPg-QS-2QP" firstAttribute="leading" secondItem="6Pn-ds-z3I" secondAttribute="leading" id="RhS-Mx-KCA"/>
+                            <constraint firstItem="Kp1-7q-Ob5" firstAttribute="leading" secondItem="6Pn-ds-z3I" secondAttribute="leading" id="ddQ-Ru-jJx"/>
+                            <constraint firstItem="22c-3e-vEk" firstAttribute="trailing" secondItem="6Pn-ds-z3I" secondAttribute="trailing" id="hmn-ZK-ZeE"/>
+                            <constraint firstItem="Kp1-7q-Ob5" firstAttribute="top" secondItem="22c-3e-vEk" secondAttribute="bottom" id="m7c-6l-7Fx"/>
+                            <constraint firstItem="22c-3e-vEk" firstAttribute="top" secondItem="6Pn-ds-z3I" secondAttribute="top" id="nlY-fR-CgR"/>
+                            <constraint firstItem="vPg-QS-2QP" firstAttribute="trailing" secondItem="6Pn-ds-z3I" secondAttribute="trailing" id="raP-rZ-7Cp"/>
+                            <constraint firstItem="6Pn-ds-z3I" firstAttribute="bottom" secondItem="vPg-QS-2QP" secondAttribute="bottom" id="tNH-LZ-0ek"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Pn-ds-z3I"/>
+                    </view>
+                    <connections>
+                        <outlet property="geostationButton" destination="EeJ-td-IFy" id="1n4-NS-OA1"/>
+                        <outlet property="postText" destination="Kp1-7q-Ob5" id="B7I-Lp-I6B"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5P4-3h-FB2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3142.5" y="-780.63380281690138"/>
+        </scene>
+        <!--Map ViewUI View Controller-->
+        <scene sceneID="aEL-ps-6Uv">
+            <objects>
+                <viewController id="iBt-B9-LTS" customClass="MapViewUIViewController" customModule="VK_X" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N4H-Ck-Phk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dWF-AB-bwV">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvx-ep-ksz">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="0eu-YE-dlE">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="swT-bx-tIl">
+                                            <connections>
+                                                <action selector="closeMap:" destination="iBt-B9-LTS" id="Xu9-Sp-3Le"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Uvx-ep-ksz" firstAttribute="top" secondItem="tS7-gu-791" secondAttribute="top" id="BFr-BF-uyw"/>
+                            <constraint firstItem="dWF-AB-bwV" firstAttribute="top" secondItem="Uvx-ep-ksz" secondAttribute="bottom" id="BQS-ez-4ng"/>
+                            <constraint firstItem="dWF-AB-bwV" firstAttribute="leading" secondItem="tS7-gu-791" secondAttribute="leading" id="dTg-Cn-rtS"/>
+                            <constraint firstItem="Uvx-ep-ksz" firstAttribute="trailing" secondItem="tS7-gu-791" secondAttribute="trailing" id="gL6-RE-ksi"/>
+                            <constraint firstItem="Uvx-ep-ksz" firstAttribute="leading" secondItem="tS7-gu-791" secondAttribute="leading" id="hSm-Mf-Mf0"/>
+                            <constraint firstItem="dWF-AB-bwV" firstAttribute="bottom" secondItem="tS7-gu-791" secondAttribute="bottom" id="lhz-WF-Mzl"/>
+                            <constraint firstItem="dWF-AB-bwV" firstAttribute="trailing" secondItem="tS7-gu-791" secondAttribute="trailing" id="vLm-df-F0d"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tS7-gu-791"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="dWF-AB-bwV" id="Uba-NP-n8r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bN3-K5-u9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4014.375" y="-779.57746478873241"/>
         </scene>
         <!--News Feed Navigation-->
         <scene sceneID="2Z0-GU-HC5">
@@ -237,6 +361,7 @@
         <image name="CommentsIcon" width="128" height="128"/>
         <image name="DefaultGroupPhoto" width="256" height="256"/>
         <image name="LikesOffIcon" width="128" height="128"/>
+        <image name="LocationIcon" width="24" height="24"/>
         <image name="NewsIcon" width="24" height="24"/>
         <image name="RepostsIcon" width="128" height="128"/>
         <image name="ViewsIcon" width="128" height="128"/>

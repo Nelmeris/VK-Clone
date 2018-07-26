@@ -40,8 +40,8 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
     message.layer.borderWidth = 1
     
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+//    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+//    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     
     tableView.transform = transform
     
@@ -93,17 +93,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     return cell
   }
   
-  @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
-    view.endEditing(true)
-  }
-  
-  @objc func keyboardWillShown(notification: Notification) {
-    let info = notification.userInfo! as NSDictionary
-    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-    
-    scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height), animated: true)
-  }
-  
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     guard message.returnKeyType == .go else { return true }
     
@@ -111,8 +100,19 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     return true
   }
   
+  @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+    view.endEditing(true)
+  }
+  
+  @objc func keyboardWillShown(notification: Notification) {
+    let info = notification.userInfo! as NSDictionary
+//    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+//    
+//    scrollView.contentInset.bottom = kbSize.height
+  }
+  
   @objc func keyboardWillBeHidden(notification: Notification) {
-    scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    scrollView.contentInset.bottom = 0
   }
   
   @IBAction func sendMessage(_ sender: Any) {
@@ -129,7 +129,7 @@ extension MessagesUIViewController {
   func setOnlineStatus(_ navigationItem: UINavigationItem) {
     guard dialog.isOnline else { return }
     
-    navigationItem.title = navigationItem.title! + " онлайн" + (!dialog.isOnlineMobile ? "" : " с телефона)")
+    navigationItem.title = navigationItem.title! + " онлайн" + (!dialog.isOnlineMobile ? "" : " с телефона")
   }
   
   func addNewMessages(dialog: VKDialogModel, newMessages: [VKMessageModel]) {

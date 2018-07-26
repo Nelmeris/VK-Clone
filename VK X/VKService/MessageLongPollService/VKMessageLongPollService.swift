@@ -63,18 +63,14 @@ class VKLongPollOperation: Operation {
   
   private var longPollData: VKMessageLongPollServerModel!
   private var url: String!
-  private var wait: Int!
-  private var mode: Int!
-  private var version: Int!
+  private var parameters: (wait: Int, mode: Int, version: Int)!
   
   func getUrl() {
-    url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(longPollData.ts)&wait=\(wait!)&mode=\(mode!)&version=\(version!)"
+    url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(longPollData.ts)&wait=\(parameters!.wait)&mode=\(parameters!.mode)&version=\(parameters!.version)"
   }
   
   override func main() {
-    self.wait = 30
-    self.mode = 104
-    self.version = 3
+    self.parameters = (30, 104, 3)
     
     loadData {
       self.getUrl()
