@@ -10,7 +10,13 @@ import UIKit
 import RealmSwift
 
 class MessagesUITableViewCell: UITableViewCell {
-  @IBOutlet weak var message: UILabel!
+  @IBOutlet weak var message: UITextView! {
+    didSet {
+      message.textContainer.lineFragmentPadding = 0
+      message.textContainerInset.top = 0
+      message.textContainerInset.bottom = 0
+    }
+  }
   
   @IBOutlet weak var messageBox: UIView! {
     didSet {

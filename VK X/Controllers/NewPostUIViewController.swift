@@ -9,17 +9,51 @@
 import UIKit
 import MapKit
 
-class NewPostUIViewController: UIViewController {
+class NewPostUIViewController: UIViewController, UITextViewDelegate {
   
-  @IBOutlet weak var postText: UITextField!
+  @IBOutlet weak var scrollView: UIScrollView!
+  @IBOutlet weak var scrollContentViewTopSpace: NSLayoutConstraint!
+  
+  @IBOutlet weak var postText: UITextView!
   var place: CLPlacemark?
   
   @IBOutlet weak var geostationButton: UIBarButtonItem!
   
+  var kbHeight: CGFloat = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    tapScreen.cancelsTouchesInView = false
+    view.addGestureRecognizer(tapScreen)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+    
+    postText.delegate = self
+    postText.text = "Что нового?"
+    postText.textColor = .lightGray
+    
     // Do any additional setup after loading the view.
+  }
+  
+  @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+    view.endEditing(true)
+  }
+  
+  @objc func keyboardWillShown(notification: Notification) {
+    let info = notification.userInfo! as NSDictionary
+    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+    
+    kbHeight = kbSize.height
+    scrollContentViewTopSpace.constant = kbHeight
+    scrollView?.setContentOffset(CGPoint(x: 0, y: kbHeight), animated: true)
+  }
+  
+  @objc func keyboardWillBeHidden(notification: Notification) {
+    scrollContentViewTopSpace.constant = 0
+    scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
   }
   
   @IBAction func close(_ sender: Any) {
@@ -50,6 +84,26 @@ class NewPostUIViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let destination = segue.destination as? MapViewUIViewController else { return }
     destination.sender = self
+  }
+  
+  func textViewDidBeginEditing(_ textView: UITextView)
+  {
+    if (postText.text == "Что нового?")
+    {
+      postText.text = ""
+      postText.textColor = .black
+    }
+    postText.becomeFirstResponder() //Optional
+  }
+  
+  func textViewDidEndEditing(_ textView: UITextView)
+  {
+    if (postText.text == "")
+    {
+      postText.text = "Что нового?"
+      postText.textColor = .lightGray
+    }
+    postText.resignFirstResponder()
   }
   
   /*

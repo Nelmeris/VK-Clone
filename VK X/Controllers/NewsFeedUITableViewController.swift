@@ -31,7 +31,14 @@ class NewsFeedUITableViewController: UITableViewController {
     cell.postId = news.id
     cell.authorId = news.sourceId
     
+    cell.postText.isScrollEnabled = true
     cell.postText.text = news.text
+    if news.text == "" {
+      cell.postTextHC.constant = 0
+    } else {
+      cell.postTextHC.constant = cell.postText.contentSize.height
+    }
+    cell.postText.isScrollEnabled = false
     
     cell.setLikes(news)
     

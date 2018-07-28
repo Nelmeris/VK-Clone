@@ -13,7 +13,12 @@ class NewsFeedUITableViewCell: UITableViewCell {
   @IBOutlet weak var authorName: UILabel!
   @IBOutlet weak var authorPhoto: RoundUIImageView!
   
-  @IBOutlet weak var postText: UILabel!
+  @IBOutlet weak var postText: UITextView! {
+    didSet {
+      postText.textContainer.lineFragmentPadding = 0
+    }
+  }
+  @IBOutlet weak var postTextHC: NSLayoutConstraint!
   
   @IBOutlet weak var likesCount: UILabel!
   @IBOutlet weak var repostsCount: UILabel!

@@ -81,7 +81,7 @@ class GetCacheImage: Operation {
     guard let fileName = filePath,
       let image = outputImage else { return }
     
-    let data = image.sd_imageData()
+    let data = image.pngData()
     
     FileManager.default.createFile(atPath: fileName, contents: data, attributes: nil)
   }
