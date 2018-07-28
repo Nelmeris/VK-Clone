@@ -24,7 +24,7 @@ class MapViewUIViewController: UIViewController, CLLocationManagerDelegate {
     place = nil
     
     self.locationManager.delegate = self
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     self.locationManager.requestWhenInUseAuthorization()
     self.locationManager.startUpdatingLocation()
     

@@ -58,7 +58,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     cell.name.text = friend.firstName + " " + friend.lastName
     
-    cell.setPhoto(friend.photo, tableView, indexPath)
+    cell.setPhoto(friend.photo)
     cell.onlineStatusIcon.initial(friend.isOnline, friend.isOnlineMobile, cell.photo.frame, tableView.backgroundColor!)
     
     return cell

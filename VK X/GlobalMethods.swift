@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Форматирование больших чисел
 func getShortCount(_ count: Int) -> String {
   switch count {
   case let x where x >= 1000000:
@@ -21,19 +22,11 @@ func getShortCount(_ count: Int) -> String {
   }
 }
 
-func getActiveViewController() -> UIViewController? {
-  guard var topController = UIApplication.shared.keyWindow?.rootViewController else { return nil }
-  
-  while let presentedViewController = topController.presentedViewController {
-    topController = presentedViewController
-  }
-  
-  return topController
-}
-
+/// Определение текущего контроллера
 func getVisibleViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
   if let nav = base as? UINavigationController {
-    return getVisibleViewController(base: nav.visibleViewController)
+    let visible = nav.visibleViewController
+    return getVisibleViewController(base: visible)
   }
   
   if let tab = base as? UITabBarController,
@@ -48,6 +41,7 @@ func getVisibleViewController(base: UIViewController? = UIApplication.shared.key
   return base
 }
 
+/// Установка формата даты относительно самой даты
 func getDateFormatter(_ date: Date) -> DateFormatter {
   let dateFormatter = DateFormatter()
   
@@ -68,6 +62,7 @@ func getDateFormatter(_ date: Date) -> DateFormatter {
   return dateFormatter
 }
 
+/// Преобразование Date в String
 func getDateString(_ date: Date) -> String {
   let dateFormatter = getDateFormatter(date)
   

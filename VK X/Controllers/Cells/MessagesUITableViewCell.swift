@@ -12,15 +12,15 @@ import RealmSwift
 class MessagesUITableViewCell: UITableViewCell {
   @IBOutlet weak var message: UILabel!
   
-  @IBOutlet weak var messageBox: UIView!
+  @IBOutlet weak var messageBox: UIView! {
+    didSet {
+      messageBox.layer.cornerRadius = messageBox.frame.height / 2
+    }
+  }
   
   @IBOutlet weak var messageDate: UILabel!
   
   @IBOutlet weak var senderPhoto: RoundUIImageView!
-  
-  override func layoutSubviews() {
-    messageBox.layer.cornerRadius = messageBox.frame.height / 2
-  }
   
   override func prepareForReuse() {
     backgroundColor = nil

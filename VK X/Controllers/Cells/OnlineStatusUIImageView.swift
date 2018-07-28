@@ -27,6 +27,6 @@ class OnlineStatusUIImageView: UIImageView {
     onlineStatusIconWidth.constant = frame.height / (isOnlineMobile ? 4.5 : 4)
     onlineStatusIconHeight.constant = frame.height / (isOnlineMobile ? 3.5 : 4)
     
-    layer.cornerRadius = frame.height / (isOnlineMobile ? 15 : 2)
+    layer.cornerRadius = frame.height / (isOnlineMobile ? 15 : 8)
   }
 }

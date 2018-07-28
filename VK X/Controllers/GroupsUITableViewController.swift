@@ -56,7 +56,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     
     cell.name.text = group.name
     
-    cell.setPhoto(group.photo, tableView, indexPath)
+    cell.setPhoto(group.photo)
     
     return cell
   }
