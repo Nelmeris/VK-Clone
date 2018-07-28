@@ -40,7 +40,7 @@ extension MessagesUITableViewCell {
     
     if dialog.type == "chat" {
       
-      let users: Results<VKUserModel> = RealmService.loadData()!.filter("id = \(message.fromId)")
+      let users: Results<VKUserModel> = RealmService.shared.loadData()!.filter("id = \(message.fromId)")
       
       if !users.isEmpty {
         photo = users.first!.photo

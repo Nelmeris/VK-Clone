@@ -119,64 +119,23 @@ class VKLongPollOperation: Operation {
   }
   
   func updateProcessing(_ update: VKUpdateModel) {
-    DispatchQueue.main.async {
-      let visibleViewController = getVisibleViewController()
-      DispatchQueue.global().async {
-        switch update.code {
-        case 4:
-          guard visibleViewController == nil else {
-            if let controller = visibleViewController! as? MessagesUIViewController {
-              self.Code4MessageProcessing(controller, update)
-            }
-            if let controller = visibleViewController! as? DialogsUITableViewController {
-              self.Code4DialogProcessing(controller, update)
-            }
-            return
-          }
-          return
-          
-        case 6:
-          guard visibleViewController == nil else {
-            if let controller = visibleViewController! as? MessagesUIViewController {
-              self.Code6MessageProcessing(controller, update)
-            }
-            return
-          }
-          return
-          
-        case 7:
-          guard visibleViewController == nil else {
-            if let controller = visibleViewController! as? MessagesUIViewController {
-              self.Code7MessageProcessing(controller, update)
-            }
-            if let controller = visibleViewController! as? DialogsUITableViewController {
-              self.Code7DialogProcessing(controller, update)
-            }
-            return
-          }
-          return
-          
-        case 8:
-          guard visibleViewController == nil else {
-            if let controller = visibleViewController! as? DialogsUITableViewController {
-              self.Code8DialogProcessing(controller, update)
-            }
-            return
-          }
-          return
-          
-        case 9:
-          guard visibleViewController == nil else {
-            if let controller = visibleViewController! as? DialogsUITableViewController {
-              self.Code9DialogProcessing(controller, update)
-            }
-            return
-          }
-          return
-          
-        default: break
-        }
-      }
+    switch update.code {
+    case 4:
+      self.Code4Processing(update)
+      
+    case 6:
+      self.Code6Processing(update)
+      
+    case 7:
+      self.Code7Processing(update)
+      
+    case 8:
+      self.Code8Processing(update)
+      
+    case 9:
+      self.Code9Processing(update)
+      
+    default: break
     }
   }
 }

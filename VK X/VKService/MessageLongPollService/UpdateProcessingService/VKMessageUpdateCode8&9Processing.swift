@@ -10,11 +10,11 @@ import UIKit
 import RealmSwift
 
 extension VKLongPollOperation {
-  func Code8DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
+  func Code8Processing(_ update: VKUpdateModel) {
     let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
     
     DispatchQueue.main.async {
-      var dialogs: Results<VKDialogModel> = RealmService.loadData()!
+      var dialogs: Results<VKDialogModel> = RealmService.shared.loadData()!
       
       dialogs = dialogs.filter("id = \(-onlineStatusChanged.userId)")
       
@@ -35,11 +35,11 @@ extension VKLongPollOperation {
     }
   }
   
-  func Code9DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
+  func Code9Processing(_ update: VKUpdateModel) {
     let onlineStatusChanged = update.update as! VKMessageUpdateOnlineStatusChangedModel
     
     DispatchQueue.main.async {
-      var dialogs: Results<VKDialogModel> = RealmService.loadData()!
+      var dialogs: Results<VKDialogModel> = RealmService.shared.loadData()!
       
       dialogs = dialogs.filter("id = \(-onlineStatusChanged.userId)")
       

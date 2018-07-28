@@ -22,17 +22,17 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     
     initSearchController()
     
-    friends = RealmService.loadData()!
+    friends = RealmService.shared.loadData()!
     filteredFriends = friends
     
-    RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
+    RealmService.shared.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(friends))
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
     VKService.shared.getFriends { data in
-      RealmService.updateData(data)
+      RealmService.shared.updateData(data)
     }
   }
   
@@ -68,7 +68,7 @@ class FriendsUITableViewController: UITableViewController, UISearchResultsUpdati
     let viewController = segue.destination as! FriendPhotosUIViewController
     guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
     
-    viewController.user = (RealmService.loadData()! as Results<VKUserModel>)[indexPath.row]
+    viewController.user = (RealmService.shared.loadData()! as Results<VKUserModel>)[indexPath.row]
   }
   
   func updateSearchResults(for searchController: UISearchController) {

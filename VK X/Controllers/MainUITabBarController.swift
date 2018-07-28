@@ -21,11 +21,11 @@ class MainUITabBarController: UITabBarController {
     
     Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
       VKService.shared.getFriends { data in
-        RealmService.updateData(data)
+        RealmService.shared.updateData(data)
       }
       
       VKService.shared.getGroups { data in
-        RealmService.updateData(data)
+        RealmService.shared.updateData(data)
       }
     }
   }

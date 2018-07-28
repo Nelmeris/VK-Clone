@@ -19,7 +19,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     super.viewWillAppear(animated)
     
     VKService.shared.getGroups { data in
-      RealmService.updateData(data)
+      RealmService.shared.updateData(data)
     }
   }
   
@@ -30,10 +30,10 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     
     initSearchController()
     
-    groups = RealmService.loadData()
+    groups = RealmService.shared.loadData()
     filteredGroups = groups
     
-    RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups))
+    RealmService.shared.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(groups))
   }
   
   func initSearchController() {
@@ -68,7 +68,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
     
     VKService.shared.irrevocableRequest(method: "groups.join", parameters: ["group_id": String(group.id)]) {
       VKService.shared.getGroups { data in
-        RealmService.updateData(data)
+        RealmService.shared.updateData(data)
       }
     }
   }
@@ -84,7 +84,7 @@ class GroupsUITableViewController: UITableViewController, UISearchResultsUpdatin
       action = UIAlertAction(title: "Покинуть", style: .destructive) { action in
         VKService.shared.irrevocableRequest(method: "groups.leave", parameters: ["group_id": String(strongSelf.groups[indexPath.row].id)]) {
           VKService.shared.getGroups { data in
-            RealmService.updateData(data)
+            RealmService.shared.updateData(data)
           }
         }
       }

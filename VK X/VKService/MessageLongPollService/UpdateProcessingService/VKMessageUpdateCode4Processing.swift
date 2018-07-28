@@ -10,11 +10,11 @@ import UIKit
 import RealmSwift
 
 extension VKLongPollOperation {
-  func Code4DialogProcessing(_ controller: DialogsUITableViewController, _ update: VKUpdateModel) {
+  func Code4Processing(_ update: VKUpdateModel) {
     let newMessage = update.update as! VKMessageUpdateNewMessageModel
     
     DispatchQueue.main.async {
-      let dialogs: Results<VKDialogModel> = RealmService.loadData()!
+      let dialogs: Results<VKDialogModel> = RealmService.shared.loadData()!
       
       let dialog = dialogs.filter("id = \(newMessage.peerId)").first!
       
@@ -22,40 +22,16 @@ extension VKLongPollOperation {
         let realm = try Realm()
         realm.beginWrite()
         
-        dialog.message.id = newMessage.id
-        dialog.message.text = newMessage.text
-        dialog.message.fromId = newMessage.peerId
-        dialog.message.isOut = newMessage.flags.isOut
-        dialog.message.date = newMessage.date
-        dialog.message.isRead = false
-        dialog.messages.insert(VKMessageModel(id: newMessage.id,
-                                                         text: newMessage.text,
-                                                         fromId: (newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId),
-                                                         date: newMessage.date,
-                                                         isOut: newMessage.flags.isOut), at: 0)
+        let newMessage = VKMessageModel(id: newMessage.id,
+                                     text: newMessage.text,
+                                     fromId: (newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId),
+                                     date: newMessage.date,
+                                     isOut: newMessage.flags.isOut,
+                                     isRead: false)
         
-        try realm.commitWrite()
-      } catch let error {
-        print(error)
-      }
-    }
-  }
-  
-  func Code4MessageProcessing(_ controller: MessagesUIViewController, _ update: VKUpdateModel) {
-    let newMessage = update.update as! VKMessageUpdateNewMessageModel
-    
-    guard newMessage.peerId == controller.dialogId else { return }
-    
-    DispatchQueue.main.async {
-      do {
-        let realm = try Realm()
-        realm.beginWrite()
+        dialog.message = newMessage
+        dialog.messages.insert(newMessage, at: 0)
         
-        controller.dialog.messages.insert(VKMessageModel(id: newMessage.id,
-                                                         text: newMessage.text,
-                                                         fromId: (newMessage.flags.isOut ? VKService.shared.user.id : newMessage.peerId),
-                                                         date: newMessage.date,
-                                                         isOut: newMessage.flags.isOut), at: 0)
         try realm.commitWrite()
       } catch let error {
         print(error)

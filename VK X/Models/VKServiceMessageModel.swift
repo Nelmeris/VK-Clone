@@ -85,7 +85,7 @@ class VKMessageModel: RealmModel {
     }
   }
   
-  convenience init(id: Int, text: String, fromId: Int, date: Date, isOut: Bool) {
+  convenience init(id: Int, text: String, fromId: Int, date: Date, isOut: Bool, isRead: Bool) {
     self.init()
     
     self.id = id
@@ -93,7 +93,7 @@ class VKMessageModel: RealmModel {
     self.fromId = fromId
     self.date = date
     self.isOut = isOut
-    self.isRead = false
+    self.isRead = isRead
   }
   
   override func isEqual(_ object: RealmModel) -> Bool {

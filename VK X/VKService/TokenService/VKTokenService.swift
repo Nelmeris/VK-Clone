@@ -23,16 +23,16 @@ class VKTokenService {
       let storyboard = UIStoryboard(name: "VKViews", bundle: nil)
       let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
       
-      while getActiveViewController() == nil { continue }
-      let activeViewController = getActiveViewController()!
+      while getVisibleViewController() == nil { continue }
+      let visibleViewController = getVisibleViewController()!
       
-      guard !(activeViewController is VKAuthorizationUIViewController) else { return }
-      activeViewController.present(viewController, animated: true)
+      guard !(visibleViewController is VKAuthorizationUIViewController) else { return }
+      visibleViewController.present(viewController, animated: true)
     }
   }
   
   func tokenDelete() {
-    Keychain.delete("token")
+    _ = Keychain.delete("token")
   }
   
   let dispatchGroup = DispatchGroup()

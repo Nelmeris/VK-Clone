@@ -9,7 +9,11 @@
 import RealmSwift
 
 class RealmService {
-  static func resaveData<Type: RealmModel>(_ data: [Type]) {
+  private init() {}
+  
+  static let shared = RealmService()
+  
+  func resaveData<Type: RealmModel>(_ data: [Type]) {
     do {
       let realm = try Realm()
       realm.beginWrite()
@@ -21,7 +25,7 @@ class RealmService {
     }
   }
   
-  static func updateData<Type: RealmModel>(_ data: [Type]) {
+  func updateData<Type: RealmModel>(_ data: [Type]) {
     do {
       let realm = try Realm()
       
@@ -53,7 +57,7 @@ class RealmService {
     }
   }
   
-  static func loadData<Type: RealmModel>(keyForSort: String? = nil) -> Results<Type>? {
+  func loadData<Type: RealmModel>(keyForSort: String? = nil) -> Results<Type>? {
     do {
       let realm = try Realm()
       if let key = keyForSort {
@@ -67,7 +71,7 @@ class RealmService {
     }
   }
   
-  static func clearDataBase() {
+  func clearDataBase() {
     do {
       let realm = try Realm()
       realm.beginWrite()
@@ -78,7 +82,7 @@ class RealmService {
     }
   }
   
-  static func clearData<Type: RealmModel>(_ data: [Type]) {
+  func clearData<Type: RealmModel>(_ data: [Type]) {
     do {
       let realm = try Realm()
       realm.beginWrite()
@@ -89,7 +93,7 @@ class RealmService {
     }
   }
   
-  static func deleteData<Type: RealmModel>(_ data: [Type]) {
+  func deleteData<Type: RealmModel>(_ data: [Type]) {
     do {
       let realm = try Realm()
       realm.beginWrite()
@@ -100,7 +104,7 @@ class RealmService {
     }
   }
   
-  static func getFileURL() -> URL? {
+  func getFileURL() -> URL? {
     do {
       let realm = try Realm()
       return realm.configuration.fileURL

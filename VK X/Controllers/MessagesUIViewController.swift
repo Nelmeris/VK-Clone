@@ -45,7 +45,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     tableView.transform = transform
     
-    RealmService.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
+    RealmService.shared.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -155,7 +155,7 @@ extension MessagesUIViewController {
     for message in dialog.messages {
       guard newMessages.contains(message) else { continue }
       
-      RealmService.deleteData([message])
+      RealmService.shared.deleteData([message])
     }
   }
 }

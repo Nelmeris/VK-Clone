@@ -75,7 +75,7 @@ extension DialogsUITableViewCell {
       return
     }
     
-    var users: Results<VKUserModel> = RealmService.loadData()!
+    var users: Results<VKUserModel> = RealmService.shared.loadData()!
     users = users.filter("id = \(dialog.id)")
     if !users.isEmpty {
       senderPhoto.sd_setImage(with: URL(string: users.first!.photo), completed: nil)

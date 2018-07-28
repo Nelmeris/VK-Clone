@@ -30,7 +30,7 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
     photoCollection.delegate = self
     photoCollection.dataSource = self
     
-    RealmService.pairCollectionViewAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(user.photos))
+    RealmService.shared.pairCollectionViewAndData(sender: photoCollection, token: &notificationToken, data: AnyRealmCollection(user.photos))
   }
   
   override func viewWillAppear(_ animated: Bool) {
