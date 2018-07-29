@@ -15,6 +15,15 @@ class MessagesUITableViewCell: UITableViewCell {
       message.textContainer.lineFragmentPadding = 0
       message.textContainerInset.top = 0
       message.textContainerInset.bottom = 0
+      
+      message.layer.cornerRadius = message.frame.height / 2
+      message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
+      message.layer.borderWidth = 1
+      
+      message.textContainer.lineFragmentPadding = 12
+      
+      message.text = nil
+      message.placeholder = "Сообщение..."
     }
   }
   

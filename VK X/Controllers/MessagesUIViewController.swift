@@ -23,8 +23,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
   
   let transform = CGAffineTransform(rotationAngle: -3.1415926)
   
-  var kbHeight: CGFloat = 0
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -35,14 +33,6 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     tableView.delegate = self
     tableView.dataSource = self
     
-    message.layer.cornerRadius = message.frame.height / 2
-    message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
-    message.layer.borderWidth = 1
-    
-    message.textContainer.lineFragmentPadding = 12
-    
-    message.text = nil
-    message.placeholder = "Сообщение..."
     message.delegate = self
     
     let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -174,7 +164,7 @@ extension MessagesUIViewController {
     
     let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
     
-    kbHeight = kbSize.height - tabBarHeight
+    let kbHeight = kbSize.height - tabBarHeight
     
     tableViewTopSpace.constant = kbHeight
     scrollView?.setContentOffset(CGPoint(x: 0, y: kbHeight), animated: true)

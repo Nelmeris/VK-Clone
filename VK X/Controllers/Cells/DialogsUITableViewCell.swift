@@ -39,6 +39,13 @@ class DialogsUITableViewCell: DataBasicUITableViewCell {
     }
   }
   
+  func setNotReadIcon(_ isRead: Bool) {
+    if !isRead {
+      notReadMessageIcon.image = #imageLiteral(resourceName: "NotReadMessageIcon")
+      notReadMessageIconWidth.constant = 13
+    }
+  }
+  
   override func prepareForReuse() {
     super.prepareForReuse()
     

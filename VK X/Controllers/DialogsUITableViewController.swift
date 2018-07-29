@@ -45,10 +45,7 @@ class DialogsUITableViewController: UITableViewController {
     cell.setSenderPhoto(dialog)
     cell.onlineStatusIcon.initial(dialog.isOnline, dialog.isOnlineMobile, cell.photo.frame, tableView.backgroundColor!)
     
-    if !dialog.message.isRead {
-      cell.notReadMessageIcon.image = #imageLiteral(resourceName: "NotReadMessageIcon")
-      cell.notReadMessageIconWidth.constant = 13
-    }
+    cell.setNotReadIcon(dialog.message.isRead)
     
     return cell
   }

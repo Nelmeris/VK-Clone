@@ -42,6 +42,17 @@ class NewsFeedUITableViewCell: UITableViewCell {
     postPhotoHeight.constant = 0
   }
   
+  func setText(_ text: String) {
+    postText.isScrollEnabled = true
+    postText.text = text
+    if text == "" {
+      postTextHC.constant = 0
+    } else {
+      postTextHC.constant = postText.contentSize.height
+    }
+    postText.isScrollEnabled = false
+  }
+  
   @IBAction func LikesClick(_ sender: Any) {
     let isLike = likesIcon.image == #imageLiteral(resourceName: "LikesIcon")
     
