@@ -57,9 +57,9 @@ class FriendPhotosUIViewController: UIViewController, UICollectionViewDelegate, 
 extension FriendPhotosUIViewController {
   
   func loadPhotos() {
-    VKService.shared.request(method: "photos.getAll", parameters: ["owner_id": String(user.id)], queue: DispatchQueue.main) { [weak self] (response: VKPhotosModel) in
+    VKService.Methods.Photos.getAll(ownerId: user.id) { [weak self] photos in
       guard let strongSelf = self else { return }
-      FriendPhotosUIViewController.updatePhotos(user: strongSelf.user, newPhotos: response.photos)
+      FriendPhotosUIViewController.updatePhotos(user: strongSelf.user, newPhotos: photos)
     }
   }
   

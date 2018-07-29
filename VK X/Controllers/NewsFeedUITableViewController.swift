@@ -15,7 +15,13 @@ class NewsFeedUITableViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    loadNewsFeed()
+    VKService.Methods.NewsFeed.get(type: .post) { [weak self] response in
+      guard let strongSelf = self else { return }
+      strongSelf.newsFeed = response
+      DispatchQueue.main.async {
+        strongSelf.tableView.reloadData()
+      }
+    }
   }
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,17 +59,5 @@ class NewsFeedUITableViewController: UITableViewController {
     cell.attachmentProcessing(news.attachments)
     
     return cell
-  }
-}
-
-extension NewsFeedUITableViewController {
-  func loadNewsFeed() {
-    VKService.shared.request(method: "newsfeed.get", parameters: ["filters": "post", "count": "50"]) { [weak self] (response: VKNewsFeedModel) in
-      guard let strongSelf = self else { return }
-      strongSelf.newsFeed = response
-      DispatchQueue.main.async {
-        strongSelf.tableView.reloadData()
-      }
-    }
   }
 }

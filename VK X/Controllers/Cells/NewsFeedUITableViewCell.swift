@@ -47,10 +47,7 @@ class NewsFeedUITableViewCell: UITableViewCell {
     
     likesIcon.image = (isLike ? #imageLiteral(resourceName: "LikesOffIcon") : #imageLiteral(resourceName: "LikesIcon"))
     
-    let method = "likes." + (isLike ? "delete" : "add")
-    let parameters = ["type": "post", "item_id": String(postId), "owner_id": String(authorId)]
-    
-    VKService.shared.irrevocableRequest(method: method, parameters: parameters)
+    VKService.Methods.Likes.action(action: isLike ? .delete : .add, type: .post, itemId: postId, authorId: authorId)
     
     guard let likes = Int(likesCount.text!) else { return }
     

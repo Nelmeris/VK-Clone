@@ -35,15 +35,15 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     tableView.delegate = self
     tableView.dataSource = self
     
-    message.delegate = self
     message.layer.cornerRadius = message.frame.height / 2
     message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
     message.layer.borderWidth = 1
     
-    message.text = "Сообщение..."
-    message.textColor = .lightGray
-    
     message.textContainer.lineFragmentPadding = 12
+    
+    message.text = nil
+    message.placeholder = "Сообщение..."
+    message.delegate = self
     
     let tapScreen = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     tapScreen.cancelsTouchesInView = false
@@ -60,7 +60,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    VKService.shared.request(method: "messages.getHistory", parameters: ["peer_id": String(dialogId), "count": "20"]) { [weak self] (response: VKMessagesModel) in
+    VKService.Methods.Messages.get(dialogId: dialogId, count: 50) { [weak self] response in
       guard let strongSelf = self else { return }
       DispatchQueue.main.async {
         strongSelf.deleteOldMessages(dialog: (strongSelf.dialog)!, newMessages: response.messages)
@@ -113,51 +113,12 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     messageHC.constant = message.contentSize.height
   }
   
-  func textViewDidBeginEditing(_ textView: UITextView)
-  {
-    if (message.text == "Сообщение...")
-    {
-      message.text = ""
-      message.textColor = .black
-    }
-    message.becomeFirstResponder() //Optional
-  }
   
-  func textViewDidEndEditing(_ textView: UITextView)
-  {
-    if (message.text == "")
-    {
-      message.text = "Сообщение..."
-      message.textColor = .lightGray
-    }
-    message.resignFirstResponder()
-  }
-  
-  @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
-    view.endEditing(true)
-  }
-  
-  @objc func keyboardWillShown(notification: Notification) {
-    let info = notification.userInfo! as NSDictionary
-    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-    
-    let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
-    
-    kbHeight = kbSize.height - tabBarHeight
-    
-    tableViewTopSpace.constant = kbHeight
-    scrollView?.setContentOffset(CGPoint(x: 0, y: kbHeight), animated: true)
-  }
-  
-  @objc func keyboardWillBeHidden(notification: Notification) {
-    tableViewTopSpace.constant = 0
-    scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-  }
   
   @IBAction func sendMessage(_ sender: Any) {
     guard message.text != "" else { return }
     
-    VKService.shared.irrevocableRequest(method: "messages.send", parameters: ["peer_id": String(dialogId), "message": message.text!])
+    VKService.Methods.Messages.send(dialogId: dialogId, messageText: message.text!)
     message.text = "Сообщение..."
     message.textColor = .lightGray
   }
@@ -197,5 +158,30 @@ extension MessagesUIViewController {
       
       RealmService.shared.deleteData([message])
     }
+  }
+}
+
+
+
+extension MessagesUIViewController {
+  @objc func dismissKeyboard(sender: UITapGestureRecognizer) {
+    view.endEditing(true)
+  }
+  
+  @objc func keyboardWillShown(notification: Notification) {
+    let info = notification.userInfo! as NSDictionary
+    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+    
+    let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
+    
+    kbHeight = kbSize.height - tabBarHeight
+    
+    tableViewTopSpace.constant = kbHeight
+    scrollView?.setContentOffset(CGPoint(x: 0, y: kbHeight), animated: true)
+  }
+  
+  @objc func keyboardWillBeHidden(notification: Notification) {
+    tableViewTopSpace.constant = 0
+    scrollView?.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
   }
 }

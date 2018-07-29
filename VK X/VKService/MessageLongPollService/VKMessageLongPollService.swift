@@ -61,19 +61,18 @@ class VKLongPollOperation: Operation {
     state = .finished
   }
   
-  private var longPollData: VKMessageLongPollServerModel!
-  private var url: String!
-  private var parameters: (wait: Int, mode: Int, version: Int)!
   
-  func getUrl() {
-    url = "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(longPollData.ts)&wait=\(parameters!.wait)&mode=\(parameters!.mode)&version=\(parameters!.version)"
+  
+  private var longPollData: VKMessageLongPollServerModel!
+  private var url: String {
+    return "https://\(longPollData.server)?act=a_check&key=\(longPollData.key)&ts=\(longPollData.ts)&wait=\(parameters!.wait)&mode=\(parameters!.mode)&version=\(parameters!.version)"
   }
+  private var parameters: (wait: Int, mode: Int, version: Int)!
   
   override func main() {
     self.parameters = (30, 104, 3)
     
     loadData {
-      self.getUrl()
       self.request = Alamofire.request(self.url)
       
       self.repeat()
@@ -93,7 +92,6 @@ class VKLongPollOperation: Operation {
   func `repeat`() {
     self.startRequest { response in
       self.longPollData.ts = response.ts
-      self.getUrl()
       self.repeat()
       
       for update in response.updates {

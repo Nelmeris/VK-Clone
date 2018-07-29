@@ -22,7 +22,7 @@ class DialogsUITableViewController: UITableViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    VKService.shared.getDialogs { data in
+    VKService.Methods.Dialogs.get { data in
       RealmService.shared.updateData(data)
     }
   }

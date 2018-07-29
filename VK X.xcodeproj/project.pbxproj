@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		57045A142109E490008C31E2 /* NewPostUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57045A132109E490008C31E2 /* NewPostUIViewController.swift */; };
 		57045A162109E903008C31E2 /* MapViewUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57045A152109E903008C31E2 /* MapViewUIViewController.swift */; };
+		570A5919210DBFCF003201B2 /* UITextViewPostholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */; };
 		57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */; };
 		57B9FDD120D404E90098AA00 /* OnlineStatusUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */; };
 		57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1FCC520D0B76400116749 /* VKServiceMethods.swift */; };
@@ -82,6 +83,7 @@
 		0141BEECF2D26CE6D9E4D04C /* Pods-VK X.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK X.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VK X/Pods-VK X.debug.xcconfig"; sourceTree = "<group>"; };
 		57045A132109E490008C31E2 /* NewPostUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostUIViewController.swift; sourceTree = "<group>"; };
 		57045A152109E903008C31E2 /* MapViewUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewUIViewController.swift; sourceTree = "<group>"; };
+		570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPostholder.swift; sourceTree = "<group>"; };
 		57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
 		57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
 		57C1FCC520D0B76400116749 /* VKServiceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMethods.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */,
 				F628172A20BD89A6002185C4 /* GlobalMethods.swift */,
 				F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */,
+				570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */,
 			);
 			path = "VK X";
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */,
 				F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */,
+				570A5919210DBFCF003201B2 /* UITextViewPostholder.swift in Sources */,
 				F6B48B5D20B6358100D908F9 /* RealmDataPairs.swift in Sources */,
 				F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendsUITableViewController.swift in Sources */,

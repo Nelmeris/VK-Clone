@@ -57,9 +57,9 @@ class GroupsSearchUITableViewController: UITableViewController, UISearchResultsU
     
     let searchText = searchController.searchBar.text!
     
-    VKService.shared.request(method: "groups.search", parameters: ["fields": "members_count", "sort": "0", "q": searchText]) { [weak self] (response: VKGroupsModel) in
+    VKService.Methods.Groups.search(searchText: searchText) { [weak self] groups in
       guard let strongSelf = self else { return }
-      strongSelf.groups = response.groups
+      strongSelf.groups = groups
       DispatchQueue.main.async {
         strongSelf.tableView.reloadData()
       }

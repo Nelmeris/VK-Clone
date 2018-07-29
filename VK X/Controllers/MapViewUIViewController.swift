@@ -27,8 +27,6 @@ class MapViewUIViewController: UIViewController, CLLocationManagerDelegate {
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
     self.locationManager.requestWhenInUseAuthorization()
     self.locationManager.startUpdatingLocation()
-    
-    // Do any additional setup after loading the view.
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -51,19 +49,7 @@ class MapViewUIViewController: UIViewController, CLLocationManagerDelegate {
   @IBAction func closeMap(_ sender: Any) {
     if let sender = self.sender as? NewPostUIViewController {
       sender.place = self.place
-      sender.geostationButton.tintColor = UIColor.green
     }
     dismiss(animated: true, completion: nil)
   }
-  
-  /*
-   // MARK: - Navigation
-   
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   // Get the new view controller using segue.destination.
-   // Pass the selected object to the new view controller.
-   }
-   */
-  
 }
