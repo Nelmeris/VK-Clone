@@ -84,8 +84,14 @@ extension VKService {
     
     
     class Messages {
-      class func get(dialogId: Int, count: Int = 20, completion: @escaping(VKMessagesModel) -> Void) {
-        VKService.shared.request(method: "messages.getHistory", parameters: ["peer_id": String(dialogId), "count": String(count)]) { (response: VKMessagesModel) in
+      class func get(dialogId: Int, startId: Int? = nil, count: Int = 20, completion: @escaping(VKMessagesModel) -> Void) {
+        var params = [String: String]()
+        params["peer_id"] = String(dialogId)
+        params["count"] = String(count)
+        if let id = startId {
+          params["start_message_id"] = String(id)
+        }
+        VKService.shared.request(method: "messages.getHistory", parameters: params) { (response: VKMessagesModel) in
           completion(response)
         }
       }

@@ -18,6 +18,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
   
   var dialog: VKDialogModel!
   var dialogId: Int!
+  var messagesCount: Int!
   
   var notificationToken: NotificationToken!
   
@@ -44,13 +45,18 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     
     tableView.transform = transform
     
-    RealmService.shared.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+    message.layer.cornerRadius = message.frame.height / 2
+    message.layer.borderColor = #colorLiteral(red: 0.8901960784, green: 0.8980392157, blue: 0.9137254902, alpha: 1)
+    message.layer.borderWidth = 1
     
-    VKService.Methods.Messages.get(dialogId: dialogId, count: 50) { [weak self] response in
+    message.textContainer.lineFragmentPadding = 12
+    
+    message.text = nil
+    message.placeholder = "Сообщение..."
+    
+    messagesCount = 100
+    
+    VKService.Methods.Messages.get(dialogId: dialogId, count: messagesCount) { [weak self] response in
       guard let strongSelf = self else { return }
       DispatchQueue.main.async {
         strongSelf.deleteOldMessages(dialog: (strongSelf.dialog)!, newMessages: response.messages)
@@ -67,6 +73,8 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
         }
       }
     }
+    
+    RealmService.shared.pairTableViewAndData(sender: tableView, token: &notificationToken, data: AnyRealmCollection(dialog.messages), insertAnimation: .top)
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,6 +98,31 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     cell.setSenderPhoto(dialog, message, indexPath)
     
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    let lastRow = indexPath.row
+    let messagesLoadCount = 50
+    if lastRow == messagesCount - 1 {
+      VKService.Methods.Messages.get(dialogId: dialogId, startId: dialog.messages.last?.id, count: messagesLoadCount) { [weak self] response in
+        guard let strongSelf = self else { return }
+        DispatchQueue.main.async {
+          strongSelf.deleteOldMessages(dialog: (strongSelf.dialog)!, newMessages: response.messages)
+          strongSelf.addNewMessages(dialog: (strongSelf.dialog)!, newMessages: response.messages)
+          
+          do {
+            let realm = try Realm()
+            realm.beginWrite()
+            strongSelf.dialog.inRead = response.inRead
+            strongSelf.dialog.outRead = response.outRead
+            try realm.commitWrite()
+          } catch let error {
+            print(error)
+          }
+        }
+      }
+      messagesCount += messagesLoadCount
+    }
   }
   
   func textViewShouldReturn(_ textField: UITextField) -> Bool {
