@@ -40,8 +40,8 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
     tapScreen.cancelsTouchesInView = false
     view.addGestureRecognizer(tapScreen)
     
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     
     tableView.transform = transform
     
@@ -121,7 +121,7 @@ class MessagesUIViewController: UIViewController, UITableViewDelegate, UITableVi
           }
         }
       }
-      messagesCount += messagesLoadCount
+      messagesCount! += messagesLoadCount
     }
   }
   
@@ -193,7 +193,7 @@ extension MessagesUIViewController {
   
   @objc func keyboardWillShown(notification: Notification) {
     let info = notification.userInfo! as NSDictionary
-    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+    let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
     
     let tabBarHeight = (self.tabBarController?.tabBar.frame.height)!
     
