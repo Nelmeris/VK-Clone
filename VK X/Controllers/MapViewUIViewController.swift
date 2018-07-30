@@ -37,7 +37,7 @@ class MapViewUIViewController: UIViewController, CLLocationManagerDelegate {
         self.place = myPlaces?.first
       }
       let currentRadius: CLLocationDistance = 1000
-      let currentRegion = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: currentRadius * 2.0, longitudeDelta: currentRadius * 2.0))
+      let currentRegion = MKCoordinateRegionMakeWithDistance(currentLocation, currentRadius * 2.0, currentRadius * 2.0)
       self.mapView.setRegion(currentRegion, animated: true)
       self.mapView.showsUserLocation = true
       
