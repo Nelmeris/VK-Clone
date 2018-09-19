@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRO-2u-asP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRO-2u-asP">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -300,9 +300,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dWF-AB-bwV">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                            </mapView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvx-ep-ksz">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <color key="barTintColor" red="0.24318033459999999" green="0.47399264569999999" blue="0.70553618669999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -317,21 +314,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCh-hN-HFU" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.30496978759765625" green="0.50618529319763184" blue="0.70150452852249146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Uvx-ep-ksz" firstAttribute="top" secondItem="tS7-gu-791" secondAttribute="top" id="BFr-BF-uyw"/>
-                            <constraint firstItem="dWF-AB-bwV" firstAttribute="top" secondItem="Uvx-ep-ksz" secondAttribute="bottom" id="BQS-ez-4ng"/>
-                            <constraint firstItem="dWF-AB-bwV" firstAttribute="leading" secondItem="tS7-gu-791" secondAttribute="leading" id="dTg-Cn-rtS"/>
+                            <constraint firstItem="BCh-hN-HFU" firstAttribute="bottom" secondItem="tS7-gu-791" secondAttribute="bottom" id="KSm-48-KMG"/>
                             <constraint firstItem="Uvx-ep-ksz" firstAttribute="trailing" secondItem="tS7-gu-791" secondAttribute="trailing" id="gL6-RE-ksi"/>
                             <constraint firstItem="Uvx-ep-ksz" firstAttribute="leading" secondItem="tS7-gu-791" secondAttribute="leading" id="hSm-Mf-Mf0"/>
-                            <constraint firstItem="dWF-AB-bwV" firstAttribute="bottom" secondItem="tS7-gu-791" secondAttribute="bottom" id="lhz-WF-Mzl"/>
-                            <constraint firstItem="dWF-AB-bwV" firstAttribute="trailing" secondItem="tS7-gu-791" secondAttribute="trailing" id="vLm-df-F0d"/>
+                            <constraint firstItem="BCh-hN-HFU" firstAttribute="trailing" secondItem="tS7-gu-791" secondAttribute="trailing" id="oqH-BZ-gIe"/>
+                            <constraint firstItem="BCh-hN-HFU" firstAttribute="leading" secondItem="tS7-gu-791" secondAttribute="leading" id="qz3-ZH-E5g"/>
+                            <constraint firstItem="BCh-hN-HFU" firstAttribute="top" secondItem="Uvx-ep-ksz" secondAttribute="bottom" id="xWF-Gf-zTs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tS7-gu-791"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="dWF-AB-bwV" id="Uba-NP-n8r"/>
+                        <outlet property="mapView" destination="BCh-hN-HFU" id="3bG-J1-wsJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bN3-K5-u9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -369,11 +370,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CommentsIcon" width="128" height="128"/>
-        <image name="DefaultGroupPhoto" width="256" height="256"/>
-        <image name="LikesOffIcon" width="128" height="128"/>
-        <image name="NewsIcon" width="24" height="24"/>
-        <image name="RepostsIcon" width="128" height="128"/>
-        <image name="ViewsIcon" width="128" height="128"/>
+        <image name="CommentsIcon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="DefaultGroupPhoto" width="204.80000305175781" height="204.80000305175781"/>
+        <image name="LikesOffIcon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="NewsIcon" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="RepostsIcon" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="ViewsIcon" width="102.40000152587891" height="102.40000152587891"/>
     </resources>
 </document>

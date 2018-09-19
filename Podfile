@@ -12,6 +12,7 @@ target 'VK X' do
   pod 'RealmSwift'
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'GoogleMaps'
 
   # Pods for VK X
 

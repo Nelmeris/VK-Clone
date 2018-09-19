@@ -25,8 +25,8 @@ class NewPostUIViewController: UIViewController, UITextViewDelegate {
     tapScreen.cancelsTouchesInView = false
     view.addGestureRecognizer(tapScreen)
     
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
     
     
     postText.delegate = self
@@ -73,8 +73,7 @@ class NewPostUIViewController: UIViewController, UITextViewDelegate {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let destination = segue.destination as? MapViewUIViewController else { return }
-    destination.sender = self
+
   }
 }
 
@@ -87,7 +86,7 @@ extension NewPostUIViewController {
   
   @objc func keyboardWillShown(notification: Notification) {
     let info = notification.userInfo! as NSDictionary
-    let kbSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+    let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
     
     scrollContentViewTopSpace.constant = kbSize.height
     scrollView?.setContentOffset(CGPoint(x: 0, y: kbSize.height), animated: true)
