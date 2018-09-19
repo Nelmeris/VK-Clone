@@ -73,7 +73,8 @@ class NewPostUIViewController: UIViewController, UITextViewDelegate {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+    guard let destination = segue.destination as? MapViewUIViewController else { return }
+    destination.sender = self
   }
 }
 
