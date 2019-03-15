@@ -7,7 +7,12 @@
 		<key>VK X.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>12</integer>
+			<integer>17</integer>
+		</dict>
+		<key>VK X.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
 		</dict>
 		<key>VK.xcscheme</key>
 		<dict>
