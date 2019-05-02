@@ -11,7 +11,16 @@ import WebKit
 import Keychain
 
 class VKAuthorizationUIViewController: UIViewController, WKNavigationDelegate {
-  @IBOutlet weak var WebViewVK: WKWebView! {
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        WebViewVK = WKWebView(frame: self.view.frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+  var WebViewVK: WKWebView! {
     didSet {
       WebViewVK.navigationDelegate = self
     }

@@ -47,7 +47,6 @@
 		F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */; };
 		F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */; };
 		F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0BF20B1DBB4009BB1B8 /* VKService.swift */; };
-		F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */; };
 		F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */; };
 		F68B230B20C027B600B6E773 /* VKServiceDialogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B230A20C027B600B6E773 /* VKServiceDialogModel.swift */; };
 		F68B230D20C0494500B6E773 /* VKServiceMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */; };
@@ -125,7 +124,6 @@
 		F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceUserModel.swift; sourceTree = "<group>"; };
 		F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		F688B0BF20B1DBB4009BB1B8 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
-		F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VKViews.storyboard; sourceTree = "<group>"; };
 		F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseModel.swift; sourceTree = "<group>"; };
 		F68B230A20C027B600B6E773 /* VKServiceDialogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceDialogModel.swift; sourceTree = "<group>"; };
 		F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMessageModel.swift; sourceTree = "<group>"; };
@@ -279,7 +277,6 @@
 				F6D634C920C346760062CEED /* MessageLongPollService */,
 				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
 				57C1FCC520D0B76400116749 /* VKServiceMethods.swift */,
-				F688B0C020B1DBB4009BB1B8 /* VKViews.storyboard */,
 			);
 			path = VKService;
 			sourceTree = "<group>";
@@ -407,7 +404,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F688B0CA20B1DBB4009BB1B8 /* VKViews.storyboard in Resources */,
 				F61E29822093B06E0070DEC9 /* LaunchScreen.storyboard in Resources */,
 				F66C097E20C5B3D3009EEC7E /* FriendsStoryboard.storyboard in Resources */,
 				F645DB8520C5BA4B00310323 /* GroupsStoryboard.storyboard in Resources */,

@@ -20,8 +20,7 @@ class VKTokenService {
   
   func tokenReceiving() {
     DispatchQueue.main.async {
-      let storyboard = UIStoryboard(name: "VKViews", bundle: nil)
-      let viewController = storyboard.instantiateViewController(withIdentifier: "VKAuthorization")
+      let viewController = VKAuthorizationUIViewController()
       
       while getVisibleViewController() == nil { continue }
       let visibleViewController = getVisibleViewController()!
