@@ -10,9 +10,23 @@
 		57045A142109E490008C31E2 /* NewPostUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57045A132109E490008C31E2 /* NewPostUIViewController.swift */; };
 		57045A162109E903008C31E2 /* MapViewUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57045A152109E903008C31E2 /* MapViewUIViewController.swift */; };
 		570A5919210DBFCF003201B2 /* UITextViewPostholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */; };
+		57911312227B287900E826CF /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791130D227B287900E826CF /* ErrorParser.swift */; };
+		57911313227B287900E826CF /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791130E227B287900E826CF /* DataRequest.swift */; };
+		57911314227B287900E826CF /* RequestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791130F227B287900E826CF /* RequestRouter.swift */; };
+		57911315227B287900E826CF /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911310227B287900E826CF /* AbstractRequestFactory.swift */; };
+		57911316227B287900E826CF /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911311227B287900E826CF /* AbstractErrorParser.swift */; };
+		57911322227B330600E826CF /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911321227B330600E826CF /* RequestFactory.swift */; };
+		57911325227B424E00E826CF /* VKServiceGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911324227B424E00E826CF /* VKServiceGroups.swift */; };
+		57911327227B425A00E826CF /* VKServiceMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911326227B425A00E826CF /* VKServiceMessages.swift */; };
+		57911329227B426500E826CF /* VKServiceDialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911328227B426500E826CF /* VKServiceDialogs.swift */; };
+		5791132B227B428500E826CF /* VKServiceUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791132A227B428500E826CF /* VKServiceUsers.swift */; };
+		5791132D227B428C00E826CF /* VKServiceWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791132C227B428C00E826CF /* VKServiceWall.swift */; };
+		5791132F227B429B00E826CF /* VKServiceLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5791132E227B429B00E826CF /* VKServiceLikes.swift */; };
+		57911331227B42AE00E826CF /* VKServicePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911330227B42AE00E826CF /* VKServicePhotos.swift */; };
+		57911333227B42C100E826CF /* VKServiceFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911332227B42C100E826CF /* VKServiceFriends.swift */; };
+		57911335227B437E00E826CF /* VKServiceNewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57911334227B437E00E826CF /* VKServiceNewsFeed.swift */; };
 		57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */; };
 		57B9FDD120D404E90098AA00 /* OnlineStatusUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */; };
-		57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1FCC520D0B76400116749 /* VKServiceMethods.swift */; };
 		57D6E50820E23CFD007DF6F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */; };
 		D175C2B78D07153E0A419551 /* Pods_VK_X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */; };
 		F61E29782093B06B0070DEC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61E29772093B06B0070DEC9 /* AppDelegate.swift */; };
@@ -83,9 +97,23 @@
 		57045A132109E490008C31E2 /* NewPostUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostUIViewController.swift; sourceTree = "<group>"; };
 		57045A152109E903008C31E2 /* MapViewUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewUIViewController.swift; sourceTree = "<group>"; };
 		570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewPostholder.swift; sourceTree = "<group>"; };
+		5791130D227B287900E826CF /* ErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
+		5791130E227B287900E826CF /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
+		5791130F227B287900E826CF /* RequestRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestRouter.swift; sourceTree = "<group>"; };
+		57911310227B287900E826CF /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
+		57911311227B287900E826CF /* AbstractErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
+		57911321227B330600E826CF /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		57911324227B424E00E826CF /* VKServiceGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceGroups.swift; sourceTree = "<group>"; };
+		57911326227B425A00E826CF /* VKServiceMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMessages.swift; sourceTree = "<group>"; };
+		57911328227B426500E826CF /* VKServiceDialogs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceDialogs.swift; sourceTree = "<group>"; };
+		5791132A227B428500E826CF /* VKServiceUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceUsers.swift; sourceTree = "<group>"; };
+		5791132C227B428C00E826CF /* VKServiceWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceWall.swift; sourceTree = "<group>"; };
+		5791132E227B429B00E826CF /* VKServiceLikes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceLikes.swift; sourceTree = "<group>"; };
+		57911330227B42AE00E826CF /* VKServicePhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServicePhotos.swift; sourceTree = "<group>"; };
+		57911332227B42C100E826CF /* VKServiceFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceFriends.swift; sourceTree = "<group>"; };
+		57911334227B437E00E826CF /* VKServiceNewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeed.swift; sourceTree = "<group>"; };
 		57B9FDCE20D402DF0098AA00 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
 		57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
-		57C1FCC520D0B76400116749 /* VKServiceMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceMethods.swift; sourceTree = "<group>"; };
 		57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5903C2A022FC5E5CA2DE2CD3 /* Pods_VK_X.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_X.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60759D9B93A05C377252725 /* Pods_VK_Community.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Community.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,7 +216,7 @@
 				F67266DE209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift */,
 				57045A132109E490008C31E2 /* NewPostUIViewController.swift */,
 				57045A152109E903008C31E2 /* MapViewUIViewController.swift */,
-				571960D920D4F5E60097AA47 /* Cells */,
+				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,6 +234,137 @@
 				57B9FDD020D404E90098AA00 /* OnlineStatusUIImageView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		5791130B227B285200E826CF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F628172A20BD89A6002185C4 /* GlobalMethods.swift */,
+				F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */,
+				570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */,
+				5791130C227B286000E826CF /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5791130C227B286000E826CF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				57911311227B287900E826CF /* AbstractErrorParser.swift */,
+				57911310227B287900E826CF /* AbstractRequestFactory.swift */,
+				5791130E227B287900E826CF /* DataRequest.swift */,
+				5791130D227B287900E826CF /* ErrorParser.swift */,
+				5791130F227B287900E826CF /* RequestRouter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		57911317227B289A00E826CF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
+				57911319227B28A300E826CF /* BusinessLogic */,
+				57911318227B289E00E826CF /* Entity */,
+				5791131D227B296200E826CF /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		57911318227B289E00E826CF /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5791131E227B2B7400E826CF /* Network */,
+				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		57911319227B28A300E826CF /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				57911320227B2B8800E826CF /* DataBase */,
+				5791131A227B28BB00E826CF /* Network */,
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		5791131A227B28BB00E826CF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				57911321227B330600E826CF /* RequestFactory.swift */,
+				F6D634C620C31CDC0062CEED /* TokenService */,
+				F6D634C920C346760062CEED /* MessageLongPollService */,
+				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
+				57911332227B42C100E826CF /* VKServiceFriends.swift */,
+				57911324227B424E00E826CF /* VKServiceGroups.swift */,
+				57911334227B437E00E826CF /* VKServiceNewsFeed.swift */,
+				57911326227B425A00E826CF /* VKServiceMessages.swift */,
+				57911328227B426500E826CF /* VKServiceDialogs.swift */,
+				5791132A227B428500E826CF /* VKServiceUsers.swift */,
+				5791132C227B428C00E826CF /* VKServiceWall.swift */,
+				5791132E227B429B00E826CF /* VKServiceLikes.swift */,
+				57911330227B42AE00E826CF /* VKServicePhotos.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5791131B227B28F800E826CF /* Enviroments */ = {
+			isa = PBXGroup;
+			children = (
+				F61E29832093B06E0070DEC9 /* Info.plist */,
+				57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */,
+			);
+			path = Enviroments;
+			sourceTree = "<group>";
+		};
+		5791131C227B290800E826CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
+				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5791131D227B296200E826CF /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				571960D720D4F5920097AA47 /* View */,
+				571960D820D4F59B0097AA47 /* Controllers */,
+				571960D920D4F5E60097AA47 /* Cells */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		5791131E227B2B7400E826CF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				57911323227B3D9400E826CF /* Responses */,
+				F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */,
+				F68B230A20C027B600B6E773 /* VKServiceDialogModel.swift */,
+				F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */,
+				F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */,
+				F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */,
+				F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */,
+				F62B3B9120C07D990037A767 /* VKServiceSizes.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		57911320227B2B8800E826CF /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */,
+				F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		57911323227B3D9400E826CF /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		68FE37D82B9695484518A2DA /* Frameworks */ = {
@@ -238,63 +397,18 @@
 		F61E29762093B06B0070DEC9 /* VK X */ = {
 			isa = PBXGroup;
 			children = (
-				571960D720D4F5920097AA47 /* View */,
-				571960D820D4F59B0097AA47 /* Controllers */,
-				F673356820C4BD3D00C773FC /* Models */,
-				F688B0B520B1DBB4009BB1B8 /* VKService */,
-				F688B0CB20B1DBDD009BB1B8 /* RealmService */,
-				F61E29772093B06B0070DEC9 /* AppDelegate.swift */,
-				F61E29802093B06E0070DEC9 /* LaunchScreen.storyboard */,
-				F61E297E2093B06E0070DEC9 /* Assets.xcassets */,
-				F61E29832093B06E0070DEC9 /* Info.plist */,
-				57D6E50720E23CFD007DF6F4 /* GoogleService-Info.plist */,
-				F628172A20BD89A6002185C4 /* GlobalMethods.swift */,
-				F694C8DE20CC0ABE00D87629 /* GetCacheImageOperation.swift */,
-				570A5918210DBFCF003201B2 /* UITextViewPostholder.swift */,
+				57911317227B289A00E826CF /* App */,
+				5791130B227B285200E826CF /* Core */,
+				5791131C227B290800E826CF /* Resources */,
+				5791131B227B28F800E826CF /* Enviroments */,
 			);
 			path = "VK X";
-			sourceTree = "<group>";
-		};
-		F673356820C4BD3D00C773FC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F688B0CE20B1DEAE009BB1B8 /* DataBaseModel.swift */,
-				F64C2B8220BC811300741AD9 /* VKServiceNewsFeedModel.swift */,
-				F68B230A20C027B600B6E773 /* VKServiceDialogModel.swift */,
-				F68B230C20C0494500B6E773 /* VKServiceMessageModel.swift */,
-				F688B0BD20B1DBB4009BB1B8 /* VKServiceUserModel.swift */,
-				F688B0BA20B1DBB4009BB1B8 /* VKServiceGroupModel.swift */,
-				F688B0BC20B1DBB4009BB1B8 /* VKServicePhotoModel.swift */,
-				F62B3B9120C07D990037A767 /* VKServiceSizes.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		F688B0B520B1DBB4009BB1B8 /* VKService */ = {
-			isa = PBXGroup;
-			children = (
-				F6D634C620C31CDC0062CEED /* TokenService */,
-				F6D634C920C346760062CEED /* MessageLongPollService */,
-				F688B0BF20B1DBB4009BB1B8 /* VKService.swift */,
-				57C1FCC520D0B76400116749 /* VKServiceMethods.swift */,
-			);
-			path = VKService;
-			sourceTree = "<group>";
-		};
-		F688B0CB20B1DBDD009BB1B8 /* RealmService */ = {
-			isa = PBXGroup;
-			children = (
-				F688B0BE20B1DBB4009BB1B8 /* RealmService.swift */,
-				F6B48B5C20B6358100D908F9 /* RealmDataPairs.swift */,
-			);
-			path = RealmService;
 			sourceTree = "<group>";
 		};
 		F6D634C620C31CDC0062CEED /* TokenService */ = {
 			isa = PBXGroup;
 			children = (
 				F6D634C420C31CD80062CEED /* VKTokenService.swift */,
-				F688B0B820B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift */,
 			);
 			path = TokenService;
 			sourceTree = "<group>";
@@ -496,30 +610,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				F688B0C320B1DBB4009BB1B8 /* VKAuthorizationUIViewController.swift in Sources */,
+				57911335227B437E00E826CF /* VKServiceNewsFeed.swift in Sources */,
 				F672784D209BAB2800B69D31 /* FriendPhotosUICollectionViewCell.swift in Sources */,
 				57045A162109E903008C31E2 /* MapViewUIViewController.swift in Sources */,
 				F6D634C520C31CD80062CEED /* VKTokenService.swift in Sources */,
 				F62B3B9520C168A90037A767 /* MessagesUIViewController.swift in Sources */,
+				57911327227B425A00E826CF /* VKServiceMessages.swift in Sources */,
 				F67266E7209B6F300086B1B7 /* FriendsUITableViewCell.swift in Sources */,
 				F64C2B7F20BC801100741AD9 /* NewsFeedUITableViewController.swift in Sources */,
 				F6D634D020C354660062CEED /* VKMessageUpdateCode4Processing.swift in Sources */,
-				57C1FCC620D0B76400116749 /* VKServiceMethods.swift in Sources */,
+				5791132D227B428C00E826CF /* VKServiceWall.swift in Sources */,
 				F688B0C720B1DBB4009BB1B8 /* VKServiceUserModel.swift in Sources */,
 				F688B0C920B1DBB4009BB1B8 /* VKService.swift in Sources */,
 				F6D634DC20C357940062CEED /* VKMessageUpdateReadMessagesModel.swift in Sources */,
 				F64C2B8320BC811300741AD9 /* VKServiceNewsFeedModel.swift in Sources */,
 				F67266D8209B17540086B1B7 /* FriendPhotosUIViewController.swift in Sources */,
+				57911313227B287900E826CF /* DataRequest.swift in Sources */,
+				57911316227B287900E826CF /* AbstractErrorParser.swift in Sources */,
 				570A5919210DBFCF003201B2 /* UITextViewPostholder.swift in Sources */,
+				57911322227B330600E826CF /* RequestFactory.swift in Sources */,
+				57911314227B287900E826CF /* RequestRouter.swift in Sources */,
+				57911333227B42C100E826CF /* VKServiceFriends.swift in Sources */,
 				F6B48B5D20B6358100D908F9 /* RealmDataPairs.swift in Sources */,
+				57911325227B424E00E826CF /* VKServiceGroups.swift in Sources */,
 				F6303BC120C35A1F00F56D5A /* VKMessageUpdateCode6Processing.swift in Sources */,
+				57911315227B287900E826CF /* AbstractRequestFactory.swift in Sources */,
 				F67313CD2098C28900AC0A1F /* FriendsUITableViewController.swift in Sources */,
 				F6D634C820C325820062CEED /* MainUITabBarController.swift in Sources */,
+				5791132F227B429B00E826CF /* VKServiceLikes.swift in Sources */,
+				57911312227B287900E826CF /* ErrorParser.swift in Sources */,
 				F62B3B9220C07D990037A767 /* VKServiceSizes.swift in Sources */,
 				F688B0C420B1DBB4009BB1B8 /* VKServiceGroupModel.swift in Sources */,
 				F688B0CF20B1DEAE009BB1B8 /* DataBaseModel.swift in Sources */,
 				F68B230B20C027B600B6E773 /* VKServiceDialogModel.swift in Sources */,
 				F6939FBE20C020E100A7326F /* DialogsUITableViewCell.swift in Sources */,
 				57B9FDCF20D402DF0098AA00 /* DataBasicUITableViewCell.swift in Sources */,
+				57911331227B42AE00E826CF /* VKServicePhotos.swift in Sources */,
 				F688B0C620B1DBB4009BB1B8 /* VKServicePhotoModel.swift in Sources */,
 				F688B0C820B1DBB4009BB1B8 /* RealmService.swift in Sources */,
 				F64C2B8120BC801C00741AD9 /* NewsFeedUITableViewCell.swift in Sources */,
@@ -530,10 +656,12 @@
 				F67266E3209B34370086B1B7 /* GroupsUITableViewCell.swift in Sources */,
 				F64FFDD920C5D6CE00EED676 /* VKMessageUpdateFlagsModel.swift in Sources */,
 				F62B3B9720C168E60037A767 /* MessagesUITableViewCell.swift in Sources */,
+				57911329227B426500E826CF /* VKServiceDialogs.swift in Sources */,
 				F628172B20BD89A6002185C4 /* GlobalMethods.swift in Sources */,
 				F67266DF209B1B810086B1B7 /* GroupsSearchUITableViewController.swift.swift in Sources */,
 				F6939FBC20C020D100A7326F /* DialogsUITableViewController.swift in Sources */,
 				F673356320C49F0600C773FC /* VKMessageUpdateCode8&9Processing.swift in Sources */,
+				5791132B227B428500E826CF /* VKServiceUsers.swift in Sources */,
 				F6D634D520C356FC0062CEED /* VKMessageLongPollServerModel.swift in Sources */,
 				F67266DB209B1B190086B1B7 /* GroupsUITableViewController.swift in Sources */,
 				F6D634D220C354D80062CEED /* VKMessageUpdateCode7Processing.swift in Sources */,

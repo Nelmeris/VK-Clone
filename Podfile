@@ -8,9 +8,8 @@ target 'VK X' do
   pod 'Keychain', '~> 0.3.1'
   pod 'SDWebImage', '~> 4.4.2'
   pod 'RealmSwift', '~> 3.9.0'
-  pod 'Firebase/Core', '~> 5.8.0'
-  pod 'Firebase/Database', '~> 5.8.0'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
   pod 'GoogleMaps', '~> 2.7.0'
-  pod 'FirebaseAnalytics', '~> 5.1.2'
 
 end
