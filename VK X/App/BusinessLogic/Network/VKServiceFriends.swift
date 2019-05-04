@@ -10,7 +10,7 @@ import Alamofire
 
 extension VKService {
     
-    func getFriends(completionHandler: @escaping (DataResponse<VKUsersModel>) -> Void) {
+    public func getFriends(completionHandler: @escaping (DataResponse<[VKUserModel]>) -> Void) {
         let code = """
         {
           var friends = API.friends.get({"fields": "id,photo_100,online", "order": "hints"});
@@ -25,8 +25,10 @@ extension VKService {
           return friends;
         }
         """
-        let request = Execute(baseUrl: baseUrl, code: code)
-        self.request(request: request, completionHandler: completionHandler)
+        VKTokenService.shared.getToken { token in
+            let request = Execute(baseUrl: self.baseUrl, version: self.apiVersion, token: token, code: code)
+            self.request(request: request, completionHandler: completionHandler)
+        }
     }
     
 }

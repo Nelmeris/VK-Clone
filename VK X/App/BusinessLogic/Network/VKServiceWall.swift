@@ -11,9 +11,11 @@ import GoogleMaps
 
 extension VKService {
     
-    func postWall(text: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(DataResponse<_>) -> Void) {
-        let request = PostWall(baseUrl: baseUrl, text: text, place: place)
-        self.request(request: request, completionHandler: completionHandler)
+    func postWall(text: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(DataResponse<VKServiceStatusModel>) -> Void) {
+        VKTokenService.shared.getToken { token in
+            let request = PostWall(baseUrl: self.baseUrl, version: self.apiVersion, token: token, text: text, place: place)
+            self.request(request: request, completionHandler: completionHandler)
+        }
     }
     
 }
@@ -25,16 +27,22 @@ extension VKService {
         let method: HTTPMethod = .post
         let path: String = "wall.post"
         
+        let version: Double
+        let token: String
+        
         let text: String?
         let place: CLLocationCoordinate2D?
         var parameters: Parameters? {
-            var params = [String: String]()
+            var params: [String: Any] = [
+                "v": version,
+                "access_token": token
+            ]
             if text != nil {
                 params["text"] = text
             }
             if place != nil {
-                params["lat"] = String(place!.latitude)
-                params["lon"] = String(place!.longitude)
+                params["lat"] = place!.latitude
+                params["lon"] = place!.longitude
             }
             return params
         }

@@ -10,9 +10,11 @@ import Alamofire
 
 extension VKService {
     
-    func getUsers(id: Int? = nil, completionHandler: @escaping(DataResponse<VKSoloUserModel>) -> Void) {
-        let request = GetUsers(baseUrl: baseUrl, fields: "photo_100", user_id: id)
-        self.request(request: request, completionHandler: completionHandler)
+    func getUser(completionHandler: @escaping(DataResponse<VKSoloUserModel>) -> Void) {
+        VKTokenService.shared.getToken { token in
+            let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token, fields: "photo_100")
+            self.request(request: request, container: ["response"], completionHandler: completionHandler)
+        }
     }
     
 }
@@ -24,13 +26,16 @@ extension VKService {
         let method: HTTPMethod = .get
         let path: String = "users.get"
         
+        let version: Double
+        let token: String
+        
         let fields: String
-        let user_id: Int?
         var parameters: Parameters? {
-            var params = ["fields": fields]
-            if let id = user_id {
-                params["user_id"] = String(id)
-            }
+            var params: [String: Any] = [
+                "v": version,
+                "access_token": token,
+                "fields": fields
+            ]
             return params
         }
     }

@@ -22,10 +22,6 @@ struct VKUsersModel: Decodable {
 
     users = try containers.decode([VKUserModel].self, forKey: .users)
     photos = try containers.decode([VKPhotosModel].self, forKey: .photos)
-
-    for (index, user) in users.enumerated() {
-      FriendPhotosUIViewController.updatePhotos(user: user, newPhotos: photos[index].photos)
-    }
   }
 }
 
