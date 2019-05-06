@@ -14,12 +14,12 @@ extension DataRequest {
     func responseCodable<T: Decodable>(
         errorParser: AbstractErrorParser,
         queue: DispatchQueue? = nil,
-        group: DispatchGroup? = nil,
+        group: RequestGroup? = nil,
         container: [String]?,
         completionHandler: @escaping (DataResponse<T>) -> Void)
         -> Self {
             let responseSerializer = DataResponseSerializer<T> { _, response, data, error in
-                group?.leave()
+                group?.end()
                 if let error = errorParser.parse(response: response, data: data, error: error) {
                     return .failure(error)
                 }

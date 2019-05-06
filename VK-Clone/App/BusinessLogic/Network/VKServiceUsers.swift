@@ -15,14 +15,14 @@ extension VKService {
     func getCurrentUser(nameCase: NameCases = .nom, completionHandler: @escaping(DataResponse<VKUserModel>) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userIds: nil, nameCase: nameCase)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     
     func getUsers(userIds: [Int], nameCase: VKService.NameCases = .nom, completionHandler: @escaping(DataResponse<[VKUserModel]>) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userIds: userIds, nameCase: nameCase)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     

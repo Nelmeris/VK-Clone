@@ -445,8 +445,8 @@
 			isa = PBXGroup;
 			children = (
 				57FB5DC8227C655900408E25 /* TokenService */,
-				572F8905227C788A005CBFB5 /* VKServiceRequestFactory.swift */,
 				57FB5DB7227C653700408E25 /* RequestFactory.swift */,
+				572F8905227C788A005CBFB5 /* VKServiceRequestFactory.swift */,
 				57FB5DB5227C653700408E25 /* VKService.swift */,
 				57FB5DB6227C653700408E25 /* VKServiceSecure.swift */,
 				57FB5DB0227C653700408E25 /* VKServiceUsers.swift */,
@@ -670,8 +670,6 @@
 				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Keychain/Keychain.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
@@ -681,8 +679,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);

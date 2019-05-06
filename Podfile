@@ -9,9 +9,8 @@ target 'VK-Clone' do
   pod 'Alamofire', '~> 4.8.2'
   pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Keychain', '~> 0.3.1'
-  pod 'RealmSwift', '~> 3.14.2'
   pod 'GoogleMaps', '~> 3.1.0'
-  pod 'SDWebImage'
+  pod 'SDWebImage', '~> 5.0.2'
 
   target 'VK-CloneTests' do
     inherit! :search_paths

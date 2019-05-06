@@ -13,7 +13,7 @@ extension VKService {
     func getOwnerPhotos(ownerId: Int? = nil, completionHandler: @escaping(DataResponse<[VKPhotoModel]>) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetOwnerPhotos(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, ownerId: ownerId)
-            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
+            self.request(request: request, container: ["items"], completionHandler: completionHandler)
         }
     }
     

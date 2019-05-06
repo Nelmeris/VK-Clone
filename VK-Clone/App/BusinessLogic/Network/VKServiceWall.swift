@@ -14,7 +14,7 @@ extension VKService {
     func postWall(message: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(DataResponse<VKPostWallResponse>) -> Void = {_ in}) {
         VKTokenService.shared.get { token in
             let request = PostWall(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, message: message, place: place)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     

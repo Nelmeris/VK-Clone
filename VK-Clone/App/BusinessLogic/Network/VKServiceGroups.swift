@@ -13,28 +13,28 @@ extension VKService {
     func getGroups(userId: Int? = nil, extended: Bool = true, filters: [GroupFilters]? = nil, offset: Int? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<[VKGroupModel]>) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userId: userId, extended: extended, filters: filters, offset: offset, count: count)
-            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
+            self.request(request: request, container: ["items"], completionHandler: completionHandler)
         }
     }
     
     func searchGroups(searchText q: String, offset: Int? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<[VKGroupModel]>) -> Void) {
         VKTokenService.shared.get { token in
             let request = SearchGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, offset: offset, count: count, sort: "0", q: q)
-            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
+            self.request(request: request, container: ["items"], completionHandler: completionHandler)
         }
     }
     
     func joinGroup(groupId: Int, completionHandler: @escaping (DataResponse<Int>) -> Void = {_ in}) {
         VKTokenService.shared.get { token in
             let request = JoinGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, groupId: groupId)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     
     func leaveGroup(groupId: Int, completionHandler: @escaping (DataResponse<Int>) -> Void) {
         VKTokenService.shared.get { token in
             let request = LeaveGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, groupId: groupId)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     

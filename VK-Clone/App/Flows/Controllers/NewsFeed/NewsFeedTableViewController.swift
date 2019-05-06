@@ -15,14 +15,14 @@ class NewsFeedTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        VKService.shared.getNewsFeed(types: [.post]) { [weak self] response in
-//            guard let strongSelf = self else { return }
-//            guard let response = response.value else { return }
-//            strongSelf.newsFeed = response
-//            DispatchQueue.main.async {
-//                strongSelf.tableView.reloadData()
-//            }
-//        }
+        VKService.shared.getNewsFeed(types: [.post]) { [weak self] response in
+            guard let strongSelf = self else { return }
+            guard let response = response.value else { return }
+            strongSelf.newsFeed = response
+            DispatchQueue.main.async {
+                strongSelf.tableView.reloadData()
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

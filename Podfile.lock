@@ -6,11 +6,6 @@ PODS:
   - GoogleMaps/Maps (3.1.0):
     - GoogleMaps/Base
   - Keychain (0.3.1)
-  - Realm (3.14.2):
-    - Realm/Headers (= 3.14.2)
-  - Realm/Headers (3.14.2)
-  - RealmSwift (3.14.2):
-    - Realm (= 3.14.2)
   - SDWebImage (5.0.2):
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
@@ -20,8 +15,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.8.2)
   - GoogleMaps (~> 3.1.0)
   - Keychain (~> 0.3.1)
-  - RealmSwift (~> 3.14.2)
-  - SDWebImage
+  - SDWebImage (~> 5.0.2)
   - SwiftyJSON (~> 5.0.0)
 
 SPEC REPOS:
@@ -29,8 +23,6 @@ SPEC REPOS:
     - Alamofire
     - GoogleMaps
     - Keychain
-    - Realm
-    - RealmSwift
     - SDWebImage
     - SwiftyJSON
 
@@ -38,11 +30,9 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   Keychain: ef812eafcf6593fe4409b07cfecc00b95fb373ed
-  Realm: 179c6706e3a49dbfe112e572fd3c03d3169bea35
-  RealmSwift: 1797f272fb51c555b764fada32e82159a2c65247
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 6ad5e474f4c28253b3cda0e63a2bfa3e29ecddd7
+PODFILE CHECKSUM: 1fb59e3c2a62ac6167202a2db12f086c5e3e349f
 
-COCOAPODS: 1.6.0.beta.1
+COCOAPODS: 1.6.1

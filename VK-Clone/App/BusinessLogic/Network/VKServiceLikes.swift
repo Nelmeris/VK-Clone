@@ -13,14 +13,14 @@ extension VKService {
     func addLike(type: LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(DataResponse<VKLikeResponse>) -> Void = {_ in}) {
         VKTokenService.shared.get { token in
             let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, action: LikeActions.add, type: type, itemId: itemId, authorId: authorId)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     
     func deleteLike(type: LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(DataResponse<VKLikeResponse>) -> Void = {_ in}) {
         VKTokenService.shared.get { token in
             let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, action: .delete, type: type, itemId: itemId, authorId: authorId)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     

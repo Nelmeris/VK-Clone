@@ -13,7 +13,7 @@ extension VKService {
     
     private func loadSecureToken(completionHandler: @escaping(DataResponse<VKGetSecureTokenResponse>) -> Void) {
         let request = GetSecureToken(clientId: clientId, clientSecret: clientSecret, version: apiVersion)
-        self.request(request: request, delay: delayTime, completionHandler: completionHandler)
+        self.request(request: request, completionHandler: completionHandler)
     }
     
     private func getSecureToken(completionHandler: @escaping(String) -> Void) {
@@ -31,7 +31,7 @@ extension VKService {
     func checkToken(token: String, completionHandler: @escaping(DataResponse<VKCheckTokenResponse>) -> Void) {
         self.getSecureToken { secureToken in
             let request = CheckToken(baseUrl: self.baseUrl, version: self.apiVersion, accessToken: secureToken, token: token, clientSecret: self.clientSecret)
-            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
+            self.request(request: request, completionHandler: completionHandler)
         }
     }
     

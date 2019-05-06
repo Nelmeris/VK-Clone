@@ -11,9 +11,11 @@ import Alamofire
 import SwiftyJSON
 
 class VKService: AbstractRequestFactory {
+    
     var errorParser: AbstractErrorParser
     var sessionManager: SessionManager
     var queue: DispatchQueue?
+    var group: RequestGroup
     
     fileprivate let scheme = "https"
     fileprivate let host = "api.vk.com/method/"
@@ -24,23 +26,17 @@ class VKService: AbstractRequestFactory {
     
     var user: VKUserModel!
     
-    var lastRequestTime: DispatchTime
     let requestsDelay: TimeInterval = 1 / 3
-    var delayTime: DispatchTime {
-        let time = lastRequestTime + requestsDelay
-        lastRequestTime = DispatchTime.now()
-        return time
-    }
     
     private init() {
         let factory = RequestFactory()
         let maker = factory.maker()
-        self.errorParser = maker.0
-        self.sessionManager = maker.1
-        self.queue = maker.2
-        self.lastRequestTime = DispatchTime.now() - requestsDelay
-        self.isStarted = false
-        self.isPaused = false
+        errorParser = maker.0
+        sessionManager = maker.1
+        queue = maker.2
+        group = RequestGroup(delay: 1 / 3)
+        isStarted = false
+        isPaused = false
     }
     
     static let shared = VKService()
