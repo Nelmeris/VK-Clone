@@ -23,7 +23,7 @@ class VKSecureTests: XCTestCase {
     func testCheckToken() {
         let expectation = XCTestExpectation(description: "Check valid access token")
         VKTokenService.shared.get() { token in
-            VKService.shared.checkToken(token: token) { data in
+            VKService.shared.checkToken(token: token.value) { data in
                 guard let data = data.value else {
                     XCTFail()
                     expectation.fulfill()

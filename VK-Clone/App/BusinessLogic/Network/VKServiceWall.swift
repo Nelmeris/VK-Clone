@@ -12,13 +12,9 @@ import GoogleMaps
 extension VKService {
     
     func postWall(message: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(DataResponse<VKPostWallResponse>) -> Void = {_ in}) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = PostWall(baseUrl: self.baseUrl, version: self.apiVersion, token: token, message: message, place: place)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = PostWall(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, message: message, place: place)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     

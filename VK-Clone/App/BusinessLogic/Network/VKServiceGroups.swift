@@ -11,46 +11,30 @@ import Alamofire
 extension VKService {
     
     func getGroups(userId: Int? = nil, extended: Bool = true, filters: [GroupFilters]? = nil, offset: Int? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<[VKGroupModel]>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = GetGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token, userId: userId, extended: extended, filters: filters, offset: offset, count: count)
-            self.request(request: request, container: ["items"], completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = GetGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userId: userId, extended: extended, filters: filters, offset: offset, count: count)
+            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
         }
     }
     
     func searchGroups(searchText q: String, offset: Int? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<[VKGroupModel]>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = SearchGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token, offset: offset, count: count, sort: "0", q: q)
-            self.request(request: request, container: ["items"], completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = SearchGroups(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, offset: offset, count: count, sort: "0", q: q)
+            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
         }
     }
     
     func joinGroup(groupId: Int, completionHandler: @escaping (DataResponse<Int>) -> Void = {_ in}) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = JoinGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token, groupId: groupId)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = JoinGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, groupId: groupId)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     
     func leaveGroup(groupId: Int, completionHandler: @escaping (DataResponse<Int>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = LeaveGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token, groupId: groupId)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = LeaveGroup(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, groupId: groupId)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     

@@ -13,24 +13,16 @@ import Alamofire
 extension VKService {
     
     func getCurrentUser(nameCase: NameCases = .nom, completionHandler: @escaping(DataResponse<VKUserModel>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token, userIds: nil, nameCase: nameCase)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userIds: nil, nameCase: nameCase)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     
     func getUsers(userIds: [Int], nameCase: VKService.NameCases = .nom, completionHandler: @escaping(DataResponse<[VKUserModel]>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token, userIds: userIds, nameCase: nameCase)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = GetUsers(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userIds: userIds, nameCase: nameCase)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     

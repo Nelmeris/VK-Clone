@@ -11,13 +11,9 @@ import Alamofire
 extension VKService {
     
     func getConversions(offset: Int? = nil, count: Int? = nil, filters: [ConversionFilters]? = nil, extended: Bool = true, startMessageId: Int? = nil, groupId: Int? = nil, completionHandler: @escaping(DataResponse<[VKConversationModel]>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
-            VKTokenService.shared.get { token in
-                let request = GetConversions(baseUrl: self.baseUrl, version: self.apiVersion, token: token, offset: offset, count: count, filters: filters, extended: extended, startMessageId: startMessageId, groupId: groupId)
-                self.request(request: request, completionHandler: completionHandler)
-                self.lastRequestTime = DispatchTime.now()
-                self.dispatchGroup.leave()
+        VKTokenService.shared.get { token in
+            let request = GetConversions(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, offset: offset, count: count, filters: filters, extended: extended, startMessageId: startMessageId, groupId: groupId)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     

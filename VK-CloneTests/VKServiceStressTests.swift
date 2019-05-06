@@ -16,7 +16,7 @@ class VKServiceStressTests: XCTestCase {
     
     func testStress() {
         let expectation = XCTestExpectation(description: "Stress test")
-        
+        VKService.shared.start()
         for index in 1...requestsCount {
             VKService.shared.getCurrentUser { data in
                 switch(data.result) {

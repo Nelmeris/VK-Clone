@@ -11,13 +11,9 @@ import Alamofire
 extension VKService {
     
     func getFriends(userId: Int? = nil, order: SortOrders? = .hints, count: Int? = nil, offset: Int? = nil, nameCase: NameCases = .nom, completionHandler: @escaping (DataResponse<[VKUserModel]>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = GetFriends(baseUrl: self.baseUrl, version: self.apiVersion, token: token, userId: userId, order: order, count: count, offset: offset, nameCase: nameCase)
-            self.request(request: request, container: ["items"], completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = GetFriends(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userId: userId, order: order, count: count, offset: offset, nameCase: nameCase)
+            self.request(request: request, delay: self.delayTime, container: ["items"], completionHandler: completionHandler)
         }
     }
     

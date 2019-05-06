@@ -45,7 +45,7 @@
         <!--Main-->
         <scene sceneID="dfx-wE-q8d">
             <objects>
-                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" userLabel="Main" customClass="MainUITabBarController" customModule="VK_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Start" id="ZJq-mB-PY5" userLabel="Main" customClass="MainTabBarController" customModule="VK_Clone" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ZWN-HO-sEj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

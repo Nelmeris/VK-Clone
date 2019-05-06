@@ -49,12 +49,19 @@ class VKAuthorizationViewController: UIViewController, WKNavigationDelegate {
             return
         }
         
-        _ = Keychain.save(getParams(fragment)["access_token"]!, forKey: VKTokenService.shared.key)
+        let params = getParams(fragment)
+        
+        let tokenValue = params["access_token"]!
+        _ = Keychain.save(tokenValue, forKey: VKTokenService.shared.tokenKey)
+        
+        let tokenDateExpires = Date(timeIntervalSinceNow: TimeInterval(Int(params["expires_in"]!)!))
+        _ = Keychain.save(String(tokenDateExpires.timeIntervalSince1970), forKey: VKTokenService.shared.tokenExpiresTimeKey)
+        
+        let token = VKToken(value: tokenValue, dateExpires: tokenDateExpires)
         
         decisionHandler(.cancel)
-        
         dismiss(animated: true) {
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: VKTokenService.shared.notificationKey), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: VKTokenService.shared.notificationKey), object: token)
         }
     }
     

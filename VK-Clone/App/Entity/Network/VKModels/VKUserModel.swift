@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct VKUserModel: Decodable, Hashable {
     
@@ -31,10 +32,8 @@ struct VKUserModel: Decodable, Hashable {
     }
     
     init(from decoder: Decoder) throws {
-        if let containers = try? decoder.singleValueContainer(),
-            let users = try? containers.decode([VKUserModel].self),
-            users.count == 1 {
-            let user = users[0]
+        if let users = try JSON(from: decoder).array {
+            let user = try JSONDecoder().decode(VKUserModel.self, from: try users.first!.rawData())
             id = user.id
             firstName = user.firstName
             lastName = user.lastName

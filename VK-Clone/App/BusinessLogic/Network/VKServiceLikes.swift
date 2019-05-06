@@ -11,24 +11,16 @@ import Alamofire
 extension VKService {
     
     func addLike(type: LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(DataResponse<VKLikeResponse>) -> Void = {_ in}) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
-            VKTokenService.shared.get { token in
-                let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token, action: LikeActions.add, type: type, itemId: itemId, authorId: authorId)
-                self.request(request: request, completionHandler: completionHandler)
-                self.lastRequestTime = DispatchTime.now()
-                self.dispatchGroup.leave()
+        VKTokenService.shared.get { token in
+            let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, action: LikeActions.add, type: type, itemId: itemId, authorId: authorId)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     
     func deleteLike(type: LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(DataResponse<VKLikeResponse>) -> Void = {_ in}) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
-            VKTokenService.shared.get { token in
-                let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token, action: .delete, type: type, itemId: itemId, authorId: authorId)
-                self.request(request: request, completionHandler: completionHandler)
-                self.lastRequestTime = DispatchTime.now()
-                self.dispatchGroup.leave()
+        VKTokenService.shared.get { token in
+            let request = Like(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, action: .delete, type: type, itemId: itemId, authorId: authorId)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     

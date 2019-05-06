@@ -21,7 +21,7 @@ class RequestFactory {
         return manager
     }()
     
-    let sessionQueue = DispatchQueue.global(qos: .utility)
+    let sessionQueue = DispatchQueue(label: "VKServiceRequestQueue", qos: .userInteractive, attributes: [.concurrent, .initiallyInactive])
     
     func maker() -> (AbstractErrorParser, SessionManager, DispatchQueue) {
         return (makeErrorParser(), commonSessionManager, sessionQueue)

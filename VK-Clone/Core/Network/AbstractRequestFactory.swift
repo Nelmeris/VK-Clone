@@ -13,24 +13,30 @@ protocol AbstractRequestFactory {
     var sessionManager: SessionManager { get }
     var queue: DispatchQueue? { get }
     
-    @discardableResult
     func request<T: Decodable>(
         request: URLRequestConvertible,
+        delay: DispatchTime,
+        group: DispatchGroup?,
         container: [String]?,
         completionHandler: @escaping (DataResponse<T>) -> Void)
-        -> DataRequest
 }
 
 extension AbstractRequestFactory {
     
-    @discardableResult
     public func request<T: Decodable>(
         request: URLRequestConvertible,
+        delay: DispatchTime,
+        group: DispatchGroup? = nil,
         container: [String]? = nil,
-        completionHandler: @escaping (DataResponse<T>) -> Void)
-        -> DataRequest {
-            return sessionManager
+        completionHandler: @escaping (DataResponse<T>) -> Void) {
+        queue?.sync {
+            print(delay)
+            group?.wait(timeout: delay)
+            group?.enter()
+            self.sessionManager
                 .request(request)
-                .responseCodable(errorParser: errorParser, queue: queue, container: container, completionHandler: completionHandler)
+                .responseCodable(errorParser: self.errorParser, queue: self.queue, group: group, container: container, completionHandler: completionHandler)
+        }
     }
+
 }

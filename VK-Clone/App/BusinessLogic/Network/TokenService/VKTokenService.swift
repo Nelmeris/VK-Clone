@@ -9,22 +9,32 @@
 import UIKit
 import Keychain
 
+struct VKToken {
+    let value: String
+    let dateExpires: Date
+}
+
 class VKTokenService {
     private init() {}
     static let shared = VKTokenService()
     
-    let key = "access_token"
+    let tokenKey = "access_token"
+    let tokenExpiresTimeKey = "expires_time"
     let notificationKey = "tokenReceived"
     
-    func load() -> String? {
-        return Keychain.load(key)
+    func load() -> VKToken? {
+        guard let tokenValue = Keychain.load(tokenKey),
+            let tokenExpiresTimeIntervalString = Keychain.load(tokenExpiresTimeKey),
+            let tokenExpiresTimeInterval = TimeInterval(tokenExpiresTimeIntervalString) else { return nil }
+        return VKToken(value: tokenValue, dateExpires: Date(timeIntervalSince1970: tokenExpiresTimeInterval))
     }
     
     func delete() {
-        _ = Keychain.delete(key)
+        _ = Keychain.delete(tokenKey)
+        _ = Keychain.delete(tokenExpiresTimeKey)
     }
     
-    private func receiving(completion: @escaping (String) -> Void) {
+    private func receiving(completion: @escaping (VKToken) -> Void) {
         DispatchQueue.main.async {
             let viewController = VKAuthorizationViewController()
             
@@ -34,29 +44,20 @@ class VKTokenService {
             guard !(visibleViewController is VKAuthorizationViewController) else { return }
             visibleViewController.present(viewController, animated: true)
             
-            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: self.notificationKey), object: nil, queue: nil) { _ in
-                completion(Keychain.load(self.key)!)
+            NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: self.notificationKey), object: nil, queue: nil) { notification in
+                completion(notification.object as! VKToken)
             }
         }
     }
     
-    func get(completion: @escaping (String) -> Void = {_ in}) {
-        guard let token = load() else {
+    func get(completion: @escaping (VKToken) -> Void = {_ in}) {
+        guard let token = load(),
+            token.dateExpires > Date() else {
             self.receiving() { token in
                 completion(token)
             }
             return
         }
-        
-        VKService.shared.checkToken(token: token) { response in
-            guard response.value != nil else {
-                self.receiving() { token in
-                    completion(token)
-                }
-                return
-            }
-            
-            completion(token)
-        }
+        completion(token)
     }
 }

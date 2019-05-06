@@ -26,7 +26,11 @@ class VKService: AbstractRequestFactory {
     
     var lastRequestTime: DispatchTime
     let requestsDelay: TimeInterval = 1 / 3
-    let dispatchGroup: DispatchGroup
+    var delayTime: DispatchTime {
+        let time = lastRequestTime + requestsDelay
+        lastRequestTime = DispatchTime.now()
+        return time
+    }
     
     private init() {
         let factory = RequestFactory()
@@ -34,8 +38,9 @@ class VKService: AbstractRequestFactory {
         self.errorParser = maker.0
         self.sessionManager = maker.1
         self.queue = maker.2
-        self.dispatchGroup = DispatchGroup()
-        self.lastRequestTime = DispatchTime.now()
+        self.lastRequestTime = DispatchTime.now() - requestsDelay
+        self.isStarted = false
+        self.isPaused = false
     }
     
     static let shared = VKService()
@@ -43,4 +48,26 @@ class VKService: AbstractRequestFactory {
     var baseUrl: URL {
         return URL(string: scheme + "://" + host)!
     }
+    
+    var isStarted: Bool
+    var isPaused: Bool
+}
+
+extension VKService {
+    
+    func start() {
+        self.queue?.activate()
+        isStarted = true
+    }
+    
+    func suspend() {
+        self.queue?.suspend()
+        isPaused = true
+    }
+    
+    func resume() {
+        self.queue?.resume()
+        isPaused = false
+    }
+    
 }

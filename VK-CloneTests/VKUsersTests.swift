@@ -24,7 +24,7 @@ class VKUsersTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        wait(for: [expectation], timeout: 10.0)
+        wait(for: [expectation], timeout: 10000.0)
     }
     
     func testGetUsers() {

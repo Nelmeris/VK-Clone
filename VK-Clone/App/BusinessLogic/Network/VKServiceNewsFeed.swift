@@ -11,13 +11,9 @@ import Alamofire
 extension VKService {
     
     func getNewsFeed(types: [NewsTypes]? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<VKNewsFeedModel>) -> Void) {
-        _ = dispatchGroup.wait(timeout: self.lastRequestTime + self.requestsDelay)
-        dispatchGroup.enter()
         VKTokenService.shared.get { token in
-            let request = GetNewsFeed(baseUrl: self.baseUrl, version: self.apiVersion, token: token, filters: types, count: count)
-            self.request(request: request, completionHandler: completionHandler)
-            self.lastRequestTime = DispatchTime.now()
-            self.dispatchGroup.leave()
+            let request = GetNewsFeed(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, filters: types, count: count)
+            self.request(request: request, delay: self.delayTime, completionHandler: completionHandler)
         }
     }
     
