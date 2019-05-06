@@ -1,29 +1,21 @@
-platform :ios, '12.0'
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
 
-target 'VK X' do
+target 'VK-Clone' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Alamofire', '~> 4.7.3'
-  pod 'SwiftyJSON', '~> 4.1.0'
+  # Pods for VK-Clone
+  pod 'Alamofire', '~> 4.8.2'
+  pod 'SwiftyJSON', '~> 5.0.0'
   pod 'Keychain', '~> 0.3.1'
-  pod 'SDWebImage', '~> 4.4.2'
-  pod 'RealmSwift', '~> 3.9.0'
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'GoogleMaps', '~> 2.7.0'
+  pod 'RealmSwift', '~> 3.14.2'
+  pod 'GoogleMaps', '~> 3.1.0'
+  pod 'SDWebImage'
 
-end
-
-target 'VKUnitTests' do
-  use_frameworks!
-
-  pod 'Alamofire', '~> 4.7.3'
-  pod 'SwiftyJSON', '~> 4.1.0'
-  pod 'Keychain', '~> 0.3.1'
-  pod 'SDWebImage', '~> 4.4.2'
-  pod 'RealmSwift', '~> 3.9.0'
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
-  pod 'GoogleMaps', '~> 2.7.0'
+  target 'VK-CloneTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
 
 end
