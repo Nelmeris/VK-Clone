@@ -11,7 +11,7 @@ import Keychain
 
 extension VKService {
     
-    private func loadSecureToken(completionHandler: @escaping(DataResponse<VKGetSecureTokenResponse>) -> Void) {
+    private func loadSecureToken(completionHandler: @escaping(VKGetSecureTokenResponse) -> Void) {
         let request = GetSecureToken(clientId: clientId, clientSecret: clientSecret, version: apiVersion)
         self.request(request: request, completionHandler: completionHandler)
     }
@@ -21,14 +21,13 @@ extension VKService {
             completionHandler(token)
         } else {
             loadSecureToken { response in
-                guard let token = response.value?.token else { completionHandler(""); return }
-                _ = Keychain.save(token, forKey: "secureToken")
-                completionHandler(token)
+                _ = Keychain.save(response.token, forKey: "secureToken")
+                completionHandler(response.token)
             }
         }
     }
     
-    func checkToken(token: String, completionHandler: @escaping(DataResponse<VKCheckTokenResponse>) -> Void) {
+    func checkToken(token: String, completionHandler: @escaping(VKCheckTokenResponse) -> Void) {
         self.getSecureToken { secureToken in
             let request = CheckToken(baseUrl: self.baseUrl, version: self.apiVersion, accessToken: secureToken, token: token, clientSecret: self.clientSecret)
             self.request(request: request, completionHandler: completionHandler)

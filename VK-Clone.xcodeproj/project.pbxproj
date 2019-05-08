@@ -60,6 +60,8 @@
 		572F89A8227FA91C005CBFB5 /* UITableViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */; };
 		572F89AA227FAC0B005CBFB5 /* FriendsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89A9227FAC0B005CBFB5 /* FriendsStoryboard.storyboard */; };
 		572F89AC227FAC11005CBFB5 /* GroupsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89AB227FAC11005CBFB5 /* GroupsStoryboard.storyboard */; };
+		57CB1C942283794600439AF2 /* RequestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C932283794600439AF2 /* RequestGroup.swift */; };
+		57CB1C9622837D4F00439AF2 /* VKErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */; };
 		57FB5D7E227C61BD00408E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5D7D227C61BD00408E25 /* AppDelegate.swift */; };
 		57FB5D85227C61BF00408E25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FB5D84227C61BF00408E25 /* Assets.xcassets */; };
 		57FB5D88227C61BF00408E25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57FB5D86227C61BF00408E25 /* LaunchScreen.storyboard */; };
@@ -75,7 +77,7 @@
 		57FB5DC0227C653800408E25 /* VKServicePhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB4227C653700408E25 /* VKServicePhotos.swift */; };
 		57FB5DC1227C653800408E25 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB5227C653700408E25 /* VKService.swift */; };
 		57FB5DC2227C653800408E25 /* VKServiceSecure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB6227C653700408E25 /* VKServiceSecure.swift */; };
-		57FB5DC3227C653800408E25 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB7227C653700408E25 /* RequestFactory.swift */; };
+		57FB5DC3227C653800408E25 /* VKRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB7227C653700408E25 /* VKRequestFactory.swift */; };
 		57FB5DC4227C653800408E25 /* VKServiceLikes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB8227C653700408E25 /* VKServiceLikes.swift */; };
 		57FB5DC5227C653800408E25 /* VKServiceNewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DB9227C653700408E25 /* VKServiceNewsFeed.swift */; };
 		57FB5DC7227C653800408E25 /* VKServiceFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5DBB227C653700408E25 /* VKServiceFriends.swift */; };
@@ -156,6 +158,8 @@
 		572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewUpdater.swift; sourceTree = "<group>"; };
 		572F89A9227FAC0B005CBFB5 /* FriendsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FriendsStoryboard.storyboard; sourceTree = "<group>"; };
 		572F89AB227FAC11005CBFB5 /* GroupsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupsStoryboard.storyboard; sourceTree = "<group>"; };
+		57CB1C932283794600439AF2 /* RequestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGroup.swift; sourceTree = "<group>"; };
+		57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKErrorParser.swift; sourceTree = "<group>"; };
 		57FB5D7A227C61BD00408E25 /* VK-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FB5D7D227C61BD00408E25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57FB5D84227C61BF00408E25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -175,7 +179,7 @@
 		57FB5DB4227C653700408E25 /* VKServicePhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServicePhotos.swift; sourceTree = "<group>"; };
 		57FB5DB5227C653700408E25 /* VKService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
 		57FB5DB6227C653700408E25 /* VKServiceSecure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceSecure.swift; sourceTree = "<group>"; };
-		57FB5DB7227C653700408E25 /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		57FB5DB7227C653700408E25 /* VKRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKRequestFactory.swift; sourceTree = "<group>"; };
 		57FB5DB8227C653700408E25 /* VKServiceLikes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceLikes.swift; sourceTree = "<group>"; };
 		57FB5DB9227C653700408E25 /* VKServiceNewsFeed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceNewsFeed.swift; sourceTree = "<group>"; };
 		57FB5DBB227C653700408E25 /* VKServiceFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKServiceFriends.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				572F8997227F7729005CBFB5 /* GetCacheImageOperation.swift */,
 				572F89A5227F8D43005CBFB5 /* ArrayDifference.swift */,
 				572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */,
+				57CB1C932283794600439AF2 /* RequestGroup.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -424,7 +429,9 @@
 		57FB5DA3227C626A00408E25 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				57FB5DCB227C65BB00408E25 /* Network */,
+				572F8935227CF182005CBFB5 /* VKResponses */,
+				572F8930227CD412005CBFB5 /* VKModels */,
+				57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -445,7 +452,7 @@
 			isa = PBXGroup;
 			children = (
 				57FB5DC8227C655900408E25 /* TokenService */,
-				57FB5DB7227C653700408E25 /* RequestFactory.swift */,
+				57FB5DB7227C653700408E25 /* VKRequestFactory.swift */,
 				572F8905227C788A005CBFB5 /* VKServiceRequestFactory.swift */,
 				57FB5DB5227C653700408E25 /* VKService.swift */,
 				57FB5DB6227C653700408E25 /* VKServiceSecure.swift */,
@@ -467,15 +474,6 @@
 				57FB5DC9227C657400408E25 /* VKTokenService.swift */,
 			);
 			path = TokenService;
-			sourceTree = "<group>";
-		};
-		57FB5DCB227C65BB00408E25 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				572F8935227CF182005CBFB5 /* VKResponses */,
-				572F8930227CD412005CBFB5 /* VKModels */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		57FB5DE0227C670C00408E25 /* Controllers */ = {
@@ -762,7 +760,7 @@
 				572F8947227F08A1005CBFB5 /* VKAvatarModel.swift in Sources */,
 				57FB5DC1227C653800408E25 /* VKService.swift in Sources */,
 				572F8945227EFE20005CBFB5 /* VKGeoModel.swift in Sources */,
-				57FB5DC3227C653800408E25 /* RequestFactory.swift in Sources */,
+				57FB5DC3227C653800408E25 /* VKRequestFactory.swift in Sources */,
 				572F8990227F696B005CBFB5 /* GroupsTableViewCell.swift in Sources */,
 				572F898B227F4FD0005CBFB5 /* GroupsSearchTableViewController.swift in Sources */,
 				57FB5DAC227C630300408E25 /* ErrorParser.swift in Sources */,
@@ -775,6 +773,8 @@
 				572F8960227F35EB005CBFB5 /* NewsFeedTableViewCell.swift in Sources */,
 				57FB5DDB227C66C600408E25 /* VKPhotoModel.swift in Sources */,
 				572F899E227F7E16005CBFB5 /* FriendPhotosViewController.swift in Sources */,
+				57CB1C9622837D4F00439AF2 /* VKErrorParser.swift in Sources */,
+				57CB1C942283794600439AF2 /* RequestGroup.swift in Sources */,
 				572F893F227E3B5E005CBFB5 /* VKErrorResponse.swift in Sources */,
 				57FB5DC7227C653800408E25 /* VKServiceFriends.swift in Sources */,
 				57FB5DBC227C653800408E25 /* VKServiceUsers.swift in Sources */,

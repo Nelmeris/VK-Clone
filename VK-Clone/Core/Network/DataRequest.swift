@@ -7,19 +7,15 @@
 //
 
 import Alamofire
-import SwiftyJSON
 
 extension DataRequest {
     @discardableResult
     func responseCodable<T: Decodable>(
         errorParser: AbstractErrorParser,
         queue: DispatchQueue? = nil,
-        group: RequestGroup? = nil,
-        container: [String]?,
         completionHandler: @escaping (DataResponse<T>) -> Void)
         -> Self {
             let responseSerializer = DataResponseSerializer<T> { _, response, data, error in
-                group?.end()
                 if let error = errorParser.parse(response: response, data: data, error: error) {
                     return .failure(error)
                 }
@@ -27,22 +23,7 @@ extension DataRequest {
                 switch result {
                 case .success(let data):
                     do {
-                        var json = try JSON(data: data)
-                        
-                        if json["response"].exists() {
-                            json = json["response"]
-                        }
-                        if let container = container {
-                            for element in container {
-                                json = json[element]
-                            }
-                        }
-                        
-                        if json.object is T {
-                            return .success(json.object as! T)
-                        }
-                        print(json)
-                        let value = try JSONDecoder().decode(T.self, from: try json.rawData())
+                        let value = try JSONDecoder().decode(T.self, from: data)
                         return .success(value)
                     } catch {
                         let customError = errorParser.parse(error)
@@ -56,3 +37,4 @@ extension DataRequest {
             return response(queue: queue, responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
 }
+

@@ -10,10 +10,12 @@ import Alamofire
 
 extension VKService {
     
-    func getOwnerPhotos(ownerId: Int? = nil, completionHandler: @escaping(DataResponse<[VKPhotoModel]>) -> Void) {
+    func getOwnerPhotos(ownerId: Int? = nil, completionHandler: @escaping([VKPhotoModel]) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetOwnerPhotos(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, ownerId: ownerId)
-            self.request(request: request, container: ["items"], completionHandler: completionHandler)
+            self.request(request: request) { (response: VKResponseItems<[VKPhotoModel]>) in
+                completionHandler(response.items)
+            }
         }
     }
     

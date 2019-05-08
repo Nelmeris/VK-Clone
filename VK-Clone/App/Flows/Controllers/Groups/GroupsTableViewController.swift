@@ -21,9 +21,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
         configureSearchController()
         self.tableView.rowHeight = 55.0
         
-        VKService.shared.getGroups { [weak self] response in
-            guard let strongSelf = self,
-                let newGroups = response.value else { return }
+        VKService.shared.getGroups { [weak self] newGroups in
+            guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.displayedGroups = newGroups
                 strongSelf.groups = newGroups
@@ -45,9 +44,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.shared.getGroups { [weak self] response in
-            guard let strongSelf = self,
-                let newGroups = response.value else { return }
+        VKService.shared.getGroups { [weak self] newGroups in
+            guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.tableView.beginUpdates()
                 strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)
@@ -79,9 +77,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
         let group = controller.groups[index]
         
         VKService.shared.joinGroup(groupId: group.id) { _ in
-            VKService.shared.getGroups { [weak self] response in
-                guard let strongSelf = self,
-                    let newGroups = response.value else { return }
+            VKService.shared.getGroups { [weak self] newGroups in
+                guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
                     strongSelf.tableView.beginUpdates()
                     strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)
@@ -103,9 +100,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { action in
                 VKService.shared.leaveGroup(groupId: strongSelf.displayedGroups[indexPath.row].id) { _ in
-                    VKService.shared.getGroups { [weak self] response in
-                        guard let strongSelf = self,
-                            let newGroups = response.value else { return }
+                    VKService.shared.getGroups { [weak self] newGroups in
+                        guard let strongSelf = self else { return }
                         DispatchQueue.main.async {
                             strongSelf.tableView.beginUpdates()
                             strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)

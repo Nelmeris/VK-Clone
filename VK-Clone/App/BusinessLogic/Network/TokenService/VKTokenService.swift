@@ -15,6 +15,7 @@ struct VKToken {
 }
 
 class VKTokenService {
+    
     private init() {}
     static let shared = VKTokenService()
     
@@ -60,4 +61,5 @@ class VKTokenService {
         }
         completion(token)
     }
+    
 }

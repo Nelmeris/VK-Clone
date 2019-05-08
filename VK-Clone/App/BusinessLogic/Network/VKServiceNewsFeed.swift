@@ -10,7 +10,7 @@ import Alamofire
 
 extension VKService {
     
-    func getNewsFeed(types: [NewsTypes]? = nil, count: Int? = nil, completionHandler: @escaping (DataResponse<VKNewsFeedModel>) -> Void) {
+    func getNewsFeed(types: [NewsTypes]? = nil, count: Int? = nil, completionHandler: @escaping (VKNewsFeedModel) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetNewsFeed(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, filters: types, count: count)
             self.request(request: request, completionHandler: completionHandler)

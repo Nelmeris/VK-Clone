@@ -11,7 +11,6 @@ import UIKit
 class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         VKService.shared.getCurrentUser { user in
-            guard let user = user.value else { return }
             VKService.shared.user = user
         }
     }

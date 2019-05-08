@@ -8,9 +8,9 @@
 
 import Alamofire
 
-class RequestFactory {
+class VKRequestFactory {
     func makeErrorParser() -> AbstractErrorParser {
-        return ErrorParser()
+        return VKErrorParser()
     }
     
     lazy var commonSessionManager: SessionManager = {
@@ -22,8 +22,4 @@ class RequestFactory {
     }()
     
     let sessionQueue = DispatchQueue(label: "VKServiceRequestQueue", qos: .userInteractive, attributes: [.concurrent, .initiallyInactive])
-    
-    func maker() -> (AbstractErrorParser, SessionManager, DispatchQueue) {
-        return (makeErrorParser(), commonSessionManager, sessionQueue)
-    }
 }

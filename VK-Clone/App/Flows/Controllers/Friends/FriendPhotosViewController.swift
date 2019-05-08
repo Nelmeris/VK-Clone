@@ -49,9 +49,8 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func loadPhotos() {
-        VKService.shared.getOwnerPhotos(ownerId: user.id) { [weak self] response in
-            guard let strongSelf = self,
-                let photos = response.value else { return }
+        VKService.shared.getOwnerPhotos(ownerId: user.id) { [weak self] photos in
+            guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.photos = photos
                 strongSelf.photoCollection.reloadData()

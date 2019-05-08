@@ -29,11 +29,10 @@ class VKService: AbstractRequestFactory {
     let requestsDelay: TimeInterval = 1 / 3
     
     private init() {
-        let factory = RequestFactory()
-        let maker = factory.maker()
-        errorParser = maker.0
-        sessionManager = maker.1
-        queue = maker.2
+        let factory = VKRequestFactory()
+        errorParser = factory.makeErrorParser()
+        sessionManager = factory.commonSessionManager
+        queue = factory.sessionQueue
         group = RequestGroup(delay: 1 / 3)
         isStarted = false
         isPaused = false
@@ -47,6 +46,37 @@ class VKService: AbstractRequestFactory {
     
     var isStarted: Bool
     var isPaused: Bool
+    
+    func request<T: Decodable>(request: URLRequestConvertible, completionHandler: @escaping (T) -> Void) {
+        queue?.sync {
+            group.wait()
+            group.start()
+            usleep(group.delayTime)
+            self.sessionManager
+                .request(request)
+                .responseCodable(errorParser: errorParser, queue: queue) { (response: DataResponse<VKResponse<T>>) in
+                    self.group.end()
+                    switch response.result {
+                    case .success(let value):
+                        completionHandler(value.response)
+                    case .failure(let error):
+                        if let error = error as? VKErrorResponse {
+                            switch error.code {
+                            case 5:
+                                VKTokenService.shared.delete()
+                            default:
+                                print(error.message)
+                            }
+                        } else {
+                            print(error)
+                        }
+                        self.request(request: request, completionHandler: completionHandler)
+                    }
+            }
+        }
+        
+    }
+    
 }
 
 extension VKService {

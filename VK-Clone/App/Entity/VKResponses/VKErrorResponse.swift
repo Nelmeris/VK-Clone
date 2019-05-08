@@ -10,6 +10,7 @@ import Foundation
 
 enum VKErrorResponses: Error, LocalizedError {
     case vkError(response: VKErrorResponse)
+    
     public var errorDescription: String? {
         switch self {
         case .vkError(let response):

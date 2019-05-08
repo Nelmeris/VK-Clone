@@ -10,10 +10,12 @@ import Alamofire
 
 extension VKService {
     
-    func getFriends(userId: Int? = nil, order: SortOrders? = .hints, count: Int? = nil, offset: Int? = nil, nameCase: NameCases = .nom, completionHandler: @escaping (DataResponse<[VKUserModel]>) -> Void) {
+    func getFriends(userId: Int? = nil, order: SortOrders? = .hints, count: Int? = nil, offset: Int? = nil, nameCase: NameCases = .nom, completionHandler: @escaping ([VKUserModel]) -> Void) {
         VKTokenService.shared.get { token in
             let request = GetFriends(baseUrl: self.baseUrl, version: self.apiVersion, token: token.value, userId: userId, order: order, count: count, offset: offset, nameCase: nameCase)
-            self.request(request: request, container: ["items"], completionHandler: completionHandler)
+            self.request(request: request) { (response: VKResponseItems<[VKUserModel]>) in
+                completionHandler(response.items)
+            }
         }
     }
     
