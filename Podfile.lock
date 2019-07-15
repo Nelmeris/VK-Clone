@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (4.8.2)
+  - GoogleMaps (3.1.0):
+    - GoogleMaps/Maps (= 3.1.0)
+  - GoogleMaps/Base (3.1.0)
+  - GoogleMaps/Maps (3.1.0):
+    - GoogleMaps/Base
+  - Keychain (0.3.1)
+  - SDWebImage (5.0.2):
+    - SDWebImage/Core (= 5.0.2)
+  - SDWebImage/Core (5.0.2)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.2)
+  - GoogleMaps (~> 3.1.0)
+  - Keychain (~> 0.3.1)
+  - SDWebImage (~> 5.0.2)
+  - SwiftyJSON (~> 5.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - GoogleMaps
+    - Keychain
+    - SDWebImage
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  Keychain: ef812eafcf6593fe4409b07cfecc00b95fb373ed
+  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: 1fb59e3c2a62ac6167202a2db12f086c5e3e349f
+
+COCOAPODS: 1.7.2
