@@ -1,20 +1,21 @@
 //
 //  OnlineStatusUIImageView.swift
-//  VK X
+//  VK-Clone
 //
-//  Created by Артем Куфаев on 15/06/2018.
-//  Copyright © 2018 NONE. All rights reserved.
+//  Created by Artem Kufaev on 15/06/2018.
+//  Copyright © Artem Kufaev. All rights reserved.
 //
 
 import UIKit
 
 class OnlineStatusUIImageView: UIImageView {
-    override func awakeFromNib() {
-        image = nil
-    }
     
     @IBOutlet weak var onlineStatusIconHeight: NSLayoutConstraint!
     @IBOutlet weak var onlineStatusIconWidth: NSLayoutConstraint!
+    
+    override func awakeFromNib() {
+        image = nil
+    }
     
     func initial(_ isOnline: Bool, _ isOnlineMobile: Bool, _ frame: CGRect, _ backgroundColor: UIColor) {
         guard isOnline else {
@@ -29,4 +30,5 @@ class OnlineStatusUIImageView: UIImageView {
         
         layer.cornerRadius = frame.height / (isOnlineMobile ? 15 : 8)
     }
+    
 }

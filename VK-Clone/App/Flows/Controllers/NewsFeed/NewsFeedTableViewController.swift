@@ -10,7 +10,20 @@ import UIKit
 import SDWebImage
 
 class NewsFeedTableViewController: UITableViewController {
+    
     var newsFeed: VKNewsFeedModel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "Новости"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(newPost))
+    }
+    
+    private let newPostSegueId = "ToNewPost"
+    
+    @objc func newPost() {
+        performSegue(withIdentifier: newPostSegueId, sender: self)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

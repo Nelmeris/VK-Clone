@@ -9,6 +9,7 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController, UISearchResultsUpdating {
+    
     var displayedFriends = [VKUserModel]()
     var friends = [VKUserModel]()
     
@@ -16,6 +17,7 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Друзья"
         
         configureSearchController()
         self.tableView.rowHeight = 55.0

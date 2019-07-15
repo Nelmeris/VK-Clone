@@ -1,5 +1,5 @@
 //
-//  DataBasicUITableViewCell.swift
+//  DataBasicTableViewCell.swift
 //  VK-Clone
 //
 //  Created by Artem Kufaev on 15/06/2018.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DataBasicUITableViewCell: UITableViewCell {
-    @IBOutlet weak var name: UILabel!
+class DataBasicTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var photo: RoundUIImageView!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var photo: RoundImageView!
     
     override func awakeFromNib() {
         photo.image = nil
@@ -41,6 +41,7 @@ class DataBasicUITableViewCell: UITableViewCell {
         
         OperationQueue.main.addOperation(setImageToRowOperation)
     }
+    
 }
 
 
@@ -48,9 +49,9 @@ class DataBasicUITableViewCell: UITableViewCell {
 class SetImageToRow: Operation {
     private let indexPath: IndexPath
     private weak var tableView: UITableView?
-    private var cell: DataBasicUITableViewCell?
+    private var cell: DataBasicTableViewCell?
     
-    init(_ cell: DataBasicUITableViewCell, _ indexPath: IndexPath, _ tableView: UITableView) {
+    init(_ cell: DataBasicTableViewCell, _ indexPath: IndexPath, _ tableView: UITableView) {
         self.indexPath = indexPath
         self.tableView = tableView
         self.cell = cell

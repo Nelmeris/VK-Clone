@@ -1,5 +1,5 @@
 //
-//  RoundUIImageView.swift
+//  RoundImageView.swift
 //  VK-Clone
 //
 //  Created by Artem Kufaev on 05/05/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoundUIImageView: UIImageView {
+class RoundImageView: UIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
         clipsToBounds = true

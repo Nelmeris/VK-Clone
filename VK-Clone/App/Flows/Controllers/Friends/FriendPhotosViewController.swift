@@ -1,6 +1,6 @@
 //
 //  FriendPhotosViewController.swift
-//  VK X
+//  VK-Clone
 //
 //  Created by Artem Kufaev on 03.05.2018.
 //  Copyright © 2018 Artem Kufaev. All rights reserved.
@@ -11,7 +11,7 @@ import SDWebImage
 
 class FriendPhotosViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var userImage: RoundUIImageView!
+    @IBOutlet weak var userImage: RoundImageView!
     @IBOutlet weak var userFullName: UILabel!
     @IBOutlet weak var photoCollection: UICollectionView!
     
@@ -25,13 +25,14 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDelegate, UI
         
         userFullName.text = user.fullName
         
+        self.hidesBottomBarWhenPushed = true
+        
         photoCollection.delegate = self
         photoCollection.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         loadPhotos()
     }
     
@@ -56,6 +57,11 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDelegate, UI
                 strongSelf.photoCollection.reloadData()
             }
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = GalleryViewerViewController(images: photos, selectImageId: indexPath.row)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

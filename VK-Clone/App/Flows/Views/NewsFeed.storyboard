@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rRO-2u-asP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7FG-j4-hc0">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,7 +29,7 @@
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lN7-8b-keL">
                                             <rect key="frame" x="16" y="11" width="288" height="281"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultGroupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="YuV-OT-rAG" customClass="RoundUIImageView" customModule="VK_Clone" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultGroupPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="YuV-OT-rAG" customClass="RoundImageView" customModule="VK_Clone" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="15" width="50" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -201,13 +201,9 @@
                             <outlet property="delegate" destination="7FG-j4-hc0" id="0Mq-Sk-nLT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Новости" id="Dfa-Bb-tyt">
-                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="bJW-Tx-DLt">
-                            <connections>
-                                <segue destination="7bT-GX-8UG" kind="modal" id="9mp-qQ-aYe"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <connections>
+                        <segue destination="7bT-GX-8UG" kind="presentation" identifier="ToNewPost" id="X4m-fb-I3w"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siB-qV-8bz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -340,41 +336,11 @@
             </objects>
             <point key="canvasLocation" x="4014.375" y="-779.57746478873241"/>
         </scene>
-        <!--News Feed Navigation-->
-        <scene sceneID="2Z0-GU-HC5">
-            <objects>
-                <navigationController id="rRO-2u-asP" userLabel="News Feed Navigation" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Новости" image="NewsIcon" id="kmM-Vj-t5i">
-                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBarItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k5i-V6-z4J">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.24318033456802368" green="0.47399264574050903" blue="0.70553618669509888" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="7FG-j4-hc0" kind="relationship" relationship="rootViewController" id="Wu3-ML-yWm"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p56-8e-yqc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="830" y="-778"/>
-        </scene>
     </scenes>
     <resources>
         <image name="CommentsIcon" width="128" height="128"/>
         <image name="DefaultGroupPhoto" width="256" height="256"/>
         <image name="LikesOffIcon" width="128" height="128"/>
-        <image name="NewsIcon" width="24" height="24"/>
         <image name="RepostsIcon" width="128" height="128"/>
         <image name="ViewsIcon" width="128" height="128"/>
     </resources>

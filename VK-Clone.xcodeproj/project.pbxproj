@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		435EE7B3325DE74A74D3E2A1 /* Pods_VK_Clone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CFBB685C66E8E8EEA647B95 /* Pods_VK_Clone.framework */; };
+		572DD0F222DC652800C3CE29 /* GalleryViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572DD0F122DC652800C3CE29 /* GalleryViewerViewController.swift */; };
 		572F88F8227C6BA6005CBFB5 /* GlobalMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F88F7227C6BA6005CBFB5 /* GlobalMethods.swift */; };
 		572F88FA227C71C5005CBFB5 /* VKGetSecureTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F88F9227C71C5005CBFB5 /* VKGetSecureTokenResponse.swift */; };
 		572F88FC227C7678005CBFB5 /* VKFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F88FB227C7678005CBFB5 /* VKFriendsTests.swift */; };
@@ -36,13 +37,12 @@
 		572F8949227F2DEB005CBFB5 /* VKPostWallResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8948227F2DEB005CBFB5 /* VKPostWallResponse.swift */; };
 		572F894B227F2EC6005CBFB5 /* VKPhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F894A227F2EC6005CBFB5 /* VKPhotosTests.swift */; };
 		572F8956227F35E4005CBFB5 /* NewsFeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F8951227F35E4005CBFB5 /* NewsFeed.storyboard */; };
-		572F8957227F35E4005CBFB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F8952227F35E4005CBFB5 /* Main.storyboard */; };
 		572F8960227F35EB005CBFB5 /* NewsFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8958227F35EA005CBFB5 /* NewsFeedTableViewCell.swift */; };
 		572F897A227F35F5005CBFB5 /* NewsFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8970227F35F5005CBFB5 /* NewsFeedTableViewController.swift */; };
 		572F897B227F35F5005CBFB5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8971227F35F5005CBFB5 /* MainTabBarController.swift */; };
 		572F897D227F3B9D005CBFB5 /* VKAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F897C227F3B9C005CBFB5 /* VKAuthorizationViewController.swift */; };
 		572F897F227F46B6005CBFB5 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F897E227F46B6005CBFB5 /* NewPostViewController.swift */; };
-		572F8981227F46DA005CBFB5 /* UITextViewPostholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8980227F46DA005CBFB5 /* UITextViewPostholder.swift */; };
+		572F8981227F46DA005CBFB5 /* UITextViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8980227F46DA005CBFB5 /* UITextViewPlaceholder.swift */; };
 		572F8983227F4710005CBFB5 /* MapViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8982227F4710005CBFB5 /* MapViewViewController.swift */; };
 		572F8985227F47F2005CBFB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572F8984227F47F2005CBFB5 /* GoogleService-Info.plist */; };
 		572F898A227F4FD0005CBFB5 /* GroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8987227F4FCF005CBFB5 /* GroupsTableViewController.swift */; };
@@ -50,16 +50,16 @@
 		572F898C227F4FD0005CBFB5 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8989227F4FD0005CBFB5 /* FriendsTableViewController.swift */; };
 		572F8990227F696B005CBFB5 /* GroupsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F898E227F696B005CBFB5 /* GroupsTableViewCell.swift */; };
 		572F8991227F696B005CBFB5 /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F898F227F696B005CBFB5 /* FriendsTableViewCell.swift */; };
-		572F8993227F69DF005CBFB5 /* DataBasicUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8992227F69DE005CBFB5 /* DataBasicUITableViewCell.swift */; };
-		572F8995227F6A53005CBFB5 /* RoundUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8994227F6A53005CBFB5 /* RoundUIImageView.swift */; };
+		572F8993227F69DF005CBFB5 /* DataBasicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8992227F69DE005CBFB5 /* DataBasicTableViewCell.swift */; };
+		572F8995227F6A53005CBFB5 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8994227F6A53005CBFB5 /* RoundImageView.swift */; };
 		572F8998227F7729005CBFB5 /* GetCacheImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8997227F7729005CBFB5 /* GetCacheImageOperation.swift */; };
-		572F899A227F7C16005CBFB5 /* OnlineStatusUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8999227F7C16005CBFB5 /* OnlineStatusUIImageView.swift */; };
-		572F899C227F7E0B005CBFB5 /* FriendPhotosUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F899B227F7E0B005CBFB5 /* FriendPhotosUICollectionViewCell.swift */; };
+		572F899A227F7C16005CBFB5 /* OnlineStatusImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F8999227F7C16005CBFB5 /* OnlineStatusImageView.swift */; };
+		572F899C227F7E0B005CBFB5 /* FriendPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F899B227F7E0B005CBFB5 /* FriendPhotosCollectionViewCell.swift */; };
 		572F899E227F7E16005CBFB5 /* FriendPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F899D227F7E15005CBFB5 /* FriendPhotosViewController.swift */; };
 		572F89A6227F8D43005CBFB5 /* ArrayDifference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F89A5227F8D43005CBFB5 /* ArrayDifference.swift */; };
 		572F89A8227FA91C005CBFB5 /* UITableViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */; };
-		572F89AA227FAC0B005CBFB5 /* FriendsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89A9227FAC0B005CBFB5 /* FriendsStoryboard.storyboard */; };
-		572F89AC227FAC11005CBFB5 /* GroupsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89AB227FAC11005CBFB5 /* GroupsStoryboard.storyboard */; };
+		572F89AA227FAC0B005CBFB5 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89A9227FAC0B005CBFB5 /* Friends.storyboard */; };
+		572F89AC227FAC11005CBFB5 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89AB227FAC11005CBFB5 /* Groups.storyboard */; };
 		57CB1C942283794600439AF2 /* RequestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C932283794600439AF2 /* RequestGroup.swift */; };
 		57CB1C9622837D4F00439AF2 /* VKErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */; };
 		57FB5D7E227C61BD00408E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5D7D227C61BD00408E25 /* AppDelegate.swift */; };
@@ -106,6 +106,7 @@
 /* Begin PBXFileReference section */
 		0CFBB685C66E8E8EEA647B95 /* Pods_VK_Clone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_Clone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		330B2D3EC8ED4B16CADB0BC0 /* Pods_VK_CloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_CloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		572DD0F122DC652800C3CE29 /* GalleryViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewerViewController.swift; sourceTree = "<group>"; };
 		572F88F7227C6BA6005CBFB5 /* GlobalMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalMethods.swift; sourceTree = "<group>"; };
 		572F88F9227C71C5005CBFB5 /* VKGetSecureTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGetSecureTokenResponse.swift; sourceTree = "<group>"; };
 		572F88FB227C7678005CBFB5 /* VKFriendsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKFriendsTests.swift; sourceTree = "<group>"; };
@@ -134,13 +135,12 @@
 		572F8948227F2DEB005CBFB5 /* VKPostWallResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPostWallResponse.swift; sourceTree = "<group>"; };
 		572F894A227F2EC6005CBFB5 /* VKPhotosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKPhotosTests.swift; sourceTree = "<group>"; };
 		572F8951227F35E4005CBFB5 /* NewsFeed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewsFeed.storyboard; sourceTree = "<group>"; };
-		572F8952227F35E4005CBFB5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		572F8958227F35EA005CBFB5 /* NewsFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewCell.swift; sourceTree = "<group>"; };
 		572F8970227F35F5005CBFB5 /* NewsFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFeedTableViewController.swift; sourceTree = "<group>"; };
 		572F8971227F35F5005CBFB5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		572F897C227F3B9C005CBFB5 /* VKAuthorizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAuthorizationViewController.swift; sourceTree = "<group>"; };
 		572F897E227F46B6005CBFB5 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
-		572F8980227F46DA005CBFB5 /* UITextViewPostholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPostholder.swift; sourceTree = "<group>"; };
+		572F8980227F46DA005CBFB5 /* UITextViewPlaceholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextViewPlaceholder.swift; sourceTree = "<group>"; };
 		572F8982227F4710005CBFB5 /* MapViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewViewController.swift; sourceTree = "<group>"; };
 		572F8984227F47F2005CBFB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572F8987227F4FCF005CBFB5 /* GroupsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsTableViewController.swift; sourceTree = "<group>"; };
@@ -148,16 +148,16 @@
 		572F8989227F4FD0005CBFB5 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		572F898E227F696B005CBFB5 /* GroupsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsTableViewCell.swift; sourceTree = "<group>"; };
 		572F898F227F696B005CBFB5 /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
-		572F8992227F69DE005CBFB5 /* DataBasicUITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBasicUITableViewCell.swift; sourceTree = "<group>"; };
-		572F8994227F6A53005CBFB5 /* RoundUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundUIImageView.swift; sourceTree = "<group>"; };
+		572F8992227F69DE005CBFB5 /* DataBasicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBasicTableViewCell.swift; sourceTree = "<group>"; };
+		572F8994227F6A53005CBFB5 /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		572F8997227F7729005CBFB5 /* GetCacheImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCacheImageOperation.swift; sourceTree = "<group>"; };
-		572F8999227F7C16005CBFB5 /* OnlineStatusUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineStatusUIImageView.swift; sourceTree = "<group>"; };
-		572F899B227F7E0B005CBFB5 /* FriendPhotosUICollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPhotosUICollectionViewCell.swift; sourceTree = "<group>"; };
+		572F8999227F7C16005CBFB5 /* OnlineStatusImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineStatusImageView.swift; sourceTree = "<group>"; };
+		572F899B227F7E0B005CBFB5 /* FriendPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		572F899D227F7E15005CBFB5 /* FriendPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPhotosViewController.swift; sourceTree = "<group>"; };
 		572F89A5227F8D43005CBFB5 /* ArrayDifference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayDifference.swift; sourceTree = "<group>"; };
 		572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewUpdater.swift; sourceTree = "<group>"; };
-		572F89A9227FAC0B005CBFB5 /* FriendsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = FriendsStoryboard.storyboard; sourceTree = "<group>"; };
-		572F89AB227FAC11005CBFB5 /* GroupsStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GroupsStoryboard.storyboard; sourceTree = "<group>"; };
+		572F89A9227FAC0B005CBFB5 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
+		572F89AB227FAC11005CBFB5 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
 		57CB1C932283794600439AF2 /* RequestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGroup.swift; sourceTree = "<group>"; };
 		57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKErrorParser.swift; sourceTree = "<group>"; };
 		57FB5D7A227C61BD00408E25 /* VK-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +218,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		572DD0F022DC53E700C3CE29 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				572F8999227F7C16005CBFB5 /* OnlineStatusImageView.swift */,
+				572F8992227F69DE005CBFB5 /* DataBasicTableViewCell.swift */,
+				572F8980227F46DA005CBFB5 /* UITextViewPlaceholder.swift */,
+				572F8994227F6A53005CBFB5 /* RoundImageView.swift */,
+				572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		572F8930227CD412005CBFB5 /* VKModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +266,7 @@
 			children = (
 				572F8958227F35EA005CBFB5 /* NewsFeedTableViewCell.swift */,
 				572F898F227F696B005CBFB5 /* FriendsTableViewCell.swift */,
-				572F899B227F7E0B005CBFB5 /* FriendPhotosUICollectionViewCell.swift */,
+				572F899B227F7E0B005CBFB5 /* FriendPhotosCollectionViewCell.swift */,
 				572F898E227F696B005CBFB5 /* GroupsTableViewCell.swift */,
 			);
 			path = Cells;
@@ -263,10 +275,9 @@
 		572F894D227F358F005CBFB5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				572F8952227F35E4005CBFB5 /* Main.storyboard */,
 				572F8951227F35E4005CBFB5 /* NewsFeed.storyboard */,
-				572F89A9227FAC0B005CBFB5 /* FriendsStoryboard.storyboard */,
-				572F89AB227FAC11005CBFB5 /* GroupsStoryboard.storyboard */,
+				572F89A9227FAC0B005CBFB5 /* Friends.storyboard */,
+				572F89AB227FAC11005CBFB5 /* Groups.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -302,6 +313,7 @@
 			children = (
 				572F8989227F4FD0005CBFB5 /* FriendsTableViewController.swift */,
 				572F899D227F7E15005CBFB5 /* FriendPhotosViewController.swift */,
+				572DD0F122DC652800C3CE29 /* GalleryViewerViewController.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -394,15 +406,11 @@
 		57FB5DA0227C621800408E25 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				572F8999227F7C16005CBFB5 /* OnlineStatusUIImageView.swift */,
+				572DD0F022DC53E700C3CE29 /* UI */,
 				57FB5DA4227C62CB00408E25 /* Network */,
-				572F8992227F69DE005CBFB5 /* DataBasicUITableViewCell.swift */,
-				572F8980227F46DA005CBFB5 /* UITextViewPostholder.swift */,
 				572F88F7227C6BA6005CBFB5 /* GlobalMethods.swift */,
-				572F8994227F6A53005CBFB5 /* RoundUIImageView.swift */,
 				572F8997227F7729005CBFB5 /* GetCacheImageOperation.swift */,
 				572F89A5227F8D43005CBFB5 /* ArrayDifference.swift */,
-				572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */,
 				57CB1C932283794600439AF2 /* RequestGroup.swift */,
 			);
 			path = Core;
@@ -593,13 +601,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572F8957227F35E4005CBFB5 /* Main.storyboard in Resources */,
 				57FB5D88227C61BF00408E25 /* LaunchScreen.storyboard in Resources */,
 				572F8985227F47F2005CBFB5 /* GoogleService-Info.plist in Resources */,
-				572F89AC227FAC11005CBFB5 /* GroupsStoryboard.storyboard in Resources */,
+				572F89AC227FAC11005CBFB5 /* Groups.storyboard in Resources */,
 				57FB5D85227C61BF00408E25 /* Assets.xcassets in Resources */,
 				572F8956227F35E4005CBFB5 /* NewsFeed.storyboard in Resources */,
-				572F89AA227FAC0B005CBFB5 /* FriendsStoryboard.storyboard in Resources */,
+				572F89AA227FAC0B005CBFB5 /* Friends.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,16 +626,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -663,22 +665,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Keychain/Keychain.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Keychain.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-VK-Clone/Pods-VK-Clone-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -714,13 +705,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				572F8993227F69DF005CBFB5 /* DataBasicUITableViewCell.swift in Sources */,
+				572F8993227F69DF005CBFB5 /* DataBasicTableViewCell.swift in Sources */,
 				57FB5DDE227C66C600408E25 /* VKCheckTokenResponse.swift in Sources */,
 				57FB5DC0227C653800408E25 /* VKServicePhotos.swift in Sources */,
-				572F8981227F46DA005CBFB5 /* UITextViewPostholder.swift in Sources */,
+				572F8981227F46DA005CBFB5 /* UITextViewPlaceholder.swift in Sources */,
 				572F8934227CE8A6005CBFB5 /* VKDocModel.swift in Sources */,
 				57FB5DDD227C66C600408E25 /* VKPhotoSizeModel.swift in Sources */,
 				57FB5DBF227C653800408E25 /* VKServiceWall.swift in Sources */,
+				572DD0F222DC652800C3CE29 /* GalleryViewerViewController.swift in Sources */,
 				572F8998227F7729005CBFB5 /* GetCacheImageOperation.swift in Sources */,
 				57FB5DAB227C630300408E25 /* AbstractErrorParser.swift in Sources */,
 				57FB5DD7227C66C600408E25 /* VKGroupModel.swift in Sources */,
@@ -736,8 +728,8 @@
 				572F8906227C788A005CBFB5 /* VKServiceRequestFactory.swift in Sources */,
 				572F8991227F696B005CBFB5 /* FriendsTableViewCell.swift in Sources */,
 				57FB5DBE227C653800408E25 /* VKServiceGroups.swift in Sources */,
-				572F899A227F7C16005CBFB5 /* OnlineStatusUIImageView.swift in Sources */,
-				572F8995227F6A53005CBFB5 /* RoundUIImageView.swift in Sources */,
+				572F899A227F7C16005CBFB5 /* OnlineStatusImageView.swift in Sources */,
+				572F8995227F6A53005CBFB5 /* RoundImageView.swift in Sources */,
 				572F8983227F4710005CBFB5 /* MapViewViewController.swift in Sources */,
 				57FB5DC5227C653800408E25 /* VKServiceNewsFeed.swift in Sources */,
 				57FB5DD8227C66C600408E25 /* VKLikeResponse.swift in Sources */,
@@ -755,7 +747,7 @@
 				57FB5DCA227C657400408E25 /* VKTokenService.swift in Sources */,
 				572F8908227C80BF005CBFB5 /* VKResponse.swift in Sources */,
 				572F893B227D06B9005CBFB5 /* VKGraffitiModel.swift in Sources */,
-				572F899C227F7E0B005CBFB5 /* FriendPhotosUICollectionViewCell.swift in Sources */,
+				572F899C227F7E0B005CBFB5 /* FriendPhotosCollectionViewCell.swift in Sources */,
 				572F893D227D0792005CBFB5 /* VKStickerModel.swift in Sources */,
 				572F8947227F08A1005CBFB5 /* VKAvatarModel.swift in Sources */,
 				57FB5DC1227C653800408E25 /* VKService.swift in Sources */,

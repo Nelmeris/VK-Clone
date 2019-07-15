@@ -8,6 +8,6 @@
 
 import UIKit
 
-class GroupsTableViewCell: DataBasicUITableViewCell {
+class GroupsTableViewCell: DataBasicTableViewCell {
     @IBOutlet weak var participantsCount: UILabel!
 }

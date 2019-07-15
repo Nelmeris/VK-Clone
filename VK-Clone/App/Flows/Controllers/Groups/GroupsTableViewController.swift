@@ -17,6 +17,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Сообщества"
         
         configureSearchController()
         self.tableView.rowHeight = 55.0

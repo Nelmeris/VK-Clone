@@ -11,7 +11,7 @@ import Keychain
 
 class NewsFeedTableViewCell: UITableViewCell {
     @IBOutlet weak var authorName: UILabel!
-    @IBOutlet weak var authorPhoto: RoundUIImageView!
+    @IBOutlet weak var authorPhoto: RoundImageView!
     
     @IBOutlet weak var postText: UITextView! {
         didSet {

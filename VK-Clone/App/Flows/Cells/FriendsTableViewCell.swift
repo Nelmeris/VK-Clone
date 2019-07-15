@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsTableViewCell: DataBasicUITableViewCell {
+class FriendsTableViewCell: DataBasicTableViewCell {
     @IBOutlet weak var onlineStatusIcon: OnlineStatusUIImageView!
     
     override func prepareForReuse() {

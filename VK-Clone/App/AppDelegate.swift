@@ -13,13 +13,39 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    let googleMapsApiKey = "AIzaSyApJcMOnEjjeQzYz2255SQAuEg-TrLlMNE"
+    
+    let googleMapsAPIKey = "AIzaSyApJcMOnEjjeQzYz2255SQAuEg-TrLlMNE"
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        GMSServices.provideAPIKey(googleMapsApiKey)
-        VKService.shared.start()
+        window = UIWindow(frame: UIScreen.main.bounds)
+        guard let window = window else { return false }
+        
+        configureServices()
+        customizeAppereance()
+        
+        let tabBarController = MainTabBarController()
+        
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+        
         return true
+    }
+    
+    func configureServices() {
+        GMSServices.provideAPIKey(googleMapsAPIKey)
+        VKService.shared.start()
+    }
+    
+    func customizeAppereance() {
+        let navControlApp = UINavigationBar.appearance()
+        let navColor = UIColor(named: "NavigationColor")!
+        let navSecondColor = UIColor(named: "NavigationSecondColor")!
+        navControlApp.backgroundColor = navColor
+        navControlApp.tintColor = navSecondColor
+        navControlApp.titleTextAttributes = [NSAttributedString.Key.foregroundColor: navSecondColor]
+        navControlApp.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: navSecondColor]
+        navControlApp.isTranslucent = false
+        navControlApp.barTintColor = navColor
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
