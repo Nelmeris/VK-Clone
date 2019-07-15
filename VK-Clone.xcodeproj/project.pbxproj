@@ -230,6 +230,15 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		572DD10522DC7E1100C3CE29 /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				57FB5D89227C61BF00408E25 /* Info.plist */,
+				572F8984227F47F2005CBFB5 /* GoogleService-Info.plist */,
+			);
+			path = Environments;
+			sourceTree = "<group>";
+		};
 		572F8930227CD412005CBFB5 /* VKModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,7 +362,7 @@
 				57FB5D9D227C620300408E25 /* App */,
 				57FB5DA0227C621800408E25 /* Core */,
 				57FB5D9E227C620900408E25 /* Resources */,
-				57FB5D9F227C621000408E25 /* Enviroments */,
+				572DD10522DC7E1100C3CE29 /* Environments */,
 			);
 			path = "VK-Clone";
 			sourceTree = "<group>";
@@ -392,15 +401,6 @@
 				57FB5D86227C61BF00408E25 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		57FB5D9F227C621000408E25 /* Enviroments */ = {
-			isa = PBXGroup;
-			children = (
-				57FB5D89227C61BF00408E25 /* Info.plist */,
-				572F8984227F47F2005CBFB5 /* GoogleService-Info.plist */,
-			);
-			path = Enviroments;
 			sourceTree = "<group>";
 		};
 		57FB5DA0227C621800408E25 /* Core */ = {
@@ -936,7 +936,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
-				INFOPLIST_FILE = "VK-Clone/Enviroments/Info.plist";
+				INFOPLIST_FILE = "VK-Clone/Environments/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -955,7 +955,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YX6VKW92JQ;
-				INFOPLIST_FILE = "VK-Clone/Enviroments/Info.plist";
+				INFOPLIST_FILE = "VK-Clone/Environments/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

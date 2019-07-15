@@ -21,11 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else { return false }
         
         configureServices()
-        customizeAppereance()
+        customizeNavigationAppereance()
         
-        let tabBarController = MainTabBarController()
-        
-        window.rootViewController = tabBarController
+        window.rootViewController = MainTabBarController()
         window.makeKeyAndVisible()
         
         return true
@@ -36,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VKService.shared.start()
     }
     
-    func customizeAppereance() {
+    func customizeNavigationAppereance() {
         let navControlApp = UINavigationBar.appearance()
         let navColor = UIColor(named: "NavigationColor")!
         let navSecondColor = UIColor(named: "NavigationSecondColor")!
