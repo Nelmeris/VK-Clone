@@ -10,8 +10,9 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController, UISearchResultsUpdating {
     
-    var displayedFriends = [VKUserModel]()
     var friends = [VKUserModel]()
+    var displayedFriends = [VKUserModel]()
+    var viewModels = [FriendViewModel]()
     
     var searchController = UISearchController(searchResultsController: nil)
     
@@ -25,8 +26,9 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
         VKService.shared.getFriends { [weak self] newFriends in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
-                strongSelf.displayedFriends = newFriends
                 strongSelf.friends = newFriends
+                strongSelf.displayedFriends = newFriends
+                strongSelf.viewModels = FriendViewModelFactory().constructViewModels(from: newFriends)
                 strongSelf.tableView.reloadData()
             }
         }
@@ -40,8 +42,9 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
             DispatchQueue.main.async {
                 strongSelf.tableView.beginUpdates()
                 strongSelf.tableView.updateData(data: strongSelf.friends, newData: newFriends)
-                strongSelf.displayedFriends = newFriends
+                strongSelf.viewModels = FriendViewModelFactory().constructViewModels(from: newFriends)
                 strongSelf.friends = newFriends
+                strongSelf.displayedFriends = newFriends
                 strongSelf.tableView.endUpdates()
             }
         }
@@ -50,27 +53,31 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
     func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Искать..."
-        searchController.searchBar.isTranslucent = false
+        
+        let scb = searchController.searchBar
+        
+        scb.placeholder = "Искать..."
+        scb.isTranslucent = false
+        scb.tintColor = .white
+        scb.setValue("Отмена", forKey:"cancelButtonText")
+        
+        if let textfield = scb.value(forKey: "searchField") as? UITextField {
+            textfield.backgroundColor = .white
+        }
+        
+        navigationItem.hidesSearchBarWhenScrolling = true
         
         navigationItem.searchController = searchController
-        
-        definesPresentationContext = true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedFriends.count
+        return viewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let friend = displayedFriends[indexPath.row]
+        let model = viewModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend") as! FriendsTableViewCell
-        
-        cell.name.text = friend.firstName + " " + friend.lastName
-        
-        cell.setPhoto(friend.avatar.photo100.absoluteString)
-        cell.onlineStatusIcon.initial(friend.isOnline, friend.isOnlineMobile, cell.photo.frame, tableView.backgroundColor!)
-        
+        cell.configure(with: model)
         return cell
     }
     
@@ -87,6 +94,7 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
             self.tableView.beginUpdates()
             self.tableView.updateData(data: self.displayedFriends, newData: self.friends, with: .none)
             displayedFriends = friends
+            viewModels = FriendViewModelFactory().constructViewModels(from: friends)
             self.tableView.endUpdates()
             return
         }
@@ -96,6 +104,7 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
         displayedFriends = friends.filter({ friend -> Bool in
             return friend.fullName.lowercased().contains(searchText.lowercased())
         })
+        viewModels = FriendViewModelFactory().constructViewModels(from: displayedFriends)
         self.tableView.updateData(data: oldFriends, newData: displayedFriends, with: .none)
         self.tableView.endUpdates()
     }

@@ -55,23 +55,26 @@ class VKService: AbstractRequestFactory {
             self.sessionManager
                 .request(request)
                 .responseCodable(errorParser: errorParser, queue: queue) { (response: DataResponse<VKResponse<T>>) in
-                    self.group.end()
                     switch response.result {
                     case .success(let value):
                         completionHandler(value.response)
                     case .failure(let error):
-                        if let error = error as? VKErrorResponse {
-                            switch error.code {
-                            case 5:
-                                VKTokenService.shared.delete()
-                            default:
-                                print(error.message)
+                        if let error = error as? VKErrorResponses {
+                            switch error {
+                            case .vkError(response: let response):
+                                switch response.code {
+                                case 5:
+                                    VKTokenService.shared.delete()
+                                default:
+                                    print(response.message)
+                                }
                             }
                         } else {
                             print(error)
                         }
                         self.request(request: request, completionHandler: completionHandler)
                     }
+                    self.group.end()
             }
         }
         

@@ -19,7 +19,6 @@ class DataBasicTableViewCell: UITableViewCell {
     
     func setPhoto(_ photo: String) {
         guard photo != "" else { return }
-        
         self.photo.sd_setImage(with: URL(string: photo), completed: nil)
     }
     

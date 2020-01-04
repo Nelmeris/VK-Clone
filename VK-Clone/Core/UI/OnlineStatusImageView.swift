@@ -17,18 +17,16 @@ class OnlineStatusUIImageView: UIImageView {
         image = nil
     }
     
-    func initial(_ isOnline: Bool, _ isOnlineMobile: Bool, _ frame: CGRect, _ backgroundColor: UIColor) {
-        guard isOnline else {
-            return
-        }
+    func initial(_ onlineType: OnlineType) {
+        guard onlineType != .offline else { return }
         
-        image = (isOnlineMobile ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon"))
-        self.backgroundColor = backgroundColor
+        image = (onlineType == .mobile ? #imageLiteral(resourceName: "OnlineMobileIcon") : #imageLiteral(resourceName: "OnlineIcon"))
+        self.backgroundColor = UIColor.white
         
-        onlineStatusIconWidth.constant = frame.height / (isOnlineMobile ? 4.5 : 4)
-        onlineStatusIconHeight.constant = frame.height / (isOnlineMobile ? 3.5 : 4)
+        onlineStatusIconWidth.constant = 40 / (onlineType == .mobile ? 4.5 : 4)
+        onlineStatusIconHeight.constant = 40 / (onlineType == .mobile ? 3.5 : 4)
         
-        layer.cornerRadius = frame.height / (isOnlineMobile ? 15 : 8)
+        layer.cornerRadius = 40 / (onlineType == .mobile ? 15 : 8)
     }
     
 }

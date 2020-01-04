@@ -42,17 +42,6 @@ class NewsFeedTableViewCell: UITableViewCell {
         postPhotoHeight.constant = 0
     }
     
-    func setText(_ text: String) {
-        postText.isScrollEnabled = true
-        postText.text = text
-        if text == "" {
-            postTextHC.constant = 0
-        } else {
-            postTextHC.constant = postText.contentSize.height
-        }
-        postText.isScrollEnabled = false
-    }
-    
     @IBAction func LikesClick(_ sender: Any) {
         let isLike = likesIcon.image == #imageLiteral(resourceName: "LikesIcon")
         
@@ -83,68 +72,81 @@ class NewsFeedTableViewCell: UITableViewCell {
 }
 
 extension NewsFeedTableViewCell {
-    func setLikes(_ news: VKNewsModel) {
-        guard let likes = news.likes, likes.isUserLike else { return }
+    func configure(with viewModel: NewsViewModel) {
+        if let postId = viewModel.postId {
+            self.postId = postId
+        }
+        self.authorId = viewModel.author.id
+        
+        if let text = viewModel.text {
+            setText(text)
+        }
+        if let likes = viewModel.likes {
+            setLikes(likes);
+        }
+        
+        if let comments = viewModel.comments {
+            setCommentsCount(comments)
+        }
+        
+        if let likes = viewModel.likes {
+            likesCount.text = getShortCount(likes.count)
+        }
+        if let reposts = viewModel.repostsCount {
+            repostsCount.text = getShortCount(reposts)
+        }
+        if let views = viewModel.viewsCount {
+            viewsCount.text = getShortCount(views)
+        }
+        
+        self.setAuthorData(with: viewModel.author)
+        
+        viewModel.attachments?.forEach(attachmentProcessing);
+    }
+    
+    private func setText(_ text: String) {
+        postText.isScrollEnabled = true
+        postText.text = text
+        if text == "" {
+            postTextHC.constant = 0
+        } else {
+            postTextHC.constant = postText.contentSize.height
+        }
+        postText.isScrollEnabled = false
+    }
+    
+    private func setLikes(_ likes: VKLikesModel) {
+        guard likes.isUserLike else { return }
         
         likesIcon.image = #imageLiteral(resourceName: "LikesIcon")
     }
     
-    func setCommentsCount(_ news: VKNewsModel) {
-        guard let comments = news.comments, comments.canPost && comments.count != 0 else { return }
+    private func setCommentsCount(_ comments: VKCommentsModel) {
+        guard comments.canPost && comments.count != 0 else { return }
         
         commentsCount.text = getShortCount(comments.count)
         commentsIcon.image = #imageLiteral(resourceName: "CommentsIcon")
     }
     
-    func setAuthorData(_ newsFeed: VKNewsFeedModel, _ newsIndex: Int) {
-        let sourceData = getSourceData(newsFeed, newsIndex)
-        
+    private func setAuthorData(with sourceData: (id: Int, name: String, photoUrl: URL?)) {
         if let photoUrl = sourceData.photoUrl {
             authorPhoto.sd_setImage(with: photoUrl, completed: nil)
         } else {
-            authorPhoto.image = (newsFeed.news[newsIndex].sourceId > 0 ? #imageLiteral(resourceName: "DefaultUserPhoto") : #imageLiteral(resourceName: "DefaultGroupPhoto"))
+            authorPhoto.image = (sourceData.id > 0 ? #imageLiteral(resourceName: "DefaultUserPhoto") : #imageLiteral(resourceName: "DefaultGroupPhoto"))
         }
         
         authorName.text = sourceData.name
     }
     
-    func attachmentProcessing(_ attachments: [VKAttachmentModel]?) {
-        guard let attachments = attachments else {
-            return
-        }
-        for attachment in attachments {
-            switch attachment.type {
-            case .photo:
-                let size = (attachment.attachment as! VKPhotoModel).sizes.last!
-                
-                postPhotoHeight.constant = (frame.width - 30) * CGFloat(size.height) / CGFloat(size.width)
-                postPhoto.sd_setImage(with: size.url, completed: nil)
-                
-            default: break
-            }
-        }
-    }
-    
-    func getSourceData(_ newsFeed: VKNewsFeedModel, _ newsIndex: Int) -> (name: String, photoUrl: URL?) {
-        let name: String
-        let photoUrl: URL?
-        
-        if newsFeed.news[newsIndex].sourceId > 0 {
-            let source = newsFeed.profiles.filter { profile -> Bool in
-                profile.id == newsFeed.news[newsIndex].sourceId
-                }.first!
+    func attachmentProcessing(_ attachment: VKAttachmentModel) {
+        switch attachment.type {
+        case .photo:
+            let size = (attachment.attachment as! VKPhotoModel).sizes.last!
             
-            photoUrl = source.avatar.photo100
-            name = source.firstName + " " + source.lastName
-        } else {
-            let source = newsFeed.groups.filter { group -> Bool in
-                -group.id == newsFeed.news[newsIndex].sourceId
-                }.first!
+            postPhotoHeight.constant = (frame.width - 30) * CGFloat(size.height) / CGFloat(size.width)
+            postPhoto.sd_setImage(with: size.url, completed: nil)
             
-            photoUrl = source.avatar.photo100
-            name = source.name
+        default: break
         }
-        
-        return (name, photoUrl)
     }
 }

@@ -15,4 +15,10 @@ class FriendsTableViewCell: DataBasicTableViewCell {
         onlineStatusIcon.image = nil
         onlineStatusIcon.backgroundColor = nil
     }
+    
+    func configure(with viewModel: FriendViewModel) {
+        name.text = viewModel.name
+        setPhoto(viewModel.photo)
+        onlineStatusIcon.initial(viewModel.onlineIcon)
+    }
 }
