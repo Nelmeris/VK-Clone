@@ -60,6 +60,7 @@
 		572F89A8227FA91C005CBFB5 /* UITableViewUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */; };
 		572F89AA227FAC0B005CBFB5 /* Friends.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89A9227FAC0B005CBFB5 /* Friends.storyboard */; };
 		572F89AC227FAC11005CBFB5 /* Groups.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 572F89AB227FAC11005CBFB5 /* Groups.storyboard */; };
+		577B8E7E23C10F9500417158 /* ColorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577B8E7D23C10F9500417158 /* ColorStore.swift */; };
 		57CB1C942283794600439AF2 /* RequestGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C932283794600439AF2 /* RequestGroup.swift */; };
 		57CB1C9622837D4F00439AF2 /* VKErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */; };
 		57FB5D7E227C61BD00408E25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FB5D7D227C61BD00408E25 /* AppDelegate.swift */; };
@@ -158,6 +159,7 @@
 		572F89A7227FA91C005CBFB5 /* UITableViewUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewUpdater.swift; sourceTree = "<group>"; };
 		572F89A9227FAC0B005CBFB5 /* Friends.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Friends.storyboard; sourceTree = "<group>"; };
 		572F89AB227FAC11005CBFB5 /* Groups.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Groups.storyboard; sourceTree = "<group>"; };
+		577B8E7D23C10F9500417158 /* ColorStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStore.swift; sourceTree = "<group>"; };
 		57CB1C932283794600439AF2 /* RequestGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestGroup.swift; sourceTree = "<group>"; };
 		57CB1C9522837D4F00439AF2 /* VKErrorParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKErrorParser.swift; sourceTree = "<group>"; };
 		57FB5D7A227C61BD00408E25 /* VK-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VK-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,6 +414,7 @@
 				572F8997227F7729005CBFB5 /* GetCacheImageOperation.swift */,
 				572F89A5227F8D43005CBFB5 /* ArrayDifference.swift */,
 				57CB1C932283794600439AF2 /* RequestGroup.swift */,
+				577B8E7D23C10F9500417158 /* ColorStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				57CB1C9622837D4F00439AF2 /* VKErrorParser.swift in Sources */,
 				57CB1C942283794600439AF2 /* RequestGroup.swift in Sources */,
 				572F893F227E3B5E005CBFB5 /* VKErrorResponse.swift in Sources */,
+				577B8E7E23C10F9500417158 /* ColorStore.swift in Sources */,
 				57FB5DC7227C653800408E25 /* VKServiceFriends.swift in Sources */,
 				57FB5DBC227C653800408E25 /* VKServiceUsers.swift in Sources */,
 				572F897F227F46B6005CBFB5 /* NewPostViewController.swift in Sources */,

@@ -27,7 +27,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         tapScreen.cancelsTouchesInView = false
         view.addGestureRecognizer(tapScreen)
         
-        self.view.backgroundColor = UIColor(red: 62/255, green: 121/255, blue: 180/255, alpha: 1)
+        self.view.backgroundColor = UIColor.rgba(62, 121, 180, a: 1)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -49,7 +49,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
         var items = [UIBarButtonItem]()
         
         let place = UIBarButtonItem(image: #imageLiteral(resourceName: "LocationIcon"), style: .plain, target: self, action: #selector(addPlacement))
-        place.tintColor = UIColor(red: 13/255, green: 128/255, blue: 251/255, alpha: 1)
+        place.tintColor = UIColor.rgba(13, 128, 251, a: 1)
         placeButton = place
         
         items.append(place)
@@ -63,7 +63,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     @objc func addPlacement() {
         guard location == nil else {
             location = nil
-            placeButton?.tintColor = UIColor(red: 13/255, green: 128/255, blue: 251/255, alpha: 1)
+            placeButton?.tintColor = UIColor.rgba(13, 128, 251, a: 1)
             return
         }
         performSegue(withIdentifier: "Map", sender: self)

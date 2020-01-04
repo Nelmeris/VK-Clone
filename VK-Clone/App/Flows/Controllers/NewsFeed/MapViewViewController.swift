@@ -48,7 +48,7 @@ class MapViewViewController: UIViewController, CLLocationManagerDelegate {
     @IBAction func closeMap(_ sender: Any) {
         if let sender = self.sender as? NewPostViewController {
             sender.location = self.marker?.position
-            sender.placeButton?.tintColor = UIColor.init(red: 44/255, green: 166/255, blue: 72/255, alpha: 1)
+            sender.placeButton?.tintColor = UIColor.rgba(44, 166, 72, a: 1)
         }
         dismiss(animated: true, completion: nil)
     }
