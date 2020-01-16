@@ -26,7 +26,7 @@ extension Array where Element: Hashable {
     }
     
     func updateInforms(from other: [Element]) -> [DataUpdateInfo] {
-        var array = self
+        let array = self
         let different = self.difference(from: other)
         var updateInforms = [DataUpdateInfo]()
         for diffElement in different {

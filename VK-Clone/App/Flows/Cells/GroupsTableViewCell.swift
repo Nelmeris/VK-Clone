@@ -9,5 +9,12 @@
 import UIKit
 
 class GroupsTableViewCell: DataBasicTableViewCell {
+    
     @IBOutlet weak var participantsCount: UILabel!
+    
+    func configure(with viewModel: GroupViewModel) {
+        name.text = viewModel.name
+        setPhoto(viewModel.photo)
+    }
+    
 }

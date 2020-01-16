@@ -11,7 +11,7 @@ import SDWebImage
 
 class NewsFeedTableViewController: UITableViewController {
     
-    var newsFeed: VKNewsFeedModel!
+    var viewModels: [NewsViewModel]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,8 @@ class NewsFeedTableViewController: UITableViewController {
         
         VKService.shared.getNewsFeed(types: [.post]) { [weak self] newsFeed in
             guard let strongSelf = self else { return }
-            strongSelf.newsFeed = newsFeed
+            strongSelf.viewModels = NewsViewModelFactory().constructViewModels(from: newsFeed)
+            
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
             }
@@ -38,42 +39,13 @@ class NewsFeedTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let newsFeed = newsFeed else { return 0 }
-        
-        return newsFeed.news.count
+        return viewModels?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let news = self.newsFeed.news[indexPath.row]
+        let model = self.viewModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "Post") as! NewsFeedTableViewCell
-        
-        if let postId = news.postId {
-            cell.postId = postId
-        }
-        cell.authorId = news.sourceId
-        
-        if let text = news.text {
-            cell.setText(text)
-        }
-        
-        cell.setLikes(news)
-        
-        cell.setCommentsCount(news)
-        
-        if let likes = news.likes {
-            cell.likesCount.text = getShortCount(likes.count)
-        }
-        if let reposts = news.reposts {
-            cell.repostsCount.text = getShortCount(reposts.count)
-        }
-        if let views = news.views {
-            cell.viewsCount.text = getShortCount(views.count)
-        }
-        
-        cell.setAuthorData(self.newsFeed, indexPath.row)
-        
-        cell.attachmentProcessing(news.attachments)
-        
+        cell.configure(with: model)
         return cell
     }
 }

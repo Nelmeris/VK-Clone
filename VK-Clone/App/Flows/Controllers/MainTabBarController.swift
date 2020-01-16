@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
             let tabBarItem = UITabBarItem(title: nil, image: tabBarIcon, tag: tag)
             controller.tabBarItem = tabBarItem
             let navControl = UINavigationController(rootViewController: controller)
-            
+            navControl.view.backgroundColor = UIColor(named: "NavigationColor")
             viewControllers.append(navControl)
         }
         self.viewControllers = viewControllers

@@ -12,6 +12,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
     
     var displayedGroups = [VKGroupModel]()
     var groups = [VKGroupModel]()
+    var viewModels = [GroupViewModel]()
     
     var searchController = UISearchController(searchResultsController: nil)
     
@@ -27,6 +28,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
             DispatchQueue.main.async {
                 strongSelf.displayedGroups = newGroups
                 strongSelf.groups = newGroups
+                strongSelf.viewModels = GroupViewModelFactory().constructViewModels(from: newGroups)
                 strongSelf.tableView.reloadData()
             }
         }
@@ -35,11 +37,20 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
     func configureSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Искать..."
+        
+        let scb = searchController.searchBar
+        
+        scb.placeholder = "Искать..."
+        scb.isTranslucent = false
+        scb.tintColor = .white
+        
+        if let textfield = scb.value(forKey: "searchField") as? UITextField {
+            textfield.backgroundColor = .white
+        }
+        
+        navigationItem.hidesSearchBarWhenScrolling = true
         
         navigationItem.searchController = searchController
-        
-        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,23 +63,20 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
                 strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)
                 strongSelf.displayedGroups = newGroups
                 strongSelf.groups = newGroups
+                strongSelf.viewModels = GroupViewModelFactory().constructViewModels(from: newGroups)
                 strongSelf.tableView.endUpdates()
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return displayedGroups.count
+        return viewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let group = displayedGroups[indexPath.row]
+        let model = viewModels[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyGroup", for: indexPath) as! GroupsTableViewCell
-        
-        cell.name.text = group.name
-        
-        cell.setPhoto(group.avatar.photo100.absoluteString)
-        
+        cell.configure(with: model)
         return cell
     }
     
@@ -85,6 +93,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
                     strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)
                     strongSelf.displayedGroups = newGroups
                     strongSelf.groups = newGroups
+                    strongSelf.viewModels = GroupViewModelFactory().constructViewModels(from: newGroups)
                     strongSelf.tableView.endUpdates()
                 }
             }
@@ -107,6 +116,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
                             strongSelf.tableView.beginUpdates()
                             strongSelf.tableView.updateData(data: strongSelf.groups, newData: newGroups)
                             strongSelf.displayedGroups = newGroups
+                            strongSelf.viewModels = GroupViewModelFactory().constructViewModels(from: newGroups)
                             strongSelf.groups = newGroups
                             strongSelf.tableView.endUpdates()
                         }
@@ -126,6 +136,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
             self.tableView.beginUpdates()
             self.tableView.updateData(data: self.displayedGroups, newData: self.groups, with: .none)
             displayedGroups = groups
+            viewModels = GroupViewModelFactory().constructViewModels(from: groups)
             self.tableView.endUpdates()
             return
         }
@@ -136,6 +147,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
             return group.name.lowercased().contains(searchText.lowercased())
         })
         self.tableView.updateData(data: oldGroups, newData: displayedGroups, with: .none)
+        viewModels = GroupViewModelFactory().constructViewModels(from: displayedGroups)
         self.tableView.endUpdates()
     }
 }
