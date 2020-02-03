@@ -10,6 +10,11 @@ import Alamofire
 
 // https://vk.com/dev/users.get
 
+protocol VKServiceUsersInterface {
+    func getCurrentUser(nameCase: VKService.NameCases, completionHandler: @escaping(VKUserModel) -> Void)
+    func getUsers(userIds: [Int], nameCase: VKService.NameCases, completionHandler: @escaping([VKUserModel]) -> Void)
+}
+
 extension VKService {
     
     func getCurrentUser(nameCase: NameCases = .nom, completionHandler: @escaping(VKUserModel) -> Void) {

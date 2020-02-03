@@ -9,6 +9,10 @@
 import Alamofire
 import GoogleMaps
 
+protocol VKServiceWallInterface {
+    func postWall(message: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(VKPostWallResponse) -> Void)
+}
+
 extension VKService {
     
     func postWall(message: String?, place: CLLocationCoordinate2D?, completionHandler: @escaping(VKPostWallResponse) -> Void = {_ in}) {

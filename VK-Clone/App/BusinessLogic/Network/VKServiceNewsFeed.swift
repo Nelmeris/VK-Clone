@@ -8,6 +8,10 @@
 
 import Alamofire
 
+protocol VKServiceNewsFeedInterface {
+    func getNewsFeed(types: [VKService.NewsTypes]?, count: Int?, completionHandler: @escaping (VKNewsFeedModel) -> Void)
+}
+
 extension VKService {
     
     func getNewsFeed(types: [NewsTypes]? = nil, count: Int? = nil, completionHandler: @escaping (VKNewsFeedModel) -> Void) {

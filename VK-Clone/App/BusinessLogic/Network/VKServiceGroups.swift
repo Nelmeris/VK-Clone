@@ -8,6 +8,13 @@
 
 import Alamofire
 
+protocol VKServiceGroupsInterface {
+    func getGroups(userId: Int?, extended: Bool, filters: [VKService.GroupFilters]?, offset: Int?, count: Int?, completionHandler: @escaping ([VKGroupModel]) -> Void)
+    func searchGroups(searchText q: String, offset: Int?, count: Int?, completionHandler: @escaping ([VKGroupModel]) -> Void)
+    func joinGroup(groupId: Int, completionHandler: @escaping (Int) -> Void)
+    func leaveGroup(groupId: Int, completionHandler: @escaping (Int) -> Void)
+}
+
 extension VKService {
     
     func getGroups(userId: Int? = nil, extended: Bool = true, filters: [GroupFilters]? = nil, offset: Int? = nil, count: Int? = nil, completionHandler: @escaping ([VKGroupModel]) -> Void) {

@@ -48,9 +48,9 @@ class NewsFeedTableViewCell: UITableViewCell {
         likesIcon.image = (isLike ? #imageLiteral(resourceName: "LikesOffIcon") : #imageLiteral(resourceName: "LikesIcon"))
         
         if isLike {
-            VKService.shared.deleteLike(type: .post, itemId: postId, authorId: authorId)
+            VKServiceLikesLoggerProxy().deleteLike(type: .post, itemId: postId, authorId: authorId)
         } else {
-            VKService.shared.addLike(type: .post, itemId: postId, authorId: authorId)
+            VKServiceLikesLoggerProxy().addLike(type: .post, itemId: postId, authorId: authorId)
         }
         
         guard let likes = Int(likesCount.text!) else { return }

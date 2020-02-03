@@ -28,7 +28,7 @@ class NewsFeedTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.shared.getNewsFeed(types: [.post]) { [weak self] newsFeed in
+        VKServiceNewsFeedLoggerProxy().getNewsFeed(types: [.post]) { [weak self] newsFeed in
             guard let strongSelf = self else { return }
             strongSelf.viewModels = NewsViewModelFactory().constructViewModels(from: newsFeed)
             

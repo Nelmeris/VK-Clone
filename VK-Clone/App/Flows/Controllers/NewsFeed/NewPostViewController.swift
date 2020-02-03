@@ -74,7 +74,7 @@ class NewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func addNewPost(_ sender: Any) {
-        VKService.shared.postWall(message: postText.text, place: location)
+        VKServiceWallLoggerProxy().postWall(message: postText.text, place: location)
         
         dismiss(animated: true, completion: nil)
     }

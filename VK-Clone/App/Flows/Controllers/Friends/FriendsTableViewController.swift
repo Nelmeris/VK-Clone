@@ -23,7 +23,7 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
         configureSearchController()
         self.tableView.rowHeight = 55.0
         
-        VKService.shared.getFriends { [weak self] newFriends in
+        VKServiceFriendsLoggerProxy().getFriends { [weak self] newFriends in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.friends = newFriends
@@ -37,7 +37,7 @@ class FriendsTableViewController: UITableViewController, UISearchResultsUpdating
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.shared.getFriends { [weak self] newFriends in
+        VKServiceFriendsLoggerProxy().getFriends { [weak self] newFriends in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.tableView.beginUpdates()
