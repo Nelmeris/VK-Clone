@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         configureViewControllers()
         
-        VKService.shared.getCurrentUser {
+        VKServiceUsersLoggerProxy().getCurrentUser {
             VKService.shared.user = $0
         }
     }

@@ -8,6 +8,10 @@
 
 import Alamofire
 
+protocol VKServicePhotosInterface {
+    func getOwnerPhotos(ownerId: Int?, completionHandler: @escaping([VKPhotoModel]) -> Void)
+}
+
 extension VKService {
     
     func getOwnerPhotos(ownerId: Int? = nil, completionHandler: @escaping([VKPhotoModel]) -> Void) {

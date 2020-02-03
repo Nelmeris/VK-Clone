@@ -8,6 +8,10 @@
 
 import Alamofire
 
+protocol VKServiceConversionsInterface {
+    func getConversions(offset: Int?, count: Int?, filters: [VKService.ConversionFilters]?, extended: Bool, startMessageId: Int?, groupId: Int?, completionHandler: @escaping([VKConversationModel]) -> Void)
+}
+
 extension VKService {
     
     func getConversions(offset: Int? = nil, count: Int? = nil, filters: [ConversionFilters]? = nil, extended: Bool = true, startMessageId: Int? = nil, groupId: Int? = nil, completionHandler: @escaping([VKConversationModel]) -> Void) {

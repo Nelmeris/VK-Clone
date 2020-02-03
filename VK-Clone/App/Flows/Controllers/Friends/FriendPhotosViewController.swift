@@ -50,7 +50,7 @@ class FriendPhotosViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func loadPhotos() {
-        VKService.shared.getOwnerPhotos(ownerId: user.id) { [weak self] photos in
+        VKServicePhotosLoggerProxy().getOwnerPhotos(ownerId: user.id) { [weak self] photos in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.photos = photos

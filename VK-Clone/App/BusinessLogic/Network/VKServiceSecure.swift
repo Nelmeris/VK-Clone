@@ -9,6 +9,10 @@
 import Alamofire
 import Keychain
 
+protocol VKServiceSecureInterface {
+    func checkToken(token: String, completionHandler: @escaping(VKCheckTokenResponse) -> Void)
+}
+
 extension VKService {
     
     private func loadSecureToken(completionHandler: @escaping(VKGetSecureTokenResponse) -> Void) {

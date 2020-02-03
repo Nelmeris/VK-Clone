@@ -23,7 +23,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
         configureSearchController()
         self.tableView.rowHeight = 55.0
         
-        VKService.shared.getGroups { [weak self] newGroups in
+        VKServiceGroupsLoggerProxy().getGroups { [weak self] newGroups in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.displayedGroups = newGroups
@@ -56,7 +56,7 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        VKService.shared.getGroups { [weak self] newGroups in
+        VKServiceGroupsLoggerProxy().getGroups { [weak self] newGroups in
             guard let strongSelf = self else { return }
             DispatchQueue.main.async {
                 strongSelf.tableView.beginUpdates()
@@ -85,8 +85,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
         let index = controller.tableView.indexPathForSelectedRow!.row
         let group = controller.groups[index]
         
-        VKService.shared.joinGroup(groupId: group.id) { _ in
-            VKService.shared.getGroups { [weak self] newGroups in
+        VKServiceGroupsLoggerProxy().joinGroup(groupId: group.id) { _ in
+            VKServiceGroupsLoggerProxy().getGroups { [weak self] newGroups in
                 guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
                     strongSelf.tableView.beginUpdates()
@@ -109,8 +109,8 @@ class GroupsTableViewController: UITableViewController, UISearchResultsUpdating 
             alert.addAction(action)
             
             action = UIAlertAction(title: "Покинуть", style: .destructive) { action in
-                VKService.shared.leaveGroup(groupId: strongSelf.displayedGroups[indexPath.row].id) { _ in
-                    VKService.shared.getGroups { [weak self] newGroups in
+                VKServiceGroupsLoggerProxy().leaveGroup(groupId: strongSelf.displayedGroups[indexPath.row].id) { _ in
+                    VKServiceGroupsLoggerProxy().getGroups { [weak self] newGroups in
                         guard let strongSelf = self else { return }
                         DispatchQueue.main.async {
                             strongSelf.tableView.beginUpdates()

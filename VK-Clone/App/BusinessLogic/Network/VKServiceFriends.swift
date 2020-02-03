@@ -8,6 +8,10 @@
 
 import Alamofire
 
+protocol VKServiceFriendsInterface {
+    func getFriends(userId: Int?, order: VKService.SortOrders?, count: Int?, offset: Int?, nameCase: VKService.NameCases, completionHandler: @escaping ([VKUserModel]) -> Void)
+}
+
 extension VKService {
     
     func getFriends(userId: Int? = nil, order: SortOrders? = .hints, count: Int? = nil, offset: Int? = nil, nameCase: NameCases = .nom, completionHandler: @escaping ([VKUserModel]) -> Void) {

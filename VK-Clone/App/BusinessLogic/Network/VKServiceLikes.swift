@@ -8,6 +8,11 @@
 
 import Alamofire
 
+protocol VKServiceLikesInterface {
+    func addLike(type: VKService.LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(VKLikeResponse) -> Void)
+    func deleteLike(type: VKService.LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(VKLikeResponse) -> Void)
+}
+
 extension VKService {
     
     func addLike(type: LikeTypes, itemId: Int, authorId: Int, completionHandler: @escaping(VKLikeResponse) -> Void = {_ in}) {

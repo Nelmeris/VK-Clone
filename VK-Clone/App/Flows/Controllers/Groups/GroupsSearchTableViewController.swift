@@ -54,7 +54,7 @@ class GroupsSearchTableViewController: UITableViewController, UISearchResultsUpd
             return
         }
         
-        VKService.shared.searchGroups(searchText: searchText) { [weak self] groups in
+        VKServiceGroupsLoggerProxy().searchGroups(searchText: searchText) { [weak self] groups in
             guard let strongSelf = self else { return }
             strongSelf.groups = groups
             DispatchQueue.main.async {
